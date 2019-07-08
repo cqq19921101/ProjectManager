@@ -1,0 +1,32 @@
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\csc.exe
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\System.Collections.Immutable.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\System.Reflection.Metadata.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\vbc.exe
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\VBCSCompiler.exe
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\roslyn\VBCSCompiler.exe.config
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Toilet Usage Status.dll.config
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Toilet Usage Status.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Toilet Usage Status.pdb
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.Agent.Intercept.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.DependencyCollector.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.Web.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.WindowsServer.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.ApplicationInsights.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.DependencyCollector.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.Web.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.AI.WindowsServer.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.ApplicationInsights.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\桌面\Toilet Usage Status\Toilet Usage Status\obj\Debug\Toilet Usage Status.dll
+D:\桌面\Toilet Usage Status\Toilet Usage Status\obj\Debug\Toilet Usage Status.pdb
+D:\桌面\Toilet Usage Status\Toilet Usage Status\obj\Debug\Toilet Usage Status.csprojResolveAssemblyReference.cache

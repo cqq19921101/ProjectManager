@@ -1,0 +1,71 @@
+﻿/*圖片div的左右間距設定*/
+.picture_div {
+    float: left;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+
+.picture_toilet,.picture_toiletE,.picture_toiletA,.picture_toiletF,.picture_toiletV
+{
+    float: left;
+    /*padding-left:40px;*/
+    padding-left: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.picture_div_man_left {
+    float: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ToiletLogo,.ToiletLogoE,.ToiletLogoA,.ToiletLogoF,.ToiletLogoV
+{
+    padding-top: 15px;
+}
+
+.Percent-Font-Red {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+.Percent-Font-Green {
+    text-align: center;
+    color: darkgreen;
+    font-size: 20px;
+}
+
+.picture_div1 {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+
+.picture_div_man_left1 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#EContainer, #AContainer, #VContainer, #FContainer {
+    border:1px solid #DDDDDD;
+    margin-bottom:3px;
+}
+
+/*#divEW,#divFW,#divAW,#divVW
+{
+    margin-left:2%;
+}*/
+
+#divAL, #divVL {
+        margin-left:3%;
+}
+
+#divAM,#divVM
+{
+    margin-left:3%;
+}
+
+
