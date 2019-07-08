@@ -1,0 +1,39 @@
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\ResolveAssemblyReference.cache
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.Corp.IT.EA.CMCC.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.Borg.Utility.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.CE.Utility.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.CommonModel.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.ORG.Utility.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\Liteon.ICM.DataCore.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.CommonModel.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.ORG.Utility.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.Corp.IT.EA.CMCC.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\Liteon.ICM.DataCore.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.CE.Utility.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.Borg.Utility.pdb
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.dll
+D:\Workshop\Projects_Git\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.BLL.dll
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.BLL.pdb
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Users\ArieneLi\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Users\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Users\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Users\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Users\Administrator\Desktop\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\NPI\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\NPI\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\bin\Debug\LiteOn.EA.NPIReport.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\NPI\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\NPI\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\NPI\LiteOn.EA.NPIReport.Utility\LiteOn.EA.NPIReport.Utility\obj\Debug\LiteOn.EA.NPIReport.Utility.pdb

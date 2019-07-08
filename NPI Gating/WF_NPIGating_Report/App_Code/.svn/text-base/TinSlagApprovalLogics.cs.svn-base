@@ -1,0 +1,1065 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Web.UI;
+using System.Collections;
+using System.IO;
+using System.Text;
+using System.Collections.Generic;
+using LiteOn.ea.SPM3G;
+using LiteOn.ea.SPM3G.UI;
+using LiteOn.EA.BLL;
+using LiteOn.EA.Model;
+using LiteOn.EA.DAL;
+using Ext.Net;
+using System.Web;
+//
+
+// UI controls holder for Example1 
+public class TinSlagApprovalUIShadow : IUIShadow
+{
+    // Declare controls which show in the web page
+    #region form controls
+
+    //logon user info
+    public TextField txtLogonID;
+    public TextField txtName;
+    public TextField txtBU;
+    public TextField txtDept;
+    public TextField txtEMail;
+    public TextField txtExtNO;
+    public TextField txtEnglishName;
+    public Hidden hdBuilding;
+    public SelectBox sbBuilding;
+    // apply info
+    public TextField txtFormNO;
+    public Panel pnlKeyIn;
+    public GridPanel grdInfo;
+
+    #endregion
+
+    public TinSlagApprovalUIShadow(Page oContainer)
+        : base(oContainer) { }
+
+    // Initialize controls
+    public override void InitShadow(System.Web.UI.WebControls.ContentPlaceHolder oContentPage)
+    {
+        #region form controls
+
+        //user info
+        txtEnglishName = (TextField)oContentPage.FindControl("txtEnglishName");
+        txtName = (TextField)oContentPage.FindControl("txtName");
+        txtDept = (TextField)oContentPage.FindControl("txtDept");
+        txtBU = (TextField)oContentPage.FindControl("txtBU");
+        txtEMail = (TextField)oContentPage.FindControl("txtEMail");
+        txtExtNO = (TextField)oContentPage.FindControl("txtExtNO");
+        txtLogonID = (TextField)oContentPage.FindControl("txtLogonID");
+        pnlKeyIn = (Panel)oContentPage.FindControl("pnlKeyIn");
+
+        hdBuilding = (Hidden)oContentPage.FindControl("hdBuilding");
+        sbBuilding = (SelectBox)oContentPage.FindControl("sbBuilding");
+        // apply info
+        txtFormNO = (TextField)oContentPage.FindControl("txtFormNO");
+        //detail
+        grdInfo = (GridPanel)oContentPage.FindControl("grdInfo");
+        #endregion
+    }
+}
+
+// Form logics
+public class TinSlagApprovalLogics : ISPMInterfaceContent
+{
+
+    private Page oPage;
+    private TinSlagApprovalUIShadow oUIControls;
+    private IFormURLPara oPara;
+    private SqlDB sdb = new SqlDB(DataPara.GetDbConnectionString("SPM"));
+    private ArrayList opc = new ArrayList();
+    private string sql = string.Empty;
+    public TinSlagApprovalLogics(object oContainer, IUIShadow UIShadow)
+        : base(oContainer)
+    {
+        this.SetUIShadow(UIShadow);
+    }
+
+    // Code for Page_Load
+    protected override void PageLoad(object oContainer, IFormURLPara para, IUIShadow UIShadow)
+    {
+        oPage = (Page)oContainer;
+        oUIControls = (TinSlagApprovalUIShadow)UIShadow;
+        oPara = para;
+
+        this.InitialPageControls();
+        base.PageLoad(oContainer, para, UIShadow);
+    }
+
+    #region Initial Controls
+    private void InitialPageControls()
+    {
+        if (!oPage.IsPostBack)
+        {
+
+        }
+
+
+
+        try
+        {
+
+
+            if (!oPage.IsPostBack)
+            {
+                if (oPara.TaskId < 0)
+                {
+                    InitialControl_UserInfo();
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        finally
+        {
+
+        }
+    }
+
+
+    private void InitialControl_UserInfo()
+    {
+        if (string.IsNullOrEmpty(oPara.LoginId)) return;
+        SPMBasic SPMBasic_class = new SPMBasic();
+        Model_SPMUserInfo SPMUserInfo = new Model_SPMUserInfo();
+        SPMBasic_class.GetUserInfoByEName(oPara.LoginId, SPMUserInfo);
+        if (SPMUserInfo.Exists == true)
+        {
+            oUIControls.txtEnglishName.Text = SPMUserInfo.cust_12;
+            oUIControls.txtLogonID.Text = SPMUserInfo.logonID;
+            oUIControls.txtName.Text = SPMUserInfo.userName;
+            oUIControls.txtEMail.Text = SPMUserInfo.email;
+            oUIControls.txtDept.Text = SPMUserInfo.deptName;
+            oUIControls.txtExtNO.Text = SPMUserInfo.tel_office;
+            oUIControls.txtBU.Text = SPMUserInfo.bu;
+
+        }
+        //初始化表單號
+        oUIControls.txtFormNO.Text = SPMBasic_class.GetSPMFormNO("TS");
+        //初始化GRD title
+        GetTitleData(oUIControls, "Process");
+
+        ShowColumnByStep(oUIControls, "BEGIN","Process");
+    }
+
+
+    #endregion
+
+    // Code for 'draft' and 'pending for process'
+    public override void InitialContainer(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, ref object oContainer, IUIShadow UIShadow)
+    {
+
+        TinSlagApprovalUIShadow lUIControls = (TinSlagApprovalUIShadow)UIShadow;
+
+        lUIControls.txtEnglishName.Text = FormFields["txtEnglishName".ToUpper()];
+        lUIControls.txtEnglishName.ReadOnly = true;
+        lUIControls.txtLogonID.Text = FormFields["txtLogonID".ToUpper()];
+        lUIControls.txtLogonID.ReadOnly = true;
+        lUIControls.txtName.Text = FormFields["txtName".ToUpper()];
+        lUIControls.txtName.ReadOnly = true;
+        lUIControls.txtBU.Text = FormFields["txtBU".ToUpper()];
+        lUIControls.txtBU.ReadOnly = true;
+        lUIControls.txtDept.Text = FormFields["txtDept".ToUpper()];
+        lUIControls.txtDept.ReadOnly = true;
+        lUIControls.txtEMail.Text = FormFields["txtEMail".ToUpper()];
+        lUIControls.txtEMail.ReadOnly = true;
+        lUIControls.txtExtNO.Text = FormFields["txtExtNO".ToUpper()];
+        lUIControls.txtExtNO.ReadOnly = true;
+        lUIControls.txtFormNO.Text = FormFields["txtFormNO".ToUpper()];
+        lUIControls.txtFormNO.ReadOnly = true;
+        lUIControls.pnlKeyIn.Hidden = true;
+        try
+        {
+            lUIControls.hdBuilding.Text = FormFields["hdBuilding".ToUpper()];
+        }
+
+        catch (Exception)
+        {
+            lUIControls.hdBuilding.Text = "A6";
+        }
+
+        lUIControls.sbBuilding.SelectedItem.Value = lUIControls.hdBuilding.Text;
+        lUIControls.sbBuilding.Disabled = true;
+        string stepName = SPMTaskVars.ReadDatum("STEPNAME").ToString().ToUpper();
+
+        switch (stepName)
+        {
+            case "IQC窗口":
+            case "總務窗口":
+            case "環安窗口":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = false;
+                break;
+            default:
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                break;
+
+        }
+        //初始化GRD title
+        GetTitleData(oUIControls, "Process");
+        //綁定數據
+        BindMasterData(oUIControls, "Process");
+
+        ShowColumnByStep(lUIControls, stepName,"Process");
+        base.InitialContainer(SPMTaskVars, FormFields, ref oContainer, UIShadow);
+    }
+
+
+    // Code for 'Notice' and 'Log'. Disable all contols.
+    public override void InitialDisableContainer(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, ref object oContainer, IUIShadow UIShadow)
+    {
+        TinSlagApprovalUIShadow lUIControls = (TinSlagApprovalUIShadow)UIShadow;
+
+        //user info
+        lUIControls.txtEnglishName.Text = FormFields["txtEnglishName".ToUpper()];
+        lUIControls.txtEnglishName.ReadOnly = true;
+        lUIControls.txtLogonID.Text = FormFields["txtLogonID".ToUpper()];
+        lUIControls.txtLogonID.ReadOnly = true;
+        lUIControls.txtName.Text = FormFields["txtName".ToUpper()];
+        lUIControls.txtName.ReadOnly = true;
+        lUIControls.txtBU.Text = FormFields["txtBU".ToUpper()];
+        lUIControls.txtBU.ReadOnly = true;
+        lUIControls.txtDept.Text = FormFields["txtDept".ToUpper()];
+        lUIControls.txtDept.ReadOnly = true;
+        lUIControls.txtEMail.Text = FormFields["txtEMail".ToUpper()];
+        lUIControls.txtEMail.ReadOnly = true;
+        lUIControls.txtExtNO.Text = FormFields["txtExtNO".ToUpper()];
+        lUIControls.txtExtNO.ReadOnly = true;
+        //apply info
+        lUIControls.txtFormNO.Text = FormFields["txtFormNO".ToUpper()];
+        lUIControls.txtFormNO.ReadOnly = true;
+
+        try
+        {
+            lUIControls.hdBuilding.Text = FormFields["hdBuilding".ToUpper()];
+        }
+
+        catch (Exception)
+        {
+            lUIControls.hdBuilding.Text = "A6";
+        }
+        lUIControls.sbBuilding.SelectedItem.Value = lUIControls.hdBuilding.Text;
+        lUIControls.sbBuilding.Disabled = true;
+        lUIControls.pnlKeyIn.Hidden = true;
+        //初始化GRD title
+        GetTitleData(lUIControls, "Log");
+        //綁定數據
+        BindMasterData(lUIControls, "Log");
+        lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+        base.InitialDisableContainer(SPMTaskVars, FormFields, ref oContainer, UIShadow);
+    }
+
+
+    // Validate contols before submit
+    public override bool EFFormFieldsValidation(SPMSubmitMethod SubmitMethod, SPMProcessMethod ProcessMethod, SPMTaskVariables SPMTaskVars, ref IInterfaceHandleResult HandleResult, object oContainer, IUIShadow UIShadow)
+    {
+        TinSlagApprovalUIShadow lUIControls = (TinSlagApprovalUIShadow)UIShadow;
+        string stepName = (string)(SPMTaskVars.ReadDatum("STEPNAME"));
+        if (SubmitMethod == SPMSubmitMethod.CreateNewCase)
+        {
+
+            #region[ check list]
+
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result = CheckFormData(lUIControls.txtFormNO.Text, stepName);
+            bool flag = (bool)result["AllowFlag"];
+            if (!flag)
+            {
+                string msg = (string)result["ErrMsg"];
+                HandleResult.IsSuccess = false;
+                HandleResult.CustomMessage = msg;
+            }
+
+            #endregion
+        }
+        else
+        {
+            //only  approve action check controls 
+            if (SubmitMethod == SPMSubmitMethod.HandleCase_Approve)
+            {
+
+                if (stepName == "Begin" || stepName == "開始")
+                {
+                    HandleResult.IsSuccess = false;
+                    HandleResult.CustomMessage = "退簽單據不可重複送簽!";
+                }
+                else
+                {
+                    Dictionary<string, object> result = new Dictionary<string, object>();
+                    result = CheckFormData(lUIControls.txtFormNO.Text, stepName);
+                    bool flag = (bool)result["AllowFlag"];
+                    if (!flag)
+                    {
+                        string msg = (string)result["ErrMsg"];
+                        HandleResult.IsSuccess = false;
+                        HandleResult.CustomMessage = msg;
+                    }
+                }
+
+            }
+        }
+        return base.EFFormFieldsValidation(SubmitMethod, ProcessMethod, SPMTaskVars, ref HandleResult, oContainer, UIShadow);
+    }
+
+    // Fill SPM's EFFormFieldData
+    public override void PrepareEFFormFields(SPMSubmitMethod SubmitMethod, SPMProcessMethod ProcessMethod, SPMTaskVariables TaskVars, ref EFFormFields FormFields, ref IInterfaceHandleResult HandleResult, object oContainer, IUIShadow UIShadow, ref string ApplicantInfo)
+    {
+        TinSlagApprovalUIShadow lUIControls = (TinSlagApprovalUIShadow)UIShadow;
+
+        FormFields.SetOrAdd("txtEnglishName".ToUpper(), lUIControls.txtEnglishName.Text);
+        FormFields.SetOrAdd("txtLogonID".ToUpper(), lUIControls.txtLogonID.Text);
+        FormFields.SetOrAdd("txtName".ToUpper(), lUIControls.txtName.Text);
+        FormFields.SetOrAdd("txtBU".ToUpper(), lUIControls.txtBU.Text);
+        FormFields.SetOrAdd("txtDept".ToUpper(), lUIControls.txtDept.Text);
+        FormFields.SetOrAdd("txtEMail".ToUpper(), lUIControls.txtEMail.Text);
+        FormFields.SetOrAdd("txtExtNO".ToUpper(), lUIControls.txtExtNO.Text);
+        FormFields.SetOrAdd("txtFormNO".ToUpper(), lUIControls.txtFormNO.Text);
+        FormFields.SetOrAdd("hdBuilding".ToUpper(), (lUIControls.hdBuilding.Text.Length > 0) ? lUIControls.hdBuilding.Text : "A6");
+        base.PrepareEFFormFields(SubmitMethod, ProcessMethod, TaskVars, ref FormFields, ref HandleResult, oContainer, UIShadow, ref ApplicantInfo);
+    }
+
+    // Fill SPM Variable 
+    public override void PrepareSPMVariables(SPMSubmitMethod SubmitMethod, SPMProcessMethod ProcessMethod, SPMTaskVariables SPMTaskVars, ref SPMVariables Variables, ref SPMRoutingVariable RoutingVariable, ref string strSPMUid, string strMemo, string strNotesForNextApprover, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult, ref string SuccessMessage)
+    {
+
+        //if (ProcessMethod == SPMProcessMethod.SaveToDraft)
+        //{
+
+        //}
+        string handler = string.Empty;
+        string building = FormFields["hdBuilding".ToUpper()];
+        // different parameters for defferent modes
+        if (SubmitMethod == SPMSubmitMethod.CreateNewCase)
+        {
+            //add form title
+            Variables.Add(SPMVariableKey.Subject, "[錫渣回收管制單] [" + FormFields["txtFormNO".ToUpper()] + "] [ " + building + " ]");
+            handler = GetHanlder(building, "小資材主管");
+            RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "小資材主管(" + handler + ")");
+        }
+        else
+        {
+
+            string formNo = FormFields["txtFormNO".ToUpper()];
+            string bu = FormFields["txtBU".ToUpper()];
+            string stepName = (string)(SPMTaskVars.ReadDatum("STEPNAME"));
+            switch (stepName)
+            {
+
+                case "小資材主管":
+                    //無銀不需IQC抽檢
+                    if (!CheckCategory(formNo))
+                    {
+                        handler = GetHanlder(building, "總務窗口");
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "總務窗口(" + handler + ")");
+                    }
+                    else
+                    {
+                        handler = GetHanlder(building, "IQC窗口");
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "IQC窗口(" + handler + ")");
+                    }
+                    break;
+                case "IQC窗口":
+                    handler = GetHanlder(building, "IQC主管");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "IQC主管(" + handler + ")");
+                    break;
+                case "IQC主管":
+                    handler = GetHanlder(building, "總務窗口");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "總務窗口(" + handler + ")");
+                    break;
+                case "總務窗口":
+                    handler = GetHanlder(building, "總務主管");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "總務主管(" + handler + ")");
+                    break;
+                case "總務主管":
+                    if (CheckGapPercentage(formNo, stepName))
+                    {
+                        handler = GetHanlder(building, "MD");
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "MD(" + handler + ")");
+                    }
+                    else
+                    {
+                        handler = GetHanlder(building, "環安窗口");
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "環安窗口(" + handler + ")");
+                    }
+                    break;
+                case "MD":
+                    handler = GetHanlder(building, "Controlling");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "Controlling(" + handler + ")");
+                    break;
+                case "Controlling":
+                    handler = GetHanlder(building, "環安窗口");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "環安窗口(" + handler + ")");
+                    break;
+                case "環安窗口":
+                    handler = GetHanlder(building, "環安主管");
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "環安主管(" + handler + ")");
+                    break;
+                case "環安主管":
+                    if (CheckGapPercentage(formNo, stepName))
+                    {
+                        handler = GetHanlder(building, "協理");
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "協理(" + handler + ")");
+                    }
+                    else
+                    {
+                        RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "End");
+                    }
+
+                    break;
+                case "協理":
+                    RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "End");
+                    break;
+            }
+        }
+        base.PrepareSPMVariables(SubmitMethod, ProcessMethod, SPMTaskVars, ref Variables, ref RoutingVariable, ref strSPMUid, strMemo, strNotesForNextApprover, FormFields, ref HandleResult, ref SuccessMessage);
+    }
+
+    // Code for 'before send'
+    public override void SPMBeforeSend(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, SPMRoutingVariable RoutingVariable, ref EFFormFields FormFields, ref IInterfaceHandleResult HandleResult)
+    {
+        if (RoutingVariable != null)
+        {
+            switch (RoutingVariable.Key)
+            {
+                case SPMRoutingVariableKey.spm_Return:
+
+                    string value = RoutingVariable.Data;
+
+                    break;
+            }
+        }
+
+        base.SPMBeforeSend(SubmitMethod, SPMTaskVars, Variables, RoutingVariable, ref FormFields, ref HandleResult);
+    }
+
+    // Code for 'after send'
+    public override void SPMAfterSend(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, SPMRoutingVariable RoutingVariable, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult)
+    {
+        if (RoutingVariable != null)
+        {
+            string sRoutingData = string.Empty;
+            switch (RoutingVariable.Key)
+            {
+                case SPMRoutingVariableKey.spm_Return:
+
+                    sRoutingData = RoutingVariable.Data;
+
+                    break;
+                case SPMRoutingVariableKey.spm_Jump:
+
+
+                    break;
+            }
+        }
+
+
+        // Business logic
+        if (SubmitMethod != SPMSubmitMethod.CreateNewCase)
+        {
+
+            SPMAfterSend_DBIO(SPMTaskVars, FormFields, ref HandleResult, RoutingVariable);
+
+        }
+        else
+        {
+
+            string sCurLogonID = FormFields["txtLogonID".ToUpper()];
+        }
+        base.SPMAfterSend(SubmitMethod, SPMTaskVars, Variables, RoutingVariable, FormFields, ref HandleResult);
+    }
+
+    private void SPMAfterSend_DBIO(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult, SPMRoutingVariable RoutingVariable)
+    {
+        string sCurLogonID = (string)(SPMTaskVars.ReadDatum("SYS_LOGONID"));
+        string caseID = (string)(SPMTaskVars.ReadDatum("CASEID"));
+        string building = FormFields["HDBUILDING"];
+        switch (RoutingVariable.Key)
+        {
+            case SPMRoutingVariableKey.spm_Return:
+                UpdateStatus(FormFields["TXTFORMNO"].Trim(), "Reject", sCurLogonID);
+                break;
+            case SPMRoutingVariableKey.spm_Jump:
+                string stepName = (string)(SPMTaskVars.ReadDatum("STEPNAME"));
+
+                switch (stepName)
+                {
+                    case "環安主管":
+                        if (!CheckGapPercentage(FormFields["TXTFORMNO"].Trim(), stepName))
+                        {
+                            UpdateStatus(FormFields["TXTFORMNO"].Trim(), "Approve", sCurLogonID);
+                            SendMail(FormFields["TXTFORMNO"].Trim(), caseID, building);
+                        }
+                        break;
+                    case "協理":
+                        UpdateStatus(FormFields["TXTFORMNO"].Trim(), "Approve", sCurLogonID);
+                        SendMail(FormFields["TXTFORMNO"].Trim(), caseID, building);
+                        break;
+                }
+                break;
+        }
+
+    }
+
+    // Recall workflow 
+    public override void SPMBackoutProcess(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult)
+    {
+        base.SPMBackoutProcess(SubmitMethod, SPMTaskVars, Variables, FormFields, ref HandleResult);
+    }
+
+    //Abort
+    public override void SPMRecallProcess(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult)
+    {
+        base.SPMRecallProcess(SubmitMethod, SPMTaskVars, Variables, FormFields, ref HandleResult);
+    }
+
+    public override void SPMStepActivity(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, EFFormFields FormFields, string NewStepName, ref IInterfaceHandleResult HandleResult)
+    {
+        base.SPMStepActivity(SubmitMethod, SPMTaskVars, Variables, FormFields, NewStepName, ref HandleResult);
+    }
+
+    public override void SPMStepComplete(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, EFFormFields FormFields, string CompletedStepName, ref IInterfaceHandleResult HandleResult)
+    {
+        base.SPMStepComplete(SubmitMethod, SPMTaskVars, Variables, FormFields, CompletedStepName, ref HandleResult);
+    }
+
+    public override void Print(int iTaskId, SPMTaskVariables SPMTaskVars, EFFormFields FormFields, object oContainer, IUIShadow UIShadow)
+    {
+        if (iTaskId < 0)
+        {
+            TinSlagApprovalUIShadow lControls = (TinSlagApprovalUIShadow)UIShadow;
+        }
+        //else
+        //{
+
+        //}
+
+        base.Print(iTaskId, SPMTaskVars, FormFields, oContainer, UIShadow);
+    }
+
+    public override void SPM_SendError(SPMSubmitMethod SubmitMethod, SPMTaskVariables SPMTaskVars, SPMVariables Variables, SPMRoutingVariable RoutingVariable, EFFormFields FormFields, IInterfaceHandleResult HandleResult)
+    {
+        string strExceptionFrom = HandleResult.ExceptionFrom;
+        string strErrorMessage = HandleResult.CustomMessage;
+        base.SPM_SendError(SubmitMethod, SPMTaskVars, Variables, RoutingVariable, FormFields, HandleResult);
+    }
+
+    /// <summary>
+    ///  send error msg 
+    /// </summary>
+    /// <param name="ssub">郵件主題</param>
+    /// <param name="sbody">郵件內容 </param>
+    /// <returns></returns>
+    private void SendMail(string formNo, string caseId,string building)
+    {
+        //讀取MAIL模板
+        string pubTemplate = HttpContext.Current.Server.MapPath("~\\MailTemplate.Cc");
+        FileStream fs = new FileStream(pubTemplate, FileMode.Open);
+        StreamReader sr = new StreamReader(fs, System.Text.Encoding.UTF8);
+        string sbody = sr.ReadToEnd();
+        sr.Close();
+        fs.Close();
+        //設定單號
+        sbody = sbody.Replace("{FORMNO}", formNo);
+        //初始化表身模板
+        StringBuilder template = new StringBuilder();
+        template.Append("   <tr>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{CartonNo}</td>");
+        template.Append("     <td style=\"width: 40px;\" class=\"{CSS_SPECIAL}\">{Category}</td>");
+        template.Append("     <td style=\"width: 70px;\" class=\"{CSS}\">{Measure1}</td>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{Handler1}</td>");
+        template.Append("     <td style=\"width: 70px;\" class=\"{CSS}\">{Measure2}</td>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{Handler2}</td>");
+        template.Append("     <td style=\"width: 65px;color:red;\" class=\"{CSS}\">{Gap1}</td>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{Remark2}</td>");
+        template.Append("     <td style=\"width: 70px;\" class=\"{CSS}\">{Measure3}</td>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{Handler3}</td>");
+        template.Append("     <td style=\"width: 65px;color:red;\" class=\"{CSS}\">{Gap2}</td>");
+        template.Append("     <td style=\"width: 80px;\" class=\"{CSS}\">{Remark3}</td>");
+        template.Append("  </tr>");
+        StringBuilder grdData = new StringBuilder();
+        DataTable dt = GetMasterData(formNo);
+        int i = 0;
+        string flag = "A";
+        #region[填充數據]
+        foreach (DataRow dr in dt.Rows)
+        {
+            string temp = template.ToString();
+            if (i % 2 == 0)
+            {
+                temp = temp.Replace("{CSS}", "admincls0");
+                flag = "A";
+            }
+            else
+            {
+                temp = temp.Replace("{CSS}", "admincls1");
+                flag = "B";
+            }
+
+            switch (dr["Category"].ToString())
+            {
+                case "高銀":
+                    if (flag == "A")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls0_Red");
+                    }
+                    if (flag == "B")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls1_Red");
+                    }
+                    break;
+                case "低銀":
+                    if (flag == "A")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls0_Blue");
+                    }
+                    if (flag == "B")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls1_Blue");
+                    }
+                    break;
+                default:
+                    if (flag == "A")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls0");
+                    }
+                    if (flag == "B")
+                    {
+                        temp = temp.Replace("{CSS_SPECIAL}", "admincls1");
+                    }
+                    break;
+            }
+            temp = temp.Replace("{CartonNo}", dr["CartonNo"].ToString());
+            temp = temp.Replace("{Category}", dr["Category"].ToString());
+            temp = temp.Replace("{Measure1}", dr["Measure1"].ToString());
+            temp = temp.Replace("{Handler1}", dr["Handler1"].ToString());
+            temp = temp.Replace("{Measure2}", dr["Measure2"].ToString());
+            temp = temp.Replace("{Handler2}", dr["Handler2"].ToString());
+            temp = temp.Replace("{Gap1}", ConvertHtmlColor(Math.Round(double.Parse(dr["Gap1"].ToString()), 2).ToString() + "%", "red"));
+            temp = temp.Replace("{Remark2}", dr["Remark2"].ToString());
+            temp = temp.Replace("{Measure3}", dr["Measure3"].ToString());
+            temp = temp.Replace("{Handler3}", dr["Handler3"].ToString());
+            temp = temp.Replace("{Gap2}", ConvertHtmlColor(Math.Round(double.Parse(dr["Gap2"].ToString()), 2).ToString() + "%", "red"));
+            temp = temp.Replace("{Remark3}", dr["Remark3"].ToString());
+
+            grdData.Append(temp);
+            i++;
+        }
+        #endregion[填充數據]
+        sbody = sbody.Replace("{GRD}", grdData.ToString());
+
+        SendMail mail = new SendMail();
+        ArrayList to = new ArrayList();
+
+        string testMode = ConfigurationSettings.AppSettings["TestMode"].ToString();
+        if (testMode == "Y")
+        {
+        
+            to.Add(ConfigurationSettings.AppSettings["TestMailReceiver"].ToString());
+        }
+        else
+        {
+            to = GetMailNotifyList(building);
+        }
+        string sub = "[ "+building+" ] [ 錫渣回收管製單 ] 核准通知 (單號:" + formNo + ")";
+        try
+        {
+            mail.SendMail_Normal(to, new ArrayList(), sub, sbody, true);
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    private string ConvertHtmlColor(string str, string color)
+    {
+        string template = "<a style=\"color:{0};\">{1}</a>";
+        return string.Format(template, color, str);
+    }
+
+    /// <summary>
+    /// 獲取表單數據
+    /// </summary>
+    /// <param name="formNo"></param>
+    /// <returns></returns>
+    private DataTable GetMasterData(string formNo)
+    {
+
+        StringBuilder sql = new StringBuilder();
+        sql.Append("SELECT  CartonNo, Category, ISNULL(Measure1, 0) AS Measure1, Handler1,  ");
+        sql.Append(" ISNULL(Measure2, 0) AS Measure2, Handler2,");
+        sql.Append(" round (100* ((CASE Measure2 WHEN 0 THEN 0 ELSE  ( ISNULL(Measure2, 0)  - ISNULL(Measure1, 0)) / ISNULL(Measure1, 0) END)    ) ,2) AS gap1,");
+        sql.Append(" Remark2,ISNULL(Measure3, 0) AS Measure3, Handler3, ");
+        sql.Append(" round(  100* ((CASE Measure3  WHEN 0 THEN 0 ELSE ((ISNULL(Measure3, 0)  - ISNULL(Measure2, 0)) / ISNULL(Measure2, 0)) END)),2) AS gap2,");
+        sql.Append(" Remark3,Status,  StatusMark, UPDATE_TIME FROM  dbo.TB_TinSlag_Main WHERE FormNo=@FormNo AND Status ='Approve'");
+        ArrayList opc = new ArrayList();
+        opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, formNo));
+        return sdb.GetDataTable(sql.ToString(), opc);
+
+    }
+
+
+
+    //創建GROUPING 列名
+    private void GetTitleData(TinSlagApprovalUIShadow lUIControls,string type)
+    {
+        
+        var structure = new Dictionary<string, string[]>
+            {{ " ", new string[] {"Edit"} },
+                { "小資材", new string[] {"箱號","分類","稱重", "處理人"} },
+                { "總務", new string[] {"稱重", "處理人", "差異", "差異原因"} },
+                 { "營運中心", new string[] {"稱重", "處理人", "差異", "差異原因"} },
+                    { "IQC", new string[] {"檢驗信息"} }
+            };
+        if (type=="Log")
+        {
+            structure.Add("Status", new string[] { " " });
+        }
+        var view = lUIControls.grdInfo.View[0];
+
+        var continentGroupRow = new HeaderGroupRow();
+
+        foreach (KeyValuePair<string, string[]> keyValuePair in structure)
+        {
+            var continent = keyValuePair.Key;
+            var cols = keyValuePair.Value;
+
+            continentGroupRow.Columns.Add(new HeaderGroupColumn
+            {
+                Header = continent,
+                Align = Alignment.Center,
+                ColSpan = cols.Length,
+
+            });
+        }
+        view.HeaderGroupRows.Add(continentGroupRow);
+    }
+
+    /// <summary>
+    /// 綁定數據
+    /// </summary>
+    /// <param name="lUIControls"></param>
+    private void BindMasterData(TinSlagApprovalUIShadow lUIControls, string type)
+    {
+
+        StringBuilder sql = new StringBuilder();
+        sql.Append("SELECT  CartonNo, Category, ISNULL(Measure1, 0) AS Measure1, Handler1,  ");
+        sql.Append(" ISNULL(Measure2, 0) AS Measure2, Handler2,");
+        sql.Append(" round (100* ((CASE Measure2 WHEN 0 THEN 0 ELSE  ( ISNULL(Measure2, 0)  - ISNULL(Measure1, 0)) / ISNULL(Measure1, 0) END)    ) ,2) AS gap1,");
+        sql.Append(" Remark2,ISNULL(Measure3, 0) AS Measure3, Handler3, ");
+        sql.Append(" round(  100* ((CASE Measure3  WHEN 0 THEN 0 ELSE ((ISNULL(Measure3, 0)  - ISNULL(Measure2, 0)) / ISNULL(Measure2, 0)) END)),2) AS gap2,");
+        sql.Append(" Remark3,Status,  StatusMark, UPDATE_TIME FROM  dbo.TB_TinSlag_Main ");
+        if (type == "Log")
+        {
+            sql.Append("WHERE FormNo=@FormNo  order by CartonNo");
+        }
+        else
+        {
+            sql.Append("WHERE FormNo=@FormNo AND Status='Pending' order by CartonNo");
+        }
+
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, lUIControls.txtFormNO.Text));
+        DataTable dt = sdb.GetDataTable(sql.ToString(), opc);
+        var data = new object[dt.Rows.Count];
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            var arry = new string[dt.Columns.Count];
+            DataRow dr = dt.Rows[i];
+            for (int j = 0; j < dt.Columns.Count; j++)
+            {
+                arry[j] = dr[j].ToString();
+            }
+            data[i] = arry;
+        }
+        var store = lUIControls.grdInfo.Store[0];
+        store.DataSource = data;
+        store.DataBind();
+    }
+
+
+    /// <summary>
+    /// 檢查當前單據是否填寫資料完整
+    /// </summary>
+    private Dictionary<string, object> CheckFormData(string formNo, string stepName)
+    {
+
+        Dictionary<string, object> result = new Dictionary<string, object>();
+
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, formNo));
+        DataTable dt = new DataTable();
+        switch (stepName)
+        {
+            case "BEGIN":
+            case "開始":
+                sql = "SELECT CartonNo FROM TB_TinSlag_Main Where FormNo = @FormNo ";
+                dt = sdb.GetDataTable(sql, opc);
+                if (dt.Rows.Count > 0)
+                {
+                    result["AllowFlag"] = true;
+                    result["ErrMsg"] = "";
+                }
+                else
+                {
+                    result["AllowFlag"] = false;
+                    result["ErrMsg"] = "請錄入數據";
+                }
+
+                break;
+            case "IQC窗口":
+                sql = "SELECT CartonNo FROM TB_TinSlag_Main Where FormNo = @FormNo AND Category IN ('高銀','低銀') AND CartonNo not in (select distinct CartonNo FROM TB_TinSlag_IQC where FormNo = @FormNo) ";
+                dt = sdb.GetDataTable(sql, opc);
+                if (dt.Rows.Count > 0)
+                {
+
+                    result["AllowFlag"] = false;
+                    StringBuilder msg = new StringBuilder();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        msg.Append(string.Format("箱號:{0}需填寫抽檢資料<BR/>", dr["CartonNo"].ToString()));
+                    }
+                    result["ErrMsg"] = msg.ToString();
+                }
+                else
+                {
+                    result["AllowFlag"] = true;
+                    result["ErrMsg"] = "";
+                }
+                break;
+            case "總務窗口":
+                sql = "SELECT CartonNo FROM TB_TinSlag_Main Where FormNo = @FormNo AND STATUS <>'Reject'  AND Measure2=0 ";
+                dt = sdb.GetDataTable(sql, opc);
+                if (dt.Rows.Count > 0)
+                {
+
+                    result["AllowFlag"] = false;
+                    StringBuilder msg = new StringBuilder();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        msg.Append(string.Format("箱號:{0}需填寫稱重資料<BR/>", dr["CartonNo"].ToString()));
+                    }
+                    result["ErrMsg"] = msg.ToString();
+                }
+                else
+                {
+                    result["AllowFlag"] = true;
+                    result["ErrMsg"] = "";
+                }
+                break;
+            case "環安窗口":
+                sql = "SELECT CartonNo FROM TB_TinSlag_Main Where FormNo = @FormNo  AND STATUS <>'Reject' AND Measure3=0 ";
+                dt = sdb.GetDataTable(sql, opc);
+                if (dt.Rows.Count > 0)
+                {
+
+                    result["AllowFlag"] = false;
+                    StringBuilder msg = new StringBuilder();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        msg.Append(string.Format("箱號:{0}需填寫稱重資料<BR/>", dr["CartonNo"].ToString()));
+                    }
+                    result["ErrMsg"] = msg.ToString();
+                }
+                else
+                {
+                    result["AllowFlag"] = true;
+                    result["ErrMsg"] = "";
+                }
+                break;
+            default:
+                result["AllowFlag"] = true;
+                result["ErrMsg"] = "";
+                break;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// 檢查GAP　percentage，超出2%需高階主管核准
+    /// </summary>
+    /// <param name="formNo"></param>
+    /// <param name="stepName"></param>
+    /// <returns></returns>
+    private bool CheckGapPercentage(string formNo, string stepName)
+    {
+        bool flag = true;
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, formNo));
+
+        switch (stepName)
+        {
+
+            case "總務主管":
+                sql = "SELECT GAP1 FROM (SELECT (Measure2-Measure1)/Measure1  as GAP1 FROM TB_TinSlag_Main  Where FormNo = @FormNo AND status <>'Reject' and Measure2<Measure1) T GROUP BY GAP1  HAVING  GAP1<=-0.01 or gap1>=0.01 ";
+                flag = (sdb.GetRowCount(sql, opc) > 0) ? true : false;
+                break;
+            case "環安主管":
+                sql = "SELECT GAP2 FROM (SELECT (Measure3-Measure2)/Measure2  as GAP2 FROM TB_TinSlag_Main Where FormNo = @FormNo AND status <>'Reject' and Measure3<Measure2) T  GROUP BY GAP2  HAVING  GAP2<=-0.01 or  gap2>=0.01";
+                flag = (sdb.GetRowCount(sql, opc) > 0) ? true : false;
+                break;
+            default:
+                break;
+        }
+        return flag;
+    }
+
+    //檢查分類是否需IQC抽檢
+    private bool CheckCategory(string formNo)
+    {
+        bool flag = false;
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, formNo));
+        sql = "SELECT CartonNo FROM TB_TinSlag_Main Where FormNo = @FormNo AND Category in ('高銀','低銀')";
+        flag = (sdb.GetRowCount(sql, opc) > 0) ? true : false;
+        return flag;
+    }
+
+
+    /// <summary>
+    /// 設定各管卡顯示欄位
+    /// </summary>
+    /// <param name="lUIControls"></param>
+    /// <param name="StepName"></param>
+    private void ShowColumnByStep(TinSlagApprovalUIShadow lUIControls, string StepName, string type)
+    {
+        switch (StepName)
+        {
+            case "BEGIN":
+            case "開始":
+                for (int i = 5; i <= 13; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+
+                break;
+            case "小資材主管":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                for (int i = 5; i <= 13; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+
+
+            case "IQC窗口":
+
+                for (int i = 5; i <= 12; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+            case "IQC主管":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                for (int i = 5; i <= 12; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+            case "總務窗口":
+
+                for (int i = 9; i <= 12; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+            case "總務主管":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                for (int i = 9; i <= 12; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+            case "MD":
+            case "CONTROLLING":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                for (int i = 9; i <= 12; i++)
+                {
+                    lUIControls.grdInfo.ColumnModel.Columns[i].Hidden = true;
+                }
+                break;
+            case "環安窗口":
+                break;
+            case "環安主管":
+            case "協理":
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                break;
+            default:
+                lUIControls.grdInfo.ColumnModel.Columns[0].Hidden = true;
+                break;
+
+        }
+        if (type == "Process")
+        {
+            lUIControls.grdInfo.ColumnModel.Columns[14].Hidden = true;
+        }
+
+    }
+
+    /// <summary>
+    /// 更新狀態
+    /// </summary>
+    /// <param name="formNo"></param>
+    /// <param name="status"></param>
+    private void UpdateStatus(string formNo, string status, string sCurLogonID)
+    {
+        try
+        {
+            sql = "UPDATE TB_TinSlag_Main Set Status =@status,StatusMark=@StatusMark,UPDATE_TIME=Getdate() WHERE FormNo =@FormNo  AND Status='Pending' ";
+            opc.Clear();
+            opc.Add(DataPara.CreateDataParameter("@FormNo", SqlDbType.VarChar, formNo));
+            opc.Add(DataPara.CreateDataParameter("@status", SqlDbType.VarChar, status));
+            opc.Add(DataPara.CreateDataParameter("@StatusMark", SqlDbType.VarChar, sCurLogonID));
+            sdb.ExecuteNonQuery(sql, opc);
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+
+    /// <summary>
+    /// 獲取簽核人BY 設定 檔
+    /// </summary>
+    /// <param name="building"></param>
+    /// <param name="stepName"></param>
+    /// <returns></returns>
+    private string GetHanlder(string building, string stepName)
+    {
+        sql = "SELECT * FROM TB_TINSLAG_HANDLER WHERE BUILDING=@BUILDING AND STEPNAME=@STEPNAME ";
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@BUILDING", SqlDbType.VarChar, building));
+        opc.Add(DataPara.CreateDataParameter("@STEPNAME", SqlDbType.VarChar, stepName));
+        return sdb.GetRowString(sql, opc, "handler");
+
+    }
+
+
+    private ArrayList GetMailNotifyList(string building)
+    {
+        ArrayList opc = new ArrayList();
+        ArrayList to = new ArrayList();
+        string sql = "SELECT EMAIL FROM tb_TinSlag_Handler WHERE building=@building AND MAIL_NOTIFY='Y'";
+        opc.Add(DataPara.CreateDataParameter("@building", SqlDbType.VarChar, building));
+        DataTable dt = sdb.GetDataTable(sql.ToString(), opc);
+        foreach (DataRow dr in dt.Rows)
+        {
+            if (dr["EMAIL"].ToString().Trim().Length > 0)
+            {
+                to.Add(dr["EMAIL"].ToString().Trim());
+            }
+        }
+        return to;
+    }
+}
