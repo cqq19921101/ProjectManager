@@ -1,0 +1,38 @@
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.BLL.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.DAL.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.Model.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.BLL.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.DAL.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.EA.Model.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.Corp.IT.EA.CMCC.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.Corp.IT.EA.CMCC.pdb
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\ResolveAssemblyReference.cache
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\ResolveAssemblyReference.cache
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll.config
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\Microsoft.SqlServer.Replication.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\Microsoft.SqlServer.BatchParser.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll.config
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll.config
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Debug\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Debug\LiteOn.GDS.Utility.pdb

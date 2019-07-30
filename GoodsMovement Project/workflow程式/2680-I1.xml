@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GoodsMovementSetting>
+  <Title Text="部門領料單" />
+  <Subject Text="Goods Movement [{MBLNR_A}]-{WERKS}" />
+  <DetailFields>
+    <Field Name="ZEILE_A" DisplayName="Item" />
+    <Field Name="MATNR" DisplayName="Matl.Doc" />
+    <Field Name="MENGE" DisplayName="QTY" />
+    <Field Name="MEINS" DisplayName="UOM" />
+    <Field Name="MAKTX" DisplayName="Matl.Desc" />
+    <Field Name="GROES" DisplayName="Size/DIM" />
+    <Field Name="LOGGR" DisplayName="Log.Hang.Group" />
+    <Field Name="USTOCK" DisplayName="UStock" />
+    <Field Name="STPRS" DisplayName="Amount" />
+    <Field Name="RDATE" DisplayName="Req.Date" />
+  </DetailFields>
+  <HeadFields>
+    <Field Name="ERNAM" DisplayName="Applicant" />
+    <Field Name="KOSTL" DisplayName="CostCenter" />
+    <Field Name="ERDAT" DisplayName="CreateDate " />
+    <Field Name="GRUND" DisplayName="Reason" />
+    <Field Name="RTNIF" DisplayName="Return" />
+    <Field Name="ABTEI" DisplayName="Department"/>
+    <Field Name="BWART" DisplayName="Mvt.Type" />
+    <Field Name="TCODE" DisplayName="T-Code" />
+    <Field Name="WERKS+LOCFM" DisplayName="Plant/Sloc" />
+  </HeadFields>
+  <DOA>
+    <APP Title="S1" ID="{2680-Dept01}" />
+    <APP Title="S2" ID="{2680-Dept02}" />
+    <APP Title="S3" ID="{2680-PC01}" />
+    <APP Title="S4" ID="{2680-PUR02}" />
+    <APP Title="S5" ID="{2680-PUR03}" />
+    <APP Title="S6" ID="{2680-PMM01}" />
+    <APP Title="S7" ID="{2680-MD02}" />
+    <APP Title="S8" ID="{2680-MD03}" />
+    <APP Title="S9" ID="{2680-BUHEAD}" />
+    <APP Title="S10" ID="{2680-BGHEAD}" />
+    <APP Title="S11" ID="{2680-CEO}" />
+    <APP Title="S12" ID="{2680-CHAIRMAN}" />
+    <APP Title="S13" ID="{2680-CUST01}" />
+    <APP Title="S14" ID="{2680-WH02}" />
+  </DOA>
+</GoodsMovementSetting>

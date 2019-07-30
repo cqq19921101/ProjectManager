@@ -1,0 +1,50 @@
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.BLL.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.DAL.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.Model.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.BLL.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.DAL.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.Model.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.Corp.IT.EA.CMCC.dll
+C:\SourceCode_DLL\Common DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.Corp.IT.EA.CMCC.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.Corp.IT.EA.CMCC.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.BLL.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.DAL.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.Model.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\ChineseConverter.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.BLL.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.DAL.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.Model.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.Corp.IT.EA.CMCC.pdb
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\ChineseConverter.xml
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\COMMON DLL\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git\GoodsMovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+D:\Workshop\Projects_Git_stella\goodsmovement\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll.config
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll.config
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.GDS.Utility.pdb
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.dll
+C:\Documents and Settings\Administrator\Desktop\DeskTop_bck\LiteOn.GDS.Utility\LiteOn.GDS.Utility\obj\Release\LiteOn.GDS.Utility.pdb

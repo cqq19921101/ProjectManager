@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FCC0AF76-29F5-49DA-A15C-8340DD78320F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LiteOn.GDS.Utility</RootNamespace>
+    <AssemblyName>LiteOn.GDS.Utility</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LiteOn.Corp.IT.EA.CMCC, Version=1.0.4113.24343, Culture=neutral, PublicKeyToken=846221ff0536e3b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.EA.BLL\LiteOn.EA.BLL\bin\Release\LiteOn.Corp.IT.EA.CMCC.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.BLL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8dd5da69a5815819, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.EA.BLL\LiteOn.EA.BLL\bin\Release\LiteOn.EA.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.DAL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e6a42606fb9c8c3e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.EA.BLL\LiteOn.EA.BLL\bin\Release\LiteOn.EA.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.Model, Version=2.0.0.0, Culture=neutral, PublicKeyToken=47fb489c02b84b9e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.EA.BLL\LiteOn.EA.BLL\bin\Release\LiteOn.EA.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.TeamSystem.Data.UnitTesting, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DOA_CZ_LAE.cs" />
+    <Compile Include="DatabaseSetup.cs" />
+    <Compile Include="DBIO.cs" />
+    <Compile Include="DOA_CZ_HIS_OUT.cs" />
+    <Compile Include="DOA_CZ_MAG.cs" />
+    <Compile Include="DOA_GZ_ENCLOSURE.cs" />
+    <Compile Include="DOA_CA_POWER.cs" />
+    <Compile Include="DOA_CZ_POWER.cs" />
+    <Compile Include="DOA_CZ_HIS.cs" />
+    <Compile Include="DOA_GZ_IMG.cs" />
+    <Compile Include="DOA_GZ_PID.cs" />
+    <Compile Include="DOA_QX_GT.cs" />
+    <Compile Include="DOA_QX_NA.cs" />
+    <Compile Include="DOA_QX_NA_NQ51.cs" />
+    <Compile Include="DOA_Standard.cs" />
+    <Compile Include="DOA_CZ_NA.cs" />
+    <Compile Include="DOA.cs" />
+    <Compile Include="IDOA.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="DOA_XMLOperation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
