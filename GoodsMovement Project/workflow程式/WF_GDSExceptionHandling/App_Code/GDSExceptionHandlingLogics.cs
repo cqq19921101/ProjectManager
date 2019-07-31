@@ -20,6 +20,7 @@ using LiteOn.EA.DAL;
 using LiteOn.EA.Model;
 using LiteOn.EA.BLL;
 using LiteOn.GDS.Utility;
+using Microsoft.International.Converters.TraditionalChineseToSimplifiedConverter;
 // UI controls holder for Example1 
 public class GDSExceptionHandlingUIShadow : IUIShadow
 {
@@ -52,6 +53,7 @@ public class GDSExceptionHandlingUIShadow : IUIShadow
     public TextField txtIADocNo;//關聯IA單
     public TextField txtI6DocNo;//關聯I6單
     public TextField txtZEILE;//Itme 001
+    public TextField txtAmount;//Itme 001
 
     //SOURCE DATA
     public TextField txtHead;//表頭XML數據
@@ -98,7 +100,8 @@ public class GDSExceptionHandlingUIShadow : IUIShadow
         txtIADocNo = (TextField)oContentPage.FindControl("txtIADocNo");
         txtI6DocNo = (TextField)oContentPage.FindControl("txtI6DocNo");
         txtZEILE = (TextField)oContentPage.FindControl("txtZEILE");
-
+        txtAmount = (TextField)oContentPage.FindControl("txtAmount");
+        
         //SOURCE DATA
         txtHead = (TextField)oContentPage.FindControl("txtHead");
         txtDOA = (TextField)oContentPage.FindControl("txtDOA");
@@ -213,7 +216,70 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
     {
         string caseid = SPMTaskVars.ReadDatum("CASEID").ToString();
         string stepName = (string)(SPMTaskVars.ReadDatum("STEPNAME"));
+        GDS_Helper oStandard = new GDS_Helper();
+        if (stepName != "Begin")
+        {
+            #region 抓取 異常單資料 並綁定到控件中
+            DataTable dt = oStandard.GetMaster_Exception(int.Parse(caseid));//加載 異常單主表資料
+            if (dt.Rows.Count > 0)
+            {
+                #region 數據加載
+                DataRow dr = dt.Rows[0];
+                oUIControls.txtDocNo.Text = dr["MBLNR"].ToString();//主單號 
+                oUIControls.txtRDocNo.Text = dr["MBLNR_A"].ToString();//Link 單號 
+                oUIControls.txtCostCenter.Text = dr["KOSTL"].ToString();//成本中心
+                oUIControls.txtDepartment.Text = dr["ABTEI"].ToString();//部門
+                oUIControls.txtApplication.Text = dr["Applicant"].ToString();//LoginID
+                oUIControls.txtReturn.Text = dr["RTNIF"].ToString();// Return Flag
+                oUIControls.txtWERKS.Text = dr["WERKS"].ToString();//廠別
+                oUIControls.txtMaterial.Text = dr["MATNR"].ToString();//料號
+                oUIControls.txtZEILE.Text = dr["ZEILE"].ToString();//料號對應的ITEM
+                oUIControls.txtAmount.Text = dr["Amount"].ToString();//金額
+                oUIControls.txtIADocNo.Text = dr["IADocNo"].ToString();//關聯IA單
+                oUIControls.txtI6DocNo.Text = dr["I6DocNo"].ToString();//關聯I6單
+                oUIControls.txtReason.Text = dr["Reason"].ToString();//REASON
+                oUIControls.txtRemark.Text = dr["Remark"].ToString();//REMARK
+                oUIControls.txtReturnQuantity.Text = dr["MENGE"].ToString();//RETURN 數量
+                oUIControls.txtDOA.Text = dr["Settingxml"].ToString();//Settingxml
+                #endregion
 
+                #region 控件顯示
+                oUIControls.btnLink.Hidden = true;
+                oUIControls.frmUserInfo.Hidden = true;
+                oUIControls.txtDocNo.ReadOnly = true;
+                oUIControls.txtRDocNo.ReadOnly = true;
+                oUIControls.txtCostCenter.ReadOnly = true;
+                oUIControls.txtDepartment.ReadOnly = true;
+                oUIControls.txtApplication.ReadOnly = true;
+                oUIControls.txtReturn.ReadOnly = true;
+                oUIControls.txtMaterial.ReadOnly = true;
+                oUIControls.txtZEILE.ReadOnly = true;
+                oUIControls.txtAmount.ReadOnly = true;
+                oUIControls.txtIADocNo.ReadOnly = true;
+                oUIControls.txtI6DocNo.ReadOnly = true;
+                oUIControls.txtReason.ReadOnly = true;
+                oUIControls.txtRemark.ReadOnly = true;
+                oUIControls.txtReturnQuantity.ReadOnly = true;
+                #endregion
+            }
+            #endregion
+
+
+            #region 通過異常單的Link單號 抓取正常單中的Head和Detail
+            DataTable dtHead = oStandard.GetdtHead(oUIControls.txtRDocNo.Text.Trim());
+            DataTable dtDetail = oStandard.GetdtDetail(oUIControls.txtRDocNo.Text.Trim());
+            oUIControls.txtWERKS.Text = dtHead.Rows[0]["WERKS"].ToString();//廠別
+            oUIControls.txtAPTYP.Text = dtHead.Rows[0]["APTYP"].ToString();//單據類型
+            string xmlstrHead = oStandard.DataTableToXMLStr(dtHead);
+            oUIControls.txtHead.Text = xmlstrHead;//Head
+            string xmlstrDetail = oStandard.DataTableToXMLStr(dtDetail);
+            oUIControls.txtDetail.Text = xmlstrDetail;//Detail
+            //string tempWEKS = DOA.GetXMLConfigName(dtHead);//CALL FUNCTION獲取XML配置檔名
+            //SettingParser x = new SettingParser(tempWEKS, oUIControls.txtAPTYP.Text);//讀取XML配置檔信息
+            //oUIControls.txtDOA.Text = x.ApproveXML.Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
+            #endregion
+
+        }
 
 
     }
@@ -254,8 +320,11 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         dtDetail.ReadXml(reader2);
         if (SubmitMethod == SPMSubmitMethod.CreateNewCase)
         {
+            string I1DocNo = oUIControls.txtRDocNo.Text;
+            string IADocNo = oUIControls.txtIADocNo.Text;
+            string I6DocNo = oUIControls.txtI6DocNo.Text;
             //Check此I1單(領料單)和關聯的IA,I6單(退料單)是否都已經過賬 (Call SAP BAPI Z_BAPI_GDS_SEND MBLNR不為空則表示已經過賬)
-            if (!oStandard.CheckFormNoIsPass())
+            if (!oStandard.CheckFormNoIsPass(I1DocNo,IADocNo,I6DocNo))
             {
                 try
                 {
@@ -294,7 +363,8 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                     }
                     catch (Exception ex)
                     {
-                        
+                        HandleResult.IsSuccess = false;
+                        HandleResult.CustomMessage = ex.Message;
                     }
                 }
 
@@ -303,6 +373,24 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                     HandleResult.IsSuccess = false;
                     HandleResult.CustomMessage = ErrMsg.ToString();
                 }
+
+                //簽核人防呆檢查
+                if (DOAHandler._sEndFlag == "N" && DOAHandler._sHandler.Length == 0)
+                {
+                    HandleResult.IsSuccess = false;
+                    HandleResult.CustomMessage = "Can't find next step handler, pls contact sys administrator";
+                }
+                string sCurLogonID = (string)(SPMTaskVars.ReadDatum("SYS_LOGONID"));
+                string sCurRoleCode = SPMAppLine.GetCurrentApprover(curDOA).Replace("{", "").Replace("}", "");
+
+                //簽核人重復簽核防呆
+                if (DOAHandler._sEndFlag == "N" && DOAHandler._sRoleCode == sCurRoleCode && DOAHandler._sHandler.ToUpper() == sCurLogonID.ToUpper())
+                {
+                    HandleResult.IsSuccess = false;
+                    HandleResult.CustomMessage = "Server or network is busy now, pls try again";
+                }
+                oStandard.UpdateSettingxml(oUIControls.txtDocNo.Text, DOAHandler._sDOA.ToString());
+
             }
         }
         return base.EFFormFieldsValidation(SubmitMethod, ProcessMethod, SPMTaskVars, ref HandleResult, oContainer, UIShadow);
@@ -333,8 +421,9 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         FormFields.SetOrAdd("txtIADocNo".ToUpper(), lUIControls.txtIADocNo.Text);
         FormFields.SetOrAdd("txtI6DocNo".ToUpper(), lUIControls.txtI6DocNo.Text);
         FormFields.SetOrAdd("txtZEILE".ToUpper(), lUIControls.txtZEILE.Text);
+        FormFields.SetOrAdd("txtAmount".ToUpper(), lUIControls.txtAmount.Text);
 
-
+        
         //SOURCE DATA
         FormFields.SetOrAdd("txtHead".ToUpper(), lUIControls.txtHead.Text);
         FormFields.SetOrAdd("txtDetail".ToUpper(), lUIControls.txtDetail.Text);
@@ -378,7 +467,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             {
                 //抓取第一關簽核人
                 DOAHandler = spmDOA.GetStepHandler(sApplicant, curDOA, dtHead, dtDetail, true);
-                Variables.Add(SPMVariableKey.Subject, "[DocNo] [" + FormFields["txtDocNo".ToUpper()] + "]");
+                Variables.Add(SPMVariableKey.Subject, "[部門領料_應退未退---測試] [" + FormFields["txtDocNo".ToUpper()] + "]");
                 RoutingVariable = new SPMRoutingVariable(SPMRoutingVariableKey.spm_Jump, "DOA(" + DOAHandler._sHandler + ")");
             }
             catch (Exception ex)
@@ -439,7 +528,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         if (SubmitMethod != SPMSubmitMethod.CreateNewCase)
         {
 
-            SPMAfterSend_DBIO(SPMTaskVars, FormFields, ref HandleResult, RoutingVariable);
+            SPMAfterSend_DBIO(SPMTaskVars, FormFields, ref HandleResult, RoutingVariable, Variables);
         }
         else
         {
@@ -459,17 +548,21 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             string Return = oUIControls.txtReturn.Text;//條件FLAG Flag為Y才符合條件
             string IADocNo = oUIControls.txtIADocNo.Text;//關聯IA單
             string I6DocNo = oUIControls.txtI6DocNo.Text;//關聯I6單
-
+            string Amount = oUIControls.txtAmount.Text;//金額
+            string Settingxml = oUIControls.txtDOA.Text;//Setting
             try
             {
                 //Insert Submit之後數據到DB中
-                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, int.Parse(ReturnQuantity), Return, Reason, Remark, IADocNo, I6DocNo, "In Process", int.Parse(CASEID));
+                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, ReturnQuantity, Return, Reason, Remark, IADocNo, I6DocNo, "In Process", double.Parse(Amount), Settingxml,int.Parse(CASEID));
 
-                //將Submit後的狀態 W(In Process)回傳給SAP
+                //將Submit後的狀態 W(In Process)回傳給SAP Begin關卡直接回傳
+                oStandard.PostBackToSAP(int.Parse(CASEID));
 
             }
             catch (Exception ex)
             {
+                //有異常 刪除已經Insert的資料
+                oStandard.DeleteFormNo(int.Parse(CASEID));
                 HandleResult.IsSuccess = false;
                 HandleResult.CustomMessage = ex.Message;
             }
@@ -479,7 +572,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         base.SPMAfterSend(SubmitMethod, SPMTaskVars, Variables, RoutingVariable, FormFields, ref HandleResult);
     }
 
-    private void SPMAfterSend_DBIO(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult, SPMRoutingVariable RoutingVariable)
+    private void SPMAfterSend_DBIO(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, ref IInterfaceHandleResult HandleResult, SPMRoutingVariable RoutingVariable, SPMVariables Variables)
     {
 
         try
@@ -487,20 +580,41 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             string stepName = (string)SPMTaskVars.ReadDatum("STEPNAME");
             int caseID = int.Parse((string)(SPMTaskVars.ReadDatum("CASEID")));
 
+
             switch (RoutingVariable.Key)
             {
                 //if Reject,Post Back To SAP
                 case SPMRoutingVariableKey.spm_Return:
-                    PostBackToSAP(SPMTaskVars, FormFields, Variables, "R");
+                    try
+                    {
+                        PostBackToSAP(SPMTaskVars, FormFields, Variables, "R");
+                        oStandard.UpdateFormStatus(caseID, "Reject");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        HandleResult.IsSuccess = false;
+                        HandleResult.CustomMessage = ex.Message;
+                    } 
                     break;
                 case SPMRoutingVariableKey.spm_Jump:
-
-                    switch (stepName)
+                    string curDOA = FormFields["txtDOA".ToUpper()].Replace("&lt1;", "<").Replace("&gt1;", ">");
+                    string curStep = SPMAppLine.GetCurrentStep(curDOA);
+                    //最後一關結束 將結果拋到DB中 並更新STATUS欄位為 Approve
+                    if (curStep == "*")
                     {
-                        case "MQE":
-                            break;
-                        case "MQE Leader":
-                            break;
+                        try
+                        {
+                            //  IF APPROVE ,POST BACK TO SAP and Update Form Status Approve
+                            PostBackToSAP(SPMTaskVars, FormFields, Variables, "A");
+                            oStandard.UpdateFormStatus(caseID,"Approve");
+
+                        }
+                        catch (Exception ex)
+                        {
+                            HandleResult.IsSuccess = false;
+                            HandleResult.CustomMessage = ex.Message;
+                        }
                     }
                     break;
             }
@@ -537,32 +651,6 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
 
     public override void Print(int iTaskId, SPMTaskVariables SPMTaskVars, EFFormFields FormFields, object oContainer, IUIShadow UIShadow)
     {
-        //if (iTaskId < 0)
-        //{
-        //    return;
-        //}
-        //string caseID = (string)(SPMTaskVars.ReadDatum("CASEID"));
-        //NCRMgmt oNCRMgmt = new NCRMgmt(FormFields["txtSite".ToUpper()], FormFields["txtBU".ToUpper()]);
-        //NCR_Standard oNCR_Standard = oNCRMgmt.InitialNCRMgmt();
-
-        //DataTable dt = oNCR_Standard.Get_NCR_Main(int.Parse(caseID));
-
-        //if (dt.Rows.Count > 0)
-        //{
-        //    string status = dt.Rows[0]["STATUS"].ToString();
-        //    if (status == "HR")
-        //    {
-        //        X.Js.Call("Print('" + string.Format("Print.aspx?CASEID={0}&SITE={1}&BU={2}", caseID, FormFields["txtSite".ToUpper()].ToString(), FormFields["txtBU".ToUpper()].ToString() + "')"));
-
-        //    }
-        //    else
-        //    {
-        //        Alert("此單據未簽核完畢，不可列印!");
-        //        return;
-        //    }
-        //}
-
-
         base.Print(iTaskId, SPMTaskVars, FormFields, oContainer, UIShadow);
     }
 
@@ -647,197 +735,6 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
     private string PrintForm(int caseId, string site, string bu)
     {
         string path = string.Empty;
-        //Aspose.Cells.License lic = new Aspose.Cells.License();
-        //string AsposeLicPath = System.Configuration.ConfigurationSettings.AppSettings["AsposeLicPath"].ToString();
-        //lic.SetLicense(AsposeLicPath);
-
-        //string templatePath = HttpContext.Current.Server.MapPath("") + "\\PrintTemplate.xlsx";
-
-        ////Instantiate a new Workbook object.
-        //Aspose.Cells.Workbook book = new Aspose.Cells.Workbook(templatePath);
-        //Aspose.Cells.Worksheet sheet = book.Worksheets[0];
-
-        ////設定導出格式
-        //sheet.PageSetup.IsPercentScale = false;
-        //sheet.PageSetup.FitToPagesWide = 1; //自動縮放為一頁寬
-        //sheet.PageSetup.LeftMargin = 0.5;
-        //sheet.PageSetup.RightMargin = 0.5;
-        //sheet.PageSetup.TopMargin = 0.5;
-        //sheet.PageSetup.BottomMargin = 0.5;
-        //sheet.PageSetup.Orientation = Aspose.Cells.PageOrientationType.Landscape;//水平
-        //NCRMgmt oNCRMgmt = new NCRMgmt(site, bu);
-        //NCR_Standard oNCR_Standard = oNCRMgmt.InitialNCRMgmt();
-
-        //DataTable dt = oNCR_Standard.Get_NCR_Main(caseId);
-        //if (dt.Rows.Count > 0)
-        //{
-        //    DataRow dr = dt.Rows[0];
-        //    //1.填充公司名稱
-
-        //    sheet.Replace("{COMPANY}", oNCR_Standard.GetCompanyName());
-
-        //    //2.填充出差单master 信息
-        //    sheet.Replace("{DEPT_NAME}", dr["DEPT_NAME"].ToString());
-        //    sheet.Replace("{COST_CENTER}", dr["COST_CENTER"].ToString());
-        //    sheet.Replace("{CREATE_DATE}", DateTime.Parse(dr["CREATE_DATE"].ToString()).ToString("yyyy/MM/dd"));
-        //    sheet.Replace("{CATEGORY}", dr["CATEGORY"].ToString());
-        //    sheet.Replace("{EMPLOYEE_NAME}", dr["EMPLOYEE_NAME"].ToString());
-        //    sheet.Replace("{EMPLOYEE_ID}", dr["EMPLOYEE_ID"].ToString());
-        //    sheet.Replace("{TITLE}", dr["JOB"].ToString());
-        //    sheet.Replace("{TRIP_PERIOD}", DateTime.Parse(dr["BEGIN_DATE"].ToString()).ToString("yyyy/MM/dd") + "~" + DateTime.Parse(dr["END_DATE"].ToString()).ToString("yyyy/MM/dd"));
-        //    sheet.Replace("{TRAFFIC}", double.Parse(dr["TRAFFIC_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{ACCOMMODATION}", double.Parse(dr["ACCOMMODATION_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{FOOD}", double.Parse(dr["FOOD_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{OTHER}", double.Parse(dr["OTHER_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{TOTAL}", double.Parse(dr["TOTAL_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{CURRENCY}", dr["CURRENCY"].ToString());
-        //    sheet.Replace("{PREPAID}", double.Parse(dr["PREPAID_EXPENSE"].ToString()).ToString("n"));
-        //    sheet.Replace("{PREPARATION}", dr["PREPARATION"].ToString());
-        //    sheet.Replace("{REMARK}", dr["REMARK"].ToString());
-
-        //    sheet.Replace("{APPLICANT}", dr["EMPLOYEE_NAME"].ToString());
-        //    sheet.Replace("{DATE1}", DateTime.Parse(dr["CREATE_DATE"].ToString()).ToString("yyyy/MM/dd"));
-        //    DataTable dtStepHandler = oNCR_Standard.GetStepAndHandler(caseId);
-        //    DataTable dtTask = oNCR_Standard.Get_NCR_Task(caseId);
-        //    DataTable dtTraffic = oNCR_Standard.Get_NCR_Traffic(caseId);
-        //    //task起始行index
-        //    int taskStartRowIndex = 6;
-        //    //traffic起始行index
-        //    int trfficeStartRowIndex = 6;
-        //    Aspose.Cells.Cells cells = sheet.Cells;
-
-        //    //判斷動態數據（task，traffic）行數，取最大
-        //    int dynamicDataRowCount = (dtTask.Rows.Count > dtTraffic.Rows.Count) ? dtTask.Rows.Count : dtTraffic.Rows.Count;
-
-        //    //判斷是否超出默認行數
-
-        //    if (dynamicDataRowCount > 3)
-        //    {
-        //        //超出部份，自動COPY現有模板ROW
-        //        cells.InsertRows(9, dynamicDataRowCount - 3);
-        //        cells.CopyRows(cells, taskStartRowIndex, 9, dynamicDataRowCount - 3); //複製模板row格式至新行
-
-        //    }
-        //    //3.填充出差单工作安排信息
-        //    #region
-
-
-        //    foreach (DataRow drTask in dtTask.Rows)
-        //    {
-        //        sheet.Cells[taskStartRowIndex, 0].PutValue(DateTime.Parse(drTask["BEGIN_DATE"].ToString()).ToString("MM/dd") + "~" + DateTime.Parse(drTask["END_DATE"].ToString()).ToString("MM/dd"));
-        //        sheet.Cells[taskStartRowIndex, 1].PutValue(drTask["LOCATION"].ToString());
-        //        sheet.Cells[taskStartRowIndex, 2].PutValue(drTask["BUSINESS_OBJECT"].ToString());
-        //        sheet.Cells[taskStartRowIndex, 3].PutValue(drTask["CONTENT"].ToString());
-
-        //        taskStartRowIndex += 1;
-        //    }
-        //    //4.填充出差单行程安排信息
-
-
-        //    foreach (DataRow drTraffic in dtTraffic.Rows)
-        //    {
-        //        sheet.Cells[trfficeStartRowIndex, 4].PutValue(DateTime.Parse(drTraffic["ID_DATE"].ToString()).ToString("MM/dd"));
-        //        sheet.Cells[trfficeStartRowIndex, 6].PutValue(drTraffic["DEPART_PLACE"].ToString());
-        //        sheet.Cells[trfficeStartRowIndex, 7].PutValue(drTraffic["DESTINATION"].ToString());
-
-
-        //        trfficeStartRowIndex += 1;
-        //    }
-        //    #endregion
-        //    //5.填充签核人资讯
-        //    #region
-        //    DataRow[] drTmp = dtStepHandler.Select("STEP_NAME='職務代理人'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{DEPUTY}", drTmp[0]["CNAME"].ToString());
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{DEPUTY}", "-");
-        //    }
-
-        //    drTmp = dtStepHandler.Select("STEP_NAME='部門主管'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{DEPT_MANAGER}", drTmp[0]["CNAME"].ToString());
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{DEPT_MANAGER}", "-");
-        //    }
-
-        //    drTmp = dtStepHandler.Select("STEP_NAME='MD/Function Head'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{MD/Function Head}", drTmp[0]["CNAME"].ToString());
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{MD/Function Head}", "-");
-        //    }
-
-        //    drTmp = dtStepHandler.Select("STEP_NAME='BU HEAD/Operation Head'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{BU HEAD/Operation Head}", drTmp[0]["CNAME"].ToString());
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{BU HEAD/Operation Head}", "-");
-
-        //    }
-
-        //    drTmp = dtStepHandler.Select("STEP_NAME='BG HEAD'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{BG HEAD}", drTmp[0]["CNAME"].ToString());
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{BG HEAD}", "-");
-
-        //    }
-
-        //    drTmp = dtStepHandler.Select("STEP_NAME='HR主管'");
-        //    if (drTmp.Length > 0)
-        //    {
-        //        sheet.Replace("{HR MANAGER}", drTmp[0]["CNAME"].ToString());
-
-        //    }
-        //    else
-        //    {
-        //        sheet.Replace("{HR MANAGER}", "-");
-
-        //    }
-        //    #endregion
-        //    //6.填充签核flow
-        //    #region
-        //    DataTable dtFlow = Borg_Flow.GetFlowRecord(caseId);
-        //    int count = dtFlow.Rows.Count;
-        //    int flowStartRowIndex = 19 + (((dynamicDataRowCount - 3) > 0) ? (dynamicDataRowCount - 3) : 0);//處理自動增長ROW count
-
-        //    for (int i = 0; i < dtFlow.Rows.Count; i++)
-        //    {
-        //        DataRow drFlow = dtFlow.Rows[i];
-        //        if (i < dtFlow.Rows.Count - 1)
-        //        {
-        //            cells.CopyRows(cells, flowStartRowIndex + i, flowStartRowIndex + 1 + i, 1); //複製模板row格式至新行
-        //        }
-
-        //        cells[flowStartRowIndex + i, 2].PutValue(drFlow["stage"].ToString());
-        //        cells[flowStartRowIndex + i, 3].PutValue(drFlow["time stamp"].ToString());
-
-        //        cells[flowStartRowIndex + i, 4].PutValue(drFlow["to"].ToString());
-        //        cells[flowStartRowIndex + i, 6].PutValue((drFlow["comments"].ToString() == "Jump.") ? "Approve." : drFlow["comments"].ToString());
-
-
-        //    }
-        //    #endregion
-        //    //Save the workbook as a PDF File
-        //    string filename = HttpContext.Current.Server.MapPath("~\\PrintTemplate\\") + dr["FORMNO"].ToString() + ".pdf";
-        //    book.Save(filename, Aspose.Cells.SaveFormat.Pdf);
-        //    path = filename;
-        //}
         return path;
     }
 
@@ -857,6 +754,77 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         }
         string subject = string.Format("NCR Report[{0}] 核准通知", formno);
         oBorg_Mail.SendMail_Attachment(to, cc, subject, body, false, path);
+    }
+
+
+    /// <summary>
+    /// 單據狀態咨詢回寫SAP
+    /// </summary>
+    /// <param name="SPMTaskVars"></param>
+    /// <param name="FormFields"></param>
+    /// <param name="handlerType"></param>
+    private void PostBackToSAP(SPMTaskVariables SPMTaskVars, EFFormFields FormFields, SPMVariables Variables, string handlerType)
+    {
+
+        GDS_Helper oStandard = new GDS_Helper();
+        string sCurLogonID = (string)(SPMTaskVars.ReadDatum("SYS_LOGONID"));
+        int CASEID = int.Parse((string)(SPMTaskVars.ReadDatum("CASEID")));
+        string StatusMark = string.Empty;
+        string APROV = string.Empty;
+        switch (handlerType)
+        {
+            case "R":
+                string sMemo = System.Web.HttpUtility.UrlDecode(Variables[SPMVariableKey.Opinion]);
+                StatusMark = "Reject by:" + sCurLogonID + "(" + sMemo + ")";
+                APROV = "R";
+                break;
+            case "A":
+                StatusMark = "Approve by:" + sCurLogonID;
+                APROV = "A";
+                break;
+            default:
+                StatusMark = "Error";
+                break;
+        }
+        //退簽原因長度防呆
+        if (StatusMark.Length > 255) StatusMark = StatusMark.Substring(0, 255);
+        //簡繁轉換
+        StatusMark = ConvertChinese(StatusMark, "Big5");
+        try
+        {   
+            //By 主單號 UPDATE Flag and StatusRemark
+            oStandard.UpdateGDSQueue(CASEID, StatusMark, APROV);
+        }
+        catch (Exception)
+        {
+            //trace 
+            //DBIO.RecordTraceLog("C", "NG", DOAHandler);
+            //throw;
+        }
+    }
+
+    /// <summary>
+    /// USER COMMENTS 簡繁體字轉換
+    /// </summary>
+    /// <param name="SourceString"></param>
+    /// <param name="Language"></param>
+    /// <returns></returns>
+    public static string ConvertChinese(string SourceString, string Language)
+    {
+        string newString = string.Empty;
+        switch (Language)
+        {
+            case "Big5":  
+                newString = ChineseConverter.Convert(SourceString, ChineseConversionDirection.SimplifiedToTraditional);
+                break;
+            case "GB2312":
+                newString = ChineseConverter.Convert(SourceString, ChineseConversionDirection.TraditionalToSimplified);
+                break;
+            default:
+                newString = SourceString;
+                break;
+        }
+        return newString;
     }
 
 

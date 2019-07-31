@@ -157,9 +157,9 @@ public partial class _Default : System.Web.UI.Page
             DataRow drHead = dtHead.Rows[0];
             if (drHead["APTYP"].ToString() == "I1")
             {
-                if (drHead["RTNIF"].ToString() == "Y")//符合條件時,加載基本資料 暫時為N 方便測試
+                if (drHead["RTNIF"].ToString() == "Y")//符合條件時,加載基本資料 
                 {
-                    txtDocNo.Text = txtRDocNo.Text.Trim() + "A";
+                    txtDocNo.Text = oStandard.CreateFormNo(txtRDocNo.Text.Trim());
                     txtCostCenter.Text = drHead["KOSTL"].ToString();//成本中心
                     txtDepartment.Text = drHead["ABTEI"].ToString();//部門
                     txtApplication.Text = drHead["ERNAM"].ToString();//LoginID
@@ -174,7 +174,16 @@ public partial class _Default : System.Web.UI.Page
 
                     string tempWEKS = DOA.GetXMLConfigName(dtHead);//CALL FUNCTION獲取XML配置檔名
                     SettingParser x = new SettingParser(tempWEKS, txtAPTYP.Text);//讀取XML配置檔信息
-                    txtDOA.Text = x.ApproveXML.ToUpper().Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
+                    txtDOA.Text = x.ApproveXML.Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
+
+                    //計算總金額
+                    double amount = 0;
+                    foreach (DataRow dr in dtDetail.Rows)
+                    {
+                        amount += double.Parse(dr["STPRS"].ToString());
+                    }
+                    txtAmount.Text = amount.ToString("n");
+
                 }
                 else
                 {
@@ -211,6 +220,7 @@ public partial class _Default : System.Web.UI.Page
         txtReason.Text = string.Empty;
         txtRemark.Text = string.Empty;
         txtReturn.Text = string.Empty;
+        txtAmount.Text = string.Empty;
 
         txtHead.Text = string.Empty;
         txtDetail.Text = string.Empty;

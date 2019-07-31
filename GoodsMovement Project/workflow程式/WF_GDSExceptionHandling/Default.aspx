@@ -130,6 +130,7 @@
                                                     <ext:Button ID="btnLink" runat="server" Text="Link" Icon="Accept" Hidden="false">
                                                         <DirectEvents>
                                                             <Click OnEvent="btnLink_Click">
+                                                            <EventMask ShowMask="true" Msg="加載中..." MinDelay="500" />
                                                             </Click>
                                                         </DirectEvents>
                                                     </ext:Button>
@@ -183,52 +184,51 @@
                                         <Items>
                                             <ext:Container ID="Container12" runat="server" ColumnWidth="0.33" Layout="FormLayout">
                                                 <Items>
-                                                    <ext:ComboBox ID="txtMaterial" runat="server" FieldLabel="Material" Width="200px" DisplayField="MATNR" ValueField="MATNR">
-                                                    <Store>
-                                                        <ext:Store ID="Store12" runat="server">
-                                                            <Reader>
-                                                                <ext:JsonReader>
-                                                                    <Fields>
-                                                                        <ext:RecordField Name="MATNR" Type="String">
-                                                                        </ext:RecordField>
-                                                                    </Fields>
-                                                                </ext:JsonReader>
-                                                            </Reader>
-                                                        </ext:Store>
-                                                    </Store>
-                                                </ext:ComboBox>
+                                                    <ext:ComboBox ID="txtMaterial" runat="server" FieldLabel="Material" Width="200px"
+                                                        DisplayField="MATNR" ValueField="MATNR">
+                                                        <Store>
+                                                            <ext:Store ID="Store12" runat="server">
+                                                                <Reader>
+                                                                    <ext:JsonReader>
+                                                                        <Fields>
+                                                                            <ext:RecordField Name="MATNR" Type="String">
+                                                                            </ext:RecordField>
+                                                                        </Fields>
+                                                                    </ext:JsonReader>
+                                                                </Reader>
+                                                            </ext:Store>
+                                                        </Store>
+                                                    </ext:ComboBox>
                                                 </Items>
-                                            </ext:Container>                                       
+                                            </ext:Container>
                                             <ext:Container ID="Container18" runat="server" ColumnWidth="0.33" Layout="FormLayout">
                                                 <Items>
                                                     <ext:TextField ID="txtZEILE" runat="server" FieldLabel="Item" Width="200px" ReadOnly="true">
                                                     </ext:TextField>
                                                 </Items>
-                                            </ext:Container> 
-                                                                                         </Items>
-                                        </ext:Container>
+                                            </ext:Container>
+                                        </Items>
+                                    </ext:Container>
                                     <ext:Container ID="Container5" runat="server" Layout="ColumnLayout" Height="30">
                                         <Items>
                                             <ext:Container ID="Container9" runat="server" ColumnWidth="0.33" Layout="FormLayout">
                                                 <Items>
-                                                    <ext:TextField ID="txtIADocNo" runat="server" FieldLabel="關聯IA單"
-                                                        Width="200px"  ReadOnly = "true">
+                                                    <ext:TextField ID="txtIADocNo" runat="server" FieldLabel="關聯IA單" Width="200px" ReadOnly="true">
                                                     </ext:TextField>
                                                 </Items>
                                             </ext:Container>
                                         </Items>
-                                        </ext:Container>
+                                    </ext:Container>
                                     <ext:Container ID="Container16" runat="server" Layout="ColumnLayout" Height="30">
                                         <Items>
                                             <ext:Container ID="Container14" runat="server" ColumnWidth="0.33" Layout="FormLayout">
                                                 <Items>
-                                                    <ext:TextField ID="txtI6DocNo" runat="server" FieldLabel="關聯I6單"
-                                                        Width="200px" ReadOnly = "true">
+                                                    <ext:TextField ID="txtI6DocNo" runat="server" FieldLabel="關聯I6單" Width="200px" ReadOnly="true">
                                                     </ext:TextField>
                                                 </Items>
                                             </ext:Container>
                                         </Items>
-                                        </ext:Container>                                   
+                                    </ext:Container>
                                     <ext:Container ID="Container_row3" runat="server" Layout="ColumnLayout" Height="30">
                                         <Items>
                                             <ext:Container ID="Container4" runat="server" ColumnWidth="0.33" Layout="FormLayout">
@@ -260,6 +260,24 @@
                                                 <Items>
                                                     <ext:TextArea ID="txtRemark" runat="server" FieldLabel="Remark" Width="400">
                                                     </ext:TextArea>
+                                                </Items>
+                                            </ext:Container>
+                                        </Items>
+                                    </ext:Container>
+                                    <ext:Container ID="Container20" runat="server" Layout="ColumnLayout" Height="90">
+                                        <Items>
+                                            <ext:Container ID="Container21" runat="server" ColumnWidth="0.33" Layout="FormLayout">
+                                                <Items>
+                                                </Items>
+                                            </ext:Container>
+                                            <ext:Container ID="Container22" runat="server" ColumnWidth="0.33" Layout="FormLayout">
+                                                <Items>
+                                                </Items>
+                                            </ext:Container>
+                                            <ext:Container ID="Container23" runat="server" ColumnWidth="0.33" Layout="FormLayout">
+                                                <Items>
+                                                    <ext:TextField ID="txtAmount" runat="server" FieldLabel="Amount" Width="200" ReadOnly="true">
+                                                    </ext:TextField>
                                                 </Items>
                                             </ext:Container>
                                         </Items>
