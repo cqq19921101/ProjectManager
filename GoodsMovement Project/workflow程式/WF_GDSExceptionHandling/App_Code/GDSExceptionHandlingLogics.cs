@@ -101,7 +101,7 @@ public class GDSExceptionHandlingUIShadow : IUIShadow
         txtI6DocNo = (TextField)oContentPage.FindControl("txtI6DocNo");
         txtZEILE = (TextField)oContentPage.FindControl("txtZEILE");
         txtAmount = (TextField)oContentPage.FindControl("txtAmount");
-        
+
         //SOURCE DATA
         txtHead = (TextField)oContentPage.FindControl("txtHead");
         txtDOA = (TextField)oContentPage.FindControl("txtDOA");
@@ -306,7 +306,6 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         string plant = lUIControls.txtWERKS.Text;
         string apType = lUIControls.txtAPTYP.Text;
 
-
         DOA spmDOA = new DOA();
         string sApplicant = lUIControls.txtApplication.Text.Trim();
         //獲取 表頭及表身DATA
@@ -320,23 +319,23 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         dtDetail.ReadXml(reader2);
         if (SubmitMethod == SPMSubmitMethod.CreateNewCase)
         {
+            #region 欄位的非空驗證
+
+            #endregion
+
+            #region Check單據是否已經過帳
             string I1DocNo = oUIControls.txtRDocNo.Text;
             string IADocNo = oUIControls.txtIADocNo.Text;
             string I6DocNo = oUIControls.txtI6DocNo.Text;
+            string WERKS = oUIControls.txtWERKS.Text;
             //Check此I1單(領料單)和關聯的IA,I6單(退料單)是否都已經過賬 (Call SAP BAPI Z_BAPI_GDS_SEND MBLNR不為空則表示已經過賬)
-            if (!oStandard.CheckFormNoIsPass(I1DocNo,IADocNo,I6DocNo))
+            if (!oStandard.CheckFormNoIsPass(I1DocNo, IADocNo, I6DocNo, WERKS))
             {
-                try
-                {
-                    HandleResult.IsSuccess = false;
-                    HandleResult.CustomMessage = "I1(領料單)或者IA,I6(退料單)存在未過賬的單子！";
+                HandleResult.IsSuccess = false;
+                HandleResult.CustomMessage = "I1(領料單)或者IA,I6(退料單)存在未過賬的單子！";
 
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }            
+            }
+            #endregion
 
         }
         else
@@ -359,6 +358,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                     {
                         //CALL FUNCTION獲取下關簽核人 
                         DOAHandler = spmDOA.GetStepHandler(sApplicant, curDOA, dtHead, dtDetail, false);
+                        oStandard.UpdateSettingxml(oUIControls.txtDocNo.Text, DOAHandler._sDOA.ToString());
 
                     }
                     catch (Exception ex)
@@ -389,7 +389,6 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                     HandleResult.IsSuccess = false;
                     HandleResult.CustomMessage = "Server or network is busy now, pls try again";
                 }
-                oStandard.UpdateSettingxml(oUIControls.txtDocNo.Text, DOAHandler._sDOA.ToString());
 
             }
         }
@@ -423,7 +422,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         FormFields.SetOrAdd("txtZEILE".ToUpper(), lUIControls.txtZEILE.Text);
         FormFields.SetOrAdd("txtAmount".ToUpper(), lUIControls.txtAmount.Text);
 
-        
+
         //SOURCE DATA
         FormFields.SetOrAdd("txtHead".ToUpper(), lUIControls.txtHead.Text);
         FormFields.SetOrAdd("txtDetail".ToUpper(), lUIControls.txtDetail.Text);
@@ -445,7 +444,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             GDS_Helper oStandard = new GDS_Helper();
             StringBuilder ErrMsg = new StringBuilder();
 
-            
+
             //string stepName = (string)(SPMTaskVars.ReadDatum("STEPNAME"));
             string curDOA = oUIControls.txtDOA.Text;
             string plant = oUIControls.txtWERKS.Text;
@@ -553,7 +552,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             try
             {
                 //Insert Submit之後數據到DB中
-                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, ReturnQuantity, Return, Reason, Remark, IADocNo, I6DocNo, "In Process", double.Parse(Amount), Settingxml,int.Parse(CASEID));
+                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, ReturnQuantity, Return, Reason, Remark, IADocNo, I6DocNo, "In Process", double.Parse(Amount), Settingxml, int.Parse(CASEID));
 
                 //將Submit後的狀態 W(In Process)回傳給SAP Begin關卡直接回傳
                 oStandard.PostBackToSAP(int.Parse(CASEID));
@@ -595,7 +594,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                     {
                         HandleResult.IsSuccess = false;
                         HandleResult.CustomMessage = ex.Message;
-                    } 
+                    }
                     break;
                 case SPMRoutingVariableKey.spm_Jump:
                     string curDOA = FormFields["txtDOA".ToUpper()].Replace("&lt1;", "<").Replace("&gt1;", ">");
@@ -607,7 +606,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                         {
                             //  IF APPROVE ,POST BACK TO SAP and Update Form Status Approve
                             PostBackToSAP(SPMTaskVars, FormFields, Variables, "A");
-                            oStandard.UpdateFormStatus(caseID,"Approve");
+                            oStandard.UpdateFormStatus(caseID, "Approve");
 
                         }
                         catch (Exception ex)
@@ -791,7 +790,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         //簡繁轉換
         StatusMark = ConvertChinese(StatusMark, "Big5");
         try
-        {   
+        {
             //By 主單號 UPDATE Flag and StatusRemark
             oStandard.UpdateGDSQueue(CASEID, StatusMark, APROV);
         }
@@ -814,7 +813,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         string newString = string.Empty;
         switch (Language)
         {
-            case "Big5":  
+            case "Big5":
                 newString = ChineseConverter.Convert(SourceString, ChineseConversionDirection.SimplifiedToTraditional);
                 break;
             case "GB2312":

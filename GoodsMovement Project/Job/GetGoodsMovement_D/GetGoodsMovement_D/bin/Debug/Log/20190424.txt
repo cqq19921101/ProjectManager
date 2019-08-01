@@ -1,0 +1,12 @@
+[     ] 2019/04/24 16:05:10 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:05:12 271869 41000256 逾期超 2109 abort ok
+[     ] 2019/04/24 16:09:30 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:09:32 271869 41000256 逾期超 2109 abort ok
+[     ] 2019/04/24 16:12:10 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:12:11 271869 41000256 逾期超 2109 abort ok
+[     ] 2019/04/24 16:23:45 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:23:51 271869 41000256 逾期超 2109 abort ok
+[     ] 2019/04/24 16:46:44 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:46:45 271869 41000256 逾期超 2109 abort ok
+[     ] 2019/04/24 16:48:36 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/24 16:48:37 271869 41000256 逾期超 2109 abort ok

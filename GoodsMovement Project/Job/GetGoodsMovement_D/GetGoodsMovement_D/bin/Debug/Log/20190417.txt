@@ -1,0 +1,2 @@
+[     ] 2019/04/17 12:01:19 ExecuteNonQuery: CommandText property has not been initialized
+[     ] 2019/04/17 12:01:20 271869 41000256 逾期超2104abort ok

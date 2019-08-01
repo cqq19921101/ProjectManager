@@ -14,6 +14,8 @@ using LiteOn.EA.DAL;
 using System.Collections;
 using System.IO;
 using LiteOn.ICM.SIC;
+using System.Web.UI.MobileControls;
+using System.Collections.Generic;
 
 /// <summary>
 /// GDS_Helper 的摘要描述
@@ -162,39 +164,27 @@ public class GDS_Helper
     /// Call SAP BAPI -- Z_BAPI_GDS_SEND 檢查單據是否過賬  MBLNR欄位不為空 表示已經過賬 返回True 否則返回False
     /// </summary>
     /// <returns></returns>
-    public bool CheckFormNoIsPass(string I1DocNo, string IADocNo, string I6DocNo)
+    public bool CheckFormNoIsPass(string I1DocNo, string IADocNo, string I6DocNo,string WERKS)
     {
-
+        string Errmsg = string.Empty;
+        Errmsg += Z_BAPI_GDS_SEND(I1DocNo, WERKS);
+        Errmsg += Z_BAPI_GDS_SEND(IADocNo, WERKS);
+        Errmsg += Z_BAPI_GDS_SEND(I6DocNo, WERKS);
+        if (Errmsg.Length > 0)
+        {
+            return false;
+        }
         return true;
     }
 
     /// <summary>
-    /// 創建回傳SAP時所需要的臨時的Datatable
-    /// </summary>
-    /// <returns></returns>
-    public DataTable BuildUpdateTable()
-    {
-        DataTable dt = new DataTable("T_ZTCPCN6D_W");
-        dt.Columns.Add(new DataColumn("WERKS", typeof(String)));
-        dt.Columns.Add(new DataColumn("MBLNR", typeof(String)));
-        dt.Columns.Add(new DataColumn("ZEILE", typeof(String)));
-        dt.Columns.Add(new DataColumn("MBLNR_A", typeof(String)));
-        dt.Columns.Add(new DataColumn("MATNR", typeof(String)));
-        dt.Columns.Add(new DataColumn("MENGE", typeof(double)));
-        dt.Columns.Add(new DataColumn("STATUS", typeof(String)));
-        return dt;
-    }
-
-
-    /// <summary>
-    /// call bapi 回傳單據狀態給SAP  Z_BAPI_GET_SPECIAL_DOC
+    /// call bapi 回傳單據狀態給SAP  Z_BAPI_GET_SPECIAL_DOC 將異常處理單的狀態回傳給SAP
     /// </summary>
     /// <param name="upDT"></param>
     /// <returns></returns>
     public  bool Z_BAPI_GSD_UPDATE(DataTable upDT)
     {
         bool flag = false;
-        Console.WriteLine("- Fetch : Z_BAPI_GET_SPECIAL_DOC");
 
         StringBuilder sbError = new StringBuilder();
         Hashtable InputParas = new Hashtable();
@@ -236,6 +226,78 @@ public class GDS_Helper
             //DBIO.WriteLog("# Fail: " + ex.Message, appName);
         }
         return flag;
+    }
+
+    /// <summary>
+    /// Call BAPI 傳入P_DOC,P_PLANT表 Check單據是否過帳  MBLNR欄位不為空 返回Datable -- T_GDS_HEAD
+    /// </summary>
+    /// <param name="dtPDoc"></param>
+    /// <param name="dtPlant"></param>
+    public string  Z_BAPI_GDS_SEND(string DocNo,string WERKS)
+    {
+        if (DocNo.Length > 0)
+        {
+            string Type = DocNo.Substring(0, 2);//得到傳入單號的類型
+            int Year = int.Parse("20" + DocNo.Substring(2, 2));//根據單號的第3,4碼 得到年份
+            StringBuilder sbError = new StringBuilder();
+            Hashtable InputParas = new Hashtable();
+            Client.ClientParas _clientparas = new Client.ClientParas();
+
+            #region Get P_DOC
+            DataTable dtPDoc = BuildPDOCTable();//創建一個臨時Table 作為參數 Call BAPI
+            DataRow TEMP = dtPDoc.NewRow();
+            TEMP["WERKKS"] = WERKS;//廠別
+            TEMP["MBLNR_A"] = DocNo;//傳入單號
+            TEMP["MJAHR_A"] = Year;//年份
+            dtPDoc.Rows.Add(TEMP);//創建出新的Datatable
+            #endregion
+
+            _clientparas.AppID = "CZ_Workflow";
+            _clientparas.SAPFunction = "MM";
+            _clientparas.BAPI = "Z_BAPI_GDS_SEND";
+
+            _clientparas.InputParas = InputParas;
+            _clientparas.InputTable = new DataTable[1];
+            _clientparas.InputTable[0] = dtPDoc;
+            _clientparas.OutputParas = new Hashtable();
+
+            try
+            {
+                bool bReturn = LiteOn.ICM.SIC.Client.getSAPData(ref _clientparas);
+                if (bReturn)
+                {
+                    //get sap return data
+                    DataTable dtHead = new DataTable();
+                    int iCount = _clientparas.ResultTable.Length;
+                    for (int i = 0; i < iCount; i++)
+                    {
+                        Console.WriteLine(_clientparas.ResultTable[i].TableName + " rows = " + _clientparas.ResultTable[i].Rows.Count);
+                        //if (_clientparas.ResultTable[i].TableName == "T_GDS_DETAIL") dtDetail = _clientparas.ResultTable[i];
+                        if (_clientparas.ResultTable[i].TableName == "T_GDS_HEAD") dtHead = _clientparas.ResultTable[i];
+                    }
+
+                    if (dtHead.Rows.Count == 0) return "Empty";
+                    DataRow drHead = dtHead.Rows[0];
+                    if (drHead["MBLNR"].ToString().Length == 0)
+                    {
+                        return Type + "單未過帳";
+                    }
+                }
+                else
+                {
+                    return "BAPI RETURN FAIL " + _clientparas.sErrMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "SIC ERROR " + ex.Message;
+            }
+            return "";
+        }
+        else
+        {
+            return "";
+        }
     }
 
     #endregion
@@ -433,5 +495,53 @@ public class GDS_Helper
 
     #endregion
 
+    #region 創建臨時表作為Call BAPI的條件
 
+    /// <summary>
+    /// 創建回傳SAP時所需要的臨時的Datatable Z_BAPI_GET_SPECIAL_DOC TableName:T_ZTCPCN6D_W
+    /// </summary>
+    /// <returns></returns>
+    public DataTable BuildUpdateTable()
+    {
+        DataTable dt = new DataTable("T_ZTCPCN6D_W");
+        dt.Columns.Add(new DataColumn("WERKS", typeof(String)));
+        dt.Columns.Add(new DataColumn("MBLNR", typeof(String)));
+        dt.Columns.Add(new DataColumn("ZEILE", typeof(String)));
+        dt.Columns.Add(new DataColumn("MBLNR_A", typeof(String)));
+        dt.Columns.Add(new DataColumn("MATNR", typeof(String)));
+        dt.Columns.Add(new DataColumn("MENGE", typeof(double)));
+        dt.Columns.Add(new DataColumn("STATUS", typeof(String)));
+        return dt;
+    }
+
+    /// <summary>
+    /// 創建回傳SAP時所需要的臨時的Datatable   Z_BAPI_GDS_SEND  TableName:P_DOC
+    /// </summary>
+    /// <returns></returns>
+    public DataTable BuildPDOCTable()
+    {
+        DataTable dt = new DataTable("P_DOC");
+        dt.Columns.Add(new DataColumn("WERKKS", typeof(String)));//2680
+        dt.Columns.Add(new DataColumn("MBLNR_A", typeof(String)));//領料單原始單號(Link 單號)
+        dt.Columns.Add(new DataColumn("MJAHR_A", typeof(int)));//年份
+        return dt;
+    }
+
+    /// <summary>
+    /// Select DB    Z_BAPI_GDS_SEND TableName:P_DOC 選擇所需要的廠別
+    /// </summary>
+    /// <returns></returns>
+    public DataTable BuildPPLANTTable()
+    {
+        StringBuilder sql = new StringBuilder();
+        sql.Append("SELECT PARAME_VALUE1 AS WERKS  FROM TB_APPLICATION_PARAM ");
+        sql.Append("WHERE APPLICATION_NAME = 'GoodsMovement' ");
+        sql.Append("AND FUNCTION_NAME = 'GetExceptionHandle' AND PARAME_NAME = 'InputParameter' AND PARAME_ITEM = 'PlantCode' ");
+        opc.Clear();
+        DataTable dt = sdb.GetDataTable(sql.ToString(), opc);
+        dt.TableName = "P_PLANT";
+        return dt;
+    }
+
+    #endregion
 }

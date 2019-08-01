@@ -1,0 +1,141 @@
+BorG SPM Error (2019/03/25 14:14:44)
+System.Data.SqlClient.SqlException: Incorrect syntax near the keyword 'where'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at BorG.SPM.DataTier.CASES.SaveData()
+[SQL Command]:update [CASES] set [PLANSN]=94,[P_TASKID]=-1,[APPLICANT]=7531,[APPLYDEPT]=12068,[B_DATETIME]='2018/03/26 15:23:00',[E_DATETIME]='2019/03/25 14:12:48',[FINISH]='2999/12/31 23:59:59',[EXPEND]='2999/12/31 23:59:59',[OVERDUE]='2999/12/31 23:59:59',[IMPORTANT]='2',[SUBJECT]=@SUBJECT, where [CASEID] = 309546
+
+BorG SPM Error (2019/03/25 15:42:20)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/03/26 13:45:22)
+System.Data.SqlClient.SqlException: Incorrect syntax near the keyword 'where'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at BorG.SPM.DataTier.CASES.SaveData()
+[SQL Command]:update [CASES] set [PLANSN]=102,[P_TASKID]=-1,[APPLICANT]=7531,[APPLYDEPT]=12068,[B_DATETIME]='2015/12/07 08:47:40',[E_DATETIME]='2019/03/26 13:43:40',[FINISH]='2999/12/31 23:59:59',[EXPEND]='2999/12/31 23:59:59',[OVERDUE]='2999/12/31 23:59:59',[IMPORTANT]='2',[SUBJECT]=@SUBJECT, where [CASEID] = 283867
+
+BorG SPM Error (2019/03/26 16:07:45)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/03/26 16:08:46)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/03/26 16:11:04)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/17 11:53:49)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at BorG.SPM.Engine.Runtime.GetNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Engine.Runtime.GetAllNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/17 11:56:14)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at BorG.SPM.Engine.Runtime.GetNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Engine.Runtime.GetAllNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/17 11:59:16)
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at BorG.SPM.Engine.Runtime.GetNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Engine.Runtime.GetAllNextStepInfo(IDbConnection& objConnection, IDbTransaction& objTransaction, String strInput, String& strNextStepSn, String& strNextStepName, String& strNextHandler, Int32 intCaseId, Hashtable& Variables)
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/17 12:01:18)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:05:08)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:09:30)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:12:10)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:23:43)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:46:44)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/04/24 16:48:36)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/08/01 16:04:56)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/08/01 16:07:55)
+System.Exception: System.Exception: SPM Error:流程主檔並未設定"使用者可抽單(Y)"
+   at BorG.SPM.Engine.PLAN.Recall(IDbConnection& objConnection, IDbTransaction& objTransaction, Int32 intCaseId, StartInfo objStartInfo, Boolean Enforce)
+   at BorG.SPM.Engine.Router.Run()
+   at BorG.SPM.Designer.Runtime.Send(Boolean bOffLine)
+
+BorG SPM Error (2019/08/01 16:10:20)
+System.Data.SqlClient.SqlException: Incorrect syntax near the keyword 'where'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at BorG.SPM.DataTier.CASES.SaveData()
+[SQL Command]:update [CASES] set [PLANSN]=173,[P_TASKID]=-1,[APPLICANT]=7510,[APPLYDEPT]=-1,[B_DATETIME]='2019/07/08 14:07:21',[E_DATETIME]='2019/07/08 14:45:34',[FINISH]='2999/12/31 23:59:59',[EXPEND]='2999/12/31 23:59:59',[OVERDUE]='2999/12/31 23:59:59',[IMPORTANT]='2',[SUBJECT]=@SUBJECT, where [CASEID] = 319971
+

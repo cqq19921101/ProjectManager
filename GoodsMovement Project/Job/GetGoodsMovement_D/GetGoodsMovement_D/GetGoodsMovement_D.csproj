@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BC5E929-B90D-4A18-8177-60A57BEFC788}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GetGoodsMovement_D</RootNamespace>
+    <AssemblyName>GetGoodsMovement_D</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=7.5.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL" />
+    <Reference Include="CodeRule, Version=4.0.0.0, Culture=neutral, PublicKeyToken=70dd209f06a3878b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SPMWebServicesCS\bin\CodeRule.dll</HintPath>
+    </Reference>
+    <Reference Include="Condition, Version=4.0.0.0, Culture=neutral, PublicKeyToken=fbda2ad2160f267d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SPMWebServicesCS\bin\Condition.dll</HintPath>
+    </Reference>
+    <Reference Include="DataTier, Version=4.0.0.0, Culture=neutral, PublicKeyToken=46b178076631571d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SPMWebServicesCS\bin\DataTier.dll</HintPath>
+    </Reference>
+    <Reference Include="DesignControl, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e91f8b3e4ae49b3c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\inetpub\wwwroot\SPMWebServicesCS\bin\DesignControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ERPConnect20, Version=3.0.0.93, Culture=neutral, PublicKeyToken=ab88d1e080a9556c, processorArchitecture=MSIL" />
+    <Reference Include="IIS_Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e91f8b3e4ae49b3c, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.Corp.IT.EA.CMCC, Version=1.0.4113.24343, Culture=neutral, PublicKeyToken=846221ff0536e3b7, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.EA.BLL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8dd5da69a5815819, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.EA.Borg.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.EA.DAL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e6a42606fb9c8c3e, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.EA.Model, Version=2.0.0.0, Culture=neutral, PublicKeyToken=47fb489c02b84b9e, processorArchitecture=MSIL" />
+    <Reference Include="LiteOn.GDS.Utility, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="LiteonUtility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c13ff450a9ff20da, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
+    <Reference Include="SICClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="SICServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2795f3c021b9fa60, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppCode\AbortCase.cs" />
+    <Compile Include="AppCode\LogWriter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

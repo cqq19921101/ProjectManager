@@ -1,0 +1,14 @@
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.exe.config
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.exe
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.pdb
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\ResolveAssemblyReference.cache
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\GetGoodsMovement_D.exe
+D:\cqq\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\GetGoodsMovement_D.pdb
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.exe.config
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.exe
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\GetGoodsMovement_D.pdb
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\LiteOn.EA.DAL.pdb
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\bin\Debug\LiteOn.GDS.Utility.pdb
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\GetGoodsMovement_D.exe
+C:\Users\Administrator\Desktop\GetGoodsMovement_D\GetGoodsMovement_D\obj\Debug\GetGoodsMovement_D.pdb
