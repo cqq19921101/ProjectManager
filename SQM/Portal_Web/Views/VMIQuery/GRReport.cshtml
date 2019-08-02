@@ -1,0 +1,60 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/GRReport")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+
+<div id="tbGRReport">
+    <table class="ui-widget-header ui-corner-all" style="width:500px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td><button id="btnExportToExcel"></button></td>
+        </tr>
+    </table>
+    <table style="width:499px; padding:3px 0; border-right: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td class="tdTitleAlignRight">Plant(FM):</td>
+            <td>
+                <input type="text" id="txtFromPlant" maxlength="4" class="tdQueryTextBox" />
+                <button id="btnOpenQueryFromPlantDialog" class="tdQueryButton"></button>
+            </td>
+            <td class="tdTitleAlignRight">Plant(TO):</td>
+            <td>
+                <input type="text" id="txtToPlant" maxlength="4" class="tdQueryTextBox" />
+                <button id="btnOpenQueryToPlantDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Vendor(FM):</td>
+            <td>
+                <input type="text" id="txtFromVendorCode" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryFromVendorCodeDialog" class="tdQueryButton"></button>
+            </td>
+            <td class="tdTitleAlignRight">Vendor(TO):</td>
+            <td>
+                <input type="text" id="txtToVendorCode" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryToVendorCodeDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Material(FM):</td>
+            <td>
+                <input type="text" id="txtFromMaterial" class="tdQueryTextBox" />
+            </td>
+            <td class="tdTitleAlignRight">Material(TO):</td>
+            <td>
+                <input type="text" id="txtToMaterial" class="tdQueryTextBox" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">GR Date(FM):</td>
+            <td>
+                <input type="text" id="fromGRDate" name="from" class="tdQueryTextBox">
+            </td>
+            <td class="tdTitleAlignRight">GR Date(TO):</td>
+            <td>
+                <input type="text" id="toGRDate" name="from" class="tdQueryTextBox">
+            </td>
+        </tr>
+    </table>
+</div>

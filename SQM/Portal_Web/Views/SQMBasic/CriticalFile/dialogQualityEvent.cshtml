@@ -1,0 +1,49 @@
+﻿<div id="dialogDataQE" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBarQE" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataQE"></button>
+        <button id="btndialogCancelEditQE"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">QualityEventOccurredTime:</td>
+            <td>
+                <input type="text" id="txtQualityEventOccurredTime" name="Date" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">QualityEventSummary:</td>
+            <td>
+                <input type="text" id="txtQualityEventSummary" class="DiaText" maxlength="120" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">QualityEventProvideTime:</td>
+            <td>
+                <input type="text" id="txtQualityEventProvideTime" name="Date" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">File Name:</td>
+            <td>
+                <input type="text" id="txtQEFileName" class="DiaText" maxlength="40" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Upload Date:</td>
+            <td>
+                <input type="text" id="txtQEUpdateTime" class="DiaText" maxlength="40" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Upload File:</td>
+            <td>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadQE" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgQE"></span>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,56 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIProcess/ToDoImportList")
+
+@RenderPage("~/Views/VMIProcess/ToDoImportList/dialogImportListForm.cshtml")
+@RenderPage("~/Views/VMIProcess/ToDoImportList/dialogAddDNinList.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+
+<div id="tbToDoImportList">
+    <table class="ui-widget-header ui-corner-all" style="width:573px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnNewImportList"></button>
+                <button id="btnQueryImportList"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:572px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:535px;">
+            <tr>
+                <td class="tdTitleAlignRight">Import List No.(FM):</td>
+                <td>
+                    <input type="text" id="txtImportListNoFM" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Import List No.(TO):</td>
+                <td>
+                    <input type="text" id="txtImportListNoTo" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">DN No.(FM):</td>
+                <td>
+                    <input type="text" id="txtDNNoFM" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">DN No.(TO)</td>
+                <td>
+                    <input type="text" id="txtDNNoTO" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Is Close:</td>
+                <td>
+                    <select id="ddlIsClose">
+                        <option value="" selected></option>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <table id="gridImportList"></table>
+    <div id="gridImportListPager"></div>
+</div>

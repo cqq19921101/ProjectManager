@@ -1,0 +1,41 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">UD:</td>
+            <td>
+                <input type="text" id="txtUD" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Plan:</td>
+            <td>
+                <input type="text" id="txtPlan" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">UD Type:</td>
+            <td>
+                <select id="ddlUDType" style="width:204px;">
+                    <option value="PASS">PASS</option>
+                    <option value="REJECT">REJECT</option>
+                    <option value="WAIVE">WAIVE</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">描述:</td>
+            <td>
+                <input type="text" id="txtReMark" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

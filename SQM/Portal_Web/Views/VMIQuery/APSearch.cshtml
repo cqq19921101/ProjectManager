@@ -1,0 +1,85 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/APSearch")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIQuery/APSearch/dialogAPSearch.cshtml")
+
+<div id="tbAPSearch">
+    <table class="ui-widget-header ui-corner-all" style="width:500px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td colspan="4"><button id="btnAPSearch"></button></td>
+        </tr>
+    </table>
+    <table style="width:500px; padding:3px 15px 3px 15px; border-right: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td style="text-align:right">Invoice No:</td>
+            <td>
+                <input type="text" id="txtInvoiceNo" class="tdQueryTextBox" />
+            </td>
+            <td style="text-align:right">PO No:</td>
+            <td>
+                <input tpye="text" id="txtPONo" class="tdQueryTextBox" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Invoice Date(FM):</td>
+            <td>
+                <input type="text" id="fromInvoiceDate" name="from" class="tdQueryTextBox">
+            </td>
+            <td style="text-align:right">Invoice Date(TO):</td>
+            <td>
+                <input type="text" id="toInvoiceDate" name="from" class="tdQueryTextBox">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Pay Date(FM):</td>
+            <td>
+                <input type="text" id="fromPayDate" name="from" class="tdQueryTextBox">
+            </td>
+            <td style="text-align:right">Pay Date(TO):</td>
+            <td>
+                <input type="text" id="toPayDate" name="from" class="tdQueryTextBox">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Due Date(FM):</td>
+            <td>
+                <input type="text" id="fromDueDate" name="from" class="tdQueryTextBox">
+            </td>
+            <td style="text-align:right">Due Date(TO):</td>
+            <td>
+                <input type="text" id="toDueDate" name="from" class="tdQueryTextBox">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Company Code:</td>
+            <td>
+                <input type="text" id="txtCompanyCode" class="tdQueryTextBox" />
+            </td>
+            <td style="text-align:right">* Vendor Code:</td>
+            <td>
+                <input type="text" id="txtVendorCode" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Pay Status:</td>
+            <td>
+                <select id="ddlPayStatus" class="tdQueryTextBox">
+                    <option selected="selected">ALL</option>
+                    <option>Paid</option>
+                    <option>Available</option>
+                </select>
+            </td>
+            <td style="text-align:right">Order By:</td>
+            <td>
+                <select id="ddlOrderBy" class="tdQueryTextBox">
+                    <option selected="selected">Invoice Date</option>
+                    <option>Due Date</option>
+                    <option>Pay Status</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+﻿
+@Scripts.Render("~/bundles/SQMPlant/SQMPlant")
+
+@RenderPage("SQMPlantDialog.cshtml")
+
+<div id="SQMPlanttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSQMPlantSearch"></button>
+    <button id="btnSQMPlantCreate"></button>
+    <button id="btnSQMPlantDelete"></button>
+</div>
+
+<div>
+    <table>
+        <td>部门经理:</td>
+        <td>
+            <input type="text" id="txtFilterText" value="" />
+        </td>
+    </table>
+</div>
+
+<div style="margin-left:5px">
+    <table id="SQMPlantgridDataList"></table>
+    <div id="SQMPlantgridListPager"></div>
+</div>
+

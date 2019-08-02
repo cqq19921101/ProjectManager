@@ -1,0 +1,24 @@
+﻿@model Lib_Portal_Domain.Model.PortalUser
+@using Lib_Portal_Domain.SharedLibs;
+
+@*<script lang="javascript">
+    //Start Session Expired Timer
+    StartPortalSessionStopWatch();
+</script>*@
+
+@foreach (var role in PortalUserProfileHelper.GetRunAsUserProfile(Context).Roles)
+{
+    if (role.RoleName.ToUpper() == "SOSA: DUMMY")
+    {
+        <label id="SOSAFlag" style="display: none;">@Html.Raw(role.RoleName)</label>
+        break;
+    }
+}
+
+<script language="JavaScript">
+    var SOSAFlag = $('#SOSAFlag').text();
+    if (SOSAFlag != 'SOSA: DUMMY') {
+        window.location = __WebAppPathPrefix + "/VMIBulletin/RefAndDownload";
+    }
+</script>
+@*  *@

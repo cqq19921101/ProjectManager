@@ -1,0 +1,36 @@
+﻿<div id="dialogDataFile" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogFileToolBarFile" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataFile"></button>
+        <button id="btndialogCancelEditFile"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">文件名稱:</td>
+            <td>
+                <input type="text" id="txtDocName" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">結果:</td>
+            <td>
+                <select id="txtDocInspResult" style="width:204px;">
+                    <option value="OK">OK</option>
+                    <option value="NG">NG</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="fileUpload">
+            <td id="txtFile" style="text-align: right; font-weight: bold;">File:</td>
+            <td id="UpDateFile" style="vertical-align: top;">
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadVDS" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M的PDF文件</span>
+            </td>
+            <td><button id="btnUploadSureInfo">Process</button></td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgFile"></span>
+            </td>
+        </tr>
+    </table>
+</div>

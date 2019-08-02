@@ -1,0 +1,48 @@
+﻿<script lang="javascript">
+    var _SubFolderForAttachments = "@ViewBag.UploadFolderName" //for upload use
+</script>
+
+<script type="text/javascript" src="~/Scripts/UploadifyF32/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.cookie.js"></script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/VMIProcess/UploadASN")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("UploadASN/dialogUploadASNResult.cshtml")
+
+
+<div>
+    <table class="defaultTable" style="width: 650px;">
+        <tr>
+            <td class="tdTitleAlignRight" style="font-weight: bold;" width="25%">ASN Reply File:</td>
+            <td class="tdTitleAlignLeft" width="90%" id="dialog_td_VMIProcess_Attach_New">
+
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadASN" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <br />
+                <div id="div_VMIProcess_ReturnFile_Block">
+                    <img src="~/Scripts/_Global/file.jpg" style="width:20px;">
+                    <span id="span_VMIProcess_ReturnASNFile_Download" class="jqGridColumnDataAsLinkWithBlue" path=""></span>
+                    <span id="span_VMIProcess_ReturnASNFile_Delete" class="jqGridColumnDataAsLinkWithBlue">Delete</span>
+                </div>
+            </td>
+            <td>
+                <input type="button" id="btn_VMIProcess_UploadASN_Process" value="Process" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight" style="font-weight: bold;" width="25%">是否要自動拆ASN單:</td>
+            <td class="tdTitleAlignLeft" width="90%">
+                <input type="checkbox" id="chk_VMIProcess_UploadASN_Split" name="" value="">Yes
+                <input type="text" id="txt_VMIProcess_UploadASN_ItemSplitValue" value="" maxlength="3" style="width:30px;text-align:right" /><span>行</span>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
+                <span id="dialog_span_VMIProcess_UploadASNFile_Download" class="jqGridColumnDataAsLinkWithBlue">Download ASN Upload Template</span>
+            </td>
+        </tr>
+    </table>
+</div>

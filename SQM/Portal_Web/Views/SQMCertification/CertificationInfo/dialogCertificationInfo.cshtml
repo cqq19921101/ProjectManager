@@ -1,0 +1,52 @@
+﻿<div id="dialogSQMCertificationData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogSQMCertificationDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogSQMCertificationEditData"></button>
+        <button id="btndialogSQMCertificationCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">品質體系認証</td>
+            <td colspan="3">
+                <select id="ddlSQMCertificationCName"></select>
+                <input type="text" id="txtSQMCertificationCNameInput" class="DiaText" style="width:30%;max-width:30%;" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">认证机构</td>
+            <td>
+                <input type="text" id="txtCertificationAuthority" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">证书编号</td>
+            <td>
+                <input type="text" id="txtCertificationNum" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">认证日期</td>
+            <td>
+                <input type="text" id="txtCertificationdate" class="tdQueryTextBox" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">有效终止日期</td>
+            <td>
+                <input type="text" id="txtEnableEndDate" class="tdQueryTextBox" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="uploadpart">
+            <td id="txtFile" style="text-align: right; font-weight: bold;">File:</td>
+            <td id="UpDateFile" style="vertical-align: top;">
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadIntro" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+            <td><button id="btnProcessIntro">Process</button></td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgCertification"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+

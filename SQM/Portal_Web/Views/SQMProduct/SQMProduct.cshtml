@@ -1,0 +1,30 @@
+﻿@*@{
+        ViewBag.Title = "RoleManagement";
+    }*@
+
+@Scripts.Render("~/bundles/SQMProduct/SQMBasic")
+
+@RenderPage("dialogproduct.cshtml")
+
+<div id="tbMain1P" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSearchP"></button>
+    <button id="btnCreateP"></button>
+    <button id="btnViewEditP"></button>
+    <button id="btnDeleteP"></button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>VendorCode:</td>
+            <td>
+                <input type="text" id="txtFilterTextP" value="" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table id="gridDataListP"></table>
+    <div id="gridListPagerP"></div>
+</div>

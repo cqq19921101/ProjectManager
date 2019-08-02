@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Lib_SQM_Domain.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Lib_SQM_Domain_icm045_CMSHandler" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://icm045/CMSHandler/CMSHandler.asmx</Value>
+    </Setting>
+    <Setting Name="Lib_SQM_Domain_dev281_SQM_AccountService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://vmitraining.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx</Value>
+    </Setting>
+    <Setting Name="Lib_SQM_Domain_icm131_2_SQM_AccountService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://icm131.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

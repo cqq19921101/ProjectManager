@@ -1,0 +1,90 @@
+﻿<form id=@ViewData["formId"] method="POST" enctype="multipart/form-data" data-url="@Url.Action("Upload","FileUpload", new { subfolderPath = @ViewData["subfolderPath"] })">
+    <span style="color: olivedrab;">Click <b>[Browse]</b> to select file to be uploaded</span>
+    <!-- The table listing the files available for upload/download -->
+    <table role="presentation" style="font-size: 12px;"><tbody class="files"></tbody></table>
+    <div>
+        <span class="fileinput-button button-fileupload">
+            <span>Browse</span>
+            <input type="file" name="files[]">
+        </span>
+        @*<button type="submit" class="start">Start upload</button>*@
+        <!-- The global file processing state -->
+        @*<span class="fileupload-process"></span>*@
+    </div>
+    <!-- The global progress state -->
+    @*<div class="fileupload-progress fade" style="width: 250px;">
+            <!-- The global progress bar -->
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-info" style="width:0%;"></div>
+            </div>
+            <!-- The extended global progress state -->
+            <div class="progress-extended">&nbsp;</div>
+        </div>*@
+</form>
+<br />
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload">
+        @*<td>
+                <span class="preview"></span>
+            </td>*@
+        <td>
+            <strong class="error" style="color: red"></strong>
+            <span class="name">{%=file.name%}</span>
+        </td>
+        @*<td>
+            <div class="size">Processing...</div>
+        </td>
+        <td>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-bottom:0px; width:50px; height: 10px;"><div class="progress-bar progress-bar-info" style="width:0%;"></div></div>
+        </td>*@
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+            <button class="start" disabled>Start</button>
+            {% } %}
+            {% if (!i) { %}
+            <button class="cancel">Abort</button>
+            {% } %}
+        </td>
+    </tr>
+    {% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download">
+        @*<td>
+                <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+                </span>
+            </td>*@
+        <td>
+            {% if (file.error) { %}
+            <div><span>Error</span> {%=file.error%}</div>
+            {% } %}
+            <span class="name">
+                {% if (file.url) { %}
+                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                <span>{%=file.name%}</span>
+                {% } %}
+            </span>
+        </td>
+        @*<td>
+            <div class="size">{%=o.formatFileSize(file.size)%}</div>
+        </td>*@
+        <td>
+            {% if (file.deleteUrl) { %}
+            <button class="delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>Remove</button>
+            @*<input type="checkbox" name="delete" value="1" class="toggle">*@
+            {% } %}
+            @*{% else { %}
+                <button class="cancel">Remove</button>
+                {% } %}*@
+        </td>
+    </tr>
+    {% } %}
+</script>

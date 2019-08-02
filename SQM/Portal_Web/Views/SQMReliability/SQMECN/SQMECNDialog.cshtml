@@ -1,0 +1,165 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">變更類型:</td>
+            <td>
+                <select id="txtChangeType" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">供應商:</td>
+            <td>
+                <input type="text" id="txtSupplier" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">電話:</td>
+            <td>
+                <input type="text" id="txtPhone" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">起草人:</td>
+            <td>
+                <input type="text" id="txtOriginatorName" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">規格/料號:</td>
+            <td>
+                <input type="text" id="txtSpec" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">品名:</td>
+            <td>
+                <input type="text" id="txtDescription" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">變更項目類型:</td>
+            <td>
+                @*<input type="text" id="txtChangeItemType" class="DiaText" maxlength="40" />*@
+                <select id="txtChangeItemType" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">變更內容:</td>
+            <td>
+                <input type="text" id="txtProposedChange" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr id="fileUploadProposedChange">
+            <td class="FieldLabel" id="txtFile">附件:</td>
+            <td id="UpDateFile">
+                <span id="spProposedChange"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadProposedChange" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><span style="color:red">*</span><br />
+                <button id="btnProcessProposedChange">上傳</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">變更日期:</td>
+            <td>
+                <input type="text" id="txtProposedDate" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">變更原因:</td>
+            <td>
+                <input type="text" id="txtChangeReason" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">設計變更需求（確認/資格）:</td>
+            <td>
+                <select id="txtDesignChange" style="width:204px;">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">舊庫存處理方式:</td>
+            <td>
+                <input type="checkbox" id="ckbConsume" />消耗
+                <input type="checkbox" id="ckbScrap" />報廢
+                <input type="checkbox" id="ckbRework" />重工
+                <input type="checkbox" id="ckbSort" />全檢
+                <span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">廠內庫存狀況:</td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">在製品:</td>
+            <td>
+                <input type="text" id="txtWIP" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">庫存數量:</td>
+            <td>
+                <input type="number" id="txtQtyInStock" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">變更後環境影響評估:</td>
+            <td>
+                <select id="txtEnvironment" style="width:204px;">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="fileUploadDesignChange">
+            <td class="FieldLabel" id="txtFile">附件:</td>
+            <td id="UpDateFile">
+                <span id="spDesignChange"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadDesignChange" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><span style="color:red">*</span><br />
+                <button id="btnProcessDesignChange">上傳</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">是否重新提交PPAP:</td>
+            <td>
+                <select id="txtPPAP" style="width:204px;">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="fileUploadSupplierApproval">
+            <td class="FieldLabel" id="txtFile">供應商承認者:</td>
+            <td id="UpDateFile">
+                <span id="spSupplierApproval"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadSupplierApproval" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><span style="color:red">*</span><br />
+                <button id="btnProcessSupplierApproval">上傳</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">職位:</td>
+            <td>
+                <input type="text" id="txtTitle" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">要求日期:</td>
+            <td>
+                <input type="text" id="txtRequestDate" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

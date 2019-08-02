@@ -1,0 +1,1294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82616431-11DC-46C7-8EE5-72D461C784AF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Portal_Web</RootNamespace>
+    <AssemblyName>Portal_Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lib_Portal_Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\PortalDomain\Lib_Portal_Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib_Portal_Domain_MUIResources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\PortalDomainMUIResources\Lib_Portal_Domain_MUIResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.Services.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.XpsRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.ReportViewer.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnnualObjectivesController.cs" />
+    <Compile Include="Controllers\CCCController.cs" />
+    <Compile Include="Controllers\CPKController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
+    <Compile Include="Controllers\GMSController.cs" />
+    <Compile Include="Controllers\HoldController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MRBAppoveController.cs" />
+    <Compile Include="Controllers\SQECPKController.cs" />
+    <Compile Include="Controllers\SQMBenefitController.cs" />
+    <Compile Include="Controllers\SQMController.cs" />
+    <Compile Include="Controllers\PortalServiceController.cs" />
+    <Compile Include="Controllers\RegistController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SQMBasicController.cs" />
+    <Compile Include="Controllers\SQMCertificationController.cs" />
+    <Compile Include="Controllers\SQMGradeController.cs" />
+    <Compile Include="Controllers\SQMHRController.cs" />
+    <Compile Include="Controllers\SQMMailRController.cs" />
+    <Compile Include="Controllers\SQMMaterialMgmtController.cs" />
+    <Compile Include="Controllers\SQMMgmtController.cs" />
+    <Compile Include="Controllers\SQMMRBController.cs" />
+    <Compile Include="Controllers\SQMPlantController.cs" />
+    <Compile Include="Controllers\SQMReliabilityController.cs" />
+    <Compile Include="Controllers\SQMProcessController.cs" />
+    <Compile Include="Controllers\SQMPROController.cs" />
+    <Compile Include="Controllers\SQMSQEPURController.cs" />
+    <Compile Include="Controllers\SubSystemMgmtController.cs" />
+    <Compile Include="Controllers\SystemMgmtController.cs" />
+    <Compile Include="Controllers\UploadifyController.cs" />
+    <Compile Include="Controllers\VenderAccountController.cs" />
+    <Compile Include="Controllers\VMIBulletinController.cs" />
+    <Compile Include="Controllers\VMICommonController.cs" />
+    <Compile Include="Controllers\VMIConfigrationController.cs" />
+    <Compile Include="Controllers\VMIProcessController.cs" />
+    <Compile Include="Controllers\VMIQueryController.cs" />
+    <Compile Include="Controllers\VMIReportController.cs" />
+    <Compile Include="Controllers\VMIReportResolverController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\FilesHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupportClasses\CustomActionFilter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jQuery.FileUpload\css\demo-ie8.css" />
+    <Content Include="Content\jQuery.FileUpload\css\demo.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload.css" />
+    <Content Include="Content\jQuery.FileUpload\css\style.css" />
+    <Content Include="Content\jQuery.FileUpload\img\loading.gif" />
+    <Content Include="Content\jQuery.FileUpload\img\progressbar.gif" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ReportViewer\js\kendo.subset.2015.3.930.min.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-10.1.16.504.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer-10.1.16.504.min.js" />
+    <Content Include="ReportViewer\styles\BlueOpal\sprite.png" />
+    <Content Include="ReportViewer\styles\kendo.blueopal.min.css" />
+    <Content Include="ReportViewer\styles\kendo.common.min.css" />
+    <Content Include="ReportViewer\styles\telerikReportViewer.css" />
+    <Content Include="ReportViewer\templates\telerikReportViewerTemplate-FA.html" />
+    <Content Include="ReportViewer\templates\telerikReportViewerTemplate.html" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\Account\Activate\Init.js" />
+    <Content Include="Scripts\Account\ForgotPassword\Init.js" />
+    <Content Include="Scripts\Account\Login\jquery-qrcode-0.14.0.min.js" />
+    <Content Include="Scripts\Account\Login\liteon_logo.gif" />
+    <Content Include="Scripts\Account\Login\LoginPage.css" />
+    <Content Include="Scripts\Account\Login\LoginPage.js" />
+    <Content Include="Scripts\AnnualObjectives\CRUD.js" />
+    <Content Include="Scripts\AnnualObjectives\dialogRole.js" />
+    <Content Include="Scripts\AnnualObjectives\Init.js" />
+    <Content Include="Scripts\AnnualObjectives\Search.js" />
+    <Content Include="Scripts\ChangeApprove\ChangeApprove.css" />
+    <Content Include="Scripts\ChangeApprove\ChangeApprove.js" />
+    <Content Include="Scripts\Chart\Chart.bundle.js" />
+    <Content Include="Scripts\Chart\Chart.bundle.min.js" />
+    <Content Include="Scripts\Chart\Chart.js" />
+    <Content Include="Scripts\Chart\Chart.min.js" />
+    <Content Include="Scripts\Chart\utils.js" />
+    <Content Include="Scripts\CPK\CPK.css" />
+    <Content Include="Scripts\CPK\CPK.js" />
+    <Content Include="Scripts\SQEHold\CRUD.js" />
+    <Content Include="Scripts\SQEHold\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQEHold\Init.js" />
+    <Content Include="Scripts\SQEHold\Search.js" />
+    <Content Include="Scripts\Hold\CRUD.js" />
+    <Content Include="Scripts\Hold\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\Hold\Init.js" />
+    <Content Include="Scripts\Hold\Search.js" />
+    <Content Include="Scripts\MRBAppove\CRUD.js" />
+    <Content Include="Scripts\MRBAppove\dialogRole.js" />
+    <Content Include="Scripts\MRBAppove\Init.js" />
+    <Content Include="Scripts\MRBAppove\Search.js" />
+    <Content Include="Scripts\SQECPK\CRUD.js" />
+    <Content Include="Scripts\SQECPK\dialogRole.js" />
+    <Content Include="Scripts\SQECPK\Init.js" />
+    <Content Include="Scripts\SQECPK\Search.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantMap\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantMap\dialog.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantMap\init.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantMap\search.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantRule\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantRule\dialog.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantRule\init.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlantRule\search.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlant\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlant\dialog.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlant\init.js" />
+    <Content Include="Scripts\SQMBasic\SQEAQLPlant\AQLPlant\search.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\CRUDContact.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\Info\CRUDInfo.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\Info\dialogInfo.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\Info\initInfo.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\Info\searchInfo.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\initContact.js" />
+    <Content Include="Scripts\SQMBasic\SQEContact\search.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\Criticism\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\Criticism\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\Criticism\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\Criticism\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\CRUDContact.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\initContact.js" />
+    <Content Include="Scripts\SQMBasic\SQECriticism\search.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\CRUDCode.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\dialogCode.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\initCode.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDescVar\CRUDVar.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDescVar\dialogVar.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDescVar\initVar.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDescVar\searchVar.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDesc\CRUDDesc.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDesc\dialogDesc.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDesc\initDesc.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\InspDesc\searchDesc.js" />
+    <Content Include="Scripts\SQMBasic\SQEInsp\searchCode.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\CRUD_QE.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\CRUD_WasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\dialogQE.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\dialogUploadVDSSummary.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\dialogWasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\InitQE.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\InitWasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\InitWHS.js" />
+    <Content Include="Scripts\SQMBasic\SQEKeyInfoIntro\search.js" />
+    <Content Include="Scripts\SQMBasic\SQELitNO_Plant\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQELitNO_Plant\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQELitNO_Plant\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQELitNO_Plant\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\File\CRUDFile.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\File\initFile.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\File\searchFile.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\Insp\CRUDInsp.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\Insp\initInsp.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\Insp\searchInsp.js" />
+    <Content Include="Scripts\SQMBasic\SQEQuality\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQEReliability\CRUDReli.js" />
+    <Content Include="Scripts\SQMBasic\SQEReliability\dialogReli.js" />
+    <Content Include="Scripts\SQMBasic\SQEReliability\initHistory.js" />
+    <Content Include="Scripts\SQMBasic\SQEReliability\initReli.js" />
+    <Content Include="Scripts\SQMBasic\SQEReliability\search.js" />
+    <Content Include="Scripts\SQMBasic\SQEUDMaintain\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQEUDMaintain\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQEUDMaintain\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQEUDMaintain\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\KeyInfoIntro\dialogUploadAgents.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\KeyInfoIntro\InitAgents_.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\SQMBasic\CRUDAgents.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\SQMBasic\dialogRoleAgents.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\SQMBasic\InitAgents.js" />
+    <Content Include="Scripts\SQMBasic\SQMAgents\SQMBasic\SearchAgents.js" />
+    <Content Include="Scripts\SQMBasic\SQMProduct\SQMBasic\CRUDProduct.js" />
+    <Content Include="Scripts\SQMBasic\SQMProduct\SQMBasic\dialogRoleProduct..js" />
+    <Content Include="Scripts\SQMBasic\SQMProduct\SQMBasic\InitProduct..js" />
+    <Content Include="Scripts\SQMBasic\SQMProduct\SQMBasic\SearchProduct..js" />
+    <Content Include="Scripts\SQMBasic\SQMPVL\CRUD_PVL.js" />
+    <Content Include="Scripts\SQMBasic\SQMPVL\dialogEdit_PVL.js" />
+    <Content Include="Scripts\SQMBasic\SQMPVL\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\KeyInfoIntro\dialogUploadTraders.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\KeyInfoIntro\InitTraders_.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\KeyInfoIntro\InitTraders_t.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\SQMBasic\CRUDTraders.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\SQMBasic\dialogRoleTraders.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\SQMBasic\InitTraders.js" />
+    <Content Include="Scripts\SQMBasic\SQMTraders\SQMBasic\SearchTraders.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\CRUD.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\dialogRole.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\Init.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\InitUpload.js" />
+    <Content Include="Scripts\SQEMaterialMgmt\SQEScarMgmt\Search.js" />
+    <Content Include="Scripts\SQMBenefit\CRUD.js" />
+    <Content Include="Scripts\SQMBenefit\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQMBenefit\dialogRole.js" />
+    <Content Include="Scripts\SQMBenefit\Init.js" />
+    <Content Include="Scripts\SQMBenefit\InitUpload.js" />
+    <Content Include="Scripts\SQMBenefit\Search.js" />
+    <Content Include="Scripts\SQMGrade\CRUD.js" />
+    <Content Include="Scripts\SQMGrade\dialogRole.js" />
+    <Content Include="Scripts\SQMGrade\Init.js" />
+    <Content Include="Scripts\SQMGrade\Search.js" />
+    <Content Include="Scripts\SQMMaterialMgmt\SQMScarMgmt\CRUD.js" />
+    <Content Include="Scripts\SQMMaterialMgmt\SQMScarMgmt\dialogRole.js" />
+    <Content Include="Scripts\SQMMaterialMgmt\SQMScarMgmt\Init.js" />
+    <Content Include="Scripts\SQMMaterialMgmt\SQMScarMgmt\InitUpload.js" />
+    <Content Include="Scripts\SQMMaterialMgmt\SQMScarMgmt\Search.js" />
+    <Content Include="Scripts\SQMMRB\CRUD.js" />
+    <Content Include="Scripts\SQMMRB\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQMMRB\Init.js" />
+    <Content Include="Scripts\SQMMRB\InitUpload.js" />
+    <Content Include="Scripts\SQMMRB\Search.js" />
+    <Content Include="Scripts\SQMReliability\SQMBar\Init.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKData\CRUDCPKData.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKData\dialogCPKData.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKData\initCPKData.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKData\statisticCPKData.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKData\searchCPKData.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKSub\CRUDCPKSub.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKSub\dialogCPKSub.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKSub\initCPKSub.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CPKSub\searchCPKSub.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\CRUDCPK.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\dialogCPK.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\initCPK.js" />
+    <Content Include="Scripts\SQMReliability\SQMCPK\searchCPK.js" />
+    <Content Include="Scripts\SQMApprove\Approve.css" />
+    <Content Include="Scripts\SQMApprove\Approve.js" />
+    <Content Include="Scripts\Regist\Regist.css" />
+    <Content Include="Scripts\Regist\Regist.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\SQMAgents\SQMBasic\CRUDAgents.js" />
+    <Content Include="Scripts\SQMAgents\SQMBasic\dialogRoleAgents.js" />
+    <Content Include="Scripts\SQMAgents\SQMBasic\InitAgents.js" />
+    <Content Include="Scripts\SQMAgents\KeyInfoIntro\dialogUploadAgents.js" />
+    <Content Include="Scripts\SQMAgents\KeyInfoIntro\InitAgents_.js" />
+    <Content Include="Scripts\SQMAgents\SQMBasic\SearchAgents.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\CRUD_Type.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\dialogEdit_Type.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\BasicInfo.css" />
+    <Content Include="Scripts\SQMBasic\Common\common.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\CRUD_WasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\CRUD_QE.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\dialogWasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\dialogQE.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\InitWHS.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\InitWasteHandler.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\InitQE.js" />
+    <Content Include="Scripts\SQMBasic\keyInfo\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\keyInfo\dialogEdit.js" />
+    <Content Include="Scripts\SQMBasic\keyInfo\Init.js" />
+    <Content Include="Scripts\SQMBasic\keyInfo\Search.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\dialogEdit.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\Init.js" />
+    <Content Include="Scripts\SQMBasic\BasicInfo\Search.js" />
+    <Content Include="Scripts\SQMBasic\Criticism\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\Criticism\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\Criticism\Init.js" />
+    <Content Include="Scripts\SQMBasic\Criticism\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQMCustomers\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQMCustomers\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQMCustomers\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQMCustomers\Search.js" />
+    <Content Include="Scripts\SQMBasic\SQMEquipment\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQMEquipment\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQMEquipment\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQMEquipment\Search.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\dialogUploadVDSSummary.js" />
+    <Content Include="Scripts\SQMBasic\KeyInfoIntro\Init.js" />
+    <Content Include="Scripts\SQMCertification\CertificationInfo\CRUD.js" />
+    <Content Include="Scripts\SQMCertification\CertificationInfo\dialogProject1.js" />
+    <Content Include="Scripts\SQMCertification\CertificationInfo\Init.js" />
+    <Content Include="Scripts\SQMCertification\CertificationInfo\Search.js" />
+    <Content Include="Scripts\SQMCertification\KeyInfoIntro\dialogUploadVDSSummary.js" />
+    <Content Include="Scripts\SQMCertification\KeyInfoIntro\Init.js" />
+    <Content Include="Scripts\SQMHR\HRInfo\CRUD.js" />
+    <Content Include="Scripts\SQMHR\HRInfo\dialogProject1.js" />
+    <Content Include="Scripts\SQMHR\HRInfo\Init.js" />
+    <Content Include="Scripts\SQMHR\HRInfo\Search.js" />
+    <Content Include="Scripts\SQMMailR\CRUD.js" />
+    <Content Include="Scripts\SQMMailR\dialogQueryPlant.js" />
+    <Content Include="Scripts\SQMMailR\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQMMailR\dialogRole.js" />
+    <Content Include="Scripts\SQMMailR\Init.js" />
+    <Content Include="Scripts\SQMMailR\Search.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\CRUD.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\dialogMember.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\dialogMemberRoles.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\Init.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\Role.js" />
+    <Content Include="Scripts\SQMMgmt\MemberManagement\Search.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\AssignRoleSubFuncs.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\AssignSubFuncs.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\ControllerAction.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\dialogFunctionControllerActions.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\dialogFunctionRoles.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\dialogMenu.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\Init.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\Role.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\Shared.js" />
+    <Content Include="Scripts\SQMMgmt\MenuSubFuncMgmt\ToolBarFunctions.js" />
+    <Content Include="Scripts\SQMBasic\SQMContact\CRUD.js" />
+    <Content Include="Scripts\SQMBasic\SQMContact\dialogRole.js" />
+    <Content Include="Scripts\SQMBasic\SQMContact\Init.js" />
+    <Content Include="Scripts\SQMBasic\SQMContact\Search.js" />
+    <Content Include="Scripts\SQMMgmt\SubFuncManagement\CRUD.js" />
+    <Content Include="Scripts\SQMMgmt\SubFuncManagement\dialogRole.js" />
+    <Content Include="Scripts\SQMMgmt\SubFuncManagement\Init.js" />
+    <Content Include="Scripts\SQMMgmt\SubFuncManagement\Search.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberAndDelegation\AssignRoleAdmins.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberAndDelegation\AssignRoleMembers.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberAndDelegation\Init.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberAndDelegation\Search.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberAndDelegation\Shared.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberMgmt\Init.js" />
+    <Content Include="Scripts\SQMMgmt\RoleMemberMgmt\Search.js" />
+    <Content Include="Scripts\SQMMgmt\RunAs\Init.js" />
+    <Content Include="Scripts\SQMMgmt\RunAs\RunAs.js" />
+    <Content Include="Scripts\SQMMgmt\RunAs\Search.js" />
+    <Content Include="Scripts\SQMMgmt\RunAs_VMI\Init.js" />
+    <Content Include="Scripts\SQMMgmt\RunAs_VMI\RunAs.js" />
+    <Content Include="Scripts\SQMPlant\CRUD.js" />
+    <Content Include="Scripts\SQMPlant\dialogRole.js" />
+    <Content Include="Scripts\SQMPlant\Init.js" />
+    <Content Include="Scripts\SQMPlant\Search.js" />
+    <Content Include="Scripts\SQMMgmt\VendorAccount\dialogQuerySBUVendor.js" />
+    <Content Include="Scripts\SQMMgmt\VendorAccount\Init.js" />
+    <Content Include="Scripts\SQMMgmt\VendorAccount\Search.js" />
+    <Content Include="Scripts\SQMProcess\ProcessInfo\CRUD.js" />
+    <Content Include="Scripts\SQMProcess\ProcessInfo\dialogProject1.js" />
+    <Content Include="Scripts\SQMProcess\ProcessInfo\Init.js" />
+    <Content Include="Scripts\SQMProcess\ProcessInfo\Search.js" />
+    <Content Include="Scripts\SQMPRO\SQMProduct1\CRUD.js" />
+    <Content Include="Scripts\SQMPRO\SQMProduct1\dialogProject1.js" />
+    <Content Include="Scripts\SQMPRO\SQMProduct1\Init.js" />
+    <Content Include="Scripts\SQMPRO\SQMProduct1\Search.js" />
+    <Content Include="Scripts\SQMPVL\CRUD_PVL.js" />
+    <Content Include="Scripts\SQMPVL\dialogEdit_PVL.js" />
+    <Content Include="Scripts\SQMPVL\Init.js" />
+    <Content Include="Scripts\SQMMgmt\VendorList\Init.js" />
+    <Content Include="Scripts\SQMMgmt\VendorList\Search.js" />
+    <Content Include="Scripts\SQMReliability\SQMECN\CRUD.js" />
+    <Content Include="Scripts\SQMReliability\SQMECN\dialogRole.js" />
+    <Content Include="Scripts\SQMReliability\SQMECN\Init.js" />
+    <Content Include="Scripts\SQMReliability\SQMECN\InitUpload.js" />
+    <Content Include="Scripts\SQMReliability\SQMECN\Search.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityFile\CRUDFile.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityFile\dialogFile.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityFile\initFile.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityFile\InitUpload.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityFile\searchFile.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\CRUDInsp.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\CRUDInspVar.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\dialogInsp.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\dialogInspVar.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\initInsp.js" />
+    <Content Include="Scripts\SQMReliability\SQMQualityInsp\searchInsp.js" />
+    <Content Include="Scripts\SQMReliability\SQMQuality\CRUD.js" />
+    <Content Include="Scripts\SQMReliability\SQMQuality\dialogRole.js" />
+    <Content Include="Scripts\SQMReliability\SQMQuality\Init.js" />
+    <Content Include="Scripts\SQMReliability\SQMQuality\Search.js" />
+    <Content Include="Scripts\SQMReliabilityApprove\ReliabilityApprove.css" />
+    <Content Include="Scripts\SQMReliabilityApprove\ReliabilityApprove.js" />
+    <Content Include="Scripts\SQMReliabilityFileApprove\ReliabilityFileApprove.css" />
+    <Content Include="Scripts\SQMReliabilityFileApprove\ReliabilityFileApprove.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\CRUDReliability.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\dialogReliability.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\initHistory.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\initReliability.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\InitUpload.js" />
+    <Content Include="Scripts\SQMReliability\SQMReliability\SearchReliability.js" />
+    <Content Include="Scripts\SQMSQEPUR\CRUD.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQueryCorpRDS.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQueryCorpRD.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQueryCorpSQEGUID2.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQueryCorpSourcerGUID.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQueryPlant.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogQuerySQEVendor.js" />
+    <Content Include="Scripts\SQMSQEPUR\dialogRole.js" />
+    <Content Include="Scripts\SQMSQEPUR\Init.js" />
+    <Content Include="Scripts\SQMSQEPUR\Search.js" />
+    <Content Include="Scripts\SQMTraders\KeyInfoIntro\dialogUploadTraders.js" />
+    <Content Include="Scripts\SQMTraders\KeyInfoIntro\InitTraders_t.js" />
+    <Content Include="Scripts\SQMTraders\KeyInfoIntro\InitTraders_.js" />
+    <Content Include="Scripts\SQMTraders\SQMBasic\CRUDTraders.js" />
+    <Content Include="Scripts\SQMTraders\SQMBasic\dialogRoleTraders.js" />
+    <Content Include="Scripts\SQMTraders\SQMBasic\InitTraders.js" />
+    <Content Include="Scripts\SQMTraders\SQMBasic\SearchTraders.js" />
+    <Content Include="Scripts\SubMemberManagement\CRUD.js" />
+    <Content Include="Scripts\SubMemberManagement\dialogMember.js" />
+    <Content Include="Scripts\SubMemberManagement\dialogMemberRoles.js" />
+    <Content Include="Scripts\SubMemberManagement\Init.js" />
+    <Content Include="Scripts\SubMemberManagement\Role.js" />
+    <Content Include="Scripts\SubMemberManagement\Search.js" />
+    <Content Include="Scripts\VenderAccount\Init.js" />
+    <Content Include="Scripts\VenderAccount\Search.js" />
+    <Content Include="Scripts\VMIConfigration\BuyerGroup\CRUD.js" />
+    <Content Include="Scripts\VMIConfigration\BuyerGroup\dialogBuyerGroup.js" />
+    <Content Include="Scripts\VMIConfigration\BuyerGroup\dialogGroup.js" />
+    <Content Include="Scripts\VMIConfigration\BuyerGroup\Init.js" />
+    <Content Include="Scripts\VMIConfigration\BuyerGroup\Search.js" />
+    <Content Include="Scripts\VMIConfigration\GroupMgmt\dialogGroupName.js" />
+    <Content Include="Scripts\VMIConfigration\GroupMgmt\Init.js" />
+    <Content Include="Scripts\VMIConfigration\GroupMgmt\ToolBarFunction.js" />
+    <Content Include="Scripts\VMIConfigration\PlantCustomsBrokerInfo\dialogPlantCustomsBrokerInfo.js" />
+    <Content Include="Scripts\VMIConfigration\PlantCustomsBrokerInfo\Init.js" />
+    <Content Include="Scripts\VMIConfigration\PlantCustomsBrokerInfo\Search.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\dialogABAManage.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\dialogGroup.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\dialogRoles.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\Init.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationBuyerAccount\Search.js" />
+    <Content Include="Scripts\VMIProcess\OpenPOConfirmation\Init.js" />
+    <Content Include="Scripts\VMIProcess\OpenPOConfirmation\Search.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\dialogModifyForwarder.js" />
+    <Content Include="Scripts\VMIConfigration\PlantForwarderInfo\dialogPlantForwarderInfo.js" />
+    <Content Include="Scripts\VMIConfigration\PlantForwarderInfo\Init.js" />
+    <Content Include="Scripts\VMIConfigration\PlantForwarderInfo\Search.js" />
+    <Content Include="Scripts\VMIConfigration\PlantReceiveInfo\dialogPlantReceiveInfo.js" />
+    <Content Include="Scripts\VMIConfigration\PlantReceiveInfo\Init.js" />
+    <Content Include="Scripts\VMIConfigration\PlantReceiveInfo\Search.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNFileViewLogs.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNImportedReject.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNOverOpenPOQtyError.js" />
+    <Content Include="Scripts\VMIProcess\ToDoImportList\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ToDoImportList\dialogAddDNinList.js" />
+    <Content Include="Scripts\VMIProcess\ToDoImportList\dialogImportListForm.js" />
+    <Content Include="Scripts\VMIProcess\ToDoImportList\Init.js" />
+    <Content Include="Scripts\VMIProcess\ToDoImportList\Search.js" />
+    <Content Include="Scripts\VMIProcess\ToDoPOAck\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ToDoPOAck\Init.js" />
+    <Content Include="Scripts\VMIProcess\ToDoPOAck\Search.js" />
+    <Content Include="Scripts\VMIProcess\UploadOpenPOConfirmation\dialogUploadOpenPOConfirmationSummary.js" />
+    <Content Include="Scripts\VMIProcess\UploadOpenPOConfirmation\Init.js" />
+    <Content Include="Scripts\VMIProcess\VendorEmailQueryAndChange\dialogVendorAccountInfo.js" />
+    <Content Include="Scripts\VMIProcess\VendorEmailQueryAndChange\Init.js" />
+    <Content Include="Scripts\VMIProcess\VendorEmailQueryAndChange\Search.js" />
+    <Content Include="Scripts\VMIQuery\PerInvRptConsign\dialogPerInvRptConsignResult.js" />
+    <Content Include="Scripts\VMIQuery\PerInvRptConsign\Init.js" />
+    <Content Include="Scripts\VMIQuery\PerInvRptConsign\Search.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogASNFileViewLogs.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNEditImportDate.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNEditShipInfo.js" />
+    <Content Include="Scripts\VMIQuery\QueryPOAck\Init.js" />
+    <Content Include="Scripts\VMIQuery\QueryPOAck\Search.js" />
+    <Content Include="Scripts\SQMPlant\dialogQueryCorpMemberGUID.js" />
+    <Content Include="Scripts\SQMMailR\dialogQueryEamil.js" />
+    <Content Include="Scripts\_Global\CustomMenuLink.js" />
+    <Content Include="Source\ApplicationNewVendorAccountForm.xls" />
+    <None Include="Properties\PublishProfiles\Local IIS %28file system%29.pubxml" />
+    <Content Include="Reports\VMIReportFormENG.trdp" />
+    <Content Include="Reports\VMIReportFormTC.trdp" />
+    <Content Include="Reports\VMIReportFormWithWeightENG.trdp" />
+    <Content Include="Reports\VMIReportFormWithWeightTC.trdp" />
+    <None Include="Properties\PublishProfiles\VMI.pubxml" />
+    <None Include="Properties\PublishProfiles\VMIV2.pubxml" />
+    <None Include="Scripts\jquery-1.12.0.intellisense.js" />
+    <Content Include="Scripts\jQuery.FileUpload\app.js" />
+    <Content Include="Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\jQuery.FileUpload\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\jQuery.FileUpload\fileupload-common.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-image.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-process.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-video.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jQuery.FileUpload\main.js" />
+    <Content Include="Scripts\jQuery.FileUpload\tmpl.min.js" />
+    <Content Include="Scripts\jQuery.FileUpload\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.numeric.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.phone.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.phone.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.regex.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.regex.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.min.js" />
+    <Content Include="Scripts\VMIBulletin\RefAndDownload\dialogRefAndDownload.js" />
+    <Content Include="Scripts\VMIBulletin\RefAndDownload\Init.js" />
+    <Content Include="Scripts\VMIBulletin\RefAndDownload\Search.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\jquery-1.12.0.js" />
+    <Content Include="Scripts\jquery-1.12.0.min.js" />
+    <Content Include="Scripts\jquery-1.12.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.cookie-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\json2.min.js" />
+    <Content Include="Scripts\MegaMenu\dcmegamenu.css" />
+    <Content Include="Scripts\MegaMenu\jquery.dcmegamenu.1.3.3.%28min%29.js" />
+    <Content Include="Scripts\MegaMenu\jquery.hoverIntent.minified.js" />
+    <Content Include="Scripts\MegaMenu\mminitjs.js" />
+    <Content Include="Scripts\MegaMenu\Skins\blue.css" />
+    <Content Include="Scripts\MegaMenu\Skins\images\arrow.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\arrow_off.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\arrow_on.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_black.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_blue.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_green.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_grey.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_light_blue.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_mega_hdr.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_mega_hdr_full.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_mega_hdr_on.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_orange.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_red.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_sub.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_sub_left.png" />
+    <Content Include="Scripts\MegaMenu\Skins\images\bg_white.png" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\CRUD.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\dialogMember.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\dialogMemberRoles.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\Init.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\Role.js" />
+    <Content Include="Scripts\SystemMgmt\MemberManagement\Search.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\ControllerAction.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\dialogFunctionControllerActions.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\dialogFunctionRoles.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\dialogMenu.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\Init.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\Role.js" />
+    <Content Include="Scripts\SystemMgmt\MenuStructureMgmt\ToolBarFunctions.js" />
+    <Content Include="Scripts\SystemMgmt\RoleManagement\CRUD.js" />
+    <Content Include="Scripts\SystemMgmt\RoleManagement\dialogRole.js" />
+    <Content Include="Scripts\SystemMgmt\RoleManagement\Init.js" />
+    <Content Include="Scripts\SystemMgmt\RoleManagement\Search.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberAndDelegation\AssignRoleAdmins.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberAndDelegation\AssignRoleMembers.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberAndDelegation\Init.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberAndDelegation\Search.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberAndDelegation\Shared.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberMgmt\Init.js" />
+    <Content Include="Scripts\SystemMgmt\RoleMemberMgmt\Search.js" />
+    <Content Include="Scripts\SystemMgmt\RunAs\Init.js" />
+    <Content Include="Scripts\SystemMgmt\RunAs\RunAs.js" />
+    <Content Include="Scripts\SystemMgmt\RunAs\Search.js" />
+    <Content Include="Scripts\SystemMgmt\RunAs_VMI\Init.js" />
+    <Content Include="Scripts\SystemMgmt\RunAs_VMI\RunAs.js" />
+    <Content Include="Scripts\UploadifyF32\jquery.uploadify.min.js" />
+    <Content Include="Scripts\UploadifyF32\UploadFiles_UploadifyF32.js" />
+    <Content Include="Scripts\UploadifyF32\uploadify-cancel.png" />
+    <Content Include="Scripts\UploadifyF32\uploadify.css" />
+    <Content Include="Scripts\UploadifyF32\uploadify.swf" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\CRUD.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\dialogASNVendorProfile.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\dialogModifyCustomerCode.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\dialogModifyShipFrom.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\Init.js" />
+    <Content Include="Scripts\VMIConfigration\ASNVendorProfile\Search.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationVendorAccount\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationVendorAccount\dialogAVAManage.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationVendorAccount\Init.js" />
+    <Content Include="Scripts\VMIProcess\ApplicationVendorAccount\Search.js" />
+    <Content Include="Scripts\VMIProcess\ASNSpecialCancel\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ASNSpecialCancel\dialogASNSpecialCancelErrorResult.js" />
+    <Content Include="Scripts\VMIProcess\ASNSpecialCancel\dialogASNSpecialCancelManage.js" />
+    <Content Include="Scripts\VMIProcess\ASNSpecialCancel\Init.js" />
+    <Content Include="Scripts\VMIProcess\ASNSpecialCancel\Search.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNContractCode.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNDetailError.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNFileAttach.js" />
+    <Content Include="Scripts\VMIQuery\APCheckStatement\dialogAPCheckStatementResult.js" />
+    <Content Include="Scripts\VMIQuery\APCheckStatement\Init.js" />
+    <Content Include="Scripts\VMIQuery\APCheckStatement\Search.js" />
+    <Content Include="Scripts\VMIProcess\UploadASN\dialogUploadASNResult.js" />
+    <Content Include="Scripts\VMIProcess\UploadASN\Init.js" />
+    <Content Include="Scripts\VMIQuery\APSearch\dialogAPSearch.js" />
+    <Content Include="Scripts\VMIQuery\APSearch\Init.js" />
+    <Content Include="Scripts\VMIQuery\APSearch\Search.js" />
+    <Content Include="Scripts\VMIQuery\ASNReport\Init.js" />
+    <Content Include="Scripts\VMIQuery\ASNReport\Search.js" />
+    <Content Include="Scripts\VMIQuery\GRReport\Init.js" />
+    <Content Include="Scripts\VMIQuery\GRReport\Search.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogModifyASNDetail.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogModifyFileAttach.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNDetailError.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNManage.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNFileInfo.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\dialogQueryASNFileDetail.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\Init.js" />
+    <Content Include="Scripts\VMIQuery\QueryASN\Search.js" />
+    <Content Include="Scripts\VMIQuery\POAPCheckStatement\dialogPOAPCheckStatementResult.js" />
+    <Content Include="Scripts\VMIQuery\POAPCheckStatement\Init.js" />
+    <Content Include="Scripts\VMIQuery\POAPCheckStatement\Search.js" />
+    <Content Include="Scripts\VMIQuery\QueryDailyInventory\dialogMaterialDoc.js" />
+    <Content Include="Scripts\VMIQuery\QueryDailyInventory\dialogQueryDailyInventory.js" />
+    <Content Include="Scripts\VMIQuery\QueryDailyInventory\Init.js" />
+    <Content Include="Scripts\VMIQuery\QueryDailyInventory\Search.js" />
+    <Content Include="Scripts\VMIQuery\QueryVDS\CRUD.js" />
+    <Content Include="Scripts\VMIQuery\QueryVDS\dialogQueryVDSManage.js" />
+    <Content Include="Scripts\VMIQuery\QueryVDS\Init.js" />
+    <Content Include="Scripts\VMIQuery\QueryVDS\Search.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNDetail.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNFileDetail.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNHeader.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNImportDetail.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNImportDetailShowASNQty.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\dialogToDoASNManage.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\Init.js" />
+    <Content Include="Scripts\VMIProcess\ToDoASN\Search.js" />
+    <Content Include="Scripts\VMIProcess\ToDoVDS\CRUD.js" />
+    <Content Include="Scripts\VMIProcess\ToDoVDS\dialogToDoVDSManage.js" />
+    <Content Include="Scripts\VMIProcess\ToDoVDS\dialogToDoVDSEditVDS.js" />
+    <Content Include="Scripts\VMIProcess\ToDoVDS\Init.js" />
+    <Content Include="Scripts\VMIProcess\ToDoVDS\Search.js" />
+    <Content Include="Scripts\VMIProcess\UploadVDS\Init.js" />
+    <Content Include="Scripts\VMIShare\dialogDownloadSplash.js" />
+    <Content Include="Scripts\VMIShare\dialogQueryBuyer.js" />
+    <Content Include="Scripts\VMIShare\dialogQueryCorpVendor.js" />
+    <Content Include="Scripts\VMIShare\dialogQueryPlant.js" />
+    <Content Include="Scripts\VMIShare\dialogQuerySBUVendor.js" />
+    <Content Include="Scripts\VMIShare\Init.js" />
+    <Content Include="Scripts\VMIShare\Search.js" />
+    <Content Include="Scripts\_Global\AuthorityUtilility.js" />
+    <Content Include="Scripts\_Global\CommonUIStyle.css" />
+    <Content Include="Scripts\_Global\CommonUIUtility.js" />
+    <Content Include="Scripts\_Global\DataLockUtility.js" />
+    <Content Include="Scripts\_Global\file.jpg" />
+    <Content Include="Scripts\_Global\icon_m11.gif" />
+    <Content Include="Scripts\_Global\login_bg.jpg" />
+    <Content Include="Scripts\_Global\mainbg.jpg" />
+    <Content Include="Scripts\_Global\SessionUtillity.js" />
+    <Content Include="Scripts\_Global\title.jpg" />
+    <Content Include="Scripts\_Global\title_bg.jpg" />
+    <Content Include="Scripts\_Global\CommonUtility.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Source\PortalDomainMUIResources\Lib_Portal_Domain_MUIResources.dll" />
+    <Content Include="Source\PortalDomainMUIResources\Lib_Portal_Domain_MUIResources.pdb" />
+    <Content Include="Source\PortalDomainMUIResources\zh-CN\Lib_Portal_Domain_MUIResources.resources.dll" />
+    <Content Include="Source\PortalDomainMUIResources\zh-TW\Lib_Portal_Domain_MUIResources.resources.dll" />
+    <Content Include="Source\PortalDomain\Lib_Portal_Domain.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.Services.WebApi.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.XpsRendering.dll" />
+    <Content Include="Source\TelerikReport\Telerik.ReportViewer.Mvc.dll" />
+    <Content Include="Scripts\VMIProcess\UploadVDS\dialogUploadVDSSummary.js" />
+    <Content Include="Views\SQMBasic\SQMContact\SQMContactDialog.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home %28default%29\About.cshtml" />
+    <Content Include="Views\Home %28default%29\Contact.cshtml" />
+    <Content Include="Views\Home %28default%29\Index.cshtml" />
+    <Content Include="Views\Account\ActivateFail.cshtml" />
+    <Content Include="Views\Account\ActivateSetNewPassword.cshtml" />
+    <Content Include="Views\Account\ActivateSuccess.cshtml" />
+    <Content Include="Views\Account\BrowserIsNotSupport.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword_NotRequired.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Home\BrowserIsNotSupport.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\SessionExpired.cshtml" />
+    <Content Include="Views\Home\Unauthorized.cshtml" />
+    <Content Include="Views\SystemMgmt\ListCurrentLogins.cshtml" />
+    <Content Include="Views\SystemMgmt\MemberManagement.cshtml" />
+    <Content Include="Views\SystemMgmt\MemberManagement\dialogMember.cshtml" />
+    <Content Include="Views\SystemMgmt\MemberManagement\dialogMemberRoles.cshtml" />
+    <Content Include="Views\SystemMgmt\MenuStructureMgmt.cshtml" />
+    <Content Include="Views\SystemMgmt\MenuStructureMgmt\dialogFunctionControllerActions.cshtml" />
+    <Content Include="Views\SystemMgmt\MenuStructureMgmt\dialogFunctionRoles.cshtml" />
+    <Content Include="Views\SystemMgmt\MenuStructureMgmt\dialogMenu.cshtml" />
+    <Content Include="Views\SystemMgmt\PortalUserProfile.cshtml" />
+    <Content Include="Views\SystemMgmt\RoleManagement.cshtml" />
+    <Content Include="Views\SystemMgmt\RoleManagement\dialogRole.cshtml" />
+    <Content Include="Views\SystemMgmt\RoleMemberAndDelegation.cshtml" />
+    <Content Include="Views\SystemMgmt\RoleMemberMgmt.cshtml" />
+    <Content Include="Views\SystemMgmt\RunAs.cshtml" />
+    <Content Include="Views\SystemMgmt\RunAs_VMI.cshtml" />
+    <Content Include="Views\VMIConfigration\ASNVendorProfile.cshtml" />
+    <Content Include="Views\VMIConfigration\Index.cshtml" />
+    <Content Include="Views\VMIConfigration\ASNVendorProfile\dialogASNVendorProfile.cshtml" />
+    <Content Include="Views\VMIConfigration\ASNVendorProfile\dialogModifyCustomerCode.cshtml" />
+    <Content Include="Views\VMIConfigration\ASNVendorProfile\dialogModifyShipFrom.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN.cshtml" />
+    <Content Include="Views\VMIShare\dialogQueryCorpVendor.cshtml" />
+    <Content Include="Views\VMIShare\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\VMIShare\dialogQueryPlant.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNHeader.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNManage.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNDetail.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNImportDetail.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNImportDetailShowASNQty.cshtml" />
+    <Content Include="Source\Aspose.Cells\Aspose.Cells.lic" />
+    <Content Include="Views\VMIShare\dialogDownloadSplash.cshtml" />
+    <Content Include="Source\Aspose.Cells\Aspose.Cells.lic" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNFileAttach.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNFileDetail.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNImportDetail.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNImportDetailShowASNQty.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoVDS.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoVDS\dialogToDoVDSManage.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoVDS\dialogToDoVDSEditVDS.cshtml" />
+    <Content Include="Views\VMIShare\dialogQueryBuyer.cshtml" />
+    <Content Include="Views\Shared\_LayoutVMIReport.cshtml" />
+    <Content Include="Views\VMIReport\VMIReportForm.cshtml" />
+    <Content Include="Views\VMIQuery\QueryVDS.cshtml" />
+    <Content Include="Views\VMIQuery\QueryVDS\dialogQueryVDSManage.cshtml" />
+    <Content Include="Views\VMIProcess\UploadVDS.cshtml" />
+    <Content Include="Views\VMIProcess\UploadVDS\dialogUploadVDSSummary.cshtml" />
+    <Content Include="Views\VMIQuery\QueryDailyInventory.cshtml" />
+    <Content Include="Views\VMIQuery\QueryDailyInventory\dialogQueryDailyInventory.cshtml" />
+    <Content Include="Views\VMIQuery\QueryDailyInventory\dialogMaterialDoc.cshtml" />
+    <Content Include="Views\VMIQuery\APSearch.cshtml" />
+    <Content Include="Views\VMIQuery\APSearch\dialogAPSearch.cshtml" />
+    <Content Include="Views\VMIQuery\GRReport.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN.cshtml" />
+    <Content Include="Views\VMIProcess\ASNSpecialCancel\dialogASNSpecialCancelErrorResult.cshtml" />
+    <Content Include="Views\VMIProcess\ASNSpecialCancel\dialogASNSpecialCancelManage.cshtml" />
+    <Content Include="Views\VMIProcess\ASNSpecialCancel.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNManage.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNFileAttach.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNFileDetail.cshtml" />
+    <Content Include="Views\VMIQuery\ASNReport.cshtml" />
+    <Content Include="Views\VMIProcess\UploadASN.cshtml" />
+    <Content Include="Views\VMIProcess\UploadASN\dialogUploadASNResult.cshtml" />
+    <Content Include="Views\VMIReport\VMIASNReportForm.cshtml" />
+    <Content Include="Views\VMIQuery\POAPCheckStatement.cshtml" />
+    <Content Include="Views\VMIQuery\APCheckStatement.cshtml" />
+    <Content Include="Views\VMIQuery\POAPCheckStatement\dialogPOAPCheckStatementResult.cshtml" />
+    <Content Include="Views\VMIQuery\APCheckStatement\dialogAPCheckStatementResult.cshtml" />
+    <Content Include="Views\VMIBulletin\RefAndDownload.cshtml" />
+    <Content Include="Views\VMIBulletin\RefAndDownload\dialogRefAndDownload.cshtml" />
+    <Content Include="Views\VMIReport\VMIASNReportFormBarcode.cshtml" />
+    <Content Include="Views\Shared\_Files.cshtml" />
+    <Content Include="Views\VMIShare\dialogConfirm.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNDetailError.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNDetailError.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNContractCode.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogModifyASNFileAttach.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogModifyASNFileDetail.cshtml" />
+    <Content Include="Views\VMIProcess\ApplicationVendorAccount.cshtml" />
+    <Content Include="Views\VMIProcess\ApplicationVendorAccount\dialogAVAManage.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoPOAck.cshtml" />
+    <Content Include="Views\VMIQuery\QueryPOAck.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNEditShippingInfo.cshtml" />
+    <Content Include="Views\GMS\Index.cshtml" />
+    <Content Include="Views\CCC\Index.cshtml" />
+    <Content Include="Views\Account\UpdateEmail.cshtml" />
+    <Content Include="Views\Account\UpdateEmail_NotRequired.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNOverOpenPOQtyError.cshtml" />
+    <Content Include="Views\VMIProcess\VendorEmailQueryAndChange.cshtml" />
+    <Content Include="Views\VMIProcess\VendorEmailQueryAndChange\dialogVendorAccountInfo.cshtml" />
+    <Content Include="Views\VMIQuery\PerInvRptConsign.cshtml" />
+    <Content Include="Views\VMIQuery\PerInvRptConsign\dialogPerInvRptConsignResult.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNFileViewLogs.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogASNFileViewLogs.cshtml" />
+    <Content Include="Source\PortalDomain\Lib_Portal_Domain.dll.config" />
+    <Content Include="Views\VMIConfigration\PlantForwarderInfo.cshtml" />
+    <Content Include="Views\VMIConfigration\ASNVendorProfile\dialogModifyForwarder.cshtml" />
+    <Content Include="Views\VMIConfigration\PlantForwarderInfo\dialogPlantForwarderInfo.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoImportList.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoASN\dialogToDoASNImportedReject.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoImportList\dialogAddDNinList.cshtml" />
+    <Content Include="Views\VMIProcess\ToDoImportList\dialogImportListForm.cshtml" />
+    <Content Include="Views\VMIQuery\QueryASN\dialogQueryASNEditImportDate.cshtml" />
+    <Content Include="Views\VMIConfigration\PlantReceiveInfo.cshtml" />
+    <Content Include="Views\VMIConfigration\PlantReceiveInfo\dialogPlantReceiveInfo.cshtml" />
+    <Content Include="Views\VMIProcess\OpenPOConfirmation.cshtml" />
+    <Content Include="Views\VMIProcess\UploadOpenPOConfirmation.cshtml" />
+    <Content Include="Views\VMIProcess\OpenPOConfirmation\dialogUploadOpenPOConfirmationSummary.cshtml" />
+    <Content Include="Views\VMIProcess\UploadOpenPOConfirmation\dialogUploadOpenPOConfirmationSummary.cshtml" />
+    <Content Include="Views\SQMBasic\BasicInfo.cshtml" />
+    <Content Include="Views\VMIConfigration\PlantCustomsBrokerInfo.cshtml" />
+    <Content Include="Views\VMIConfigration\PlantCustomsBrokerInfo\dialogPlantCustomsBrokerInfo.cshtml" />
+    <Content Include="Views\SQMBasic\CriticalFile\dialogQualityEvent.cshtml" />
+    <Content Include="Views\SQMBasic\CriticalFile\dialogWasteHandler.cshtml" />
+    <Content Include="Views\SQMPRO\SQMProduct1.cshtml" />
+    <Content Include="Views\SQMBasic\BasicInfo\dialogBasicInfo.cshtml" />
+    <Content Include="Views\SQMBasic\KeyInfoIntro.cshtml" />
+    <Content Include="Views\SQMPRO\SQMProduct1\dialogProduct.cshtml" />
+    <Content Include="Views\SQMProcess\ProcessInfo.cshtml" />
+    <Content Include="Views\SQMProcess\ProcessInfo\dialogProcessInfo.cshtml" />
+    <Content Include="Views\SQMCertification\CertificationInfo.cshtml" />
+    <Content Include="Views\SQMCertification\CertificationInfo\dialogCertificationInfo.cshtml" />
+    <Content Include="Views\SQMHR\HRInfo\dialogHRInfo.cshtml" />
+    <Content Include="Views\SQMHR\HRInfo.cshtml" />
+    <Content Include="Views\SQMBasic\SQMContact.cshtml" />
+    <Content Include="Views\SQMBasic\Criticism\SQMCriticismDialog.cshtml" />
+    <Content Include="Views\SQMBasic\Criticism\SQMCriticismInfo.cshtml" />
+    <Content Include="Views\SQMBasic\Criticism\SQMCriticismMapDialog.cshtml" />
+    <Content Include="Source\Template\agent.xlsx" />
+    <Content Include="Source\Template\manufacturer.xlsx" />
+    <Content Include="Source\Template\merchant.xlsx" />
+    <Content Include="Views\SQMCustomers\SQMCustomersDialog.cshtml" />
+    <Content Include="Views\SQMBasic\BasicInfo\dialogBasicInfoType.cshtml" />
+    <Content Include="Views\Regist\Regist.cshtml" />
+    <Content Include="Views\VMIConfigration\GroupMgmt.cshtml" />
+    <Content Include="Views\VMIConfigration\GroupMgmt\dialogGroupName.cshtml" />
+    <Content Include="Views\VMIProcess\ApplicationBuyerAccount.cshtml" />
+    <Content Include="Views\VMIProcess\ApplicationBuyerAccount\dialogABAManage.cshtml" />
+    <Content Include="Source\ApplicationNewBuyerAccountForm.xls" />
+    <Content Include="Views\VMIProcess\ApplicationBuyerAccount\dialogGroup.cshtml" />
+    <Content Include="Views\VMIProcess\ApplicationBuyerAccount\dialogRoles.cshtml" />
+    <Content Include="Views\VMIConfigration\BuyerGroup.cshtml" />
+    <Content Include="Views\VMIConfigration\BuyerGroup\dialogBuyerGroup.cshtml" />
+    <Content Include="Views\VMIConfigration\BuyerGroup\dialogGroup.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\SQM\Approve.cshtml" />
+    <Content Include="Views\SQM\ReliabilityApprove.cshtml" />
+    <Content Include="Views\SQM\ReliabilityFileApprove.cshtml" />
+    <Content Include="Source\Template\Criticism.xlsx" />
+    <Content Include="Views\SQMBasic\Criticism.cshtml" />
+    <Content Include="Views\Criticism\Criticism.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPK\CPKSub.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPK\dialogCPKSub.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPK\dialogCPK.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPK.cshtml" />
+    <Content Include="Views\SQMBasic\SQMAgents.cshtml" />
+    <Content Include="Views\SQMBasic\SQMAgents\dialogAgents2.cshtml" />
+    <Content Include="Views\SQMBasic\SQMAgents\dialogAgents.cshtml" />
+    <Content Include="Views\SQMBasic\SQMEquipment.cshtml" />
+    <Content Include="Views\SQMBasic\SQMEquipment\SQMEquipmentDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQMTraders.cshtml" />
+    <Content Include="Views\SQMBasic\SQMTraders\dialogTraders.cshtml" />
+    <Content Include="Views\SQMBasic\SQMProduct.cshtml" />
+    <Content Include="Views\SQMBasic\SQMProduct\dialogproduct.cshtml" />
+    <Content Include="Views\SQMMailR\dialogQueryEmail.cshtml" />
+    <Content Include="Views\SQMMailR\dialogQueryPlant.cshtml" />
+    <Content Include="Views\SQMMailR\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\SQMMailR\SQMMailR.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQueryMemberGUID1.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQueryMemberGUID2.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQueryPlant.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQueryRDGUID.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQueryRDSGUID.cshtml" />
+    <Content Include="Views\SQMSQEPUR\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\SQMSQEPUR\SQMSQEDialog.cshtml" />
+    <Content Include="Views\SQMSQEPUR\SQMSQEPUR.cshtml" />
+    <Content Include="Views\SQMPlant\dialogQueryMemberGUID.cshtml" />
+    <Content Include="Views\SQMPlant\SQMPlant.cshtml" />
+    <Content Include="Views\SQMPlant\SQMPlantDialog.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQuality.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQualityFile.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQualityInsp.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQuality\dialogFile.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQuality\dialogInsp.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQuality\dialogSQMQuality.cshtml" />
+    <Content Include="Views\SQMReliability\SQMReliability.cshtml" />
+    <Content Include="Views\SQMReliability\SQMReliability\SQMReliabilityDialog.cshtml" />
+    <Content Include="Views\SQMReliability\SQMReliability\SQMReliabilityHistoryDialog.cshtml" />
+    <Content Include="Views\SQMReliability\SQMReliability\SQMReliabilityInfo.cshtml" />
+    <Content Include="Views\SQMReliability\SQMReliability\SQMReliabilityMapDialog.cshtml" />
+    <Content Include="Views\SQMMgmt\MenuSubFuncMgmt.cshtml" />
+    <Content Include="Views\SQMMgmt\MenuSubFuncMgmt\dialogFunctionControllerActions.cshtml" />
+    <Content Include="Views\SQMMgmt\MenuSubFuncMgmt\dialogFunctionRoles.cshtml" />
+    <Content Include="Views\SQMMgmt\MenuSubFuncMgmt\dialogMenu.cshtml" />
+    <Content Include="Views\SQMMgmt\SubFuncManagement.cshtml" />
+    <Content Include="Views\SQMMgmt\SubFuncManagement\dialogSubFunc.cshtml" />
+    <Content Include="Views\SQMMgmt\VendorAccountMgmt.cshtml" />
+    <Content Include="Views\SQMMgmt\VendorList.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPKData\CPKData.cshtml" />
+    <Content Include="Views\SQMReliability\SQMCPKData\dialogCPKData.cshtml" />
+    <Content Include="Views\SQMBasic\SQEContact.cshtml" />
+    <Content Include="Views\SQMBasic\SQEContactInfo\SQEContactInfo.cshtml" />
+    <Content Include="Views\SQMBasic\SQEContactInfo\SQEContactInfoDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQECriticism.cshtml" />
+    <Content Include="Views\SQMBasic\SQECriticism\SQECriticismDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQECriticism\SQECriticismInfo.cshtml" />
+    <Content Include="Views\SQMBasic\SQECriticism\SQECriticismMap.cshtml" />
+    <Content Include="Views\SQMBasic\SQECriticism\SQECriticismMapDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQMPVL.cshtml" />
+    <Content Include="Views\SQMBasic\SQMPVL\dialogPVL.cshtml" />
+    <Content Include="Views\SQMBasic\SQMPVL\dialogPVL1.cshtml" />
+    <Content Include="Views\SQMBasic\SQEReliability.cshtml" />
+    <Content Include="Views\SQMBasic\SQEReliability\SQEReliabilityDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQEReliability\SQEReliabilityInfo.cshtml" />
+    <Content Include="Views\SQMBasic\SQEReliability\SQEReliabilityMapDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQEReliability\SQMReliabilityHistoryDialog.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp\InspCode\dialogCode.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp\InspDesc\dialogDesc.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp\InspDesc\InspDesc.cshtml" />
+    <Content Include="Views\SQMBasic\SQEQuality.cshtml" />
+    <Content Include="Views\SQMBasic\SQEQuality\File\SQMQualityFile.cshtml" />
+    <Content Include="Views\SQMBasic\SQEQuality\Insp\SQMQualityInsp.cshtml" />
+    <Content Include="Views\SQMBasic\SQEKeyInfoIntro.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp\InspVar\InspVar.cshtml" />
+    <Content Include="Views\SQMBasic\SQEInsp\InspVar\dialogVar.cshtml" />
+    <Content Include="Views\SQMReliability\SQMQuality\dialogInspVar.cshtml" />
+    <Content Include="Views\SQMReliability\SQMECN.cshtml" />
+    <Content Include="Views\SQMReliability\SQMECN\SQMECNDialog.cshtml" />
+    <Content Include="Views\SQM\ChangeApprove.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlant.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlant\AQLPlant\dialogAQLPlant.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlant\AQLPlantMap\AQLPlantMap.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlant\AQLPlantMap\dialogAQLPlantMap.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlantRule\dialogAQLPlantRule.cshtml" />
+    <Content Include="Views\SQMBasic\SQEAQLPlantRule.cshtml" />
+    <Content Include="Views\SQMBasic\SQEUDMaintain.cshtml" />
+    <Content Include="Views\SQMBasic\SQEUDMaintain\dialogUDMaintain.cshtml" />
+    <Content Include="Views\SQMBasic\SQELitNO_Plant.cshtml" />
+    <Content Include="Views\SQMBasic\SQELitNO_Plant\dialogLitNO_Plant.cshtml" />
+    <Content Include="Views\SubSystemMgmt\SubMemberManagement\dialogMember.cshtml" />
+    <Content Include="Views\SubSystemMgmt\SubMemberManagement\dialogMemberRoles.cshtml" />
+    <Content Include="Views\SubSystemMgmt\SubMemberManagement.cshtml" />
+    <Content Include="Views\SQECPK\SQECPK.cshtml" />
+    <Content Include="Views\SQECPK\dialogSQECPK.cshtml" />
+    <Content Include="Views\SQMReliability\SQMBar.cshtml" />
+    <Content Include="Views\CPK\CPK.cshtml" />
+    <Content Include="Views\SQMMaterialMgmt\SQMSCAR.cshtml" />
+    <Content Include="Views\SQMMaterialMgmt\SQMScarMgmt\dialogSQMSCAR.cshtml" />
+    <Content Include="Views\SQMMaterialMgmt\SQESCAR.cshtml" />
+    <Content Include="Views\SQMMaterialMgmt\SQEScarMgmt\dialogSQMSCAR.cshtml" />
+    <Content Include="Views\SQMMaterialMgmt\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\SQMMRB\SQMMRB.cshtml" />
+    <Content Include="Views\SQMMRB\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\MRBAppove\MRBAppove.cshtml" />
+    <Content Include="Views\MRBAppove\MRBAppoveDialog.cshtml" />
+    <Content Include="Views\MRBAppove\MRBMAPDialog.cshtml" />
+    <Content Include="Views\VenderAccount\VenderAccount.cshtml" />
+    <Content Include="Views\Hold\Hold.cshtml" />
+    <Content Include="Views\Hold\dialogQuerySBUVendor.cshtml" />
+    <Content Include="Views\Hold\SQEHold.cshtml" />
+    <Content Include="Views\AnnualObjectives\AnnualObjectives.cshtml" />
+    <Content Include="Views\AnnualObjectives\AnnualObjectivesdialog.cshtml" />
+    <Content Include="Views\SQMGrade\SQMGrade.cshtml" />
+    <Content Include="Views\SQMGrade\SQMGradedialog.cshtml" />
+    <Content Include="Views\SQMBenefit\SQMBenefit.cshtml" />
+    <Content Include="Views\SQMBenefit\dialogQuerySBUVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="LOG\" />
+    <Folder Include="Models\" />
+    <Folder Include="UploadFile\SQM\" />
+    <Folder Include="Views\FileUpload\" />
+    <Folder Include="Views\SQMMgmt\VendorAccountMgmt\" />
+    <Folder Include="Views\SQMQuality\File\" />
+    <Folder Include="Views\SQMQuality\Insp\" />
+    <Folder Include="Views\Uploadify\" />
+    <Folder Include="Views\VMICommon\" />
+    <Folder Include="Views\VMIQuery\GRReport\" />
+    <Folder Include="Views\VMIReportResolver\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib_Portal_MUIResources\Lib_Portal_MUIResources.csproj">
+      <Project>{dfd4785f-dd9c-46e9-a6a1-0c9ec6ccad58}</Project>
+      <Name>Lib_Portal_MUIResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lib_SQM_Domain\Lib_SQM_Domain.csproj">
+      <Project>{D17D967D-0552-43DC-B3B9-C8BF85B79AAF}</Project>
+      <Name>Lib_SQM_Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lib_SQM_Domain_MUIResources\Lib_SQM_Domain_MUIResources.csproj">
+      <Project>{19874084-8aae-42d1-b6dd-4960cb49143c}</Project>
+      <Name>Lib_SQM_Domain_MUIResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lib_VMI\Lib_VMI.csproj">
+      <Project>{c933ed2e-d101-4f84-aaeb-5ba23266693d}</Project>
+      <Name>Lib_VMI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lib_VMI_Domain\Lib_VMI_Domain.csproj">
+      <Project>{f5f2a460-d9bf-46c0-b38c-527438d0200a}</Project>
+      <Name>Lib_VMI_Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

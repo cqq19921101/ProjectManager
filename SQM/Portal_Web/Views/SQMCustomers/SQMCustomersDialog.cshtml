@@ -1,0 +1,50 @@
+﻿<div id="SQMCustomersdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="SQMCustomersdialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btnSQMCustomersdialogEditData"></button>
+        <button id="btnSQMCustomersdialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">前3大OEM客戶:</td>
+            <td>
+                <input type="text" id="txtOEMCustomerName" class="DiaText" maxlength="40"  /><span style="color:red">*</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="FieldLabel">交易产品名称或类别:</td>
+            <td>
+                <input type="text" id="txtBusinessCategory" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">占營業份額百分比%:</td>
+            <td>
+                <input type="text" id="txtRevenuePer" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr isHideType="Y" vType1="Y">
+            <td class="FieldLabel">主要原材料名称:</td>
+            <td>
+                <input type="text" id="txtMajorMaterials" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr isHideType="Y" vType1="Y">
+            <td class="FieldLabel">主要材料供应商(可填写多家):</td>
+            <td>
+                <input type="text" id="txtMajorSupplier" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr isHideType="Y" vType1="Y">
+            <td class="FieldLabel">占总采购金额比率%:</td>
+            <td>
+                <input type="text" id="txtPurchaseRevenuePer" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="SQMCustomerslblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

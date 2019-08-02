@@ -1,0 +1,68 @@
+﻿@using Lib_Portal_Domain.SharedLibs
+@using Lib_Portal_MUIResources
+@model Lib_Portal_Domain.Model.LoginModel
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="apple-mobile-web-app-capable" content="yes" />*@
+    <meta http-equiv="EXPIRES" content="-1">
+    <title>@*@ViewBag.Title*@</title>
+
+    <script type="text/javascript">
+            var __WebAppPathPrefix = "@Session["AppPath"]";
+    </script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/bundles/Global/Commoncss")
+
+    @Scripts.Render("~/bundles/Account/Login/js")
+    @Styles.Render("~/bundles/Account/Login/css")
+</head>
+<body>
+    <div class="mainform">
+        <div class="DivBeforeWelcome"></div>
+        <div class="PortalBanner_Login_SitePurposeDIV">
+            @{ string sSitePurpose = SessionHelper.GetSessionStringValue(Session, PortalGlobalConstantHelper.GetConstant(enumPortalGlobalConstant.SessionKey_SitePurpose).ToString()); }
+            @Html.Raw((sSitePurpose == "")? "&nbsp;":sSitePurpose)
+        </div>
+        <div class="DivBeforeWelcome2"></div>
+        <div class="WelcomeDiv">
+            <span id="lblWelcome"></span>
+        </div>
+        <input type="hidden" id="hidLocaleOption" value="[@Html.Raw(LanguageHelper.GetBasedLanguageOptionsInJavascriptArrayString())]" />
+        <input type="hidden" id="hidLocaleString" value="[@Html.Raw(LanguageHelper.GetLoginPageTextResourcesInJavascriptArrayString())]" />
+        @*<div>Customer Quotation Managment</div>*@
+        <div class="LoginDiv">
+            <form id="frmMain" method="post">
+                @Html.AntiForgeryToken()
+                <table class="LoginTable">
+                    <tr><td class="FieldLabelForLogin"><span id="lblLocale"></span></td><td><select id="selLocale" /></td></tr>
+                    <tr><td class="FieldLabelForLogin"><span id="lblUserID"></span></td><td><input type="text" id="txtUserID" name="UserID" value="@Model.UserID" /></td></tr>
+                    <tr><td class="FieldLabelForLogin"><span id="lblPassword"></span></td><td><input type="password" id="txtPassword" name="Password" value="@Model.Password" /></td></tr>
+                    <tr>
+                        <td></td>
+                        <td class="FieldLabelLeftForLogin">
+                            <input type="checkbox" id="chkRememberMe" name="RememberMe" @if (Model.RememberMe) { <text> checked</text>  } /><span id="lblRememberMe"></span>
+                        </td>
+                    </tr>
+                    <tr><td class="ErrorMsg" colspan="2"><span id="lblErrMsg">@Html.Raw(Model.ErrMsg)</span></td></tr>
+                    <tr>
+                        <td class="SubmitTD" colspan="2">
+                            @*<input type="submit" id="btnSubmit" value ="" />*@
+                            <input type="button" id="btnSubmit" value="" />
+                            &nbsp;<a id="aForgotPWD" href="javascript:ForgotPWD();"></a>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="UserSelectedLocale" id="hidUserSelectedLocale" value="@Html.Raw(Model.UserSelectedLocale)" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

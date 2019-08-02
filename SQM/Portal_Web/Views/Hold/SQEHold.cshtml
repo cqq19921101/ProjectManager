@@ -1,0 +1,196 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/Hold/dialogQuerySBUVendor.cshtml")
+@Scripts.Render("~/bundles/SQEHold")
+<div id="div1">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnShow"></button>
+        <button id="btnSearch"></button>   
+        <button id="btnQAApprove"></button>
+        <button id="btnQAReject"></button>
+      
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>HoldNo:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-left:5px">
+        <table id="gridDataList"></table>
+        <div id="gridListPager"></div>
+    </div>
+</div>
+<div id="back">
+    <table class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td><button id="btnBack"></button><button id="btnSave"></button><button id="btnSave1"></button><button id="btnSave2"></button></td>
+
+        </tr>
+    </table>
+</div>
+<div >
+    <table id="table1" class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+           <td>材料类型
+               <select id="ddlMaterialType" style="width:204px;">
+                   <option value="1">物料</option>
+                   <option value="2">半/成品</option>
+
+               </select>
+           </td>
+           <td>  申请部门 <input type="text" id="txtDept" maxlength="180" /></td>
+           <td>  編號 <input type="text" id="txtHoldNo" maxlength="180" readonly="readonly" /></td>
+           <td>申请日期<input type="text" id="txtCreatTime" maxlength="180" readonly="readonly"  /></td>
+           <td></td>
+           <td></td>
+        </tr>
+        <tr>
+            <td>厂商<input type="text" id="txtVenderCode" maxlength="180" />
+<button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button></td>
+            <td>料号<input type="text" id="txtLitNo" maxlength="180" /></td>
+            <td>品名规格<input type="text" id="txtSize" maxlength="180" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>周期<input type="text" id="txtPeriod" maxlength="180" /></td>
+            <td>批号<input type="text" id="txtbatch" maxlength="180" /></td>
+            <td>清仓发起日期<input type="text" id="txtUpTime" maxlength="180" /></td>
+            <td>完成日期<input type="text" id="txtEndTime" maxlength="180" /></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>清仓原因</td>
+            <td colspan="5"><textarea type="text" id="txtReason" maxlength="180" style="width:97%;max-width:97%;"></textarea>
+            </td>
+          
+        </tr>
+        <tr>
+            <td>清仓区域</td>
+            <td>负责单位</td>
+            <td>负责人</td>
+            <td>清仓数量</td>
+            <td>完成日期</td>
+            <td>稽核人</td>
+        </tr>
+        <tr>
+            <td>在外P.O廠商未發貨</td>
+            <td>PMC/PUR</td>
+            <td><input type="text" id="txtPrincipal1" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum1" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime1" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer1" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>在途存貨</td>
+            <td>PMC/PUR</td>
+            <td><input type="text" id="txtPrincipal2" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum2" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime2" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer2" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>收料區</td>
+            <td>W/H</td>
+            <td><input type="text" id="txtPrincipal3" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum3" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime3" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer3" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>待驗區</td>
+            <td>IQC</td>
+            <td><input type="text" id="txtPrincipal4" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum4" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime4" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer4" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>原物料倉</td>
+            <td>W/H</td>
+            <td><input type="text" id="txtPrincipal5" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum5" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime5" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer5" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td rowspan="3">生產線WIP</td>
+            <td>SMT </td>
+            <td><input type="text" id="txtPrincipal6" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum6" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime6" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer6" maxlength="180" /></td>
+        </tr>
+        <tr>
+            
+            <td>F/T </td>
+            <td><input type="text" id="txtPrincipal7" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum7" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime7" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer7" maxlength="180" /></td>
+        </tr>
+        <tr>
+           
+            <td>PK </td>
+            <td><input type="text" id="txtPrincipal8" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum8" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime8" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer8" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>成品倉</td>
+            <td>W/H</td>
+            <td><input type="text" id="txtPrincipal9" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum9" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime9" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer9" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>維修區</td>
+            <td>Repair</td>
+            <td><input type="text" id="txtPrincipal10" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum10" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime10" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer10" maxlength="180" /></td>
+        </tr>
+        <tr>
+            <td>RMA區</td>
+            <td>CQS</td>
+            <td><input type="text" id="txtPrincipal11" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSNum11" maxlength="180" /></td>
+            <td><input type="text" id="txtNTSTime11" maxlength="180" /></td>
+            <td><input type="text" id="txtAuditer11" maxlength="180" /></td>
+        </tr>
+      
+
+    </table>
+  
+    <table id="table2" class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td>请输入Release Quantity<input type="text" id="txtReleaseQuantity" maxlength="180" /></td>
+        </tr>
+    </table>
+    <table id="table3" class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td>请输入Reject Quantity<input type="text" id="txtRejectQuantity" maxlength="180" /></td>
+        </tr>
+    </table>
+</div>
+
+
+

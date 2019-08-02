@@ -1,0 +1,92 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">Lite-on P/N:</td>
+            <td>
+                <input type="text" id="txtLitNo" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">測量項目:</td>
+            <td>
+                <input type="text" id="txtDesignator" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+       
+        <tr>
+            <td class="FieldLabel">規格上限:</td>
+            <td>
+                <input type="number" id="txtmaxNominal" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">規格下線:</td>
+            <td>
+                <input type="number" id="txtminNominal" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">管制上限:</td>
+            <td>
+                <input type="number" id="txtUpperControlLimit" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">管制下限:</td>
+            <td>
+                <input type="number" id="txtLowerControlLimit" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">中心線:</td>
+            <td>
+                <input type="number" id="txtcenterline" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">CPK管控:</td>
+            <td>
+                <input type="text" id="txtCPKManager" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">區間:</td>
+            <td>
+                <input type="text" id="txtsection" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">測量數據(pcs):</td>
+            <td>
+                <input type="number" id="txtCTQNum" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbSixpointrise" value="cus">連續六點上升
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbDropdown" value="cus">連續六點下降
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbNineNearCenter" value="cus">連續九點在中心線附近
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

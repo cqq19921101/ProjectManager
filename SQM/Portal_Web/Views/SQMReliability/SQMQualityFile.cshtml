@@ -1,0 +1,38 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+
+@Scripts.Render("~/bundles/SQMQualityFile")
+
+@RenderPage("SQMQuality/dialogFile.cshtml")
+<div id="inspFile">
+    <div id="tbMain1File" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackFile"></button>
+        <button id="btnCreateFile"></button>
+        <button id="btnViewEditFile"></button>
+        <button id="btnDeleteFile"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>FileName:</span>
+                    <input type="text" id="txtSearchFile" class="DiaText" maxlength="40" />
+                    <button id="btnSearchFile"></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListFile"></table>
+        <div id="gridListPagerFile"></div>
+    </div>
+</div>

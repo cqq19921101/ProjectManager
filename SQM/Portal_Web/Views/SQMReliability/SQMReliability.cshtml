@@ -1,0 +1,55 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+
+@Scripts.Render("~/bundles/SQMReliability")
+
+@RenderPage("SQMReliability/SQMReliabilityMapDialog.cshtml")
+@RenderPage("SQMReliability/SQMReliabilityHistoryDialog.cshtml")
+@*@RenderPage("SQMReliabilityDialog.cshtml")*@
+@*@RenderPage("SQMReliabilityInfo.cshtml")*@
+
+<div id="Reliability">
+    <div id="ReliabilitytbMain1" class="ui-widget-header ui-corner-all" style="width:1100px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnReliabilityCreate"></button>
+        <button id="btnReliabilityViewEdit"></button>
+        <button id="btnReliabilityDelete"></button>
+        @*<button id="btnReliInfoCreate"></button>*@
+        @*<button id="btnShowReliability"></button>*@
+        <button id="btnCommitReliability"></button>
+        <button id="btnUploadInfo"></button>
+        <button id="btnCommitFile"></button>
+    </div>
+
+    <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;">
+        <tr>
+            <td>可靠度性實驗項目名稱:</td>
+            <td>
+                <input type="text" id="txtFilterText" value="" />
+                <button id="btnReliabilitySearch"></button>
+            </td>
+        </tr>
+
+        @*<tr>
+            <td>簽核狀態:<span id="spStatus" class="spTypeItems"></span></td>
+            <td>文件簽核狀態:<span id="spFileStatus" class="spTypeItems"></span></td>
+        </tr>
+        <tr>
+            <td>簽核備註:<span id="spStatusNote" class="spTypeItems"></span></td>
+            <td>文件簽核備註:<span id="spFileStatusNote" class="spTypeItems"></span></td>
+        </tr>*@
+    </table>
+
+    <div style="margin-left:5px">
+        <table id="ReliabilitygridDataList"></table>
+        <div id="ReliabilitygridListPager"></div>
+    </div>
+
+
+</div>

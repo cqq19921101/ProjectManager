@@ -1,0 +1,119 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">報告單號:</td>
+            <td>
+                <input type="text" id="txtReportNo" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel" id="lblReportType">報告類型:</td>
+            <td>
+                <select id="ddlReportType" style="width: 204px; display: inline-block;">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">供應商:</td>
+            <td>
+                <input type="text" id="txtSupplier" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">出貨日:</td>
+            <td>
+                <input type="text" id="txtDeliveryDate" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">送貨數量:</td>
+            <td>
+                <input type="number" id="txtQty" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">製造商料號:</td>
+            <td>
+                <input type="text" id="txtSupplierNo" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">光寶料號:</td>
+            <td>
+                <input type="text" id="txtLiteNo" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">生產批號:</td>
+            <td>
+                <input type="text" id="txtLotNo" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">生產日期:</td>
+            <td>
+                <input type="text" id="txtDateCode" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢驗日:</td>
+            <td>
+                <input type="text" id="txtOQCDate" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">生產地:</td>
+            <td>
+                <input type="text" id="txtMFGLocation" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">批次:</td>
+            <td>
+                <input type="text" id="txtSupplierRemark" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">是否變更製程:</td>
+            <td>
+                <select id="txtisChange" style="width:204px;">
+                    <option value="1">True</option>
+                    <option value="0">False</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="trChangeNote">
+            <td class="FieldLabel">變更說明:</td>
+            <td>
+                <input type="text" id="txtChangeNote" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">設備:</td>
+            <td>
+                <input type="text" id="txtEquipment" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">原料:</td>
+            <td>
+                <input type="text" id="txtMaterial" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">品管員:</td>
+            <td>
+                <input type="text" id="txtInspector" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

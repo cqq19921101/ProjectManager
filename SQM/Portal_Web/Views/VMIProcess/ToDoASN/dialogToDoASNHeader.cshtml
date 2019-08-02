@@ -1,0 +1,143 @@
+﻿<div id="dialog_VMIProcess_ToDoASNHeader" title="To Do ASN Header" class="JQDialog" style="display:none">
+    <div>
+        <table style="width:100%;" border="0">
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">ASN No:</td>
+                <td class="tdTitleAlignLeft" width="23%"><span id="dialog_span_VMIProcess_ToDoASNHeader_ASNNo" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="22%">ASN Created Date:</td>
+                <td class="tdTitleAlignLeft" width="28%"><span id="dialog_span_VMIProcess_ToDoASNHeader_CreatedDate" class="spanFieldValueUnderLine"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Inbound DN No:</td>
+                <td class="tdTitleAlignLeft" width="23%"><span id="dialog_span_VMIProcess_ToDoASNHeader_InboundDNNo" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="22%">Vendor:</td>
+                <td class="tdTitleAlignLeft" width="28%"><span id="dialog_span_VMIProcess_ToDoASNHeader_Vendor" class="spanFieldValueUnderLine"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Customer Code:</td>
+                <td class="tdTitleAlignLeft" width="23%"><span id="dialog_span_VMIProcess_ToDoASNHeader_CustomerCode" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="22%">Vendor DN No:</td>
+                <td class="tdTitleAlignLeft" width="28%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_VendorDNNo" value="" maxlength="20" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Customer Name:</td>
+                <td class="tdTitleAlignLeft" width="23%"><span id="dialog_span_VMIProcess_ToDoASNHeader_CustomerName" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="22%">Invoice No:</td>
+                <td class="tdTitleAlignLeft" width="28%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_InvoiceNo" value="" maxlength="24" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Plant Code:</td>
+                <td class="tdTitleAlignLeft" width="23%"><span id="dialog_span_VMIProcess_ToDoASNHeader_PlantCode" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="22%">Trade Type:</td>
+                <td class="tdTitleAlignLeft" width="28%">
+                    <select id="dialog_dropbox_VMIProcess_ToDoASNHeader_TradeType"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="28%">ETD:</td>
+                <td width="180px">
+                    <input type="text" name="Date2" id="dpToDoASN_ETDDate" style="width:85px" />
+                </td>
+                <td class="tdTitleAlignRight" width="22%">ETA:</td>
+                <td width="180px">
+                    <input type="text" name="Date2" id="dpToDoASN_ETADate" style="width:85px" />
+                    <input type="text" id="dialog_txt_VMIProcess_ETATime" value="" maxlength="5" style="width:45px">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Transfer Doc No:</td>
+                <td class="tdTitleAlignLeft" width="23%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_TransferDocNo" value="" maxlength="24" style="width:100%"></td>
+                <td class="tdTitleAlignRight" width="22%">Vehicle Type & ID:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_VehicleTypeAndID" value="" maxlength="15" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Default Customers Seal:</td>
+                <td class="tdTitleAlignLeft" width="23%" colspan="3">
+                    <input type="radio" name="CustomerSealType" value="Y">Yes
+                    <input type="radio" name="CustomerSealType" value="N">No
+                    <input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_CustomerSealType" value="" maxlength="20" style="width:100%">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Ship From:</td>
+                <td class="tdTitleAlignLeft" width="23%" colspan="3">
+                    <input type="radio" name="ShipFromType" value="D"><span id="dialog_span_VMIProcess_ToDoASNHeader_ShipFrom" class="spanFieldValueUnderLine"></span>
+                    <input type="radio" name="ShipFromType" value="O">
+                    <select id="dialog_dropbox_VMIConfig_ASNVendorProfile_ShipFrom"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Driver Name:</td>
+                <td class="tdTitleAlignLeft" width="23%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_DriverName" value="" maxlength="15" style="width:100%"></td>
+                <td class="tdTitleAlignRight" width="22%">Driver Phone:</td>
+                <td class="tdTitleAlignLeft" width="28%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_DriverPhone" value="" maxlength="15" style="width:100%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="27%">Declaration Type(報關類型):</td>
+                <td class="tdTitleAlignLeft" width="23%">
+                    <select id="dialog_dropbox_VMIProcess_ToDoASNHeader_DeclarationType">
+                        <option value="0"></option>
+                        <option value="1">空運</option>
+                        <option value="2">海運</option>
+                        <option value="3">陸運</option>
+                        <option value="4">國內一日遊</option>
+                        <option value="5">國內特殊監管區域</option>
+                        <option value="6">國內一般區域</option>
+                    </select>
+                </td>
+            </tr>
+            @* Imported ASN addon fields *@
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Incoterms:</td>
+                <td class="tdTitleAlignLeft" width="23%">
+                    <label id="hiddenImportedASN" style="display:none"></label>
+                    <input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_Incoterms" value="" maxlength="10" style="width:100%">
+                </td>
+                <td class="tdTitleAlignRight" width="27%">Notice Buyer Code:</td>
+                <td class="tdTitleAlignLeft" width="23%">
+                    <input type="text" id="dialog_txt_VMIProcess_ToDoASNHeader_BuyerCode" value="" maxlength="3" style="width:100%">
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Forwarder Company Name:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="23%">
+                    <select id="dialog_dropbox_VMIConfig_ASNVendorProfile_Forwarder" style="word-break:break-word"></select>
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Forwarder Telephone:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="73%">
+                    <span id="dialog_span_VMIProcess_ToDoASNHeader_ForwarderTel" class="spanFieldValueUnderLine" style="word-break:break-word"></span>
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Forwarder Contact Person:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="73%">
+                    <span id="dialog_span_VMIProcess_ToDoASNHeader_ForwarderName" class="spanFieldValueUnderLine" style="word-break:break-word"></span>
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Forwarder Email:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="73%">
+                    <span id="dialog_span_VMIProcess_ToDoASNHeader_ForwarderEmail" class="spanFieldValueUnderLine" style="word-break:break-word"></span>
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Forwarder Address:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="73%">
+                    <span id="dialog_span_VMIProcess_ToDoASNHeader_ForwarderAddress" class="spanFieldValueUnderLine" style="word-break:break-word"></span>
+                </td>
+            </tr>
+            <tr class="trForwarderFields">
+                <td class="tdTitleAlignRight" width="27%">Customs Broker:</td>
+                <td colspan="3" class="tdTitleAlignLeft" width="73%">
+                    <select id="dialog_dropbox_VMIConfig_ASNVendorProfile_CustomsBroker" style="word-break:break-word"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br />
+        <span id="dialog_span_VMProcess_ToDoASNHeader_msg" class="spanTextWithColorRed">Please click 'Submit' button before leaving if the data have modified.*</span>
+    </div>
+</div>

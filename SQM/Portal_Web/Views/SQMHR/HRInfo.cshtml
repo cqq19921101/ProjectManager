@@ -1,0 +1,37 @@
+﻿
+@Scripts.Render("~/bundles/SQMHR/HRInfo")
+@RenderPage("HRInfo/dialogHRInfo.cshtml")
+<div id="tbSQMHRMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSQMHRSearch"></button>
+    <button id="btnSQMHRCreate"></button>
+    <button id="btnSQMHRViewEdit"></button>
+    <button id="btnSQMHRDelete"></button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>Search Text:</td>
+            <td>
+                <input type="text" id="txtSQMHRFilterText" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>總实际員工人數：</td>
+            <td>
+                <input type="text" id="txtTotalEmployees" value="" disabled="disabled" />
+            </td>
+        </tr>
+        <tr>
+            <td>總编制人数：</td>
+            <td>
+                <input type="text" id="txtNumberPlanned" value="" disabled="disabled" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table id="gridSQMHRDataList"></table>
+    <div id="gridSQMHRListPager"></div>
+</div>

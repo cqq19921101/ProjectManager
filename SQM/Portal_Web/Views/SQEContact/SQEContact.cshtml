@@ -1,0 +1,39 @@
+﻿@Scripts.Render("~/bundles/SQEContact")
+
+@*@RenderPage("SQEContactMapDialog.cshtml")
+    @RenderPage("SQEContactDialog.cshtml")
+    @RenderPage("SQEContactInfo.cshtml")*@
+@RenderPage("Info/SQEContactInfo.cshtml")
+
+<div id="Contact">
+    <div id="ContacttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnCombSearch"></button>
+        @*<button id="btnContactSearch"></button>*@
+        @*<button id="btnContactCreate"></button>*@
+        @*<button id="btnContactViewEdit"></button>*@
+        @*<button id="btnContactDelete"></button>*@
+        @*<button id="btnReliInfoCreate"></button>*@
+        <button id="btnShowContact"></button>
+        @*<button id="btnUploadInfo"></button>*@
+        @*<button id="btnCommitContact"></button>*@
+    </div>
+
+    <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+        <tr>
+            @*<td>
+                    <span>ERP_VNAME：</span><input type="text" id="txtERPFilterText" value="" />
+                </td>*@
+            <td>
+                <span>PlantCode:</span>
+                <select id="ddlPlant" style="width:204px;"></select>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <table id="ContactgridDataList"></table>
+        <div id="ContactgridListPager"></div>
+    </div>
+
+
+</div>

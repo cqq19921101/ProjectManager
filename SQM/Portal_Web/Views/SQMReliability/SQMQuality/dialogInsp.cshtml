@@ -1,0 +1,121 @@
+﻿<div id="dialogDataInsp" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogInspToolBarInsp" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataInsp"></button>
+        <button id="btndialogCancelEditInsp"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">檢測項目:</td>
+            <td>
+                <select id="ddlInspCode" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr id="trddlInspDesc">
+            <td class="FieldLabel">檢測說明:</td>
+            <td>
+                <select id="ddlInspDesc" style="width:204px;"></select>
+            </td>
+        </tr>
+    </table>
+    <table id="tbAttr">
+       
+        <tr>
+            <td class="FieldLabel">判定標準:</td>
+            <td>
+                <input type="text" id="txtStandard" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="normal">
+            <td class="FieldLabel">Other:</td>
+            <td>
+                <input type="text" id="txtOther" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="cusCR">
+            <td class="FieldLabel">CR:</td>
+            <td>
+                <input type="text" id="txtCR" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="cusMA">
+            <td class="FieldLabel">MA:</td>
+            <td>
+                <input type="text" id="txtMA" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="cusMI">
+            <td class="FieldLabel">MI:</td>
+            <td>
+                <input type="text" id="txtMI" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+    </table>
+    <table id="tbVar">
+        <tr>
+            <td class="FieldLabel">UCL:</td>
+            <td>
+                <input type="text" id="txtUCL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">LCL:</td>
+            <td>
+                <input type="text" id="txtLCL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢測工具:</td>
+            <td>
+                <input type="text" id="txtInspTool" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">AQL:</td>
+            <td>
+                <input type="text" id="txtAQL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td class="FieldLabel">檢測量:</td>
+            <td>
+                <input type="text" id="txtInspNum" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+    </table>
+    <table id="tbResult">
+        <tr>
+            <td class="FieldLabel">結果:</td>
+            <td>
+                <select id="txtInspResult" style="width:204px;">
+                    <option value="OK">OK</option>
+                    <option value="NG">NG</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table id="tbCommSub">
+        <tr>
+            <td class="FieldLabel">判定:</td>
+            <td>
+                <select id="txtJudge" style="width:204px;">
+                    <option value="ACC">ACC</option>
+                    <option value="Reject">Reject</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgInsp"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    #dialogDataInsp .FieldLabel {
+        width: 60px;
+    }
+</style>

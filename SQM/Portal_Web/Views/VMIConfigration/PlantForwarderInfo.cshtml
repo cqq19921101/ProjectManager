@@ -1,0 +1,33 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIConfigration/PlantForwarderInfo")
+
+@RenderPage("~/Views/VMIConfigration/PlantForwarderInfo/dialogPlantForwarderInfo.cshtml")
+
+<div id="tbPlantForwarderInfo">
+    <table class="ui-widget-header ui-corner-all" style="width:871px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnNewPlantForwarderInfo"></button>
+                <button id="btnQueryPlantForwarderInfo"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:870px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:535px;">
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txtPlant" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Forwarder Company Name:</td>
+                <td>
+                    <input type="text" id="txtCompanyName" class="tdQueryTextBox" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <table id="gridPlantForwarderInfo"></table>
+    <div id="gridPlantForwarderInfoPager"></div>
+</div>

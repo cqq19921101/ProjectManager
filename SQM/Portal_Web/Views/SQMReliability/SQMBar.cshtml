@@ -1,0 +1,37 @@
+﻿@*@{
+    ViewBag.Title = "RoleManagement";
+}*@
+
+@Scripts.Render("~/bundles/SQMBar")
+@Scripts.Render("~/bundles/Chart")
+<div>
+    <table> 
+        <tr>
+            <td class="FieldLabel">開始日期:</td>
+            <td>
+                <input type="text" id="txtBeginTime" class="DiaText" maxlength="40" />
+            </td>
+            <td class="FieldLabel">結束日期:</td>
+            <td>
+                <input type="text" id="txtEndTime" class="DiaText" maxlength="40" />
+            </td>
+            <td class="FieldLabel" >料號:</td>
+            <td>
+                <input list="ddlplantCode1" id="ddlplantCode" />
+
+                <datalist id="ddlplantCode1"></datalist>
+                @*<select id="ddlplantCode" style="width: 204px; display: inline-block;"></select>*@
+            </td>
+            <td class="FieldLabel" >測試項目:</td>
+            <td>
+                <select id="ddlDesignator" style="width: 204px; display: inline-block;"></select>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-left:5px">
+    <table id="gridDataList"></table>
+    <div id="gridListPager"></div>
+</div>
+<canvas width="986" height="492" class="chartjs-render-monitor" id="canvas" style="width: 897px; height: 448px; display: block;"></canvas>

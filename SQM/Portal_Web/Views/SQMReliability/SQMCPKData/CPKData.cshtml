@@ -1,0 +1,118 @@
+﻿
+@Scripts.Render("~/bundles/SQMCPK/CPKData")
+
+@RenderPage("dialogCPKData.cshtml")
+<div id="inspCPKData">
+    <div id="tbMain1CPKData" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackCPKData"></button>
+        <button id="btnCreateCPKData"></button>
+        @*<button id="btnViewEditCPKData"></button>*@
+        @*<button id="btnDeleteCPKData"></button>*@
+    </div>
+
+    <div>
+        <table>
+            <tr style="display:none">
+                <td>
+                    <span>Designator:</span>
+                    <input type="text" id="txtFilterTextCPKData" value="" />
+                    <button id="btnSearchCPKData"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>測量項目:</span>
+                    <span id="spDesignator"></span>
+                </td>
+            </tr>
+            @*<tr>
+                <td>
+                    <span>單位:</span>
+                    <span id="spUnit"></span>
+                </td>
+            </tr>*@
+            @*<tr>
+                <td>
+                    <span>正常值:</span>
+                    <span id="spNominal"></span>
+                </td>
+            </tr>*@
+            @*<tr>
+                <td>
+                    <span>允許誤差:</span>
+                    <span id="spTolerance"></span>
+                </td>
+            </tr>*@
+
+            <tr>
+                <td>
+                    <span>規格上限:</span>
+                    <span id="spUpperControlLimit"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>規格下限:</span>
+                    <span id="spLowerControlLimit"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListCPKData"></table>
+        <div id="gridListPagerCPKData"></div>
+    </div>
+
+    <div>
+        <table id="gridDataListCPKDataCus"></table>
+        <div id="gridListPagerCPKDataCus"></div>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>MAX:</span>
+                    <span id="spMAX"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>MIN:</span>
+                    <span id="spMIN"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>AVERAGE:</span>
+                    <span id="spAVERAGE"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>STDEV:</span>
+                    <span id="spSTDEV"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CA:</span>
+                    <span id="spCA"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CP:</span>
+                    <span id="spCP"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CPK:</span>
+                    <span id="spCPK"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

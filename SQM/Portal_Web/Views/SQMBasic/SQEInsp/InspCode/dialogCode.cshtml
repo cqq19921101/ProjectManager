@@ -1,0 +1,35 @@
+﻿
+<div id="dialogDataCode" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogDataToolBarCode" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataCode"></button>
+        <button id="btndialogCancelEditCode"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">檢驗結果類型:</td>
+            <td>
+                <select id="ddlInsptype" style="width: 204px; display: inline-block;">
+                    <option value="Attributes">檢驗結果-計數值 (Inspection Result - Attributes)</option>
+                    <option value="Variables">檢驗結果-計量植 (Inspection Result - Variables)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">料号:</td>
+            <td>
+                <input type="text" id="txtLitNo" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢測項目:</td>
+            <td>
+                <input type="text" id="txtInspCode" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgCode"></span>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,691 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+@Scripts.Render("~/bundles/SQMBasic/Common")
+@Scripts.Render("~/bundles/SQMBasic/SQEKeyInfoIntro")
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/SQMBasic/CriticalFile/dialogQualityEvent.cshtml")
+@RenderPage("~/Views/SQMBasic/CriticalFile/dialogWasteHandler.cshtml")
+
+<div id="tbKeyInfoType" style="padding:3px;">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnCombSearch"></button>
+        <button id="btnViewEditDetail"></button>
+    </div>
+    <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+        <tr>
+            @*<td>
+                    <span>ERP_VNAME：</span><input type="text" id="txtERPFilterText" value="" />
+                </td>*@
+            <td>
+                <span>PlantCode:</span>
+                <select id="ddlPlant" style="width:204px;"></select>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <table id="gridDataListKeyInfoType"></table>
+        <div id="gridListPagerKeyInfoType"></div>
+        <input type="hidden" id="ihBasicInfoGUID" />
+    </div>
+</div>
+
+
+<div id="tbInfoType" style="padding:3px;">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:650px; padding:3px 15px 3px 15px; font-size:10.5px; ">
+        <button id="btnBack"></button>
+        <button id="btnIntro"></button>
+        <button id="btnEnvir"></button>
+        <button id="btnResponse"></button>
+        <button id="btnCM"></button>
+        <button id="btnQE"></button>
+        <button id="btnEHS"></button>
+        @*<button id="btn"></button>
+            <button id="btn"></button>*@
+    </div>
+    <div id="divIntro" edittpye="Files">
+        公司簡介
+        <table id="tbIntro" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spIntroFile"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spIntroUploadTime"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divEnvir" edittpye="Files">
+        品質與環境保證承諾書
+        <table id="tbEnvir" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Sign Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtEnvirSignedTime" class="tdQueryTextBox" name="Date" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spEnvirFile"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spEnvirUploadTime"></span>
+                </td>
+            </tr>
+          
+        </table>
+    </div>
+
+    <div id="divResponse" edittpye="Files">
+        缺水限電應變管理
+        <table id="tbWaterResponse" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    限水/停水的書面應變程式
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsWaterEmergencySquad" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否成立缺水應變小組<br />
+                    <input id="cbIsWaterResponseProgram" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立限水/停水
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWaterResponseFile"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWaterResponseUploadTime"></span>
+                </td>
+               
+            </tr>
+        </table>
+        <br />
+        <table id="tbElecResponse" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    限電/停電的書面應變程式
+                </td>
+             
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsElecEmergencySquad" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否成立限電應變小組<br />
+                    <input id="cbIsElecResponseProgram" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立限電/停電的書面應變程式
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spElecResponseFile"></span>
+                </td>
+            
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spElecResponseUploadTime"></span>
+                </td> 
+            </tr>
+        </table>
+    </div>
+
+    <div id="divCM" edittpye="Files">
+        不使用衝突礦產金屬
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    衝突礦產控制程式
+                </td>  
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsCMControl" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立《衝突礦產控制程式》
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spCMControlFile"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spCMControlUploadTime"></span>
+                </td>
+              
+            </tr>
+           
+        </table>
+        <br />
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    無使用衝突礦產金屬調查表
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsNonCMQuestionary" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立《無使用衝突礦產金屬調查表》
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMQuestionaryFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMQuestionaryUploadTime"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    不使用衝突礦產承諾書
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsNonCMCommit" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否能夠提供《不使用衝突礦產承諾書》
+                </td>
+              
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMCommitFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMCommitUploadTime"></span>
+                </td>
+                
+            </tr>
+        
+        </table>
+    </div>
+    <br/>
+    <div id="divQualityEvent" edittpye="Files">
+        <div id="tbMain12" class="ui-widget-header ui-corner-all" style="width:650px; padding:3px 15px 3px 15px; font-size:10.5px; ;">
+            <button id="btnSearchQE"></button>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextQE" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table id="gridDataListQE"></table>
+            <div id="gridListPagerQE"></div>
+        </div>
+    </div>
+
+    <div id="divEHS" edittpye="Files">
+        供應商環境安全管理調查表
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td colspan="2">
+                    環境安全管理體系
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業內是否有人員負責環境安全管理工作
+                </td>
+                
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    姓名<input id="txtEHSOwner" type="text" value="" text="">
+                    <br />
+                    職位<input id="txtEHSOwnerTitle" type="text" value="" text="">
+                </td>
+              
+            </tr>
+        </table>
+
+        企業在生產過程中產生的污染源
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業產生哪些污染源？
+                </td>
+        
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPollutionTypes">
+                    @*CHECKBOXS*@
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    環境影響評價報告
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionReportFile"></span>
+                </td>
+          
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionReportUploadTime"></span>
+                </td>
+         
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionReportValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+           
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    需提供環境評估批復報告
+                </td>
+                
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAgreeFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAgreeUploadTime"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionAgreeValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                
+            </tr>
+          
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    環境影響“三同時”竣工驗收意見的報告
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAcceptanceFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAcceptanceUploadTime"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionAcceptanceValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+             
+            </tr>
+          
+        </table>
+        <br />
+        污染源處理是否符合國家和地方的法律法規
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業產生哪些危險廢棄物？
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteTypes">
+                    @*CHECKBOXS WASTE*@
+                </td>
+              
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    危險廢棄物清單
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteUploadTime"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtWasteValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                
+            </tr>
+         
+        </table>
+        <br />
+        危險廢棄物處理是否交協力廠商處理？
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    危險廢棄物處理是否交協力廠商處理？
+                </td>
+            
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteTypes">
+                    <input id="cbIsOutWasteHandler" cbtype="IsOutWasteHandler" type="checkbox" value="A">是否交協力廠商處理？
+                </td>
+             
+            </tr>
+        </table>
+        <br/>
+        <div id="tbMain12" class="ui-widget-header ui-corner-all" style="width:768px; padding:3px 15px 3px 15px; font-size:10.5px; ;">
+            @*<button id="btnSearchWasteHandler"></button>*@
+        </div>
+        <div style="display:none;">
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextWasteHandler" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table id="gridDataListWasteHandler"></table>
+            <div id="gridListPagerWasteHandler"></div>
+        </div>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    廢氣排放是否符合國家和地方法規？
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdExhaustType">
+                    <select id="ddlExhaustType"/>
+                </td>
+              
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度合格的廢氣監測報告
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spExhaustFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spExhaustUploadTime"></span>
+                </td>
+                
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtExhaustValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+               
+            </tr>
+           
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    廢水排放是否符合國家和地方法規？
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteWaterType">
+                    <select id="ddlWasteWaterType" />
+                </td>
+               
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度合格的廢水監測報告以及排汙許可證
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteWaterFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteWaterUploadTime"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtWasteWaterValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+               
+            </tr>
+          
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    雜訊是否符合國家和地方法規？
+                </td>
+            
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdNoiseType">
+                    <select id="ddlNoiseType" />
+                </td>
+             
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度雜訊監測報告
+                </td>
+              
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNoiseFile"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNoiseUploadTime"></span>
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtNoiseValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+               
+            </tr>
+          
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業最近1年內或5年內，是否有發生過污染環境安全的事件？
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPollutionEventType">
+                    <select id="ddlPollutionEventType" />
+                </td>
+              
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">desc:</td>
+                <td style="vertical-align: top;" id="">
+                    <input type="text" id="txtPollutionEventDesc" class="tdQueryTextBox" />
+                </td>
+             
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業最近1年內或5年內，是否有發生過污染環境安全的事件？
+                </td>
+               
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPunishmentType">
+                    <select id="ddlPunishmentType" />
+                </td>
+              
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">desc:</td>
+                <td style="vertical-align: top;" id="">
+                    <input type="text" id="txtPunishmentDesc" class="tdQueryTextBox" />
+                </td>
+               
+            </tr>
+        </table>
+        <br />
+    </div>
+</div>

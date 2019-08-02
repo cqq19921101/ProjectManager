@@ -1,0 +1,21 @@
+﻿<div id="dialog_VMI_QueryEmailInfo" title="Email Info" class="JQDialog" style="display:none">
+    @*Menu Function Button For the View Use Base On JQuery Tool*@
+    <div id="dialog_Email_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:520px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="dialog_btn_diaEmail_Search"></button>
+    </div>
+
+    @*Display Selected Item Info*@
+    <div>
+        <table style="width:100%;" border="0">
+            <tr>
+                <td class="tdTitleAlignRight" width="9%">Email:</td>
+                <td class="tdTitleAlignLeft" width="91%"><input type="text" id="dialog_VMI_txt_Email" class="tdQueryTextBox" value=""  style="width:250px"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-left:5px">
+        <table id="dialog_VMI_Email_gridDataList"></table>
+        <div id="dialog_VMI_Email_gridDataPager"></div>
+    </div>
+</div>

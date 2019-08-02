@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutVMIReport.cshtml";
+}
+
+@model Lib_VMI_Domain.Model.VMI_Reporting_Helper.VMIReportTemplateModel
+
+<!-- the required Kendo styles -->
+@Styles.Render("~/bundles/Telerik/css");
+@section styles
+{
+    <style>
+        #reportViewer1 {
+            position: absolute;
+            left: 5px;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            overflow: hidden;
+            font-family: Verdana, Arial;
+        }
+    </style>
+}
+
+@(Html.TelerikReporting().ReportViewer()
+           .Id("reportViewer1")
+           //.ServiceUrl("~/api/reports/")
+           //.TemplateUrl("~/ReportViewer/templates/telerikReportViewerTemplate.html")
+           //.ServiceUrl(Url.Content("~/api/reports/"))
+           //.TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate.html"))
+           .ServiceUrl(Url.Content("~/api/VMIReportBarcodeResolver"))
+           .TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate.html"))
+           .ReportSource(Model.ReportName)
+           .ViewMode(ViewMode.Interactive)
+           .ScaleMode(ScaleMode.Specific)
+           .Scale(1.0)
+           .PersistSession(false)
+           .Deferred()
+           .DisabledButtonClass("")
+)
+
+
+@section scripts
+{
+    <script src="@Url.Content("~/ReportViewer/js/kendo.subset.2015.3.930.min.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-10.1.16.504.js")"></script>
+    @(
+        // All deferred initialization statements will be rendered here
+        Html.TelerikReporting().DeferredScripts()
+    )
+}

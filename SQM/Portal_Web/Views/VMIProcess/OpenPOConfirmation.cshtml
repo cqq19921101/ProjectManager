@@ -1,0 +1,85 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIProcess/OpenPOConfirmation")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+
+<div id="tbQueryOpenPOConfirmation">
+    <table class="ui-widget-header ui-corner-all" style="width:996px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnQueryOpenPOConfirmation"></button>
+                <button id="btnExportOpenPOConfirmation"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:995px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:990px;">
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txtPlant" maxlength="4" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryPlantDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor Code:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" maxlength="10" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">PO Number(FM):</td>
+                <td>
+                    <input type="text" id="txtPONumberFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">PO Number(TO):</td>
+                <td>
+                    <input type="text" id="txtPONumberTo" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Delivery Date(FM):</td>
+                <td>
+                    <input type="text" id="txtDeliveryDateFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Delivery Date(TO):</td>
+                <td>
+                    <input type="text" id="txtDeliveryDateTo" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Confirmed Date(FM):</td>
+                <td>
+                    <input type="text" id="txtConfirmedDateFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Confirmed Date(TO):</td>
+                <td>
+                    <input type="text" id="txtConfirmedDateTo" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Material(FM):</td>
+                <td>
+                    <input type="text" id="txtMaterialFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Material(TO):</td>
+                <td>
+                    <input type="text" id="txtMaterialTo" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Material Description:</td>
+                <td>
+                    <input type="text" id="txtDesc" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Confirm Status:</td>
+                <td>
+                    <select id="ddlConfirmStatus" class="tdQueryTextBox">
+                        <option selected value="A">All</option>
+                        <option value="C">Confirmed</option>
+                        <option value="U">Unconfirmed</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <table id="gridOpenPOConfirmation"></table>
+    <div id="gridOpenPOConfirmationListPager"></div>
+</div>

@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="EXPIRES" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryjqgrid")
+    @Scripts.Render("~/bundles/Global/Commonjs")
+    @Scripts.Render("~/bundles/ReliabilityFileApprove/js")
+    @Styles.Render("~/bundles/ReliabilityFileApprove/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    <script type="text/javascript">
+        var __WebAppPathPrefix = "@ViewData["appPath2"]";
+        var __UrlForTimeOut = __WebAppPathPrefix + "/Account/Login?ReturnUrl=" + encodeURIComponent(__WebAppPathPrefix);
+    </script>
+</head>
+<body>
+    @if (ViewData["Status"].ToString() != "Pending" || ViewData["TaskStatus"].ToString() != "-1")//123
+    {
+        <span>當前簽核關卡已經結束</span>
+    }
+    else
+    {
+        <input type="hidden" id="hTaskID" name="hTaskID" value="@ViewData["TaskID"]" />
+        <div class="RegistTop">
+            <div class="RegistTop-left"></div>
+            <div class="RegistTop-right"></div>
+        </div>
+        <div class="RegistFoot">
+            <form method="post">
+                <table style="border:1px solid #000000;border-collapse: collapse;">
+                    <tr>
+                        <td colspan="1">簽核種類:</td>
+                        <td colspan="1">
+                            <span id="test">@ViewData["Subj"] </span>
+                        </td>
+                    </tr>
+                    <tr data="oper">
+                        <td colspan="1">
+                            <span id="lblName">備註:</span>
+                        </td>
+                        <td>
+                            <input type="text" id="txtRemark" name="txtRemark" />
+                        </td>
+                    </tr>
+                    <tr data="oper">
+                        <td colspan="2">
+                            <input type="button" id="btnAgree" value="Agree" />
+                            &nbsp;
+                            <input type="button" id="btnReject" value="Reject" />
+                        </td>
+                    </tr>
+                    <tr data="result" style="display:none;">
+                        <td colspan="1">選定狀態:</td>
+                        <td colspan="1">
+                            <span id="lblResult"></span>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </form>
+            <div class="Datalist">
+                <table id="gridDataList"  ></table>
+                <div id="gridListPager"></div>
+            </div>
+        </div>
+    }
+
+
+</body>
+</html>
+

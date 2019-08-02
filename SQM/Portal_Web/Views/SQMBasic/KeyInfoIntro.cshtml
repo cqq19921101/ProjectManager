@@ -1,0 +1,923 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+@Scripts.Render("~/bundles/SQMBasic/Common")
+@Scripts.Render("~/bundles/SQMBasic/KeyInfoIntro")
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("CriticalFile/dialogQualityEvent.cshtml")
+@RenderPage("CriticalFile/dialogWasteHandler.cshtml")
+
+<div style="padding:3px;">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:650px; padding:3px 15px 3px 15px; font-size:10.5px; ">
+        <button id="btnIntro"></button>
+        <button id="btnEnvir"></button>
+        <button id="btnResponse"></button>
+        <button id="btnCM"></button>
+        <button id="btnQE"></button>
+        <button id="btnEHS"></button>
+        @*<button id="btn"></button>
+            <button id="btn"></button>*@
+    </div>
+    <div id="divIntro" edittpye="Files">
+        公司簡介
+        <table id="tbIntro" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spIntroFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spIntroUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadIntro" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessIntro">Process</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divEnvir" edittpye="Files">
+        品質與環境保證承諾書
+        <table id="tbEnvir" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Sign Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtEnvirSignedTime" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td>
+                    <button id="btnSignDateEnvir">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spEnvirFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spEnvirUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadEnvir" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessEnvir">Process</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divResponse" edittpye="Files">
+        缺水限電應變管理
+        <table id="tbWaterResponse" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    限水/停水的書面應變程式
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsWaterEmergencySquad" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否成立缺水應變小組<br />
+                    <input id="cbIsWaterResponseProgram" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立限水/停水
+                </td>
+                <td>
+                    <button id="btnUpdateWater">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWaterResponseFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWaterResponseUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadWaterResponse" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessWaterResponse">Process</button></td>
+            </tr>
+
+        </table>
+        <br />
+        <table id="tbElecResponse" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    限電/停電的書面應變程式
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsElecEmergencySquad" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否成立限電應變小組<br />
+                    <input id="cbIsElecResponseProgram" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立限電/停電的書面應變程式
+                </td>
+                <td>
+                    <button id="btnUpdateElec">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spElecResponseFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spElecResponseUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadElecResponse" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessElecResponse">Process</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divCM" edittpye="Files">
+        不使用衝突礦產金屬
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    衝突礦產控制程式
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsCMControl" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立《衝突礦產控制程式》
+                </td>
+                <td>
+                    <button id="btnUpdateCMC">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spCMControlFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spCMControlUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadCMControl" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessCMControl">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    無使用衝突礦產金屬調查表
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsNonCMQuestionary" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立《無使用衝突礦產金屬調查表》
+                </td>
+                <td>
+                    <button id="btnUpdateCMQ">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMQuestionaryFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMQuestionaryUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadNonCMQuestionary" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessNonCMQuestionary">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    不使用衝突礦產承諾書
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    <input id="cbIsNonCMCommit" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否能夠提供《不使用衝突礦產承諾書》
+                </td>
+                <td>
+                    <button id="btnUpdateCMCt">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMCommitFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNonCMCommitUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadNonCMCommit" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessNonCMCommit">Process</button></td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div id="divQualityEvent" edittpye="Files">
+        <div id="tbMain12" class="ui-widget-header ui-corner-all" style="width:650px; padding:3px 15px 3px 15px; font-size:10.5px; ;">
+            <button id="btnSearchQE"></button>
+            <button id="btnCreateQE"></button>
+            <button id="btnViewEditQE"></button>
+            <button id="btnDeleteQE"></button>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextQE" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table id="gridDataListQE"></table>
+            <div id="gridListPagerQE"></div>
+        </div>
+    </div>
+
+    <div id="divEHS" edittpye="Files">
+        供應商環境安全管理調查表
+        <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+            <tr>
+                <td colspan="3">
+                    環境安全管理體系
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業內是否有人員負責環境安全管理工作
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;">
+                    姓名<input id="txtEHSOwner" type="text" value="" text="">
+                    <br />
+                    職位<input id="txtEHSOwnerTitle" type="text" value="" text="">
+                </td>
+                <td>
+                    <button id="btnUpdateEHSBasic">Update</button>
+                </td>
+            </tr>
+        </table>
+
+        企業在生產過程中產生的污染源
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業產生哪些污染源？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPollutionTypes">
+                    @*CHECKBOXS*@
+                </td>
+                <td>
+                    <button id="btnUpdatePollutionTypes">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    環境影響評價報告
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionReportFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionReportUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionReportValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadPollutionReport" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessPollutionReport">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    需提供環境評估批復報告
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAgreeFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAgreeUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionAgreeValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadPollutionAgree" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessPollutionAgree">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    環境影響“三同時”竣工驗收意見的報告
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAcceptanceFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spPollutionAcceptanceUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtPollutionAcceptanceValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadPollutionAcceptance" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessPollutionAcceptance">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        污染源處理是否符合國家和地方的法律法規
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業產生哪些危險廢棄物？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteTypes">
+                    @*CHECKBOXS WASTE*@
+                </td>
+                <td>
+                    <button id="btnUpdateWasteTypes">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    危險廢棄物清單
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Valid Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtWasteValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadWaste" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessWaste">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        危險廢棄物處理是否交協力廠商處理？
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    危險廢棄物處理是否交協力廠商處理？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteTypes">
+                    <input id="cbIsOutWasteHandler" cbtype="IsOutWasteHandler" type="checkbox" value="A">是否交協力廠商處理？
+                </td>
+                <td>
+                    <button id="btnUpdateIsOutWasteHandler">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div id="tbMain12" class="ui-widget-header ui-corner-all" style="width:768px; padding:3px 15px 3px 15px; font-size:10.5px; ;">
+            @*<button id="btnSearchWasteHandler"></button>*@
+            <button id="btnCreateWasteHandler"></button>
+            <button id="btnViewEditWasteHandler"></button>
+            <button id="btnDeleteWasteHandler"></button>
+        </div>
+        <div style="display:none;">
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextWasteHandler" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table id="gridDataListWasteHandler"></table>
+            <div id="gridListPagerWasteHandler"></div>
+        </div>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    廢氣排放是否符合國家和地方法規？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdExhaustType">
+                    <select id="ddlExhaustType"/>
+                </td>
+                <td>
+                    <button id="btnUpdateExhaustType">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度合格的廢氣監測報告
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spExhaustFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spExhaustUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtExhaustValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadExhaust" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessExhaust">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    廢水排放是否符合國家和地方法規？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdWasteWaterType">
+                    <select id="ddlWasteWaterType" />
+                </td>
+                <td>
+                    <button id="btnUpdateWasteWaterType">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度合格的廢水監測報告以及排汙許可證
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteWaterFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spWasteWaterUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtWasteWaterValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadWasteWater" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessWasteWater">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    雜訊是否符合國家和地方法規？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdNoiseType">
+                    <select id="ddlNoiseType" />
+                </td>
+                <td>
+                    <button id="btnUpdateNoiseType">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    每年度雜訊監測報告
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNoiseFile"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                <td style="vertical-align: top;">
+                    <span id="spNoiseUploadTime"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Vaild Date:</td>
+                <td style="vertical-align: top;">
+                    <input type="text" id="txtNoiseValidDate" class="tdQueryTextBox" name="Date" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">File:</td>
+                <td style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadNoise" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessNoise">Process</button></td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業最近1年內或5年內，是否有發生過污染環境安全的事件？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPollutionEventType">
+                    <select id="ddlPollutionEventType" />
+                </td>
+                <td>
+                    <button id="btnUpdatePollutionEventType">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">desc:</td>
+                <td style="vertical-align: top;" id="">
+                    <input type="text" id="txtPollutionEventDesc" class="tdQueryTextBox" />
+                </td>
+                <td>
+                    <button id="btnUpdatePollutionEventDesc">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table class="defaultTable" style="width:650px;">
+            <tr>
+                <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                <td style="vertical-align: top;">
+                    企業最近1年內或5年內，是否有發生過污染環境安全的事件？
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">Option:</td>
+                <td style="vertical-align: top;" id="tdPunishmentType">
+                    <select id="ddlPunishmentType" />
+                </td>
+                <td>
+                    <button id="btnUpdatePunishmentType">Update</button>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right; font-weight: bold;">desc:</td>
+                <td style="vertical-align: top;" id="">
+                    <input type="text" id="txtPunishmentDesc" class="tdQueryTextBox" />
+                </td>
+                <td>
+                    <button id="btnUpdatePunishmentDesc">Update</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+
+        @*<table>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                    <td style="vertical-align: top;">
+                        危險廢棄物清單
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spWasteFile"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spWasteUploadTime"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadWaste" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                    </td>
+                    <td><button id="btnProcessWaste">Process</button></td>
+                </tr>
+            </table>*@
+        <br />
+        @*<table id="tbCMControl" class="defaultTable" style="width: 650px;">
+                <tr>
+                    <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                    <td style="vertical-align: top;">
+                        無使用衝突礦產金屬調查表
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">Option:</td>
+                    <td style="vertical-align: top;">
+                        <input id="cbIsNonCMQuestionary" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否建立《無使用衝突礦產金屬調查表》
+                    </td>
+                    <td>
+                        <button id="btnUpdateCMQ">Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spNonCMQuestionaryFile"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spNonCMQuestionaryUploadTime"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadNonCMQuestionary" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                    </td>
+                    <td><button id="btnProcessNonCMQuestionary">Process</button></td>
+                </tr>
+            </table>
+            <br />
+            <table id="tbCMControl" class="defaultTable" style="width: 650px;">
+                <tr>
+                    <td style="text-align: right; font-weight: bold;width:150px; ">Title:</td>
+                    <td style="vertical-align: top;">
+                        不使用衝突礦產承諾書
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">Option:</td>
+                    <td style="vertical-align: top;">
+                        <input id="cbIsNonCMCommit" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="" text="">是否能夠提供《不使用衝突礦產承諾書》
+                    </td>
+                    <td>
+                        <button id="btnUpdateCMCt">Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spNonCMCommitFile"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+                    <td style="vertical-align: top;">
+                        <span id="spNonCMCommitUploadTime"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">File:</td>
+                    <td style="vertical-align: top;">
+                        @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadNonCMCommit" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                    </td>
+                    <td><button id="btnProcessNonCMCommit">Process</button></td>
+                </tr>
+            </table>*@
+    </div>
+</div>

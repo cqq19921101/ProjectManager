@@ -1,0 +1,26 @@
+﻿<script lang="javascript">
+    var _SubFolderForAttachments = "@ViewBag.UploadFolderName" //for upload use
+</script>
+
+<div id="dialogToDoASNFileAttach" title="VMI ToDoASN File Attachment" class="JQDialog" style="display:none;">
+
+    <div>
+        <table class="defaultTable" border="1">
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Attach Files</td>
+                <td class="tdTitleAlignLeft" width="90%" id="dialog_td_VMIProcess_Attach_New">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadFileAttach" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td class="tdTitleAlignLeft" width="90%" id="dialog_td_VMIProcess_Attach_Update">
+                    <span id ="dialog_span_VMIProcess_ToDoASNFileAttach_Download" class="jqGridColumnDataAsLinkWithBlue"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Remark</td>
+                <td class="tdTitleAlignLeft" width="90%">
+                    <textarea id="dialog_txt_VMIProcess_ToDoASNFileAttach_Remark" rows="2" cols="25" maxlength="50"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+<div id="dialogABAManage" title="Application New Buyer Account" class="JQDialog" style="display:none">
+    <table>
+        <tr>
+            <td class="tdTitleAlignRight" width="153px;">Buyer Name:</td>
+            <td width="209px;">
+                <input type="text" id="txtBUYER_NAME" class="tdQueryTextBox" style="width: 125px" maxlength="50" readonly />
+                <button id="btnDiaReadInternalUserInfo" style="display:none"></button>
+                <label id="lbBuyerName" class="spanFieldValueUnderLine"></label>
+            </td>
+            <td class="tdTitleAlignRight" width="86px;">Site:</td>
+            <td width="122px;">
+                <select id="ddlSITE_ID" class="tdQueryTextBox" style="width: 120px;" disabled></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Upload Scan File (PDF):</td>
+            <td colspan="3">
+                <label id="lbScanFile" class="jqGridColumnDataAsLink" style="color:blue"></label>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadABA" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Requestor:</td>
+            <td>
+                <label id="lbCREATE_USER" class="spanFieldValueUnderLine"></label>
+            </td>
+            <td class="tdTitleAlignRight">Request Date:</td>
+            <td>
+                <label id="lbCREATE_DATE" class="spanFieldValueUnderLine"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Status:</td>
+            <td colspan="3">
+                <label id="lbSTATUS_ID" class="spanFieldValueUnderLine"></label>
+            </td>
+        </tr>
+        <tr class="trRejectReason" style="display: none;">
+            <td class="tdTitleAlignRight">Reject Reason:</td>
+            <td colspan="3">
+                <input type="text" id="txtREJECT_REASON" class="tdQueryTextBox" style="width: 100%;" readonly />
+            </td>
+        </tr>
+        <tr class="trReviewing" style="display:none;">
+            <td class="tdTitleAlignRight">Group:</td>
+            <td colspan="3">
+                <button id="btnGroup" style="display:none"></button>
+            </td>
+        </tr>
+        <tr class="trReviewing" style="display:none;">
+            <td class="tdTitleAlignRight">Roles:</td>
+            <td colspan="3">
+                <button id="btnRoles" style="display:none"></button>
+            </td>
+        </tr>
+    </table>
+</div>

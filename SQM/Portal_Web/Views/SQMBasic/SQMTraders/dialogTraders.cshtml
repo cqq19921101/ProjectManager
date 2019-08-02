@@ -1,0 +1,104 @@
+﻿<div id="dialogDataT" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogDataTToolBarT" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataT"></button>
+        <button id="btndialogCancelEditT"></button>
+    </div>
+    <table>
+        @*<tr>
+            <td class="FieldLabel">供應商代碼(VCode):</td>
+            <td>
+                <input type="text" id="txtVendorCode" class="DiaText" maxlength="40" />
+            </td>
+        </tr>*@
+        <tr></tr>
+        <tr>
+            <td class="FieldLabel">主要產品 (Principal Products):</td>
+            <td>
+                <input type="text" id="txtPrincipalProductsT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td class="FieldLabel">占營業份額 百分比% (% of Revenue):</td>
+            <td>
+                <input type="text" id="txtRevenuePerT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr></tr>
+
+        <tr>
+            <td class="FieldLabel">MOQ（Minimum Order Quantity ）:</td>
+            <td>
+                <input type="text" id="txtMOQT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr></tr>
+
+        <tr>
+            <td class="FieldLabel">最快提供樣品時間（天數):</td>
+            <td>
+                <input type="text" id="txtSampleTimeT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">L/T（Lead Time）（天數）:</td>
+            <td>
+                <input type="text" id="txtLeadTimeT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+        <tr>
+            <td class="FieldLabel">供貨商&原廠名稱（一個產品可以填寫多家):</td>
+            <td>
+                <input type="text" id="txtSupAndOriNameT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">可否提供遠程產地證明:</td>
+            <td>
+                <input type="radio" id="OfferPlaceCertify" maxlength="40" name="C" value="1" />Yes
+                <input type="radio" id="OfferPlaceCertify1" maxlength="40" name="C" value="0" />No
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">可否提供原廠授權銷售證明:</td>
+            <td>
+                <input type="radio" id="OfferSellCertify" maxlength="40" name="B" value="1" />Yes
+                <input type="radio" id="OfferSellCertify1" maxlength="40" name="B" value="0" />No
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">主要競爭對手公司名稱(The name of Major competitor):</td>
+            <td>
+                <input type="text" id="txtMajorCompetitorT" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgT"></span>
+            </td>
+        </tr>
+    </table>
+    <div id="ProcessTraders1">
+        <table class="defaultTable" style="width: 650px;">
+            <tr>
+                <td><span>上傳產地證明：</span></td>
+                <td  id="UpDateFile" style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadVDST" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessT">Process</button></td>
+            </tr>
+        </table>
+    </div>
+    <div id="ProcessTraders2">
+        <table class="defaultTable" style="width: 650px;">
+            <tr>
+                <td><span>上傳銷售證明：</span></td>
+                <td  id="UpDateFile2" style="vertical-align: top;">
+                    @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadVDST2" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                </td>
+                <td><button id="btnProcessT2">Process</button></td>
+            </tr>
+        </table>
+    </div>
+</div>

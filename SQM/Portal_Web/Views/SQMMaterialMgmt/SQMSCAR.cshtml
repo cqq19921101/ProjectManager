@@ -1,0 +1,500 @@
+﻿
+<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+@Scripts.Render("~/bundles/SQMMaterialMgmt/SQMScarMgmt")
+
+@RenderPage("SQMScarMgmt/dialogSQMSCAR.cshtml")
+<div id="D1">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnShow"></button>
+        <button id="btnSearch"></button>
+        @*<button id="btnCreate"></button>
+        <button id="btnViewEdit"></button>
+        <button id="btnDelete"></button>*@
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>ScarNo:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-left:5px">
+        <table id="gridDataList"></table>
+        <div id="gridListPager"></div>
+    </div>
+</div>
+<div id="back">
+<table class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+    <tr>
+        <td><button id="btnBack"></button></td>
+    </tr>
+</table>
+</div>
+<div id="D9">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="7">  <h2>Corrective Action Report（8D）</h2>  </td>
+        </tr>
+        <tr>
+            <td colspan="7"> <h4>不合格品信息Nonconformance Information </h4>   </td>
+        </tr>
+        <tr>
+            <td colspan="7"><h5>Discipline 1: 不良现象描述Problem Description</h5></td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">信息提报人</td>
+            <td>
+                <input type="text" id="txtinitiator" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">异常时间</td>
+            <td>
+                <input type="text" id="txtAnomalousTime" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">料号</td>
+            <td>
+                <input type="text" id="txtLitNo" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">机种名称</td>
+            <td>
+                <input type="text" id="txtModel" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">批号/周期</td>
+            <td>
+                <input type="text" id="txtBitNo" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">投產數(檢驗數)</td>
+            <td>
+                <input type="text" id="txtBitNum" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">不良數</td>
+            <td>
+                <input type="text" id="txtbadnessNum" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">不良率 </td>
+            <td>
+                <input type="text" id="txtRejectRatio" maxlength="180" style="width:97%;max-width:97%;" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">异常类别:</td>
+            <td>
+
+                <select id="ddlAbnormal">
+                    <option value="" selected></option>
+                    <option value="0">進料</option>
+                    <option value="1">製程</option>
+                    <option value="2">OQC</option>
+                    <option value="3">客訴</option>
+                    <option value="4">可靠測試</option>
+                </select>
+            </td>
+       
+            <td class="tdTitleAlignRight">供应商名稱</td>
+            <td>
+                <input type="text" id="txtVenderCode" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+
+        </tr>     
+        <tr id="fileUploadSCARD1">
+            <td class="tdTitleAlignRight">不良现象说明</td>
+            <td colspan="3">
+                <textarea type="text" id="txtbadnessNote" style="height:100px;width:500px"></textarea>
+            </td>
+            <td class="tdTitleAlignRight" id="txtFile">不良样品图片:</td>
+            <td id="UpDateFile">
+                <span id="spSCARD1"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadSCARD1" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><br />
+                <button id="btnProcessSCARD1">上傳</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="btnD9Save"></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="D2">
+    <button id="btnD2Save"></button>@*<button id="btnAppove1"></button><button id="btnReject1"></button><BR />*@
+
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="8"> <h5>Discipline 2: 供应商初步确认品质异常责任归属以及成立处理小组Supplier Initial responsibility judgment and Team members</h5>   </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">属于供应商责任</td>
+            <td >
+                是<input id="cbIsDuty" cbtype="" type="radio" name="IsDuty" value=""> 
+                否<input id="cbIsDuty_1" cbtype="" type="radio" name="IsDuty" value=""> 
+            </td>
+            <td class="tdTitleAlignRight">选择否请说明原因</td>
+            <td colspan="5">
+                <textarea type="text" id="txtDutyNote" style="width:97%;max-width:97%;" ></textarea>
+            </td>
+        </tr>
+      
+        <tr>
+            <td class="tdTitleAlignRight">小组主管</td>
+            <td>
+                <input type="text" id="txtTimmer" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">主管手机号码</td>
+            <td>
+                <input type="text" id="txtTimmerPhone" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td class="tdTitleAlignRight">小组成员</td>
+            <td colspan="3">
+                <input type="text" id="txtGroupMember" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="D3">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="7"> <h5>Discipline 3: 临时&紧急处理措施   Temporary &Urgent actions</h5>   </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">临时&紧急措施</td>
+            <td colspan="7">
+                <textarea type="text" id="txtProvisional" maxlength="180" style="width:97%;max-width:97%;" ></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">库存品处理</td>
+            <td class="tdTitleAlignCenter" colspan="2">光寶现有库存</td>
+            <td class="tdTitleAlignCenter" colspan="2">在途材料</td>
+            <td class="tdTitleAlignCenter" colspan="2">廠商端庫存</td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">数量:</td>
+            <td  colspan="2">
+                <input type="text" id="txtInventoryNum1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtInventoryNum2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtInventoryNum3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">處理方式:</td>
+            <td  colspan="2">
+                <input type="text" id="txtDisposeType1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtDisposeType2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtDisposeType3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">预计完成时间:</td>
+            <td  colspan="2">
+                <input type="text" id="txtOverTime1" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtOverTime2" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox"/>
+            </td>
+            <td  colspan="2">
+                <input type="text" id="txtOverTime3" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="D4">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="2"> <h5>Discipline 4: 不良原因分析  Root Cause Analysis (Attachment if need)</h5>   </td>
+        </tr>
+        <tr>
+            <td >原因分析:</td>
+            <td  >
+                <textarea type="text" id="txtReasonAnalysis" maxlength="180" style="width:97%;max-width:97%;" ></textarea>
+            </td>
+        </tr>   
+     </table>
+</div>
+<div id="D5">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="4"> <h5> Discipline 5: 改善对策  Solve/Permanent Corrective Actions(Attachment if need)</h5>   </td>
+        </tr>
+       
+        <tr>
+            <td class="tdTitleAlignRight">改善对策:</td>
+            <td  colspan="3">
+                <textarea type="text" id="txtImprovementStrategy" maxlength="180" style="width:97%;max-width:97%;" ></textarea>
+            </td>
+       
+       
+        </tr>
+       <tr>
+           <td class="tdTitleAlignRight">责任人:</td>
+           <td>
+               <input type="text" id="txtDuty1" maxlength="180" style="width:97%;max-width:97%;" />
+           </td>
+
+           <td class="tdTitleAlignRight">完成日期:</td>
+           <td>
+               <input type="text" id="txtFinishDate1" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+           </td>
+       </tr>
+    </table>
+</div>
+
+<div id="D6">
+    @*<button id="btnAppove2"></button><button id="btnReject2"></button><BR />*@
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+       
+        <tr>
+            <td colspan="7"> <h5>  Discipline 6: 对策有效性验证 Validation/ Verify The Effectiveness Of Actions</h5>   </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">批次</td>
+            <td class="tdTitleAlignCenter" colspan="2">第一批</td>
+            <td class="tdTitleAlignCenter" colspan="2">第二批</td>
+            <td class="tdTitleAlignCenter" colspan="2">第三批</td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">生產日期:</td>
+            <td colspan="2">
+                <input type="text" id="txtProductionTime1" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionTime2" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionTime3" maxlength="180" style="width:97%;max-width:97%;"  class="tdQueryTextBox"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">生产批號:</td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNo1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNo2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNo3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">生产數量:</td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNum1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNum2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionNum3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            </tr>
+        <tr>
+            <td class="tdTitleAlignRight">是否有效</td>
+            <td colspan="2">
+                是<input id="cbIsValid1" cbtype="" type="radio" name="IsValid1" value="">
+                否<input id="cbIsValid1_1" cbtype="" type="radio" name="IsValid1" value="">
+            </td>
+            <td colspan="2">
+                是<input id="cbIsValid2" cbtype="" type="radio" name="IsValid2" value="">
+                否<input id="cbIsValid2_1" cbtype="" type="radio" name="IsValid2" value="">
+            </td>
+            <td colspan="2">
+                是<input id="cbIsValid3" cbtype="" type="radio" name="IsValid3" value="">
+                否<input id="cbIsValid3_1" cbtype="" type="radio" name="IsValid3" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight" colspan="3">同类别不同料号之材料是否可以导入以上改善对策</td>
+            <td>
+                是<input id="cbIsperfect1" cbtype="" type="radio" name="Isperfect1" value="">
+                否<input id="cbIsperfect1_1" cbtype="" type="radio" name="Isperfect1" value="">
+            </td>
+            <td class="tdTitleAlignRight">料號明細</td>
+            <td colspan="2">
+                <input type="text" id="txtLitList1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight" colspan="3">不同类别料号之材料是否可以导入以上改善对策</td>
+            <td>
+                是<input id="cbIsperfect2" cbtype="" type="radio" name="Isperfect2" value="">
+                否<input id="cbIsperfect2_1" cbtype="" type="radio" name="Isperfect2" value="">
+            </td>
+            <td class="tdTitleAlignRight">料號明細</td>
+            <td colspan="2">
+                <input type="text" id="txtLitList2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="D7">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+      
+        <tr>
+            <td colspan="4"> <h5>   Discipline 7: 预防措施（即对策标准化）Preventive action(Countermeasures to standardize)</h5>   </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">对策标准化说明:</td>
+            <td colspan="3">
+                <textarea type="text" id="txtStrategynote" maxlength="180" style="width:97%;max-width:97%;"></textarea>
+            </td>
+
+         
+
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">责任人:</td>
+            <td>
+                <input type="text" id="txtduty2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+
+            <td class="tdTitleAlignRight">完成日期:</td>
+            <td>
+                <input type="text" id="txtFinishDate2" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+        </tr>
+        <tr id="fileUploadSCARD7">
+            <td class="FieldLabel" id="txtFile">佐证资料:</td>
+            <td id="UpDateFile">
+                <span id="spSCARD7"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadSCARD7" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><br />
+                <button id="btnProcessSCARD7">上傳</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="D8">
+    <table style="width:1200px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+        <tr>
+            <td colspan="7"> <h5> Discipline 8: 結案</h5>   </td>
+        </tr>
+
+        <tr>
+            <td class="tdTitleAlignRight">批次</td>
+            <td class="tdTitleAlignCenter" colspan="2">第一批</td>
+            <td class="tdTitleAlignCenter" colspan="2">第二批</td>
+            <td class="tdTitleAlignCenter" colspan="2">第三批</td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">投产日期:</td>
+            <td colspan="2">
+                <input type="text" id="txtcommissioningdate1" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtcommissioningdate2" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtcommissioningdate3" maxlength="180" style="width:97%;max-width:97%;" class="tdQueryTextBox" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">投产工單:</td>
+            <td colspan="2">
+                <input type="text" id="txtProductionworkorder1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionworkorder2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionworkorder3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">投产數量:</td>
+            <td colspan="2">
+                <input type="text" id="txtProductionquantity1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionquantity2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtProductionquantity3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+         </tr>
+        <tr hidden="hidden">
+            <td class="tdTitleAlignRight">工單入庫數</td>
+            <td colspan="2">
+                <input type="text" id="txtInputNum1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtInputNum2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtInputNum3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr hidden="hidden">
+            <td class="tdTitleAlignRight">STD SLRR</td>
+            <td colspan="2">
+                <input type="text" id="txtSTDSLRR" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+        <tr >
+            <td class="tdTitleAlignRight">不良率</td>
+            <td colspan="2">
+                <input type="text" id="txtrejectOrder1" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtrejectOrder2" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+            <td colspan="2">
+                <input type="text" id="txtrejectOrder3" maxlength="180" style="width:97%;max-width:97%;" />
+            </td>
+        </tr>
+
+        <tr hidden="hidden">
+            <td class="tdTitleAlignRight">是否有效</td>
+            <td colspan="2">
+                是<input id="cbIsvalid4" cbtype="" type="radio" name="Isvalid4" value="" readonly="readonly">
+                否<input id="cbIsvalid4_1" cbtype="" type="radio" name="Isvalid4" value="" readonly="readonly">
+            </td>
+            <td colspan="2">
+                是<input id="cbIsvalid5" cbtype="" type="radio" name="Isvalid5" value="" readonly="readonly">
+                否<input id="cbIsvalid5_1" cbtype="" type="radio" name="Isvalid5" value="" readonly="readonly">
+            </td>
+            <td colspan="2">
+                是<input id="cbIsvalid6" cbtype="" type="radio" name="Isvalid6" value="" readonly="readonly">
+                否<input id="cbIsvalid6_1" cbtype="" type="radio" name="Isvalid6" value="" readonly="readonly">
+            </td>
+        </tr>
+        <tr id="tdisover">
+            <td class="tdTitleAlignRight">是否结案</td>
+            <td >
+                <select id="ddlisover">
+                    <option value="0">正常結案</option>
+                    <option value="1">條件結案</option>
+                    <option value="2">不同意結案</option>
+                </select>
+               
+            </td>
+            <td class="tdTitleAlignRight">结案说明</td>
+            <td>
+                <textarea type="text" id="txtnote" maxlength="300" style="width:97%;max-width:97%;"></textarea>
+            </td>
+        </tr>
+       
+    </table>
+</div>

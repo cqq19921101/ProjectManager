@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D17D967D-0552-43DC-B3B9-C8BF85B79AAF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lib_SQM_Domain</RootNamespace>
+    <AssemblyName>Lib_SQM_Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=8.6.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib_VMI_Domain\Source\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="ChineseConverter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9ecab500adebae88, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\ChineseConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="ERPConnect20, Version=3.0.0.93, Culture=neutral, PublicKeyToken=ab88d1e080a9556c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\ERPConnect20.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib_Portal_Domain">
+      <HintPath>..\Portal_Web\Source\PortalDomain\Lib_Portal_Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib_SQM_Domain_MUIResources">
+      <HintPath>..\Lib_SQM_Domain_MUIResources\bin\Debug\Lib_SQM_Domain_MUIResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib_VMI">
+      <HintPath>..\Lib_VMI\bin\Debug\Lib_VMI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SICClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\SICClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SICServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2795f3c021b9fa60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\SICServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.Services.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.Reporting.XpsRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Source\TelerikReport\Telerik.ReportViewer.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Common.cs" />
+    <Compile Include="Model\eunma.cs" />
+    <Compile Include="Model\MRBAppove.cs" />
+    <Compile Include="Model\SQEAQLPlant.cs" />
+    <Compile Include="Model\SQEContact.cs" />
+    <Compile Include="Model\SQECriticism.cs" />
+    <Compile Include="Model\SQELitNO_Plant.cs" />
+    <Compile Include="Model\SQE_CPK.cs" />
+    <Compile Include="Model\SQE_UD.cs" />
+    <Compile Include="Model\SQMCPK.cs" />
+    <Compile Include="Model\SQMGrade.cs" />
+    <Compile Include="Model\SQMHold.cs" />
+    <Compile Include="Model\SQMMaterialMgmt.cs" />
+    <Compile Include="Model\SQMPVL.cs" />
+    <Compile Include="Model\SQMInsp.cs" />
+    <Compile Include="Model\SQMReliability.cs" />
+    <Compile Include="Model\SQM_AnnualObjectives.cs" />
+    <Compile Include="Model\SQM_Approve.cs" />
+    <Compile Include="Model\SQMBasic_CriticalFile.cs" />
+    <Compile Include="Model\SQMBasic.cs" />
+    <Compile Include="Model\SQMBasic_BasicInfo.cs" />
+    <Compile Include="Model\SQMRegist.cs" />
+    <Compile Include="Model\SQMMailR.cs" />
+    <Compile Include="Model\SQM_Benefit.cs" />
+    <Compile Include="Model\SQM_CriticismMgmt.cs" />
+    <Compile Include="Model\SQM_CustomersMgmt.cs" />
+    <Compile Include="Model\SQM_ECN.cs" />
+    <Compile Include="Model\SQM_EquipmentMgmt.cs" />
+    <Compile Include="Model\SQMSQEPURMgmt.cs" />
+    <Compile Include="Model\SQM_MRB.cs" />
+    <Compile Include="Model\SQM_PlantMgmt.cs" />
+    <Compile Include="Model\SQM_Quality.cs" />
+    <Compile Include="Model\SQM_RegisterMgmt.cs" />
+    <Compile Include="Model\SQM_SystemMgmt_Member_Helper.cs" />
+    <Compile Include="Model\SysMember.cs" />
+    <Compile Include="Model\SystemMgmt_ContactMgmt.cs" />
+    <Compile Include="Model\SystemMgmt_Agents.cs" />
+    <Compile Include="Model\SQMCertification_CertificationInfo.cs" />
+    <Compile Include="Model\SQMHR_HRInfo.cs" />
+    <Compile Include="Model\SQMProcess_ProcessInfo.cs" />
+    <Compile Include="Model\SQMPRO_SQMProduct1.cs" />
+    <Compile Include="Model\SystemMgmt_MemberMgmt.cs" />
+    <Compile Include="Model\SystemMgmt_MenuMgmt.cs" />
+    <Compile Include="Model\SystemMgmt_ProMgmt.cs" />
+    <Compile Include="Model\SystemMgmt_SubFuncMgmt.cs" />
+    <Compile Include="Model\SystemMgmt_Traders.cs" />
+    <Compile Include="Model\VenderAccount.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SharedLibs\CommonHelper.cs" />
+    <Compile Include="SharedLibs\Approve.cs" />
+    <Compile Include="SharedLibs\SQMDataLockHelper.cs" />
+    <Compile Include="SharedLibs\DBConnHelper.cs" />
+    <Compile Include="SharedLibs\ExportToExcelFileInfoHelper.cs" />
+    <Compile Include="SharedLibs\FileHandleHelper.cs" />
+    <Compile Include="SharedLibs\FileInfo.cs" />
+    <Compile Include="SharedLibs\ImageHelper.cs" />
+    <Compile Include="SharedLibs\LanguageHelper.cs" />
+    <Compile Include="SharedLibs\LoginInfoHelper.cs" />
+    <Compile Include="SharedLibs\MailHelper.cs" />
+    <Compile Include="SharedLibs\MISCHelper.cs" />
+    <Compile Include="SharedLibs\Portal Parameters.cs" />
+    <Compile Include="SharedLibs\PortalFunctionPathHelper.cs" />
+    <Compile Include="SharedLibs\PortalGlobalConstantHelper.cs" />
+    <Compile Include="SharedLibs\SecurityHelper.cs" />
+    <Compile Include="SharedLibs\SessionHelper.cs" />
+    <Compile Include="SharedLibs\SqlFileStreamHelper.cs" />
+    <Compile Include="SharedLibs\SQMStringHelper.cs" />
+    <Compile Include="Web References\dev281\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\icm045\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\icm131_2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Source\Aspose.Cells.dll" />
+    <Content Include="Source\ChineseConverter.dll" />
+    <Content Include="Source\ERPConnect20.dll" />
+    <Content Include="Source\NLog.dll" />
+    <Content Include="Source\SICClient.dll" />
+    <Content Include="Source\SICServer.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.Services.WebApi.dll" />
+    <Content Include="Source\TelerikReport\Telerik.Reporting.XpsRendering.dll" />
+    <Content Include="Source\TelerikReport\Telerik.ReportViewer.Mvc.dll" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\dev281\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\dev281\SQM_AccountService.wsdl" />
+    <None Include="Web References\icm045\CMSHandler.disco" />
+    <None Include="Web References\icm045\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\icm131_2\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\icm131_2\SQM_AccountService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://icm045/CMSHandler/CMSHandler.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\icm045\</RelPath>
+      <UpdateFromURL>http://icm045/CMSHandler/CMSHandler.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Lib_SQM_Domain_icm045_CMSHandler</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://icm131.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\icm131_2\</RelPath>
+      <UpdateFromURL>https://icm131.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Lib_SQM_Domain_icm131_2_SQM_AccountService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://vmitraining.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\dev281\</RelPath>
+      <UpdateFromURL>https://vmitraining.liteon.com/LiteOnSupplierWSService/SQM_AccountService.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Lib_SQM_Domain_dev281_SQM_AccountService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\icm045\CMSHandler.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib_VMI_Domain\Lib_VMI_Domain.csproj">
+      <Project>{F5F2A460-D9BF-46C0-B38C-527438D0200A}</Project>
+      <Name>Lib_VMI_Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

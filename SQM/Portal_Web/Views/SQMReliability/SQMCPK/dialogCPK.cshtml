@@ -1,0 +1,51 @@
+﻿
+<div id="dialogDataCPK" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogDataToolBarCPK" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataCPK"></button>
+        <button id="btndialogCancelEditCPK"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">報告編號:</td>
+            <td>
+                <input type="text" id="txtreportID" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">光寶料號:</td>
+            <td>
+                <input list="ddlplantCode1" id="ddlplantCode"/><span style="color:red">*</span>
+
+                <datalist id="ddlplantCode1">
+                
+                </datalist>
+                @*<input type="text" id="txtplantCode" class="DiaText" maxlength="40" />*@
+                @*<select id="ddlplantCode" style="width: 204px; display: inline-block;"></select>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">供應商:</td>
+            <td>
+                <input type="text" id="txtSupplier" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+     
+        <tr>
+            <td class="FieldLabel">工具編號:</td>
+            <td>
+                <input type="text" id="txtToolNumber" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">單位:</td>
+            <td>
+                <input type="text" id="txtInches" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgCPK"></span>
+            </td>
+        </tr>
+    </table>
+</div>

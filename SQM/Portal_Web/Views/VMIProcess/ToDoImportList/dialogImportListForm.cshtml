@@ -1,0 +1,80 @@
+﻿<div id="dialogImportListForm" title="Edit Import List" class="JQDialog" style="display:none">
+    <div id="dialogImportListForm_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:97%; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnSave"></button>
+        <button id="btnAddDNinList"></button>
+        <button id="btnDeleteAll"></button>
+        <button id="btnDelete"></button>
+        <button id="btnNoticeAndRelease"></button>
+        <button id="btnPrintImportList"></button>
+        <label id="lblImportListDNlist" style="display: none;"></label>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Import List No.:</td>
+                <td class="tdTitleAlignLeft">
+                    <span id="sImportListNum" class="spanFieldValueUnderLine"></span>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Create Date:</td>
+                <td class="tdTitleAlignLeft">
+                    <span id="sCreateDate" class="spanFieldValueUnderLine"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Forwarder Company Name:</td>
+                <td class="tdTitleAlignLeft">
+                    <select id="ddlForwarderCompanyName" class="tdQueryTextBox" style="width: 200px;"></select>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Receive Address:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtReceiveAddress" class="tdQueryTextBox" maxlength="200" style="width: 200px;"/>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Plant:</td>
+                <td class="tdTitleAlignLeft">
+                    @*<input type="text" id="txtPlant" class="tdQueryTextBox" value="" maxlength="4">
+                    <button id="btnQueryPlant" class="tdQueryButton"></button>*@
+                    <select id="ddlPlant" class="tdQueryTextBox"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Driver Name:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtDriverName" class="tdQueryTextBox" maxlength="50" style="width: 200px;"/>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Receiver:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtReceiver" class="tdQueryTextBox" maxlength="50" style="width: 200px;"/>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Is Close:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="checkbox" id="cbIsClose" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Vehicle Type & ID:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtVehicleID" class="tdQueryTextBox" maxlength="15" style="width: 200px;"/>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Receiver Telephone:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtReceiverTel" class="tdQueryTextBox" maxlength="15" style="width: 200px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Driver Telephone:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtDriverTel" class="tdQueryTextBox" maxlength="15" style="width: 200px;"/>
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Plan Arrival Date:</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtPlanArrivalDate" class="tdQueryTextBox" style="width:80px"/>
+                    <input type="text" id="txtPlanArrivalTime" class="tdQueryTextBox" style="width: 45px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table id="importListGridDataList"></table>
+        <div id="importListGridListPager"></div>
+    </div>
+</div>

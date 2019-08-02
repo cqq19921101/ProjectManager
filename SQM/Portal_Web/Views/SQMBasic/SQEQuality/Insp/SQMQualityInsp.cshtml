@@ -1,0 +1,61 @@
+﻿@Scripts.Render("~/bundles/SQMBasic/SQEQuality/Insp")
+
+<div id="inspInsp">
+    <div id="tbMain1Insp" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackInsp"></button>
+        @*<button id="btnCreateInsp"></button>
+        <button id="btnViewEditInsp"></button>
+        <button id="btnDeleteInsp"></button>*@
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>檢測項目:</span>
+                    <select id="ddlSInspCode" style="width:204px;"></select>
+                </td>
+                <td>
+                    <span>檢測說明:</span>
+                    <select id="ddlSInspDesc" style="width:204px;"></select>
+                    <button id="btnSearchInsp"></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListInsp"></table>
+        <div id="gridListPagerInsp"></div>
+    </div>
+</div>
+
+<div id="inspInspVar">
+    @*<div id="tbMain1InspVar" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackInsp"></button>
+        <button id="btnCreateInsp"></button>
+        <button id="btnViewEditInspVar"></button>
+        <button id="btnDeleteInspVar"></button>
+    </div>*@
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>檢測項目:</span>
+                    <select id="ddlSInspCodeVar" style="width:204px;"></select>
+                    <button id="btnSearchInspVar"></button>
+                </td>
+                @*<td>
+                        <span>檢測說明:</span>
+                        <select id="ddlSInspDescVar" style="width:204px;"></select>
+                    </td>*@
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListInspVar"></table>
+        <div id="gridListPagerInspVar"></div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+    var _Requestor = "@ViewBag.Requestor" // Only for new form
+    @*var iPowerUserID = '@Html.Raw(ViewBag.UserID)';
+    var iPowerUserNameE = '@Html.Raw(ViewBag.UserNameE)';
+    var __ControllerName = "ItemMaster";
+    var __Area = 1;
+    //Start Session Expired Timer
+    StartPortalSessionStopWatch();*@
+</script>
+
+@*<script type="text/javascript" src="~/Scripts/UploadifyF32/jquery.uploadify.min.js"></script>
+    @Scripts.Render("~/bundles/UploadifyF32/js")
+    @Styles.Render("~/bundles/UploadifyF32/css")*@
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/VMIProcess/ApplicationVendorAccount")
+@RenderPage("~/Views/VMIProcess/ApplicationVendorAccount/dialogAVAManage.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+<div id="tbAVA">
+    <table class="ui-widget-header ui-corner-all" style="width:1102px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnQueryAVA"></button>
+                <button id="btnAddAVA"></button>
+                <button id="btnDeleteAVA"></button>
+                <div style="display: inline-block; font-weight: 500; vertical-align: middle;">
+                    <input type="checkbox" id="cbAddByVMIUser" style="vertical-align:middle;" disabled/><label for="cbAddByVMIUser">Add by VMI User</label>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="width:1101px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:490px;">
+            <tr>
+                <td class="tdTitleAlignRight">Company Name:</td>
+                <td>
+                    <input type="text" id="txtCompanyName" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+                <td class="tdTitleAlignRight">Site:</td>
+                <td>
+                    <select id="ddlSite" class="tdQueryTextBox" style="width: 135px;"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Vendor Code:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+                <td class="tdTitleAlignRight">Issuer:</td>
+                <td>
+                    <input type="text" id="txtIssuer" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Status:</td>
+                <td>
+                    <select id="ddlStatus" class="tdQueryTextBox" style="width: 135px;">
+                        <option selected="selected"></option>
+                        <option>New</option>
+                        <option>In-Process</option>
+                        <option>Paper Flow End</option>
+                        <option>SAP Mapping End</option>
+                        <option>Close</option>
+                        <option>Reject</option>
+                        <option>Downloaded</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="gridAVA"></table>
+    <div id="gridAVAListPager"></div>
+</div>

@@ -1,0 +1,283 @@
+﻿
+/*=====================*/
+/*JQuery Dialog (start)*/
+.DiaText {
+    width:200px;
+}
+.JQDialog {
+    font-size: 12px;
+}
+/*JQuery Dialog (end)  */
+/*=====================*/
+
+/*==============*/
+/*Banner (start)*/
+._loginID {
+    font-weight:bold;
+    color:darkorange;
+}
+
+.BannerBetaMark {
+    font-size: 18px;
+    color: red;
+}
+/*Banner (end)  */
+/*==============*/
+
+/*====================================*/
+/*SystemMgmt/PortalUserProfile (start)*/
+.ProfileLabel {
+    vertical-align: top;
+    text-align: right;
+}
+/*SystemMgmt/PortalUserProfile (end)  */
+/*====================================*/
+
+/*=======================*/
+/*jQGrid資料可跨行 (start)*/
+/*(目前暫未使用)*/
+/*th.ui-th-column div{
+    white-space:normal !important;
+    height:auto !important;
+    padding:2px;
+}
+.ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+}*/
+/*jQGrid資料可跨行 (end)  */
+/*=======================*/
+
+/*=======================*/
+/* Function Path (start) */
+/* Function Path (end)   */
+.Portal_FunctionPath_Table {
+    width:100%;
+    border-spacing:0px;
+    background-color:white;
+}
+
+.Portal_FunctionPath_TD{
+    height:27px;
+    vertical-align:central;
+    border-bottom-width:1px;
+    border-bottom-color:#330066;
+    border-bottom-style:solid;
+}
+
+.Portal_FunctionPath_Delimiter{
+    font-weight: bold;
+    color: black;
+}
+
+.Portal_FunctionPath_Name{
+    font-weight: bold;
+    color: #009999;
+}
+/* Function Path (end)   */
+/*=======================*/
+
+body {
+    font: normal 13px Arial, sans-serif;
+}
+
+.PortalBody {
+    font: normal 13px Arial, sans-serif;
+    background-image: url("../../Scripts/_Global/mainbg.jpg");
+}
+
+.PortalBanner_OutterTable {
+    padding: 0;
+    border-spacing: 0;
+}
+
+.PortalBanner_TRTD {
+    padding: 0;
+}
+
+.PortalBanner_LeftDIV {
+    width: 714px;
+    height: 80px;
+    background-image: url("../../Scripts/_Global/title.jpg");
+}
+
+.PortalBanner_RightTD {
+    padding: 0;
+    width: 100%;
+    text-align: right;
+    vertical-align: bottom;
+    background-image: url("../../Scripts/_Global/title_bg.jpg");
+}
+
+.PortalBanner_SitePurposeDIV {
+    display: inline-block;
+    color: red;
+    font-weight: bolder;
+    font-size: 32px;
+    white-space:nowrap;
+}
+
+.PortalBanner_RightLoginDIV {
+    display: inline-block;
+    background-color: white;
+    padding: 3px 6px 3px 9px;
+    white-space : nowrap;
+}
+
+.FieldLabelForLogin {
+    text-align:right;
+    font-size:13px;
+    vertical-align:middle;
+    color:white;
+}
+
+.FieldLabelLeftForLogin {
+    text-align:left;
+    font-size:13px;
+    vertical-align:middle;
+    color:white;
+}
+
+.FieldLabel {
+    text-align:right;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+.FieldLabelLeft {
+    text-align:left;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+.SubmitTD {
+    text-align:center;
+}
+.ErrorMsg {
+    color: red;
+    text-align:left;
+    font-size:13px;
+}
+.SuccessMsg {
+    color: darkblue;
+    text-align:center;
+    font-size:13px;
+}
+table{
+     font-family: Arial, Verdana;
+     font-size:13px;
+}
+.BannerCustomizedWebName {
+    position:absolute;
+    top: 33px;
+    left: 150px;
+    font: bolder 32px Arial, sans-serif;
+    color: white;
+    white-space: nowrap;
+}
+
+/*=======================*/
+/*=======================*/
+.dialogSTDToolBar {
+    width: 400px;
+    padding: 3px 15px 3px 15px;
+    font-size: 10.5px;
+}
+
+
+/*====================================*/
+/*Edward Huang Add For VMI V2.0=======*/
+
+/*====================================*/
+
+.spanFieldValueUnderLine{
+    text-decoration: underline;
+}
+
+.spanTextWithColorRed{
+    color:red;
+}
+
+.tdTitleAlignRight{
+    text-align:right;
+}
+.tdTitleAlignLeft{
+    text-align:left;
+}
+.tdTitleAlignCenter{
+    text-align:center;
+}
+
+.jqGridColumnDataAsPointer {
+    cursor: pointer;
+}
+
+.jqGridColumnDataAsLink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.jqGridColumnDataAsLinkWithBlue {
+    text-decoration: underline;
+    cursor: pointer;
+    color:blue;
+}
+
+.jqTextForNumeric{
+    text-align:right;
+}
+
+.jqGridRowCellBoolValue{
+    font-size: 150%;
+}
+
+.jqGridHighLightPMLData td{
+    background-color:#CCFF99;
+}
+.jqGridHighLightEOLData td{
+    background-color:#FFD9EC;
+}
+.jqGridHighLightNotExistData td{
+    background-color:#AFEEEE;
+}
+
+.ui-jqgrid-btable .ui-state-highlight { 
+    background: #d0d0d0; }
+
+.ui.jqgrid-backgroundimgForCancel {
+    width: 10px;
+    height: 10px;
+    background-image: url("../../Scripts/_Global/icon_m11.gif");
+}
+
+.tdQueryTextBox{
+    width: 100px;
+    height: 23px;
+    border: 1px solid #aaaaaa;
+    padding-left: 2px;
+    position: relative;
+    vertical-align: middle;
+    line-height: 23px;
+}
+
+.tdQueryButton{
+    width: 30px;
+    height: 25px;
+}
+
+.button-fileupload{
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+}
+
+
+/*For VMI V2.0 (end)*/
+/*====================================*/

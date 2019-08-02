@@ -1,0 +1,128 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIProcess/ToDoASN")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogConfirm.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNManage.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNHeader.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNDetail.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNDetailError.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNImportDetail.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNImportDetailShowASNQty.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNFileDetail.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNFileAttach.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNContractCode.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNOverOpenPOQtyError.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNFileViewLogs.cshtml")
+@RenderPage("ToDoASN/dialogToDoASNImportedReject.cshtml")
+
+<script type="text/javascript" src="~/Scripts/UploadifyF32/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.cookie.js"></script>
+
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@using Lib_Portal_Domain.SharedLibs;
+@foreach (var role in PortalUserProfileHelper.GetRunAsUserProfile(Context).Roles)
+{
+    if (role.RoleName.ToUpper().IndexOf("VMIASNREVIEWER") != -1 || role.RoleName.ToUpper().IndexOf("VMIADMIN") != -1)
+    {
+        <label id="addReviewingFlag" style="display: none;">@Html.Raw(role.RoleName)</label>
+        break;
+    }
+}
+
+<div id="VMIProcess_ToDoASN_tbTopToolBar">
+    <table class="ui-widget-header ui-corner-all" style="width:652px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btn_VMIProcess_ToDoASN_Query"></button>
+                <label id="lab_VMIProcess_ToDoASN_Plant_Query" style="font-size:12px">Plant:</label>
+                <input type="text" id="txt_VMIProcess_ToDoASN_Plant" class="tdQueryTextBox" value="" maxlength="4" >
+                <button id="btn_VMIProcess_ToDoASN_Plant_Query" class="tdQueryButton"></button>
+                <label id="lab_VMIProcess_ToDoASN_Plant_Query" style="font-size:12px">Vendor:</label>
+                <input type="text" id="txt_VMIProcess_ToDoASN_SBU_VDN" class="tdQueryTextBox" value="" maxlength="10" >
+                <button id="btnVMIProcess_ToDoASN_SBU_VDN_Query" class="tdQueryButton"></button>
+                <button id="btn_VMIProcess_ToDoASN_CreateHeader"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:651px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:500px;">
+            <tr>
+                <td class="tdTitleAlignRight">ASN No(FM):</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ToDoASN_ASNNoFM" class="tdQueryTextBox" maxlength="10" value=@Html.Raw(ViewBag.QueryASNNoFrom)>
+                </td>
+                <td class="tdTitleAlignRight">ASN No(TO):</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ToDoASN_ASNNoTO" class="tdQueryTextBox" maxlength="10" value=@Html.Raw(ViewBag.QueryASNNoFrom)>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ToDoASN_Plant2" class="tdQueryTextBox" value="" maxlength="4">
+                    <button id="btn_VMIProcess_ToDoASN_Plant_Query2" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor:</td>
+                <td >
+                    <input type="text" id="txt_VMIProcess_ToDoASN_SBU_VDN2" class="tdQueryTextBox" value="" maxlength="10">
+                    <button id="btn_VMIProcess_ToDoASN_SBU_VDN_Query2" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">ASN Date(FM):</td>
+                <td>
+                    <input type="text" class="tdQueryTextBox" name="Date" id="dpASNDate_FM" />
+                </td>
+                <td class="tdTitleAlignRight">ASN Date(TO):</td>
+                <td>
+                    <input type="text" class="tdQueryTextBox" name="Date" id="dpASNDate_TO" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Status:</td>
+                <td>
+                    <select id="dropbox_VMIProcess_ToDoASN_Status" class="tdQueryTextBox">
+                        <option value="N">New</option>
+                        <option value="I">In-Process</option>
+                        <option value="E">Error</option>
+                        <option value="">To Do All</option>
+                    </select>
+                </td>
+                <td class="tdTitleAlignRight">Trade Type:</td>
+                <td>
+                    <select id="dropbox_VMIProcess_ToDoASN_TradeType" class="tdQueryTextBox">
+                        <option value="">-- Select --</option>
+                        <option value="I">I:Import</option>
+                        <option value="P">P:Transfer</option>
+                        <option value="A">A:Local</option>
+                        <option value="O">O:Opto</option>
+                        <option value="B">B:Taxed</option>
+                        <option value="C">C:Concentrate</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Data Type:</td>
+                <td>
+                    <input type="radio" name="QueryType" value="S">By Status<br />
+                    <input type="radio" name="QueryType" value="W">ASN without Line
+                </td>
+                <td class="tdTitleAlignRight">User ID:</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ToDoASN_UserID" class="tdQueryTextBox" value="" maxlength="50">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="VMI_Process_ToDoASN_gridDataList"></table>
+    <div id="VMI_Process_ToDoASN_gridListPager"></div>
+</div>

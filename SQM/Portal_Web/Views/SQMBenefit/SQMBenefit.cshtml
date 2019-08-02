@@ -1,0 +1,234 @@
+﻿
+
+@Scripts.Render("~/bundles/SQMBenefit")
+@RenderPage("~/Views/SQMBenefit/dialogQuerySBUVendor.cshtml")
+
+<iframe id="ifile" style="display:none"></iframe>
+
+    <div id="tb1">
+        <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+            <button id="btnShow"></button>
+            <button id="btnSearch"></button>
+            <button id="btnCreate"></button>
+            <button id="btnExcle1"></button>
+            <button id="btnExcle2"></button>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <td>BeneFitNo:</td>
+                    <td>
+                        <input type="text" id="txtFilterText" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin-left:5px">
+            <table id="gridDataList"></table>
+            <div id="gridListPager"></div>
+        </div>
+    </div>
+    <div id="back">
+        <table  class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+            <tr>
+                <td><button id="btnBack"></button><button id="btnSave"></button><button id="btnSave2"></button></td>
+            </tr>
+        </table>
+    </div>
+    <div id="tb2">
+        <table  border="1">
+            <tr>
+                <td colspan="3">年/月<input type="text" id="txtBenbfitDate" /></td>
+
+                <td>供應商<input type="text" id="txtVendorCode" /><button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button></td>
+
+                <td>供應材料<input type="text" id="txtMaterialType" /></td>
+
+                <td>實際得分<input type="text" id="txtTotolScore" /></td>
+
+                <td>等级<input type="text" id="txtClass" /></td>
+
+            </tr>
+            <tr>
+                <td rowspan="10"> 品保評比分數</td>
+                <td rowspan="2">A進料檢驗ILRR</td>
+                <td colspan="2">
+                    A>实际/目标≦1,并达成免检条件 &nbsp; 得25分<br />
+                    B>实际/目标≦1    &nbsp;              得20分<br />
+                    C>实际/目标＞1≦1.2  &nbsp;          得15分<br />
+                </td>
+                <td colspan="3">
+                    D>实际/目标＞1.2≦1.4    &nbsp;     得10分<br />
+                    E>实际/目标＞1.4≦1.6    &nbsp;     得5分<br />
+                    F>实际/目标＞1.6         &nbsp;     得3分<br />
+
+
+                </td>
+
+
+            </tr>
+            <tr>
+
+                <td>進料總批數<input type="number" id="txtBatchNum1"/></td>
+                <td>判退批數<input type="number" id="txtRejectNum1" /></td>
+                <td>批退率<input type="number" id="txtRejectRate" /></td>
+                <td>目標值<input type="number" id="txtTargetValue1"/></td>
+                <td>得分<input type="number" id="txtScore1"/></td>
+            </tr>
+            <tr>
+
+                <td rowspan="2">B上線使用SVLRR</td>
+                <td colspan="2">
+                    A>实际/目标≦1&nbsp;得50分<br />
+                    B>实际/目标＞1≦1.25 &nbsp;得45分<br />
+                    C>实际/目标＞1.25≦1.5&nbsp; 得40分<br />
+
+                </td>
+                <td colspan="3">
+                    D>实际/目标＞1.5≦1.75  得35分<br />
+                    E>实际/目标＞1.75≦2                     得30分<br />
+                    F>实际/目标＞2                           得25分<br />
+
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>投產數<input type="number" id="txtProductionNum"/></td>
+                <td>不良數<input type="number" id="txtDefectQuantity" /></td>
+                <td>不良率<input type="number" id="txtRejectRatio" /></td>
+                <td>目標值<input type="number" id="txtTargetValue2" /></td>
+                <td>得分<input type="number" id="txtScore2" /></td>
+
+            </tr>
+            <tr>
+
+                <td rowspan="2">C報告回復</td>
+                <td colspan="2">
+                    A> 国内3天、海外5天、半导体10&nbsp;得25分<br />
+                    B> 国内5天、海外10天、半导体20&nbsp;得20分<br />
+                    C> 国内7天、海外15天、半导体30&nbsp;得15分<br />
+
+
+                </td>
+                <td colspan="3">
+                    D> 国内10天、海外20天、半导体40      &nbsp;  得10分<br />
+                    E> 国内超10天、海外超20天、半导体超40天   &nbsp;得0分<br />
+                    F> SCAR未回复每份扣10分&nbsp;（25分扣完为止）<br />
+                </td>
+
+            </tr>
+            <tr>
+                <td>回復總天數<input type="number" id="txtTotalRecoveryDays" /></td>
+                <td>回復件數<input type="number" id="txtReplyQuantity"/></td>
+                <td>平均天數<input type="number" id="txtMDO"/></td>
+                <td>目標值<input type="number" id="txtTargetValue3" /></td>
+                <td>得分<input type="number" id="txtScore3" /></td>
+
+            </tr>
+            <tr>
+                <td rowspan="2">D環保評分</td>
+                <td>XRF測試批數<input type="number" id="txtXRF" /></td>
+                <td>判退批數<input type="number" id="txtBatchNum2" /></td>
+                <td>批退率<input type="number" id="txtRejectNum2"/></td>
+                <td>目標值<input type="number" id="txtTargetValue4"/></td>
+                <td>得分<input type="number" id="txtScore4"/></td>
+            </tr>
+            <tr>
+                <td colspan="5">A>在本公司IQC測試未發現超標的，得20分，反之扣20分（在ILRR中不扣分）</td>
+
+
+            </tr>
+            <tr>
+                <td rowspan="2">E扣分项目</td>
+                <td colspan="2">
+                    A>在客户端有异常需产品批量替换或召回的       &nbsp;    -30分/次<br />
+                    B>在客户端有异常不需批量替换召回的           &nbsp;     -20分/次<br />
+                    C>在OQC因材料不良判退需要批量返工的          &nbsp;     -10分/次<br />
+                    D>在OQC因材料不良判退但不需批量返工的        &nbsp;   -3分/次<br />
+                </td>
+                <td colspan="3">
+                    E>上线后材料不良造成产品批量修理返工的   &nbsp; -10分/次<br />
+                    F>上线后材料不良造成停线1小时以上的      &nbsp;     -3分/次<br />
+                    G>上线后材料需要在线进行处理再使用的     &nbsp;   -2分/次<br />
+                    H>当月同一材料发生相同的品质问题的       &nbsp;     -2分/次<br />
+                </td>
+
+            </tr>
+            <tr>
+                <td>A:       <input type="number" id="txtA" />  (次) &nbsp;B:    <input type="number" id="txtB" />    (次)</td>
+
+                <td>C:      <input type="number" id="txtC" />  (次)&nbsp;D:    <input type="number" id="txtD" />    (次)</td>
+                <td>E:     <input type="number" id="txtE" />   (次)&nbsp;F:   <input type="number" id="txtF" />     (次)</td>
+
+                <td>G:      <input type="number" id="txtG" />  (次)&nbsp;H:      <input type="number" id="txtH" />  (次)</td>
+                <td>总扣分<input type="number" id="txtScore5" /></td>
+            </tr>
+            <tr>
+                <td rowspan="2">採購評比分數</td>
+                <td>F成本評分</td>
+                <td colspan="4">
+                    A> 15分：成本價格極佳，成本管理/Cost Down並提供運輸費用。<br />
+                    B> 10分：成本價格具優勢，能配合公司採購政策。<br />
+                    C> 5分：成本價格適當。<br />
+                    D> 0分：成本價格偏高，不具競爭力。<br />
+                </td>
+                <td>得分<input type="number" id="txtScore6" /></td>
+            </tr>
+            <tr>
+                <td> G交期評分</td>
+                <td colspan="4">
+
+                    A> 15分：交期能配合生產需求。<br />
+                    B> 10分：交貨有延誤但尚未造成產線停線。<br />
+                    C> 5分：因交期跳票但有通知本公司及時變更排程。<br />
+                    D> 0分：因交期跳票且未通知本公司及時變更排程並造成停線等損失。<br />
+                </td>
+
+                <td>得分 <input type="number" id="txtScore7" /></td>
+            </tr>
+            <tr>
+                <td rowspan="5">C&U級供應商處理</td>
+                <td>問題描述(IQC)</td>
+                <td colspan="5"><textarea id="txtNOTE" style="width:100%;max-width:98%"></textarea></td>
+
+            </tr>
+            <tr>
+                <td rowspan="4">处理方式(SQE)</td>
+                <td colspan="3"> 
+                1. <input id="cbIsvalid1" cbtype="" type="radio" name="Isvalid" value="1" readonly="readonly">减量&停止採購    <input id="cbIsvalid2" cbtype="" type="radio" name="Isvalid" value="2" readonly="readonly"> 供應商資格取消</td>
+                
+               
+              
+                <td colspan="2">（■此符號為實心則為執行項目）</td>
+
+            </tr>
+            <tr>
+
+                <td colspan="5"> 2.  <input id="cbIsvalid3" cbtype="" type="radio" name="Isvalid" value="3" readonly="readonly">請針對此次品質評比的問題點於   <input type="number" id="txtMonth1" />     月 <input type="number" id="txtDay1" />       日之前提出管理系統改善計劃交LITEON SQE</td>
+
+
+            </tr>
+            <tr>
+                <td colspan="5">3.  <input id="cbIsvalid4" cbtype="" type="radio" name="Isvalid" value="4" readonly="readonly">請供應商內部檢討與改善，SQE將執行現場稽核，雙方力圖使下個月評比合格</td>
+
+            </tr>
+            <tr>
+                <td colspan="5"> 4.  <input id="cbIsvalid5" cbtype="" type="radio" name="Isvalid" value="5" readonly="readonly">请于     <input type="number" id="txtMonth2" />    月  <input type="number" id="txtDay2" />         日   <input type="number" id="txtHour" />          ：00  之前到達LITEON(常州光寶)參加檢討會議</td>
+
+            </tr>
+            <tr>
+                <td colspan="2">評價人員</td>
+                <td>IQC:<input type="text" id="txtIQC" /></td>
+                <td>SQE:<input type="text" id="txtSQE"/></td>
+                <td>Sourcer:<input type="text" id="txtSCOURCER"/></td>
+                <td colspan="2">Buyer:<input type="text" id="txtBUYER" /></td>
+
+            </tr>
+
+        </table>
+    </div>
+
+

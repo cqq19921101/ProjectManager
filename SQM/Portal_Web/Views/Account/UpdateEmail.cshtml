@@ -1,0 +1,19 @@
+﻿<form id="_ActivateForm" method="post">
+    <table>
+        <tr>
+            <td class="FieldLabel">E-mail:</td>
+            <td><input type="email" id="email" name="email" value="@ViewBag.PrimaryEmail" style="width: 280px;" /></td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Password:</td>
+            <td><input type="password" id="password" name="password" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+    <span class="SuccessMsg">@Html.Raw(ViewBag.SuccessMsg)</span>
+    <span class="ErrorMsg">@Html.Raw(ViewBag.ErrMsg)</span>
+</form>

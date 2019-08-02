@@ -1,0 +1,28 @@
+﻿@Scripts.Render("~/bundles/SQMBasic/SQEInsp/InspDescVar")
+@RenderPage("~/Views/SQMBasic/SQEInsp/InspVar/dialogVar.cshtml")
+<div id="inspDescVar">
+    <div id="tbMain1DescVar" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackVar"></button>
+        <button id="btnCreateDescVar"></button>
+        <button id="btnViewEditDescVar"></button>
+        <button id="btnDeleteDescVar"></button>
+    </div>
+
+    <div style="display:none">
+        <table>
+            <tr>
+                <td>
+                    <span>InspDesc:</span>
+                    <input type="text" id="txtFilterTextDescVar" value="" />
+                    <button id="btnSearchDescVar"></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListDescVariables"></table>
+        <div id="gridListPagerDescVariables"></div>
+    </div>
+
+</div>

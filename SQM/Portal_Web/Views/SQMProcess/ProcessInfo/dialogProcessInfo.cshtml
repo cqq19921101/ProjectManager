@@ -1,0 +1,46 @@
+﻿<div id="dialogSQMProcessData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogSQMProcessDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogSQMProcessEditData"></button>
+        <button id="btndialogSQMProcessCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">公司制程状况</td>
+            <td colspan="3">
+                <select id="ddlSQMProcessCName"></select>
+                <input type="text" id="txtSQMProcessCNameInput" class="DiaText" style="width:30%;max-width:30%;" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">制程名称</td>
+            <td>
+                <input type="text" id="txtProcessName" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        @*<tr>
+            <td class="FieldLabel">是否自有制程</td>
+            <td>
+                <input type="text" id="txtOwnOrOut" class="DiaText" maxlength="40" />
+            </td>
+        </tr>*@
+        <tr>
+            <td class="FieldLabel">制程类型:</td>
+            <td>
+                <input type="radio" name="DiaMemberType" id="radOwnProcess" value="own" />自有制程
+                <input type="radio" name="DiaMemberType" id="radOutProcess" value="out" />委外制程
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">委外供应商名称</td>
+            <td>
+                <input type="text" id="txtExternalSupplierName" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgOfprocess"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+

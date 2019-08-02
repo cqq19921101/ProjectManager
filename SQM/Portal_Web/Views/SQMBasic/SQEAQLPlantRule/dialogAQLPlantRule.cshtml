@@ -1,0 +1,59 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">抽樣計畫:</td>
+            <td>
+                <select id="ddlPlantName" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">等級:</td>
+            <td>
+                <select id="ddlAQLType" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢驗批數:</td>
+            <td>
+                <input type="text" id="txtCheckNum" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">批退數:</td>
+            <td>
+                <input type="text" id="txtRetreatingNum" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">允收數:</td>
+            <td>
+                <input type="text" id="txtAcceptanceNum" class="DiaText" maxlength="40" /><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">轉換後等級:</td>
+            <td>
+                <select id="ddlAfterAQLType" style="width:204px;">
+                    <option value="0">正常</option>
+                    <option value="1">加嚴</option>
+                    <option value="2">減量</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">轉換後抽樣計畫:</td>
+            <td>
+                <select id="ddlAfterPlantName" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

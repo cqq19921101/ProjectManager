@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "SubMember Management";
+}
+
+@Scripts.Render("~/bundles/SubMemberManagement")
+
+@RenderPage("SubMemberManagement/dialogMember.cshtml")
+@RenderPage("SubMemberManagement/dialogMemberRoles.cshtml")
+
+<div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSearch"></button>
+    <button id="btnCreate"></button>
+    @*<button id="btnViewEdit"></button>
+    <button id="btnDelete"></button>*@
+    <button id="btnSetRole"></button>
+</div>
+
+<table>
+    <tr>
+        <td>Search Text:</td>
+        <td>
+            <input type="text" id="txtFilterText" value="" maxlength="36" />
+        </td>
+    </tr>
+    @*<tr>
+        <td>Member Type:</td>
+        <td>
+            <span><input type="radio" name="FilterMemberType" id="radFilterMemberTypeAll" checked />All</span>
+            <span><input type="radio" name="FilterMemberType" id="radFilterMemberTypeInternalOnly" />Internal Only</span>
+            <span><input type="radio" name="FilterMemberType" id="radFilterMemberTypeExternalOnly" />External Only</span>
+        </td>
+    </tr>*@
+</table>
+
+<div style="margin-left:5px">
+    <table id="gridDataList"></table>
+    <div id="gridListPager"></div>
+</div>

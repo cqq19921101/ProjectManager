@@ -1,0 +1,101 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/PerInvRptConsign")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIQuery/PerInvRptConsign/dialogPerInvRptConsignResult.cshtml")
+
+<div id="tbPerInvRptConsign">
+    <table class="ui-widget-header ui-corner-all" style="width:675px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td style="white-space:nowrap;">
+                <input type="radio" name="PDFType" value="O" id="PDFTypeO" checked="checked" />
+                <label for="PDFTypeO" style="font-size: 13px; font-weight:100;">One File</label>
+            </td>
+            <td style="white-space:nowrap;">
+                <input type="radio" name="PDFType" value="V" id="PDFTypeV" />
+                <label for="PDFTypeV" style="font-size: 13px; font-weight:100;">by Vendor</label>
+            </td>
+            <td style="white-space:nowrap;">
+                <input type="radio" name="PDFType" value="VC" id="PDFTypeVC" />
+                <label for="PDFTypeVC" style="font-size: 13px; font-weight:100;">by Vendor+Company</label>
+            </td>
+            <td style="white-space:nowrap;">
+                <input type="radio" name="PDFType" value="VCP" id="PDFTypeVCP" />
+                <label for="PDFTypeVCP" style="font-size: 13px; font-weight:100;">by Vendor+Company+Plant</label>
+            </td>
+            <td>
+                <button id="btnDownloadPDF"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:674px; padding:3px 0; border-right:1px solid #aaaaaa; border-bottom:1px solid #aaaaaa;">
+        <table style="width:600px;">
+            <tr>
+                <td class="tdTitleAlignRight">Post Date(FM):</td>
+                <td>
+                    <input type="text" id="fromPostDate" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Post Date(TO):</td>
+                <td>
+                    <input type="text" id="toPostDate" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Plant(FM):</td>
+                <td>
+                    <input type="text" id="txtFromPlant" maxlength="4" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryFromPlantDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Plant(TO):</td>
+                <td>
+                    <input type="text" id="txtToPlant" maxlength="4" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryToPlantDialog" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Material(FM):</td>
+                <td>
+                    <input type="text" id="txtFromMaterial" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Material(TO):</td>
+                <td>
+                    <input type="text" id="txtToMaterial" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Vendor(FM):</td>
+                <td>
+                    <input type="text" id="txtFromVendorCode" maxlength="10" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryFromVendorCodeDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor(TO):</td>
+                <td>
+                    <input type="text" id="txtToVendorCode" maxlength="10" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryToVendorCodeDialog" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Storage Location(FM):</td>
+                <td>
+                    <input type="text" id="txtFromSLoc" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Storage Location(TO):</td>
+                <td>
+                    <input type="text" id="txtToSLoc" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Company Code(FM):</td>
+                <td>
+                    <input type="text" id="txtFromCompanyCode" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Company Code(TO):</td>
+                <td>
+                    <input type="text" id="txtToCompanyCode" class="tdQueryTextBox" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIConfigration/ASNVendorProfile")
+
+@RenderPage("~/Views/VMIShare/dialogQueryCorpVendor.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("ASNVendorProfile/dialogASNVendorProfile.cshtml")
+@RenderPage("ASNVendorProfile/dialogModifyCustomerCode.cshtml")
+@RenderPage("ASNVendorProfile/dialogModifyShipFrom.cshtml")
+@RenderPage("ASNVendorProfile/dialogModifyForwarder.cshtml")
+
+
+<div id="tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:1030px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btn_VMIConfig_ASN_Corp_VDN_Info_Query"></button>
+</div>
+
+<div>
+    <table style="width:700px;">
+        <tr>
+            <td class="tdTitleAlignRight" width="110px">Corp.Vendor Code</td>
+            <td width="180px">
+            <input type="text" id="txt_VMIConfig_ASN_Corp_VDN" value="" maxlength="10" style="width:100px">
+            <span id="span_VMIConfig_ASN_Corp_VDN" class="spanFieldValueUnderLine"></span>
+            <input type="button" id="btn_VMIConfig_ASN_Corp_VDN_Query" value="Search" style="width:70px"></td>
+            <td class="tdTitleAlignRight" width="110px">SBU Vendor Code</td>
+            <td width="180px">
+            <input type="text" id="txt_VMIConfig_ASN_SBU_VDN" value="" maxlength="10" style="width:100px">
+            <input type="button" id="btn_VMIConfig_ASN_SBU_VDN_Query" value="Search" style="width:70px"></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table id="VMI_ASNVendor_gridDataList"></table>
+    <div id="VMI_ASNVendor_gridListPager"></div>
+</div>

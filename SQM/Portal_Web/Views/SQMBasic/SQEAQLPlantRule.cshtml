@@ -1,0 +1,45 @@
+﻿@Scripts.Render("~/bundles/SQMBasic/SQEAQLPlant/AQLPlantRule")
+
+@RenderPage("SQEAQLPlantRule/dialogAQLPlantRule.cshtml")
+<div id="div">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        @*<button id="btnShow"></button>*@
+        <button id="btnCreate"></button>
+        <button id="btnViewEdit"></button>
+        <button id="btnDelete"></button>
+        <button id="btnDisbaled"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>抽樣計畫:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+                <td>Show:</td>
+                <td>
+                    <select id="ddlShow" style="width:204px;">
+                        <option value="">=====</option>
+                        <option value="1">Enabled</option>
+                        <option value="0">Disabled</option>
+                    </select>
+                </td>
+                <td>
+                    <button id="btnSearch"></button>
+                </td>
+            </tr>
+            @*<tr>
+                    <td>
+                        <span>抽樣計畫:</span>
+                        <span id="spAQLPlant"></span>
+                    </td>
+                </tr>*@
+        </table>
+    </div>
+
+    <div style="margin-left:5px">
+        <table id="gridDataList"></table>
+        <div id="gridListPager"></div>
+    </div>
+</div>

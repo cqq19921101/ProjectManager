@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="EXPIRES" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    @Scripts.Render("~/bundles/Regist/js")
+    @Styles.Render("~/bundles/Regist/css")
+</head>
+<body>
+
+    <div class="RegistTop">
+        <div class="RegistTop-left"></div>
+        <div class="RegistTop-right"></div>
+    </div>
+    <div class="RegistFoot">
+        <form method="post">
+            <table >
+                <tr>
+                    <td>
+                        <span id="lblVoderCode">UserName:</span>
+                    </td>
+                    <td>
+                        <input type="text" id="txtUserName" name="UserName"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="lblPassword">PassWord:</span>
+                    </td>
+                    <td>
+                        <input type="text" id="txtPassWord" name="PassWord"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" id="btnRegistSubmit" value="确定"/>
+                        &nbsp;
+                        <input type="button" id="btnRegistExit" value="取消"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>
+

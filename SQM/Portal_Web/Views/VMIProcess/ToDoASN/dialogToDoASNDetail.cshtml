@@ -1,0 +1,123 @@
+﻿<div id="dialog_VMIProcess_ToDoASNDetail" title="To Do ASN Detail" class="JQDialog" style="display:none">
+    <div>
+        <table style="width:100%;" border="0">
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">NO:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_ASNNo" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="25%">Status:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_Status" class="spanFieldValueUnderLine"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Log.Handling Grp.:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_LogHandingGroup" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="25%">Material No:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_MaterialNo" class="spanFieldValueUnderLine"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Custom Desc.:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_CustomDesc" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="25%">Description:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_Description" class="spanFieldValueUnderLine"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Custom Grouping No:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_CustomGroupNo" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="25%"></td>
+                <td class="tdTitleAlignLeft" width="25%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">PO/SA No:</td>
+                <td class="tdTitleAlignLeft" width="25%">
+                    <span id="dialog_span_VMIProcess_ToDoASNDetail_POSANO" class="spanFieldValueUnderLine"></span>
+                    <input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_POSANO" value="" maxlength="10" style="width:97%">
+                </td>
+                <td class="tdTitleAlignRight" width="25%">PO Line:</td>
+                <td class="tdTitleAlignLeft" width="25%">
+                    <span id="dialog_span_VMIProcess_ToDoASNDetail_POLine" class="spanFieldValueUnderLine"></span>
+                    <input type="text" class="jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_POLine" value="" maxlength="5" style="width:97%">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">UOM:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_UOM" class="spanFieldValueUnderLine"></span></td>
+                <td class="tdTitleAlignRight" width="25%">ASN Qty:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" class="jqTextForSelectAll jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_ASNQty" value="" maxlength="13" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Packing Detail:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_PackingDetail" value="" maxlength="40" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Unit Net Wgt(G):</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" class="jqTextForSelectAll jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_UnitNetWeight" value="" maxlength="14" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Vendor Material No:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorMaterialNo" value="" maxlength="17" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Customs Seal:</td>
+                <td class="tdTitleAlignLeft" width="25%">
+                <input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_CustomesSeal" value="" maxlength="20" style="width:97%">
+                    <select id="dialog_dropbox_VMIProcess_ToDoASNDetail_CustomesSeal"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">T. Packing:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" class="jqTextForSelectAll jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_TPacking" value="" maxlength="5" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">T. Net Wgt(KG):</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_TNetWeight"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">T. Gross Wgt(KG):</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" class="jqTextForSelectAll jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_TGrossWeight" value="" maxlength="13" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Packing Type:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_PackingType" value="" maxlength="20" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Cnty. Code of Origin:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_OriginCountryCode" value="" maxlength="3" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Cnty. of Origin:</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIProcess_ToDoASNDetail_OriginCountry"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">HAWB:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_HAWB" value="" maxlength="20" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">MAWB:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_MAWB" value="" maxlength="20" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">MFG Date:</td>
+                <td width="180px">
+                    <input type="text" name="Date" id="dpToDoASN_MFGDate" style="width:85px" />
+                </td>
+                <td class="tdTitleAlignRight" width="25%">Remark:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_Remark" value="" maxlength="30" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">BATCH:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_Batch" value="" maxlength="10" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Invoice Unit Price:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" class="jqTextForNumeric" id="dialog_txt_VMIProcess_ToDoASNDetail_InvoiceUnitPrice" value="" maxlength="15" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Vendor Material Number:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorMaterialNumber" value="" maxlength="30" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Vendor Custom Serial No:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorCustomSerialNo" value="" maxlength="5" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Vendor HS Code:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorHSCode" value="" maxlength="12" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Vendor Custom Part Name:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorCustomPartName" value="" maxlength="60" style="width:97%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Vendor UOM:</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIProcess_ToDoASNDetail_VendorUOM" value="" maxlength="10" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%"></td>
+                <td class="tdTitleAlignLeft" width="25%"></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br />
+        <span id="dialog_span_VMProcess_ToDoASNDetail_msg" class="spanTextWithColorRed">Please click 'Submit' button before leaving if the data have modified.*</span>
+    </div>
+</div>

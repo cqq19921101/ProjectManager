@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://gms021/axis/services/WormHoleWebService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://gms021/axis/services/WormHoleWebService" targetNamespace="http://gms021/axis/services/WormHoleWebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://gms021/axis/services/WormHoleWebService">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOfArrayOf_xsd_string">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="xsd:string[][]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="testRequest">
+    <wsdl:part name="startTime" type="xsd:string" />
+    <wsdl:part name="test" type="impl:ArrayOfArrayOf_xsd_string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundRscByTimeResponse">
+    <wsdl:part name="callOutBoundRscByTimeReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundFileByTimeRequest">
+    <wsdl:part name="startTime" type="xsd:string" />
+    <wsdl:part name="endTime" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAccountUrlRequest">
+    <wsdl:part name="account" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundSpecByKeyRequest">
+    <wsdl:part name="itemNo" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundSpecByKeyResponse">
+    <wsdl:part name="callOutBoundSpecByKeyReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundRscByKeyRequest">
+    <wsdl:part name="itemNo" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updateAccountEmailResponse">
+    <wsdl:part name="updateAccountEmailReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updateAccountEmailRequest">
+    <wsdl:part name="account" type="xsd:string" />
+    <wsdl:part name="email" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="testResponse">
+    <wsdl:part name="testReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundFileByKeyRequest">
+    <wsdl:part name="itemNo" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getAccountUrlResponse">
+    <wsdl:part name="getAccountUrlReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundSpecByTimeRequest">
+    <wsdl:part name="startTime" type="xsd:string" />
+    <wsdl:part name="endTime" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundSpecByTimeResponse">
+    <wsdl:part name="callOutBoundSpecByTimeReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundRscByKeyResponse">
+    <wsdl:part name="callOutBoundRscByKeyReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundFileByKeyResponse">
+    <wsdl:part name="callOutBoundFileByKeyReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundRscByTimeRequest">
+    <wsdl:part name="startTime" type="xsd:string" />
+    <wsdl:part name="endTime" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="callOutBoundFileByTimeResponse">
+    <wsdl:part name="callOutBoundFileByTimeReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="WormHoleService">
+    <wsdl:operation name="test" parameterOrder="startTime test">
+      <wsdl:input name="testRequest" message="impl:testRequest" />
+      <wsdl:output name="testResponse" message="impl:testResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundRscByTime" parameterOrder="startTime endTime">
+      <wsdl:input name="callOutBoundRscByTimeRequest" message="impl:callOutBoundRscByTimeRequest" />
+      <wsdl:output name="callOutBoundRscByTimeResponse" message="impl:callOutBoundRscByTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundRscByKey" parameterOrder="itemNo">
+      <wsdl:input name="callOutBoundRscByKeyRequest" message="impl:callOutBoundRscByKeyRequest" />
+      <wsdl:output name="callOutBoundRscByKeyResponse" message="impl:callOutBoundRscByKeyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundSpecByTime" parameterOrder="startTime endTime">
+      <wsdl:input name="callOutBoundSpecByTimeRequest" message="impl:callOutBoundSpecByTimeRequest" />
+      <wsdl:output name="callOutBoundSpecByTimeResponse" message="impl:callOutBoundSpecByTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundSpecByKey" parameterOrder="itemNo">
+      <wsdl:input name="callOutBoundSpecByKeyRequest" message="impl:callOutBoundSpecByKeyRequest" />
+      <wsdl:output name="callOutBoundSpecByKeyResponse" message="impl:callOutBoundSpecByKeyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundFileByKey" parameterOrder="itemNo">
+      <wsdl:input name="callOutBoundFileByKeyRequest" message="impl:callOutBoundFileByKeyRequest" />
+      <wsdl:output name="callOutBoundFileByKeyResponse" message="impl:callOutBoundFileByKeyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundFileByTime" parameterOrder="startTime endTime">
+      <wsdl:input name="callOutBoundFileByTimeRequest" message="impl:callOutBoundFileByTimeRequest" />
+      <wsdl:output name="callOutBoundFileByTimeResponse" message="impl:callOutBoundFileByTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAccountUrl" parameterOrder="account">
+      <wsdl:input name="getAccountUrlRequest" message="impl:getAccountUrlRequest" />
+      <wsdl:output name="getAccountUrlResponse" message="impl:getAccountUrlResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAccountEmail" parameterOrder="account email">
+      <wsdl:input name="updateAccountEmailRequest" message="impl:updateAccountEmailRequest" />
+      <wsdl:output name="updateAccountEmailResponse" message="impl:updateAccountEmailResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WormHoleWebServiceSoapBinding" type="impl:WormHoleService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="test">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="testRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="testResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundRscByTime">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundRscByTimeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundRscByTimeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundRscByKey">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundRscByKeyRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundRscByKeyResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundSpecByTime">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundSpecByTimeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundSpecByTimeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundSpecByKey">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundSpecByKeyRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundSpecByKeyResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundFileByKey">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundFileByKeyRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundFileByKeyResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="callOutBoundFileByTime">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="callOutBoundFileByTimeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="callOutBoundFileByTimeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountUrl">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAccountUrlRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="getAccountUrlResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAccountEmail">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateAccountEmailRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.whs.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="updateAccountEmailResponse">
+        <wsdlsoap:body use="encoded" namespace="http://gms021/axis/services/WormHoleWebService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WormHoleServiceService">
+    <wsdl:port name="WormHoleWebService" binding="impl:WormHoleWebServiceSoapBinding">
+      <wsdlsoap:address location="http://gms021/axis/services/WormHoleWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

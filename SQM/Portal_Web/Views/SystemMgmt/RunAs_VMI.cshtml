@@ -1,0 +1,8 @@
+﻿@Scripts.Render("~/bundles/SystemMgmt/RunAs_VMI")
+
+<p></p>
+<form id="_RunAsForm" method="post"><input type="hidden" id="hidRunAsAccount" name="RunAsAccount" /></form>
+Run As:&nbsp;<input type="text" id="txtRunAs" value="" />
+&nbsp;<input type="button" id="btnRunAs" value="Proceed" />
+<p></p>
+<div class="ErrorMsgAlignLeft">@ViewBag.Message</div>

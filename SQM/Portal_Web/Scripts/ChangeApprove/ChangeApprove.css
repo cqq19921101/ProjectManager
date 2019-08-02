@@ -1,0 +1,30 @@
+﻿body{
+    padding:0px;
+    margin:0px;
+}
+.RegistTop{
+   height:80px;
+}
+.RegistTop-left{
+ width:50%;
+ height:80px;
+ background-image: url("../_Global/title.jpg");
+ padding:0;
+ margin:0;
+ float:left;
+}
+.RegistTop-right {
+    width: 50%;
+    height: 80px;
+    background-image: url("../_Global/title_bg.jpg");
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+.Datalist
+{
+    /*padding-left:250px;*/
+}
+form{
+    padding:200px 0px  0px 550px ;
+}

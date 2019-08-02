@@ -1,0 +1,60 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">材料类别:</td>
+            <td>
+                <select id="ddlCID" style="width:245px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">材料子类别:</td>
+            <td>
+                <select id="ddlCCID" style="width:245px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">对应材料:</td>
+            <td>
+                <select id="ddlType" style="width:245px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">目标类型:</td>
+            <td>
+                <select id="ddlMaterialType" style="width:245px;">
+                    <option value="SVLRR">SVLRR</option>
+                    <option value="ILRR">ILRR</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Q1:</td>
+            <td><input type="text" id="txtQ1" class="DiaText" maxlength="10" /></td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Q2:</td>
+            <td><input type="text" id="txtQ2" class="DiaText" maxlength="30" /></td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Q3:</td>
+            <td>
+                <input type="text" id="txtQ3" class="DiaText" maxlength="256" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Q4:</td>
+            <td>
+                <input type="text" id="txtQ4" class="DiaText" maxlength="256" />
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,27 @@
+﻿
+@Scripts.Render("~/bundles/SQMSQEPUR/SQMSQEPUR")
+
+@RenderPage("SQMSQEDialog.cshtml")
+
+    <button id="btnSQMSQEPURSearch"></button>
+    @*<button id="btnSQMSQEPURCreate"></button>需采购注册后，才能维护*@
+
+    <button id="btnSQMSQEPUREdit"></button>
+    <button id="btnSQMSQEPURDelete"></button>
+
+
+<div>
+    <table>
+        <tr>
+            <td>
+                Plant:<input type="text" id="txtFilterText" value="" /><span>需采购注册后，才能维护</span>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+
+<div style="margin-left:5px">
+    <table id="SQMSQEPURgridDataList"></table>
+    <div id="SQMSQEPURgridListPager"></div>
+</div>

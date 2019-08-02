@@ -1,0 +1,70 @@
+﻿<div id="CriticismdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="CriticismdialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btnCriticismdialogEditData"></button>
+        <button id="btnCriticismdialogCancelEdit"></button>
+    </div>
+    <table>
+        @*<tr>
+                <td class="FieldLabel">供应商代码:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" class="DiaText" maxlength="40"  />
+                </td>
+            </tr>*@
+        <tr>
+            <td class="FieldLabel">評鑒類別:</td>
+            <td colspan="3">
+                <select id="ddlCriticismCategoryD"></select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">評鑒單位:</td>
+            <td colspan="3">
+                <select id="ddlCriticismUnitD"></select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">評鑒項目:</td>
+            <td colspan="3">
+                <select id="ddlItemNOD"></select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">全項配分:</td>
+            <td>
+                <input type="text" id="txtItemPartition" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">適應分數:</td>
+            <td>
+                <input type="number" id="txtFitnessScore" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">實際得分:</td>
+            <td>
+                <input type="number" id="txtActualScore" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">評分比率:</td>
+            <td>
+                <input type="text" id="txtScoringRatio" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">評鑒者:</td>
+            <td>
+                <input type="text" id="txtEvaluation" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="CriticismErrorMsg">
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblCriticismDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,22 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/VMIProcess/UploadOpenPOConfirmation")
+@RenderPage("~/Views/VMIProcess/UploadOpenPOConfirmation/dialogUploadOpenPOConfirmationSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+<div>
+    <table class="defaultTable" style="width: 650px;">
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Upload Open PO Confirmation:</td>
+            <td style="vertical-align: top;">
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadOpenPOConfirmation" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+            <td><button id="btnProcess">Process</button></td>
+        </tr>
+    </table>
+</div>

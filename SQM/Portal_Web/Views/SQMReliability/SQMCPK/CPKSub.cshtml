@@ -1,0 +1,41 @@
+﻿
+@Scripts.Render("~/bundles/SQMCPK/CPKSub")
+
+@RenderPage("dialogCPKSub.cshtml")
+<div id="inspCPKSub">
+    <div id="tbMain1CPKSub" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBack"></button>
+        <button id="btnShowCPKData"></button>
+        <button id="btnCreateCPKSub"></button>
+        <button id="btnViewEditCPKSub"></button>
+        <button id="btnDeleteCPKSub"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>測量項目:</span>
+                    <input type="text" id="txtFilterTextCPKSub" value="" />
+                    <button id="btnSearchCPKSub"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>報告編號:</span>
+                    <span id="spreportID"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListCPKSub"></table>
+        <div id="gridListPagerCPKSub"></div>
+    </div>
+
+    <div>
+        <table id="gridDataListCPKSubCus"></table>
+        <div id="gridListPagerCPKSubCus"></div>
+    </div>
+</div>

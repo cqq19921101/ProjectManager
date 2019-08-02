@@ -1,0 +1,74 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIProcess/ASNSpecialCancel")
+
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("ASNSpecialCancel/dialogASNSpecialCancelManage.cshtml")
+@RenderPage("ASNSpecialCancel/dialogASNSpecialCancelErrorResult.cshtml")
+
+<div id="VMIProcess_ASNSpecialCancel_tbTopToolBar">
+    <table class="ui-widget-header ui-corner-all" style="width:652px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btn_VMIProcess_ASNSpecialCancel_Query"></button>
+                <button id="btn_VMIProcess_ASNSpecialCancel_Cancel"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:651px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:500px;">
+            <tr>
+                <td class="tdTitleAlignRight">ASN No(FM):</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ASNSpecialCancel_ASNNoFM" class="tdQueryTextBox" value="" maxlength="10">
+                </td>
+                <td class="tdTitleAlignRight">ASN No(TO):</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ASNSpecialCancel_ASNNoTO" class="tdQueryTextBox" value="" maxlength="10">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ASNSpecialCancel_Plant" class="tdQueryTextBox" value="" maxlength="4">
+                    <button id="btn_VMIProcess_ASNSpecialCancel_Plant_Query" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor:</td>
+                <td>
+                    <input type="text" id="txt_VMIProcess_ASNSpecialCancel_SBU_VDN" class="tdQueryTextBox" value="" maxlength="10">
+                    <button id="btn_VMIProcess_ASNSpecialCancel_SBU_VDN_Query" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">ASN Date(FM):</td>
+                <td>
+                    <input type="text" name="Date" id="dpASNDate_FM" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">ASN Date(TO):</td>
+                <td>
+                    <input type="text" name="Date" id="dpASNDate_TO" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Trade Type:</td>
+                <td>
+                    <select id="dropbox_VMIProcess_ASNSpecialCancel_TradeType" class="tdQueryTextBox">
+                        <option value="">-- Select --</option>
+                        <option value="I">I:Import</option>
+                        <option value="P">P:Transfer</option>
+                        <option value="A">A:Local</option>
+                        <option value="O">O:Opto</option>
+                        <option value="B">B:Taxed</option>
+                    </select>
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="VMI_Process_ASNSpecialCancel_gridDataList"></table>
+    <div id="VMI_Process_ASNSpecialCancel_gridListPager"></div>
+</div>

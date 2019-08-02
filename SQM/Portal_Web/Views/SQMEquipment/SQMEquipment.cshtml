@@ -1,0 +1,29 @@
+﻿@*@{
+        ViewBag.Title = "SQMEquipment";
+    }*@
+@Scripts.Render("~/bundles/SQMBasic/SQMEquipment")
+
+@RenderPage("SQMEquipmentDialog.cshtml")
+<div id="SQMEquipmenttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSQMEquipmentCreate"></button>
+    <button id="btnSQMEquipmentViewEdit"></button>
+    <button id="btnSQMEquipmentDelete"></button>
+</div>
+<table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+    <tr>
+        <td class="tdTitleAlignRight" style="width:10%">Equipment_Type:</td>
+        <td><select id="ddlEquipmentType"></select></td>
+        <td class="tdTitleAlignRight" style="width:10%">Equipment_Special_Type:</td>
+        <td><select id="ddlEquipmentSpecialType"></select></td>
+    </tr>
+
+</table>
+<div>
+    <table id="SQMEquipmentgridDataList"></table>
+    <div id="SQMEquipmentgridListPager"></div>
+</div>
+
+
+
+
+

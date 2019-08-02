@@ -1,0 +1,100 @@
+﻿@*@{
+        ViewBag.Title = "RoleManagement";
+    }*@
+<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/SQMAgents/SQMBasic")
+@Scripts.Render("~/bundles/SQMAgents/KeyInfoIntro")
+
+@RenderPage("dialogAgents.cshtml")
+@RenderPage("dialogAgents2.cshtml")
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+<div id="tbMain1A" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSearchA"></button>
+    <button id="btnCreateA"></button>
+    <button id="btnViewEditA"></button>
+    <button id="btnDeleteA"></button>
+    <button id="btnPlace"></button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>PrincipalProducts:</td>
+            <td>
+                <input type="text" id="txtFilterTextA" value="" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<div>
+    <table id="gridDataListA" style="margin:0 auto"></table>
+    <div id="gridListPagerA"></div>
+</div>
+
+<br /><br />
+<div id="PlaceA2" style="display:none;">
+    <div style="text-align:center;font-size:18px;width:auto;font-weight:bold;color:red;">供貨商原廠地址填寫</div>
+    <div style="text-align:center;font-size:14px;width:auto;color:black;">刪除數據時,請先刪除"供貨商原廠地址"中的數據,在刪除主欄目中的數據</div>
+    <button id="btnSearchA2"></button>
+    <button id="btnCreateA2"></button>
+    <button id="btnViewEditA2"></button>
+    <button id="btnDeleteA2"></button>
+    <button id="btnPlaceA2"></button>
+    <div>
+        <table>
+            <tr>
+                <td>FactoryName:</td>
+                <td>
+                    <input type="text" id="txtFilterTextA2" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListA2"></table>
+        <div id="gridListPagerA2"></div>
+    </div>
+
+
+</div>
+
+
+@*<div style="padding:3px;">
+    <table class="defaultTable" style="width: 650px;">
+        <tr>
+            <td style="text-align: right; font-weight: bold;">File:</td>
+            <td style="vertical-align: top;">
+                <span id="spBasicInfoFile"></span>
+            </td>
+            <td>代理授權書：</td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">Upload Date:</td>
+            <td style="vertical-align: top;">
+                <span id="spBasicInfoUploadTime"></span>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: right; font-weight: bold;">File:</td>
+            <td style="vertical-align: top;">
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadVDS" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+            <td><button id="btnProcessA">Process</button></td>
+        </tr>
+
+    </table>
+
+</div>*@
+
+

@@ -1,0 +1,97 @@
+﻿<div id="dialog_VMIConfig_ASNVendorProfile" title="ASN Vendor Profile" class="JQDialog" style="display:none">
+    <div>
+        <table style="width:100%;" border="1">
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">SBU Vendor Code</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIConfig_ASNVendorProfile_SBUVendorCode"></span></td>
+                <td class="tdTitleAlignRight" width="25%">SBU Vendor Name</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIConfig_ASNVendorProfile_SBUVendorName"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Corp. Vendor Code</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIConfig_ASNVendorProfile_CorpVendorCode"></span></td>
+                <td class="tdTitleAlignRight" width="25%">Corp. Vendor Name</td>
+                <td class="tdTitleAlignLeft" width="25%"><span id="dialog_span_VMIConfig_ASNVendorProfile_CorpVendorName"></span></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Vendor Official Name</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIConfig_ASNVendorProfile_VendorOfficialName" value="" maxlength="50" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Trade Type</td>
+                <td class="tdTitleAlignLeft" width="25%">
+                    <select id="dialog_dropbox_VMIConfig_ASNVendorProfile_TradeType">
+                        <option value="A">A:Local</option>
+                        <option value="P">P:Transfer</option>
+                        <option value="I">I:Import</option>
+                        <option value="O">O:Opto </option>
+                        <option value="C">C:Concentrate</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Fax</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIConfig_ASNVendorProfile_Fax" value="" maxlength="20" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Address</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIConfig_ASNVendorProfile_Address" value="" maxlength="255" style="width:99%"></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Phone</td>
+                <td class="tdTitleAlignLeft" width="25%"><input type="text" id="dialog_txt_VMIConfig_ASNVendorProfile_Phone" value="" maxlength="20" style="width:97%"></td>
+                <td class="tdTitleAlignRight" width="25%">Declaration Type(報關類型)</td>
+                <td class="tdTitleAlignLeft" width="25%">
+                    <select id="dialog_dropbox_VMIConfig_ASNVendorProfile_DeclarationType">
+                        <option value="0"></option>
+                        <option value="1">空運</option>
+                        <option value="2">海運</option>
+                        <option value="3">陸運</option>
+                        <option value="4">國內一日遊</option>
+                        <option value="5">國內特殊監管區域</option>
+                        <option value="6">國內一般區域</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Customer Code of Every Plant</td>
+                <td class="tdTitleAlignLeft" width="25%" colspan="3">
+                    @*Menu Function Button For the View Use Base On JQuery Tool*@
+                    <div id="dialog_VMI_CustomerCodeForAllPlant_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:93%; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+                        <button id="dialog_VMI_CustomerCodeForAllPlant_ADD"></button>
+                        <button id="dialog_VMI_CustomerCodeForAllPlant_Upadte"></button>
+                        <button id="dialog_VMI_CustomerCodeForAllPlant_Delete"></button>
+                    </div>
+                    <table id="dialog_VMI_CustomerCodeForAllPlant_gridDataList"></table>
+                    <div id="dialog_VMI_CustomerCodeForAllPlant_gridDataPager"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Ship From</td>
+                <td class="tdTitleAlignLeft" width="25%" colspan="3">
+                    @*Menu Function Button For the View Use Base On JQuery Tool*@
+                    <div id="dialog_VMI_ShipFrom_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:93%; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+                        <button id="dialog_VMI_ShipFrom_ADD"></button>
+                        <button id="dialog_VMI_ShipFrom_Upadte"></button>
+                        <button id="dialog_VMI_ShipFrom_Delete"></button>
+                    </div>
+                    <table id="dialog_VMI_ShipFrom_gridDataList"></table>
+                    <div id="dialog_VMI_ShipFrom_gridDataPager"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" width="25%">Forwarder Information</td>
+                <td class="tdTitleAlignLeft" width="25%" colspan="3">
+                    @*Menu Function Button For the View Use Base On JQuery Tool*@
+                    <div id="dialog_VMI_Forwarder_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:93%; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+                        <button id="dialog_VMI_Forwarder_ADD"></button>
+                        <button id="dialog_VMI_Forwarder_Upadte"></button>
+                        <button id="dialog_VMI_Forwarder_Delete"></button>
+                    </div>
+                    <table id="dialog_VMI_Forwarder_gridDataList"></table>
+                    <div id="dialog_VMI_Forwarder_gridDataPager"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <span id="dialog_span_VMIConfig_ASNVendorProfile_msg" class="spanTextWithColorRed">Please click 'Submit' button before leaving if the data have modified.*</span>
+    </div>
+</div>

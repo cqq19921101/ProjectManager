@@ -1,0 +1,36 @@
+﻿@Scripts.Render("~/bundles/SQMBasic/SQEAQLPlant/AQLPlantMap")
+
+@RenderPage("dialogAQLPlantMap.cshtml")
+<div id="divMap">
+    <div id="tbMain1Map" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBack"></button>
+        <button id="btnCreateMap"></button>
+        <button id="btnViewEditMap"></button>
+        <button id="btnDeleteMap"></button>
+    </div>
+
+    <div>
+        <table>
+            @*<tr>
+                <td>抽樣計畫:</td>
+                <td>
+                    <input type="text" id="txtFilterTextMap" value="" />
+                </td>
+                <td>
+                    <button id="btnSearchMap"></button>
+                </td>
+            </tr>*@
+            <tr>
+                <td>
+                    <span>抽樣計畫:</span>
+                    <span id="spAQLPlant"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListMap"></table>
+        <div id="gridListPagerMap"></div>
+    </div>
+</div>

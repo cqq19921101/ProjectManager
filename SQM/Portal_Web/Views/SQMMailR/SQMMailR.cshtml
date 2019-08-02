@@ -1,0 +1,48 @@
+﻿@*@Scripts.Render("~/bundles/VMIShare")*@
+@Scripts.Render("~/bundles/SQMMailR/SQMMailR")
+
+@RenderPage("~/Views/SQMMailR/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/SQMMailR/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/SQMMailR/dialogQueryEmail.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+<div id="tbQueryDemand">
+    @*<table class="ui-widget-header ui-corner-all" style="width:702px; padding:3px 15px 3px 15px; font-size:10.5px;">
+    </table>*@
+    <div style="width:702px;padding:3px 0;">
+        @*border-right: 1px solid #aaaaaa;*@
+        <table style="width:700px;">
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txtPlant" class="tdQueryTextBox" readonly="readonly"/>
+                    <button id="btnOpenQueryPlantDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor Code:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" maxlength="10" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td  class="tdTitleAlignRight">Email:</td>
+                <td colspan="3" style="white-space: nowrap;">
+                    <input type="text" id="txtEmail"  class="tdQueryTextBox"  style="width:460px;max-width:1000px"/>
+                    @*<button id="btnOpenQueryEmailDialog" class="tdQueryButton"></button>*@
+               <button id="btnQueryEmail"></button></td>
+                @*<td>
+                    <select id="ddlStatus" class="tdQueryTextBox">
+                        <option selected="selected">ToDoAll</option>
+                        <option>UnCommit</option>
+                        <option>Released</option>
+                    </select>
+                </td>*@
+            </tr>
+        </table>
+    </div>
+</div>
+
+@*<div>
+    <table id="gridEmail"></table>
+    <div id="gridEmailListPager"></div>
+</div>*@

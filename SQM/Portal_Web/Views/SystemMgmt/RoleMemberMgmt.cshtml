@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "DelegateRoleAuthorization";
+}
+
+@Scripts.Render("~/bundles/SystemMgmt/RoleMemberMgmt")
+
+<div id="divSelectRole">
+    <div class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnSearch"></button>
+        <button id="btnAssignRoleMembers"></button>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>Search Text:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataList"></table>
+        <div id="gridListPager"></div>
+    </div>
+</div>
+
+<div id="divSelectRoleMembers" style="DISPLAY:none;">
+    <div class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnsrmFinish"></button>
+    </div>
+    <h3>Selected Role: <span id="spansrmSelectedRole"></span></h3>
+    <div>
+        <table>
+            <tr>
+                <td>All Portal Member(s):</td>
+                <td></td>
+                <td>Selected Member(s):</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtsrmLeftSearchText" />
+                        <input type="button" id="btnsrmLeftSearch" value="Filtering" />
+                    </div>
+                    <table id="gridsrmLeftResult"></table>
+                    <div id="gridsrmLeftResultPager"></div>
+                </td>
+                <td style="vertical-align:middle">
+                    <div><input type="button" id="btnsrmAdd" value="Add member >>" style="width:120px;" /></div>
+                    <div><input type="button" id="btnsrmRemoveAll" value="Remove All" style="width:120px;" /></div>
+                </td>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtsrmRightSearchText" />
+                        <input type="button" id="btnsrmRightSearch" value="Filtering" />
+                    </div>
+                    <table id="gridsrmRightResult"></table>
+                    <div id="gridsrmRightResultPager"></div>
+                    <div>Total <span id="spansrmTotal"></span> member(s).</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

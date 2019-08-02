@@ -1,0 +1,55 @@
+﻿<div id="dialogDataWasteHandler" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBarWasteHandler" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataWasteHandler"></button>
+        <button id="btndialogCancelEditWasteHandler"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">協力廠商處理企業/機構是否有相關資質？:</td>
+            <td>
+                <select id="ddlLicenseType"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">License File Name:</td>
+            <td>
+                <input type="text" id="txtLicenseFileName" class="DiaText" maxlength="40" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">License Upload Date:</td>
+            <td>
+                <input type="text" id="txtLicenseUpdateTime" class="DiaText" maxlength="40" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">License Upload File:</td>
+            <td>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadLicense" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">BusinessLicense File Name:</td>
+            <td>
+                <input type="text" id="txtBusinessLicenseFileName" class="DiaText" maxlength="40" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">BusinessLicense Upload Date:</td>
+            <td>
+                <input type="text" id="txtBusinessLicenseUpdateTime" class="DiaText" maxlength="40" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">BusinessLicense Upload File:</td>
+            <td>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadBusinessLicense" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgWasteHandler"></span>
+            </td>
+        </tr>
+    </table>
+</div>

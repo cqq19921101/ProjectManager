@@ -1,0 +1,69 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/QueryPOAck")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryBuyer.cshtml")
+
+<div id="tbQueryPOAck">
+    <table class="ui-widget-header ui-corner-all" style="width:976px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4"><button id="btnQueryPOAck"></button></td>
+        </tr>
+    </table>
+    <div style="width:975px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:535px;">
+            <tr>
+                <td class="tdTitleAlignRight">PO Number(FM):</td>
+                <td>
+                    <input type="text" id="txtPONumberFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">PO Number(TO):</td>
+                <td>
+                    <input type="text" id="txtPONumberTo" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" id="txtPlant" maxlength="4" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryPlantDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor Code:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" maxlength="10" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Buyer Code:</td>
+                <td>
+                    <input type="text" id="txtBuyerCode" maxlength="3" class="tdQueryTextBox" />
+                    <button id="btnOpenQueryBuyerCodeDialog" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Ack:</td>
+                <td>
+                    <select id="ddlAck" class="tdQueryTextBox">
+                        <option selected>All</option>
+                        <option>Ack Only</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Release Date(FM):</td>
+                <td>
+                    <input type="text" id="txtReleaseDateFrom" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Release Date(TO):</td>
+                <td>
+                    <input type="text" id="txtReleaseDateTo" class="tdQueryTextBox" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <table id="gridQueryPOAck"></table>
+    <div id="gridQueryPOAckListPager"></div>
+</div>

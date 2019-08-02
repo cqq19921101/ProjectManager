@@ -1,0 +1,120 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/QueryASN")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("QueryASN/dialogQueryASNManage.cshtml")
+@RenderPage("QueryASN/dialogQueryASNFileDetail.cshtml")
+@RenderPage("QueryASN/dialogQueryASNFileAttach.cshtml")
+@RenderPage("QueryASN/dialogModifyASNFileDetail.cshtml")
+@RenderPage("QueryASN/dialogModifyASNFileAttach.cshtml")
+@RenderPage("QueryASN/dialogQueryASNDetailError.cshtml")
+@RenderPage("QueryASN/dialogQueryASNEditShippingInfo.cshtml")
+@RenderPage("QueryASN/dialogASNFileViewLogs.cshtml")
+@RenderPage("QueryASN/dialogQueryASNEditImportDate.cshtml")
+
+<script type="text/javascript" src="~/Scripts/UploadifyF32/jquery.uploadify.min.js"></script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+<div id="VMIQuery_QueryASN_tbTopToolBar">
+    <table class="ui-widget-header ui-corner-all" style="width:652px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btn_VMIQuery_QueryASN_Query"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:651px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:500px;">
+            <tr>
+                <td class="tdTitleAlignRight">ASN No(FM):</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_ASNNoFM" value="" maxlength="10">
+                </td>
+                <td class="tdTitleAlignRight">ASN No(TO):</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_ASNNoTO" value="" maxlength="10">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Plant:</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_Plant" value="" maxlength="4">
+                    <button id="btn_VMIQuery_QueryASN_Plant_Query" class="tdQueryButton"></button>
+                </td>
+                <td class="tdTitleAlignRight">Vendor:</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_SBU_VDN" value="" maxlength="10">
+                    <button id="btn_VMIQuery_QueryASN_SBU_VDN_Query" class="tdQueryButton"></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">ASN Date(FM):</td>
+                <td>
+                    <input type="text" name="Date" id="dpASNDate_FM" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">ASN Date(TO):</td>
+                <td>
+                    <input type="text" name="Date" id="dpASNDate_TO" class="tdQueryTextBox" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Material(FM):</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_MaterialFM" value="" maxlength="18">
+                </td>
+                <td class="tdTitleAlignRight">Material(TO):</td>
+                <td>
+                    <input type="text" class="jqTextUpperCase tdQueryTextBox" id="txt_VMIQuery_QueryASN_MaterialTO" value="" maxlength="18">
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Status:</td>
+                <td>
+                    <select id="dropbox_VMIQuery_QueryASN_Status" class="tdQueryTextBox">
+                        <option value="N">New</option>
+                        <option value="I">In-Process</option>
+                        <option value="E">Error</option>
+                        <option value="T">To Do All</option>
+                        <option value="R">Release</option>
+                        <option value="O">Open ASN</option>
+                        <option value="G">Close</option>
+                        <option value="C">Cancel</option>
+                        <option value="A">All</option>
+                    </select>
+                </td>
+                <td class="tdTitleAlignRight">Trade Type:</td>
+                <td>
+                    <select id="dropbox_VMIQuery_QueryASN_TradeType" class="tdQueryTextBox">
+                        <option value="">-- Select --</option>
+                        <option value="I">I:Import</option>
+                        <option value="P">P:Transfer</option>
+                        <option value="A">A:Local</option>
+                        <option value="O">O:Opto</option>
+                        <option value="B">B:Taxed</option>
+                        <option value="C">C:Concentrate</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Data Type:</td>
+                <td>
+                    <input type="radio" name="QueryType" value="S">By Status<br />
+                    <input type="radio" name="QueryType" value="W">ASN without Line
+                </td>
+                <td class="tdTitleAlignRight">User ID:</td>
+                <td>
+                    <input type="text" id="txt_VMIQuery_QueryASN_UserID" class="tdQueryTextBox" value="" maxlength="50">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="VMI_VMIQuery_QueryASN_gridDataList"></table>
+    <div id="VMI_VMIQuery_QueryASN_gridListPager"></div>
+</div>

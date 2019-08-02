@@ -1,0 +1,114 @@
+﻿@using Lib_Portal_Domain.Model;
+@using Lib_Portal_MUIResources;
+@using Lib_Portal_Domain.SharedLibs;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="EXPIRES" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@Portal_MUI.PORTAL_TITLE</title>
+
+    <!--[if lt IE 10]>
+    <script type="text/javascript">
+        window.onload = function () {
+            if (document.getElementById("GMSFlag") == null) {
+                var el = document.getElementById("spanWarningBrowser");
+                el.style.display = "";
+            }
+        }
+    </script>
+    <![endif]-->
+
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryjqgrid")
+    @Scripts.Render("~/bundles/inputmask")
+    @*@Scripts.Render("~/bundles/jquerycookie")*@
+
+    @*============================*@
+    @*Mega Menu (Head Part: Start)*@
+    @Scripts.Render("~/Scripts/MegaMenu/js")
+    <link href="~/Scripts/MegaMenu/dcmegamenu.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/MegaMenu/Skins/blue.css" rel="stylesheet" type="text/css" />
+    @*Mega Menu (Head Part: End)  *@
+    @*============================*@
+
+    @Scripts.Render("~/bundles/Global/Commonjs")
+    @Styles.Render("~/bundles/Global/Commoncss")
+
+    <script type="text/javascript">
+        var __WebAppPathPrefix = "@Session["AppPath"]";
+        var __UrlForTimeOut = __WebAppPathPrefix + "/Account/Login?ReturnUrl=" + encodeURIComponent(__WebAppPathPrefix);
+        //Check DialogIsShow
+        var __DialogIsShownNow = false;
+        //Start Session Expired Timer
+        StartPortalSessionStopWatch();
+        var __SelectorName = '';
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</head>
+<body class="PortalBody">
+    @foreach (var role in PortalUserProfileHelper.GetRunAsUserProfile(Context).Roles)
+    {
+        if (role.RoleName.ToUpper().IndexOf("GMS") != -1)
+        {
+            <label id="GMSFlag" style="display: none;">@Html.Raw(role.RoleName)</label>
+            break;
+        }
+    }
+    <span id="spanWarningBrowser" style="display:none;top: 0;position: absolute;left: 25%;text-align: center;color: red;font-size: 16px;font-weight: bold;font-family: Arial sans-serif;white-space: nowrap;">Supplier Portal VMI子系統不再支持IE 8, 請改用IE 11, IE 10, 或Chrome瀏覽器.<br />IE 8 is not supported on Supplier Portal VMI subsystem, please use IE 11, IE 10, or Chrome.</span>
+    @*<div class="BannerCustomizedWebName">@Portal_MUI.PORTAL_TITLE</div>*@
+    <div class="BannerCustomizedWebName">
+        @Html.Raw(Portal_MUI.PORTAL_BANNER_TITLE)
+        @*&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:20px; color:#339966; text-decoration: underline;">@Html.Raw(PortalUserProfileHelper.GetRunAsUserProfile(Context).AccountID)</span>*@
+    </div>
+    <table class="PortalBanner_OutterTable">
+        <tr class="PortalBanner_TRTD">
+            <td class="PortalBanner_TRTD">
+                <div class="PortalBanner_LeftDIV"></div>
+            </td>
+            <td class="PortalBanner_RightTD">
+                <div class="PortalBanner_SitePurposeDIV">
+                    @Html.Raw(SessionHelper.GetSessionStringValue(Session, PortalGlobalConstantHelper.GetConstant(enumPortalGlobalConstant.SessionKey_SitePurpose)).ToString())
+                </div><br />
+                <div class="PortalBanner_RightLoginDIV">
+                    @Portal_MUI.PORTAL_BANNER_WELCOME, <span class="_loginID">@Html.Raw(PortalUserProfileHelper.GetRunAsUserProfile(Context).UserCName)</span>
+                    @*(<span class="_loginID">@Html.Raw(PortalUserProfileHelper.GetRunAsUserProfile(Context).UserEName)</span>).*@
+                    (<span class="_loginID">@Html.Raw(PortalUserProfileHelper.GetRunAsUserProfile(Context).AccountID)</span>).
+                    @Html.ActionLink(Portal_MUI.PORTAL_SIGNOUT, "Logout", "Account")
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    @*============================*@
+    @*Mega Menu (Body Part: Start)*@
+    @*<div class="blue" id="menudiv" style="width:1050px;">*@
+    <div class="blue" id="menudiv">
+        @*<div class="blue" style="width:100%;">*@
+        @Html.Raw(Session[PortalGlobalConstantHelper.GetConstant(enumPortalGlobalConstant.SessionKey_MenuForRunAsUser)])
+    </div>
+    @*Mega Menu (Body Part: End)  *@
+    @*============================*@
+
+    @*============================*@
+    @*Function Path               *@
+    <table class="Portal_FunctionPath_Table">
+        <tr>
+            <td class="Portal_FunctionPath_TD">@Html.Raw(Session[PortalGlobalConstantHelper.GetConstant(enumPortalGlobalConstant.SessionKey_FunctionPathString)])</td>
+        </tr>
+    </table>
+    @*============================*@
+
+    <div>@RenderBody()</div>
+</body>
+</html>

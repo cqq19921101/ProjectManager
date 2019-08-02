@@ -1,0 +1,30 @@
+﻿@Scripts.Render("~/bundles/SQMCPK")
+
+@RenderPage("SQMCPK/dialogCPK.cshtml")
+@RenderPage("SQMCPK/CPKSub.cshtml")
+@RenderPage("SQMCPKData/CPKData.cshtml")
+<div id="inspCPK">
+    <div id="tbMain1CPK" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnShowCPKSub"></button>
+        <button id="btnSearchCPK"></button>
+        <button id="btnCreateCPK"></button>
+        <button id="btnViewEditCPK"></button>
+        <button id="btnDeleteCPK"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>報告編號:</td>
+                <td>
+                    <input type="text" id="txtFilterTextCPK" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListCPK"></table>
+        <div id="gridListPagerCPK"></div>
+    </div>
+</div>

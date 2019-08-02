@@ -1,0 +1,90 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">异常时间:</td>
+            <td>
+                <input type="text" id="txtAnomalousTime" class="tdQueryTextBox">
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">料号:</td>
+            <td>
+                <input type="text" id="txtLitNo" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">机种:</td>
+            <td>
+                <input type="text" id="txtModel" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">批号/周期:</td>
+            <td>
+                <input type="text" id="txtBitNo" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">投产数:</td>
+            <td>
+                <input type="text" id="txtBitNum" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">不良数:</td>
+            <td>
+                <input type="text" id="txtbadnessNum" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">不良率:</td>
+            <td>
+                <input type="text" id="txtRejectRatio" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">异常类别:</td>
+            <td>
+                
+                <select id="ddlAbnormal">
+                    <option value="" selected></option>
+                    <option value="0">進料</option>
+                    <option value="1">製程</option>
+                    <option value="2">OQC</option>
+                    <option value="3">客訴</option>
+                    <option value="4">可靠測試</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">供应商名称:</td>
+            <td>
+                <input type="text" id="txtVenderCode" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">不良现象说明:</td>
+            <td>
+                <input type="text" id="txtbadnessNote" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="fileUploadSCARD1">
+            <td class="FieldLabel" id="txtFile">不良样品图片:</td>
+            <td id="UpDateFile">
+                <span id="spSCARD1"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadSCARD1" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><br />
+                <button id="btnProcessSCARD1">上傳</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

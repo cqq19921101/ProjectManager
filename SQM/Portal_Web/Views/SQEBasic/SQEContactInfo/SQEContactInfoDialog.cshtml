@@ -1,0 +1,56 @@
+﻿<div id="SQEContactdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="SQEContactdialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btnSQEContactdialogEditData"></button>
+        <button id="btnSQEContactdialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">供应商:</td>
+            <td>
+                <input type="text" id="txtProvider" class="DiaText" maxlength="40" readonly="readonly" />
+            </td>
+        </tr>
+        @*<tr>
+                <td class="FieldLabel">供应商代码:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" class="DiaText" maxlength="40" />
+                </td>
+            </tr>*@
+        <tr>
+            <td class="FieldLabel">职务:</td>
+            <td colspan="3">
+                <select id="ddlJob"></select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">姓名:</td>
+            <td>
+                <input type="text" id="txtName" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">手机号码:</td>
+            <td>
+                <input type="text" id="txtPhone" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">固定电话/分机:</td>
+            <td>
+                <input type="text" id="txtFixedTelephone" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">电子邮箱:</td>
+            <td>
+                <input type="text" id="txtEmail" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="SQEContactlblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

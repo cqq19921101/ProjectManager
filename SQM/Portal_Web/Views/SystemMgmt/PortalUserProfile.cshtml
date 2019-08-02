@@ -1,0 +1,56 @@
+﻿@model Lib_Portal_Domain.Model.PortalUser
+
+<style type="text/css">
+    .ProfileLabel {
+        vertical-align: top;
+        text-align: right;
+    }
+</style>
+
+<h3>Login User Profile:</h3>
+<table>
+    <tr><td class="ProfileLabel">Member GUID:&nbsp;</td><td>@Model.LoginUser.MemberGUID</td></tr>
+    <tr><td class="ProfileLabel">Account ID:&nbsp;</td><td>@Model.LoginUser.AccountID</td></tr>
+    <tr><td class="ProfileLabel">Member Type:&nbsp;</td><td>@Model.LoginUser.MemberType</td></tr>
+    <tr><td class="ProfileLabel">Name In Chinese:&nbsp;</td><td>@Model.LoginUser.UserCName</td></tr>
+    <tr><td class="ProfileLabel">Name In English:&nbsp;</td><td>@Model.LoginUser.UserEName</td></tr>
+    <tr><td class="ProfileLabel">Primary Email:&nbsp;</td><td>@Model.LoginUser.PrimaryEmail</td></tr>
+    <tr><td class="ProfileLabel">Associated Roles:&nbsp;</td><td>
+        @{
+            for (int i = 0; i < @Model.LoginUser.Roles.Count; i++)
+            {
+                if(i!=0)
+                {
+                    <text><br /></text>
+                }
+                @(Model.LoginUser.Roles[i].RoleName)<text> (</text>@(Model.LoginUser.Roles[i].RoleGUID)<text>)</text>
+            }
+            }
+    </td></tr>
+</table>
+
+<h3>RunAs User Profile:</h3>
+<table>
+    <tr><td class="ProfileLabel">Member GUID:&nbsp;</td><td>@Model.RunAsUser.MemberGUID</td></tr>
+    <tr><td class="ProfileLabel">Account ID:&nbsp;</td><td>@Model.RunAsUser.AccountID</td></tr>
+    <tr><td class="ProfileLabel">Member Type:&nbsp;</td><td>@Model.RunAsUser.MemberType</td></tr>
+    <tr><td class="ProfileLabel">Name In Chinese:&nbsp;</td><td>@Model.RunAsUser.UserCName</td></tr>
+    <tr><td class="ProfileLabel">Name In English:&nbsp;</td><td>@Model.RunAsUser.UserEName</td></tr>
+    <tr><td class="ProfileLabel">Primary Email:&nbsp;</td><td>@Model.RunAsUser.PrimaryEmail</td></tr>
+    <tr><td class="ProfileLabel">Associated Roles:&nbsp;</td><td>
+        @{
+            for (int i = 0; i < @Model.RunAsUser.Roles.Count; i++)
+            {
+                if(i!=0)
+                {
+                    <text><br /></text>
+                }
+                @(Model.RunAsUser.Roles[i].RoleName)<text> (</text>@(Model.RunAsUser.Roles[i].RoleGUID)<text>)</text>
+            }
+            }
+    </td></tr>
+</table>
+
+<h3>Current User Locale:</h3>
+@using System.Threading
+@Thread.CurrentThread.CurrentCulture

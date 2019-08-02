@@ -1,0 +1,31 @@
+﻿@Scripts.Render("~/bundles/SQEQuality/Insp")
+
+<div id="inspInsp">
+    <div id="tbMain1Insp" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBackInsp"></button>
+        @*<button id="btnCreateInsp"></button>
+        <button id="btnViewEditInsp"></button>
+        <button id="btnDeleteInsp"></button>*@
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>InspCode:</span>
+                    <select id="ddlSInspCode" style="width:204px;"></select>
+                </td>
+                <td>
+                    <span>InspDesc:</span>
+                    <select id="ddlSInspDesc" style="width:204px;"></select>
+                    <button id="btnSearchInsp"></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListInsp"></table>
+        <div id="gridListPagerInsp"></div>
+    </div>
+</div>

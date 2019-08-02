@@ -1,0 +1,38 @@
+﻿@*@{
+        ViewBag.Title = "RoleManagement";
+    }*@
+<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/SQMTraders/SQMBasic")
+@Scripts.Render("~/bundles/SQMTraders/KeyInfoIntro")
+
+@RenderPage("dialogTraders.cshtml")
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+<div id="tbMain1T" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSearchT"></button>
+    <button id="btnCreateT"></button>
+    <button id="btnViewEditT"></button>
+    <button id="btnDeleteT"></button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>PrincipalProducts:</td>
+            <td>
+                <input type="text" id="txtFilterTextT" value="" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<br /><br />
+<table id="gridDataListT"></table>
+<div id="gridListPagerT"></div>
+

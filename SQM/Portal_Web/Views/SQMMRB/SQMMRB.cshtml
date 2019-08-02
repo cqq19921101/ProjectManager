@@ -1,0 +1,364 @@
+﻿
+<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/SQMMRB/dialogQuerySBUVendor.cshtml")
+@Scripts.Render("~/bundles/SQMMRB")
+
+<div id="div1">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnShow"></button>
+        <button id="btnSearch"></button>
+        <button id="btnCreate"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>MRBNo:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-left:5px">
+        <table id="gridDataList"></table>
+        <div id="gridListPager"></div>
+    </div>
+</div>
+<div id="back">
+    <table class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td><button id="btnBack"></button><button id="btnSave"></button></td>
+            
+        </tr>
+    </table>
+</div>
+
+<div >
+    <table id="table1" style="width:1600px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+
+        <tr>
+            <td></td>
+            <td colspan="2">
+                物料<input id="cbwl" type="radio" name="MRBType" value="1">
+
+
+            </td>
+            <td colspan="2">
+                半/成品<input id="cbbcp" type="radio" name="MRBType" value="2">
+            </td>
+            <td colspan="2">
+                庫存<input id="cbkc" type="radio" name="MRBType" value="3">
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+
+            <td colspan="2">
+                編號 <input type="text" id="txtMRBNo" maxlength="180" readonly="readonly" />
+            </td>
+
+            <td colspan="2">
+                申請人 <input type="text" id="txtinitiator" maxlength="180" />
+            </td>
+
+            <td colspan="2">
+                單位主管 <input type="text" id="txtgovernor" maxlength="180" />
+            </td>
+
+            <td colspan="2">
+                日期 <input type="text" id="txtcreatetime" maxlength="180" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignCenter">
+                客戶<input id="cbkh" type="radio" name="venderType" value="1">
+                廠商<input id="chcs" type="radio" name="venderType" value="2">
+            </td>
+
+            <td class="tdTitleAlignCenter">料號</td>
+
+            <td class="tdTitleAlignCenter">品名/規格</td>
+
+            <td class="tdTitleAlignCenter">批量 </td>
+            <td class="tdTitleAlignCenter">檢驗數 </td>
+            <td class="tdTitleAlignCenter">不良數 </td>
+            <td class="tdTitleAlignCenter">不良率 </td>
+            <td class="tdTitleAlignCenter">檢驗員 </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                <input type="text" id="txtVenderCode" maxlength="180" />
+                <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+            </td>
+            <td><input type="text" id="txtLitNo" maxlength="180" /> </td>
+            <td><input type="text" id="txtSize" maxlength="180" /> </td>
+            <td><input type="text" id="txtbatch" maxlength="180" /> </td>
+            <td><input type="text" id="txtchecknumber" maxlength="180" /> </td>
+            <td><input type="text" id="txtdefect" maxlength="180" /> </td>
+            <td><input type="text" id="txtrejectratio" maxlength="180" /> </td>
+            <td><input type="text" id="txtinspector" maxlength="180" /> </td>
+
+        </tr>
+        <tr>
+            <td rowspan="2">不良描述</td>
+            <td colspan="6">
+                <input id="cbsj" type="radio" name="Baddescriptiontype" value="1"> 设计
+                <input id="cbwcr" type="radio" name="Baddescriptiontype" value="2">未承认
+                <input id="cbscp" type="radio" name="Baddescriptiontype" value="3"> 试产品
+                <input id="cbdy" type="radio" name="Baddescriptiontype" value="4">待用
+                <input id="cbqt" type="radio" name="Baddescriptiontype" value="5">其他
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <textarea type="text" id="txtBaddescription" maxlength="180" style="width:97%;max-width:97%;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <input id="cbsx" type="radio" name="meettype" value="1">篩選
+                <input id="cbzg" type="radio" name="meettype" value="2">重工
+                <input id="cbtcsy" type="radio" name="meettype" value="3">特采使用
+                <input id="cbthgys" type="radio" name="meettype" value="4"> 退回供應商
+                <input id="cbcnbf" type="radio" name="meettype" value="5"> 廠內報廢
+            </td>
+        </tr>
+    </table>
+    <table  id="table2" style="width:1600px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+       
+      
+        <tr>
+            <td>单位</td>
+            <td colspan="2">签核</td>
+            <td>日期</td>
+            <td>单位</td>
+            <td>签核</td>
+            <td>日期</td>
+        </tr>
+        <tr>
+            <td>PUR/PMC</td>
+            <td colspan="2">
+                <select id="ddlPMsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtPMsigndate" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+            <td>QRA</td>
+            <td>
+                <select id="ddlQRsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtQrsigndate" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+        </tr>
+        <tr>
+            <td>时间</td>
+            <td colspan="2"><input type="text" id="txtpurchasetime" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+            <td>机种</td>
+            <td><input type="text" id="txtmodel" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+        </tr>
+        <tr>
+            <td>地点</td>
+            <td colspan="2"><input type="text" id="txtsite" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+            <td>责任归属</td>
+            <td><input type="text" id="txtduty" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+        </tr>
+        <tr>
+            <td>主持人</td>
+            <td colspan="2"><input type="text" id="txtcompere" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+
+        </tr>
+        <tr>
+            <td>单位</td>
+            <td colspan="2">意見及風險評估</td>
+            <td>签核</td>
+            <td>日期</td>
+        </tr>
+        <tr>
+            <td>PUR</td>
+            <td colspan="2"> <textarea type="text" id="txtPuropinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlPURsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtPursigndate" maxlength="180" style="width:97%;max-width:97%;" /> </td>
+        </tr>
+        <tr>
+            <td>PMC</td>
+            <td colspan="2"><textarea type="text" id="txtPmcopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlPMCsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtPmcsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>PMC</td>
+            <td colspan="2">使用工单</td>
+            <td><input type="text" id="txtPMCworkorder" maxlength="180" style="width:97%;max-width:97%;" /></td>
+            <td>上线日期</td>
+            <td><input type="text" id="txtPMConlineTime" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>MFG</td>
+            <td colspan="2"><textarea type="text" id="txtMfgopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlMFGsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtMfgsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>SMT ENG</td>
+            <td colspan="2"><textarea type="text" id="txtSmtengopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlSMTENGsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtSmtengsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>PTE</td>
+            <td colspan="2"><textarea type="text" id="txtPteopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlPTEsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtPtesigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td rowspan="2">IE</td>
+            <td colspan="2"><textarea type="text" id="txtIeopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlIEsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtIesigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>是否產生影響費用</td>
+            <td>                是<input  type="radio" name="Ieisproduce" value="1">
+               否<input  type="radio" name="Ieisproduce" value="2"></td>
+            <td>扣款单号</td>
+            <td><input type="text" id="txtIEDeductionsorder" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>SQM</td>
+            <td colspan="2"><textarea type="text" id="txtSqmopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlSQMsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtSqMsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>PQE</td>
+            <td colspan="2"><textarea type="text" id="txtPqeopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlPQEsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtPqesigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>CQS</td>
+            <td colspan="2"><textarea type="text" id="txtCqeopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlCQEsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtCqesigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>RD/RDS</td>
+            <td colspan="2"><textarea type="text" id="txtRdopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlRdsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtRdsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>SALES</td>
+            <td colspan="2"><textarea type="text" id="txtSalesopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlSALESsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtSalessigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>QRA</td>
+            <td colspan="2"><textarea type="text" id="txtQraopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlQRAsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtQrasigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>MD最高主管意見</td>
+            <td colspan="2"><textarea type="text" id="txtMdopinion" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+            <td>
+                <select id="ddlMDsign">
+                    <option value="0">同意</option>
+                    <option value="1">不同意</option>
+                </select>
+            </td>
+            <td><input type="text" id="txtMdsigndate" maxlength="180" style="width:97%;max-width:97%;" /></td>
+        </tr>
+        <tr>
+            <td>上線不良記錄</td>
+            <td colspan="6"><textarea type="text" id="txtnote" maxlength="180" style="width:97%;max-width:97%;"></textarea></td>
+        </tr>
+      
+    </table>
+    <table id="table3">
+        <tr id="fileUploadMRB">
+            <td class="FieldLabel" id="txtFile">附件:</td>
+            <td id="UpDateFile">
+                <span id="spMRB"></span>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadMRB" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M文件</span><br />
+                <button id="btnProcessMRB">上傳</button>
+            </td>
+        </tr>
+    </table>
+</div>

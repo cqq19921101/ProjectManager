@@ -1,0 +1,21 @@
+﻿<div style="position: absolute;top: 20%;text-align: center;width: 100%;">
+    <h1>Unauthorized function access.</h1>
+    <h1>Please contact administrator if required.</h1>
+    <h1>It will be redirect to the login page in <span id="displayDiv" style="color: red;text-decoration:underline;">5</span> second(s).</h1>
+</div>
+
+<script>
+    var __WebAppPathPrefix = "@Request.ApplicationPath";
+
+    function countDown(i) {
+        var int = setInterval(function () {
+            document.getElementById("displayDiv").innerHTML = "" + i;
+            i-- || clearInterval(int);  //if i is 0, then stop the interval
+            if (i == -1) {
+                window.location = __WebAppPathPrefix + '/Account/Login?ReturnUrl=' + encodeURIComponent(__WebAppPathPrefix);
+            }
+        }, 1000);
+    }
+
+    countDown(4);
+</script>

@@ -1,0 +1,99 @@
+﻿
+<div id="dialogDataCPKSub" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogCPKSubToolBarCPKSub" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataCPKSub"></button>
+        <button id="btndialogCancelEditCPKSub"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">測量項目:</td>
+            <td>
+                @*<input type="text" id="txtDesignator" class="DiaText" maxlength="40" />*@
+                <select id="ddlDesignator" style="width: 204px; display: inline-block;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">單位:</td>
+            <td>
+                <input type="text" id="txtUnit" class="DiaText" maxlength="40"/><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr id="normal">
+            <td class="FieldLabel">規格值:</td>
+            <td>
+                <input type="number" id="txtNominal" class="DiaText" maxlength="40"/><span style="color:red">*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">規格上限:</td>
+            <td>
+                <input type="number" id="txtmaxNominal" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">規格下線:</td>
+            <td>
+                <input type="number" id="txtminNominal" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">管制上限:</td>
+            <td>
+                <input type="number" id="txtUpperControlLimit" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">管制下限:</td>
+            <td>
+                <input type="number" id="txtLowerControlLimit" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">中心線:</td>
+            <td>
+                <input type="number" id="txtcenterline" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">CPK管控:</td>
+            <td>
+                <input type="text" id="txtCPKManager" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">區間:</td>
+            <td>
+                <input type="text" id="txtsection" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">測量數據(pcs):</td>
+            <td>
+                <input type="number" id="txtCTQNum" class="DiaText" maxlength="40"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbSixpointrise" value="cus" />連續六點上升
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbDropdown" value="cus" />連續六點下降
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" id="ckbNineNearCenter" value="cus" />連續九點在中心線附近
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgCPKSub"></span>
+            </td>
+        </tr>
+    </table>
+</div>

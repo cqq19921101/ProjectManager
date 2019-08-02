@@ -1,0 +1,26 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/SQMPlant/dialogQueryMemberGUID.cshtml")
+<div id="SQMPlantdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <table>
+        <tr>
+            <td class="tdTitleAlignRight">Plant:</td>
+            <td>
+                <input type="text" id="txtPlant" maxlength="4" class="tdQueryTextBox" />
+                <button id="btnOpenQueryPlantDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">MemberGUID:</td>
+            <td>
+                <input type="text" id="txtMG" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryMGDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="SQMPlantlblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

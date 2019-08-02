@@ -1,0 +1,33 @@
+﻿
+@*@{
+    ViewBag.Title = "SQMContact";
+}*@
+@Scripts.Render("~/bundles/SQMBasic/SQMContact")
+
+@RenderPage("~/Views/SQMBasic/SQMContact/SQMContactDialog.cshtml")
+
+<div id="SQMContacttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSQMContactSearch"></button>
+    <button id="btnSQMContactCreate"></button>
+    <button id="btnSQMContactViewEdit"></button>
+    <button id="btnSQMContactDelete"></button>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>
+                <span>姓名:</span>
+                <input type="text" id="txtFilterText" value="" />
+            </td>
+        </tr>
+       
+    </table>
+</div>
+
+<div style="margin-left:5px">
+    <table id="SQMContactgridDataList"></table>
+    <div id="SQMContactgridListPager"></div>
+</div>
+
+

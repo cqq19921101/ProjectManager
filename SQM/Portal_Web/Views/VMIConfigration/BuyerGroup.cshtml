@@ -1,0 +1,35 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIConfigration/BuyerGroup")
+
+@RenderPage("~/Views/VMIConfigration/BuyerGroup/dialogBuyerGroup.cshtml")
+@RenderPage("~/Views/VMIConfigration/BuyerGroup/dialogGroup.cshtml")
+
+<div id="tbBuyerGroup">
+    <table class="ui-widget-header ui-corner-all" style="width:451px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnAddBuyerGroup"></button>
+                <button id="btnDeleteBuyerGroup"></button>
+                <button id="btnQueryBuyerGroup"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:450px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:449px;">
+            <tr>
+                <td class="tdTitleAlignRight">Buyer Group:</td>
+                <td>
+                    <input type="text" id="txtBUYER_GROUP_ID" class="tdQueryTextBox" />
+                </td>
+                <td class="tdTitleAlignRight">Name:</td>
+                <td>
+                    <input type="text" id="txtBUYER_GROUP_NAME" class="tdQueryTextBox" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <table id="gridBuyerGroup"></table>
+    <div id="gridBuyerGroupPager"></div>
+</div>

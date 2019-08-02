@@ -1,0 +1,69 @@
+﻿<div id="dialogDataInspVar" title="Portal Member" class="JQDialog" style="display:none;width:800px;">
+    <div id="dialogInspToolBarInspVar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditDataInspVar"></button>
+        <button id="btndialogCancelEditInspVar"></button>
+    </div>
+    <table>
+        @*<tr>
+            <td class="FieldLabel">檢測項目:</td>
+            <td>
+                <select id="vddlInspCode" style="width:204px;"></select>
+            </td>
+        </tr>
+        <tr >
+            <td class="FieldLabel">檢測說明:</td>
+            <td>
+                <select id="vddlInspDesc" style="width:204px;"></select>
+            </td>
+        </tr>*@
+        <tr>
+            <td class="FieldLabel">UCL:</td>
+            <td>
+                <input type="text" id="vtxtUCL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">LCL:</td>
+            <td>
+                <input type="text" id="vtxtLCL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢測工具:</td>
+            <td>
+                <input type="text" id="vtxtInspTool" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">AQL:</td>
+            <td>
+                <input type="text" id="vtxtAQL" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">檢測量:</td>
+            <td>
+                <input type="text" id="vtxtInspNum" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">判定:</td>
+            <td>
+                <select id="vtxtJudge" style="width:204px;">
+                    <option value="ACC">ACC</option>
+                    <option value="Reject">Reject</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsgInspVar"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    #dialogDataInspVar .FieldLabel {
+        width: 60px;
+    }
+</style>

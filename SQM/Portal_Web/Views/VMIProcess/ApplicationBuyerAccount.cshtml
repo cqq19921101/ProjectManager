@@ -1,0 +1,59 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+    var _Requestor = "@ViewBag.Requestor" // Only for new form
+</script>
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@Scripts.Render("~/bundles/VMIProcess/ApplicationBuyerAccount")
+@RenderPage("~/Views/VMIProcess/ApplicationBuyerAccount/dialogABAManage.cshtml")
+@RenderPage("~/Views/VMIProcess/ApplicationBuyerAccount/dialogGroup.cshtml")
+@RenderPage("~/Views/VMIProcess/ApplicationBuyerAccount/dialogRoles.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+<div id="tbABA">
+    <table class="ui-widget-header ui-corner-all" style="width:677px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="4">
+                <button id="btnQueryABA"></button>
+                <button id="btnAddABA"></button>
+                <button id="btnDeleteABA"></button>
+            </td>
+        </tr>
+    </table>
+    <div style="width:676px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:490px;">
+            <tr>
+                <td class="tdTitleAlignRight">Buyer Name:</td>
+                <td>
+                    <input type="text" id="txtBuyerName" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+                <td class="tdTitleAlignRight">Site:</td>
+                <td>
+                    <select id="ddlSite" class="tdQueryTextBox" style="width: 135px;"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Issuer:</td>
+                <td>
+                    <input type="text" id="txtIssuer" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+                <td class="tdTitleAlignRight">Status:</td>
+                <td>
+                    <select id="ddlStatus" class="tdQueryTextBox" style="width: 135px;">
+                        <option selected="selected"></option>
+                        <option>New</option>
+                        <option>Reviewing</option>
+                        <option>Close</option>
+                        <option>Reject</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="gridABA"></table>
+    <div id="gridABAListPager"></div>
+</div>

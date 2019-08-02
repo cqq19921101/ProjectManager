@@ -1,0 +1,96 @@
+﻿@*@Scripts.Render("~/bundles/VMIShare")*@
+@*@Scripts.Render("~/bundles/SQMSQEPUR/SQMSQEPUR")*@
+
+
+@RenderPage("~/Views/SQMSQEPUR/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/SQMSQEPUR/dialogQuerySBUVendor.cshtml")
+@RenderPage("~/Views/SQMSQEPUR/dialogQueryMemberGUID1.cshtml")
+@RenderPage("~/Views/SQMSQEPUR/dialogQueryMemberGUID2.cshtml")
+@RenderPage("~/Views/SQMSQEPUR/dialogQueryRDGUID.cshtml")
+@RenderPage("~/Views/SQMSQEPUR/dialogQueryRDSGUID.cshtml")
+
+
+
+<div id="SQMSQEPURdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <table>
+        <tr>
+            <td class="tdTitleAlignRight">Plant:</td>
+            <td>
+                <input type="text" id="txtPlant" maxlength="4" class="tdQueryTextBox" />
+                <button id="btnOpenQueryPlantDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tdTitleAlignRight">Vendor Code:</td>
+            <td>
+                <input type="text" id="txtVendorCode" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryVendorCodeDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+
+
+        <tr style="display:none">
+            <td class="tdTitleAlignRight">SourceGUID:</td>
+            <td>
+                <input type="text" id="txtSource" maxlength="4" class="tdQueryTextBox" />
+                @*<button id="btnOpenQuerySourceDialog" class="tdQueryButton"></button>*@
+            </td>
+        </tr>
+        <tr style="display:none">
+            <td class="tdTitleAlignRight">MemberGUID:</td>
+            <td>
+                <input type="text" id="txtMember" maxlength="10" class="tdQueryTextBox" />
+                @*<button id="btnOpenQueryMGDialog" class="tdQueryButton"></button>*@
+            </td>
+        </tr>
+        <tr style="display:none">
+            <td class="tdTitleAlignRight">RDGUID:</td>
+            <td>
+                <input type="text" id="txtRD" maxlength="10" class="tdQueryTextBox" />
+                @*<button id="btnOpenQueryRDDialog" class="tdQueryButton"></button>*@
+            </td>
+        </tr>
+        <tr style="display:none">
+            <td class="tdTitleAlignRight">RDSGUID:</td>
+            <td>
+                <input type="text" id="txtRDS" maxlength="10" class="tdQueryTextBox" />
+                @*<button id="btnOpenQueryRDSDialog" class="tdQueryButton"></button>*@
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tdTitleAlignRight">SourceName:</td>
+            <td>
+                <input type="text" id="txtSourceName" maxlength="4" class="tdQueryTextBox" />
+                <button id="btnOpenQuerySourceDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">MemberName:</td>
+            <td>
+                <input type="text" id="txtMemberName" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryMGDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">RDName:</td>
+            <td>
+                <input type="text" id="txtRDName" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryRDDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">RDSName:</td>
+            <td>
+                <input type="text" id="txtRDSName" maxlength="10" class="tdQueryTextBox" />
+                <button id="btnOpenQueryRDSDialog" class="tdQueryButton"></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="SQMSQEPURlblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

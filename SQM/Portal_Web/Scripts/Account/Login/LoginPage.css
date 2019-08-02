@@ -1,0 +1,52 @@
+﻿body {
+    background-color:#807F7F;
+}
+.mainform {
+    /*background-image: url("/Scripts/_Global/login_bg.jpg");*/
+    background-image: url("../../../Scripts/_Global/login_bg.jpg");
+    background-repeat:no-repeat;
+    width: 885px;
+    height: 510px;
+    margin: 0 auto;
+    text-align:left;
+}
+.WelcomeDiv {
+    margin-left: 400px;
+    margin-bottom: 0px;
+    color: white;
+    /*background-color: black;*/
+    background-color: transparent;
+    width: 348px;
+    text-align: center;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.LoginDiv {
+    margin-left: 400px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    color: white;
+    width: 348px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.DivBeforeWelcome {
+    height: 69px;
+}
+.PortalBanner_Login_SitePurposeDIV {
+    margin-left: 57px;
+    display: inline-block;
+    color: red;
+    font-weight: bolder;
+    font-size: 32px;
+    white-space:nowrap;
+}
+.DivBeforeWelcome2 {
+    /*height: 15px;*/
+    height: 0px;
+}
+.LoginTable {
+    width: 100%;
+}

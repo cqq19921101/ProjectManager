@@ -1,0 +1,42 @@
+﻿<div id="dialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="dialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btndialogEditData"></button>
+        <button id="btndialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel">Account ID:</td>
+            <td>
+                <input type="text" id="txtDiaAccountID" class="DiaText" maxlength="36" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Member Type:</td>
+            <td>
+                @*<input type="radio" name="DiaMemberType" id="radDiaMemberTypeInternal" value="i" />Internal*@
+                @*<input type="radio" name="DiaMemberType" id="radDiaMemberTypeExternal" value="e" />External*@
+                Internal
+                &nbsp;<input type="button" id="btnDiaReadInternalUserInfo" value="Import Data" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Name (Chinese):</td>
+            <td><input type="text" id="txtDiaNameInChinese" class="DiaText" maxlength="10" /></td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Name (English):</td>
+            <td><input type="text" id="txtDiaNameInEnglish" class="DiaText" maxlength="30" /></td>
+        </tr>
+        <tr>
+            <td class="FieldLabel">Primary Email:</td>
+            <td>
+                <input type="text" id="txtDiaEmail" class="DiaText" maxlength="256" />
+            </td>
+        </tr>
+        <tr>
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>

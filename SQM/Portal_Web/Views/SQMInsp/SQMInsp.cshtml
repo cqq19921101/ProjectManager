@@ -1,0 +1,29 @@
+﻿@Scripts.Render("~/bundles/SQMInsp")
+
+@RenderPage("InspCode/dialogCode.cshtml")
+@RenderPage("InspDesc/InspDesc.cshtml")
+<div id="inspCode">
+    <div id="tbMain1Code" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnShowDesc"></button>
+        <button id="btnSearchCode"></button>
+        <button id="btnCreateCode"></button>
+        <button id="btnViewEditCode"></button>
+        <button id="btnDeleteCode"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>InspCode:</td>
+                <td>
+                    <input type="text" id="txtFilterTextCode" value="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListCode"></table>
+        <div id="gridListPagerCode"></div>
+    </div>
+</div>

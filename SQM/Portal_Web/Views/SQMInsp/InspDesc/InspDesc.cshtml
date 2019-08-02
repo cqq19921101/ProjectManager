@@ -1,0 +1,40 @@
+﻿
+@Scripts.Render("~/bundles/SQMInsp/InspDesc")
+
+@RenderPage("dialogDesc.cshtml")
+<div id="inspDesc">
+    <div id="tbMain1Desc" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+        <button id="btnBack"></button>
+        <button id="btnCreateDesc"></button>
+        <button id="btnViewEditDesc"></button>
+        <button id="btnDeleteDesc"></button>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <span>InspDesc:</span>
+                    <input type="text" id="txtFilterTextDesc" value="" />
+                    <button id="btnSearchDesc"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>InspCode:</span>
+                    <span id="spInspCode"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="gridDataListDesc"></table>
+        <div id="gridListPagerDesc"></div>
+    </div>
+
+    <div>
+        <table id="gridDataListDescCus"></table>
+        <div id="gridListPagerDescCus"></div>
+    </div>
+</div>

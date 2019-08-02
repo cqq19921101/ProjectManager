@@ -1,0 +1,116 @@
+﻿@*@{
+    ViewBag.Title = "MenuStructureMgmt";
+}*@
+
+@Scripts.Render("~/bundles/SQMMgmt/MenuSubFuncMgmt")
+
+@RenderPage("MenuSubFuncMgmt/dialogMenu.cshtml")
+@RenderPage("MenuSubFuncMgmt/dialogFunctionRoles.cshtml")
+@RenderPage("MenuSubFuncMgmt/dialogFunctionControllerActions.cshtml")
+
+<div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:900px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    @*<button id="btnSubmit"></button>
+    <button id="btnCreateSibling"></button>
+    <button id="btnCreateChild"></button>
+    <button id="btnEdit"></button>
+    <button id="btnDelete"></button>
+    <button id="btnSetRoles"></button>
+    <button id="btnSetControllerActions"></button>*@
+    <button id="btnAssignMenuSubFunc"></button>
+    <button id="btnAssignRoleMenuSubFunc"></button>
+</div>
+<span id="lblSuccessMsg" class="SuccessMsg">@ViewBag.SuccessMsg</span><span id="lblErrorMsg" class="ErrorMsg">@ViewBag.ErrorMsg</span>
+<div id="tbMain2" >
+    <table id="gridDataList"></table>
+    <div id="gridListPager"></div>
+</div>
+<div id="divSelectMenuFuncs" style="DISPLAY:none;">
+    <div class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnsrmFinish"></button>
+    </div>
+    <h3>Selected Func: <span id="spansrmSelectedFunc"></span></h3>
+    <div>
+        <table>
+            <tr>
+                <td>All Func(s):</td>
+                <td></td>
+                <td>Selected Func(s):</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtsrmLeftSearchText" />
+                        <input type="button" id="btnsrmLeftSearch" value="Filtering" />
+                    </div>
+                    <table id="gridsrmLeftResult"></table>
+                    <div id="gridsrmLeftResultPager"></div>
+                </td>
+                <td style="vertical-align:middle">
+                    <div><input type="button" id="btnsrmAdd" value="Add sub func >>" style="width:120px;" /></div>
+                    <div><input type="button" id="btnsrmRemoveAll" value="Remove All" style="width:120px;" /></div>
+                </td>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtsrmRightSearchText" />
+                        <input type="button" id="btnsrmRightSearch" value="Filtering" />
+                    </div>
+                    <table id="gridsrmRightResult"></table>
+                    <div id="gridsrmRightResultPager"></div>
+                    <div>Total <span id="spansrmTotal"></span> func(s).</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="divSelectRoleMenuFuncs" style="DISPLAY:none;">
+    <div class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnrmfFinish"></button>
+    </div>
+    <h3>Selected Func: <span id="spanrmfSelectedFunc"></span></h3>
+    <div>
+        <table>
+            <tr>
+                <td>All Role(s):</td>
+                <td></td>
+                <td>All Func(s):</td>
+                <td></td>
+                <td>Selected Func(s):</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtRoleSearchText" />
+                        <input type="button" id="btnRoleSearch" value="Filtering" />
+                    </div>
+                    <table id="gridRoleResult"></table>
+                    <div id="gridRoleResultPager"></div>
+                </td>
+                <td style="vertical-align:middle;width:70px;" >
+                    
+                </td>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtrmfLeftSearchText" />
+                        <input type="button" id="btnrmfLeftSearch" value="Filtering" />
+                    </div>
+                    <table id="gridrmfLeftResult"></table>
+                    <div id="gridrmfLeftResultPager"></div>
+                </td>
+                <td style="vertical-align:middle">
+                    <div><input type="button" id="btnrmfAdd" value="Add sub func >>" style="width:120px;" /></div>
+                    <div><input type="button" id="btnrmfRemoveAll" value="Remove All" style="width:120px;" /></div>
+                </td>
+                <td style="vertical-align:top;">
+                    <div>
+                        <input type="text" id="txtrmfRightSearchText" />
+                        <input type="button" id="btnrmfRightSearch" value="Filtering" />
+                    </div>
+                    <table id="gridrmfRightResult"></table>
+                    <div id="gridrmfRightResultPager"></div>
+                    <div>Total <span id="spanrmfTotal"></span> func(s).</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<form id="_PostForm" method="post"><input type="hidden" id="hidMenuJSon" name="MenuJSon" /></form>

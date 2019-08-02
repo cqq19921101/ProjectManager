@@ -1,0 +1,93 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+
+<div id="dialogAVAManage" title="Application New Vendor Account" class="JQDialog" style="display:none">
+    <table>
+        <tr>
+            <td class="tdTitleAlignRight" style="width:18%">Company Name (English):</td>
+            <td style="width: 33%">
+                <input type="text" id="txtCOMPANY_NAME_EN" class="tdQueryTextBox" style="width: 300px" maxlength="50" readonly />
+            </td>
+            <td class="tdTitleAlignRight" style="width: 15%">BU Vendor Code:</td>
+            <td>
+                <input type="text" id="txtBU_VENDOR_CODE" class="tdQueryTextBox" style="width: 300px" maxlength="10" readonly />
+            </td>
+
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Company Name (Chinese):</td>
+            <td>
+                <input type="text" id="txtCOMPANY_NAME_ZH" class="tdQueryTextBox" style="width: 300px" maxlength="50" readonly />
+            </td>
+            <td class="tdTitleAlignRight">Required Organization:</td>
+            <td>
+                <select id="ddlSITE_ID" class="tdQueryTextBox" style="width: 120px;" disabled></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">E-Mail:</td>
+            <td>
+                <input type="text" id="txtEMAIL" class="tdQueryTextBox" style="width: 300px" maxlength="255" readonly />
+            </td>
+            <td class="tdTitleAlignRight">Requestor:</td>
+            <td>
+                <label id="lbCREATE_USER" class="spanFieldValueUnderLine"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Upload Scan File (PDF):</td>
+            <td>
+                <label id="lbScanFile" class="jqGridColumnDataAsLink" style="color:blue"></label>
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadAVA" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <button id="btnExportExcel" style="display:none"></button>
+            </td>
+            <td class="tdTitleAlignRight">Request Date:</td>
+            <td>
+                <label id="lbCREATE_DATE" class="spanFieldValueUnderLine"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">A Code:</td>
+            <td>
+                <input type="text" id="txtA_CODE" class="tdQueryTextBox" style="width: 300px" maxlength="10" readonly />
+            </td>
+            <td class="tdTitleAlignRight">G Code:</td>
+            <td>
+                <input type="text" id="txtG_CODE" class="tdQueryTextBox" style="width: 300px" maxlength="10" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Account:</td>
+            <td>
+                <input type="text" id="txtVENDOR_ACCOUNT" class="tdQueryTextBox" style="width: 300px" maxlength="50" readonly />
+            </td>
+            <td class="tdTitleAlignRight">Status:</td>
+            <td>
+                <label id="lbSTATUS_ID" class="spanFieldValueUnderLine"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitleAlignRight">Group Name:</td>
+            <td colspan="3">
+                <input type="text" id="txtGROUP_NAME" class="tdQueryTextBox" style="width: 724px !important; max-width: 724px !important;" maxlength="255" readonly />
+            </td>
+        </tr>
+        <tr class="trRejectReason" style="display: none;">
+            <td class="tdTitleAlignRight">Reject Reason:</td>
+            <td colspan="3">
+                <input type="text" id="txtREJECT_REASON" class="tdQueryTextBox" style="width: 724px !important; max-width: 724px !important;" readonly />
+            </td>
+        </tr>
+        <tr id="trAccountList">
+            <td colspan="4">
+                <table id="gridAccountList"></table>
+                <div id="gridAccountListPager"></div>
+            </td>
+        </tr>
+    </table>
+</div>

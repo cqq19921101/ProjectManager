@@ -1,0 +1,56 @@
+﻿@using Lib_Portal_Domain.SharedLibs;
+@Scripts.Render("~/bundles/VMIProcess/VendorEmailQueryAndChange")
+@RenderPage("~/Views/VMIProcess/VendorEmailQueryAndChange/dialogVendorAccountInfo.cshtml")
+
+@foreach (var role in PortalUserProfileHelper.GetRunAsUserProfile(Context).Roles)
+{
+    if (role.RoleName.ToUpper() == "VMI: VMIACCOUNTADMIN" || role.RoleName.ToUpper() == "VMI: VMIADMIN")
+    {
+        <label id="lblAdminFlag" style="display: none;">@Html.Raw(role.RoleName)</label>
+        break;
+    }
+}
+
+<div id="tbVEQAC">
+    <table class="ui-widget-header ui-corner-all" style="width:992px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <tr>
+            <td colspan="2">
+                <button id="btnSearchApplyHistory"></button>
+                <button id="btnQueryVendorEmail"></button>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width:991px;padding:3px 0; border-right: 1px solid #aaaaaa;">
+        <table style="width:292px;">
+            <tr>
+                <td class="tdTitleAlignRight">Status:</td>
+                <td>
+                    <select id="ddlStatus" class="tdQueryTextBox" style="width: 135px;">
+                        <option selected="selected"></option>
+                        <option value="0">New</option>
+                        <option value="1">Reject</option>
+                        <option value="2">Close</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">Account:</td>
+                <td>
+                    <input type="text" id="txtAccount" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">BU Vendor Code:</td>
+                <td>
+                    <input type="text" id="txtBUVendorCode" class="tdQueryTextBox" style="width:131px;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <table id="gridApplication"></table>
+    <div id="gridApplicationPager"></div>
+</div>

@@ -1,0 +1,45 @@
+﻿<div id="dialogAddDNinList" title="Add DN in Import List" class="JQDialog" style="display:none">
+    <div id="dialogAddDNinList_tbTopToolBar" class="ui-widget-header ui-corner-all" style="width:97%; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnAdd"></button>
+        <button id="btnQuery"></button>
+        <label id="lblDNList" style="display: none;"></label>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Arrival Date(FM):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtArrivalDateFM" class="tdQueryTextBox" maxlength="10" />
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Arrival Date(TO):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtArrivalDateTO" class="tdQueryTextBox" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>Plan Import Date(FM):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtPlanImportDateFM" class="tdQueryTextBox" maxlength="10" />
+                </td>
+                <td class="tdTitleAlignRight" nowrap>Plan Import Date(TO):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtPlanImportDateTO" class="tdQueryTextBox" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight" nowrap>DN No.(FM):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtDNNoFM" class="tdQueryTextBox" maxlength="20" />
+                </td>
+                <td class="tdTitleAlignRight" nowrap>DN No.(TO):</td>
+                <td class="tdTitleAlignLeft">
+                    <input type="text" id="txtDNNoTO" class="tdQueryTextBox" maxlength="20" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table id="DNListGridDataList"></table>
+        <div id="DNListGridListPager"></div>
+    </div>
+</div>

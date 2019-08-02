@@ -1,0 +1,31 @@
+﻿@*@{
+    ViewBag.Title = "MenuStructureMgmt";
+}*@
+
+@Scripts.Render("~/bundles/SystemMgmt/MenuStructureMgmt")
+
+@RenderPage("MenuStructureMgmt/dialogMenu.cshtml")
+@RenderPage("MenuStructureMgmt/dialogFunctionRoles.cshtml")
+@RenderPage("MenuStructureMgmt/dialogFunctionControllerActions.cshtml")
+
+<div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:900px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnSubmit"></button>
+    <button id="btnCreateSibling"></button>
+    <button id="btnCreateChild"></button>
+    <button id="btnEdit"></button>
+    <button id="btnDelete"></button>
+    <button id="btnSetRoles"></button>
+    <button id="btnSetControllerActions"></button>
+</div>
+<div id="tbMain2" class="ui-widget-header ui-corner-all" style="width:900px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnMoveUp"></button>
+    <button id="btnMoveDown"></button>
+    <button id="btnMoveLeft"></button>
+    <button id="btnMoveRight"></button>
+</div>
+<span id="lblSuccessMsg" class="SuccessMsg">@ViewBag.SuccessMsg</span><span id="lblErrorMsg" class="ErrorMsg">@ViewBag.ErrorMsg</span>
+<div>
+    <table id="gridDataList"></table>
+    <div id="gridListPager"></div>
+</div>
+<form id="_PostForm" method="post"><input type="hidden" id="hidMenuJSon" name="MenuJSon" /></form>

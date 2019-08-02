@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="EXPIRES" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryjqgrid")
+    @Scripts.Render("~/bundles/Global/Commonjs")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/CPK/js")
+    @Styles.Render("~/bundles/CPK/css")
+    <script type="text/javascript">
+        var __WebAppPathPrefix = "@ViewData["appPath2"]";
+        var __UrlForTimeOut = __WebAppPathPrefix + "/Account/Login?ReturnUrl=" + encodeURIComponent(__WebAppPathPrefix);
+    </script> 
+</head>
+<body>
+    <input type="hidden" id="hTaskID" name="hTaskID" value="@ViewData["TaskID"]" />
+    <div class="RegistTop">
+        <div class="RegistTop-left"></div>
+        <div class="RegistTop-right"></div>
+    </div>
+    <div class="RegistFoot">
+        <form method="post">
+            <table style="border:1px solid #000000;border-collapse: collapse;">
+                <tr data="oper">
+                    <td colspan="1">
+                        <span id="lblName">備註:</span>
+                    </td>
+                    <td>
+                        <input type="text" id="txtRemark" name="txtRemark" />
+                    </td>
+                </tr>
+                <tr data="oper">
+                    <td colspan="2">
+                        <input type="button" id="btnAgree" value="確定" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+
+    </div>
+</body>
+</html>

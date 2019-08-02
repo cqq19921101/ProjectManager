@@ -1,0 +1,30 @@
+﻿@*@{
+        ViewBag.Title = "Criticism";
+    }*@
+@Scripts.Render("~/bundles/SQMBasic/Criticism")
+@RenderPage("Criticism/SQMCriticismMapDialog.cshtml")
+@RenderPage("Criticism/SQMCriticismDialog.cshtml")
+@RenderPage("Criticism/SQMCriticismInfo.cshtml")
+<div id="CriticismtbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+    <button id="btnCriticismSearch"></button>
+    @*<button id="btnCriticismCreate"></button>*@
+    @*<button id="btnCriticismViewEdit"></button>*@
+    @*<button id="btnCriticismDelete"></button>*@
+    @*<button id="btnCreatCriticism"></button>*@
+    <button id="btnShowCriticism"></button>
+</div>
+
+<table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+    <tr>
+        <td>Search Text:</td>
+        <td>
+            <input type="text" id="txtFilterText" value="" />
+        </td>
+    </tr>
+</table>
+
+<div style="margin-left:5px">
+    <table id="CriticismgridDataList"></table>
+    <div id="CriticismgridListPager"></div>
+</div>
+

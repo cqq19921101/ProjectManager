@@ -1,0 +1,658 @@
+﻿<script lang="javascript">
+    var _SubFolderForUploadExcel = "@ViewBag.UploadFolderName" //for upload use
+</script>
+@RenderPage("BasicInfo/dialogBasicInfoType.cshtml")
+@Styles.Render("~/bundles/SQMBasic/Basicinfo/css")
+
+@Styles.Render("~/Content/jQuery-File-Upload")
+@Scripts.Render("~/bundles/jQuery-File-Upload")
+@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIQuery/GRReport")
+@Scripts.Render("~/bundles/SQMBasic/Common")
+@Scripts.Render("~/bundles/SQMBasic/BasicInfo")
+@Scripts.Render("~/bundles/SQMBasic/SQMTraders/SQMBasic")
+@Scripts.Render("~/bundles/SQMBasic/SQMTraders/KeyInfoIntro")
+@Scripts.Render("~/bundles/SQMBasic/SQMProduct/SQMBasic")
+@Scripts.Render("~/bundles/SQMBasic/SQMAgents/SQMBasic")
+@Scripts.Render("~/bundles/SQMBasic/SQMAgents/KeyInfoIntro")
+@*@Scripts.Render("~/bundles/SQMBasic/SQMContact")*@
+@Scripts.Render("~/bundles/SQMBasic/SQMEquipment")
+@Scripts.Render("~/bundles/SQMHR/HRInfo")
+@Scripts.Render("~/bundles/SQMProcess/ProcessInfo")
+@Scripts.Render("~/bundles/SQMCertification/CertificationInfo")
+@Scripts.Render("~/bundles/SQMCertification/KeyInfoIntro")
+@Scripts.Render("~/bundles/SQMBasic/SQMCustomers")
+
+
+
+@RenderPage("~/Views/SQMBasic/SQMEquipment/SQMEquipmentDialog.cshtml")
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQueryPlant.cshtml")
+@RenderPage("~/Views/VMIShare/dialogQuerySBUVendor.cshtml")
+
+@RenderPage("~/Views/VMIProcess/UploadVDS/dialogUploadVDSSummary.cshtml")
+
+@RenderPage("~/Views/SQMBasic/SQMAgents/dialogAgents2.cshtml")
+@RenderPage("~/Views/SQMBasic/SQMAgents/dialogAgents.cshtml")
+@RenderPage("~/Views/SQMBasic/SQMProduct/dialogproduct.cshtml")
+@RenderPage("~/Views/SQMBasic/SQMTraders/dialogTraders.cshtml")
+@RenderPage("~/Views/SQMHR/HRInfo/dialogHRInfo.cshtml")
+@RenderPage("~/Views/SQMProcess/ProcessInfo/dialogProcessInfo.cshtml")
+@RenderPage("~/Views/SQMCertification/CertificationInfo/dialogCertificationInfo.cshtml")
+@RenderPage("~/Views/SQMCustomers/SQMCustomersDialog.cshtml")
+
+@RenderPage("BasicInfo/dialogBasicInfo.cshtml")
+
+<table class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;display:none;">
+    <tr>
+        <td>@*<select id="ddlVendorType"></select>*@</td>
+        <td><button id="btnSetCategory"></button></td>
+    </tr>
+</table>
+
+<div id="tbBasicInfoType" style="padding:3px;">
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px;">
+        <button id="btnCreateBasicInfoType"></button>
+       @* <button id="btnViewEditBasicInfoType"></button>*@
+        <button id="btnViewEditDetail"></button>
+        <button id="btnDeleteBasicInfoType" @*style="display:none;"*@></button>
+        <button id="btnCommit"></button>
+        <button id="btnSuspend"></button>
+    </div>
+
+    <div>
+        <table id="gridDataListBasicInfoType"></table>
+        <div id="gridListPagerBasicInfoType"></div>
+    </div>
+</div>
+
+@*選定後編輯介面*@
+<div id="tbGRReport" style="padding:3px;">
+    <input type="hidden" id="ihBasicInfoGUID" />
+    <input type="hidden" id="ihTB_SQM_Vendor_TypeCID" />
+    <table class="ui-widget-header ui-corner-all" style="width:732px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+        <tr>
+            <td><button id="btnBack"></button></td>
+            <td>編輯模式   調查表種類:<span id="spVendorType" class="spTypeItems"> </span>產品種類:<span id="spCommodity" class="spTypeItems"> </span>產品子類別:<span id="spCommoditySub" class="spTypeItems"></span></td>
+        </tr>
+    </table>
+    @*<table class="ui-widget-header ui-corner-all" style="width:500px; padding:3px 15px 3px 15px; font-size: 10.5px;">
+            <tr>
+                <td><button id="btnExportToExcel"></button></td>
+                <td><button id="btnViewEdit"></button></td>
+                <td><button id="btnViewEdit2"></button></td>
+            </tr>
+    </table>*@
+    <div id="tbMain1" class="ui-widget-header ui-corner-all" style="width:700px; padding:3px 15px 3px 15px; font-size:10.5px; ">
+        <button id="btnBasic" isHideType="Y" vType1="Y" vType2="Y" vType3="Y"> </button>
+        <button id="btnGenral" isHideType="Y" vType1="Y" vType2="Y" vType3="Y"></button>
+
+        <button id="btnProduct" ptype="product" isHideType="Y" vType1="Y"></button>
+        <button id="btnTraders" ptype="product" isHideType="Y" vType2="Y"></button>
+        <button id="btnAgents" ptype="product" isHideType="Y" vType3="Y"></button>
+
+        <button id="btnCustomer" isHideType="Y" vType1="Y" vType2="Y" vType3="Y"></button>
+        <button id="btnHR" isHideType="Y" vType1="Y" vType2="Y" vType3="Y"></button>
+        <button id="btnCertification" isHideType="Y" vType1="Y" vType2="Y" vType3="Y"></button>
+
+        <button id="btnSQMEquipment" isHideType="Y" vType1="Y"></button>
+        <button id="btnProcess" isHideType="Y" vType1="Y"></button>
+        <button id="btnAbility" isHideType="Y" vType1="Y"></button>
+
+        <button id="btnCriticism" style="display:none;"></button>
+        <button id="btnSQMContact" style="display:none;"></button>
+        <button id="btnCSS" style="display:none;"></button>
+        <button id="btnEquipmentMain" style="display:none;"></button>
+        <button id="btnEquipmentMainTest" style="display:none;"></button>
+        <button id="btnEquipmentReliability" style="display:none;"></button>
+        <button id="btnEquipmentHSF" style="display:none;"></button>
+        <button id="btnEquipmentLogisitic" style="display:none;"></button>
+
+    </div>
+    <div id="divBasic" edittpye="basic">
+        一般資訊<BR />
+        <button id="btnBasicSave"></button><BR />
+        <table style="width:499px; padding:3px; border: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;">
+            <tr>
+                @*<td class="tdTitleAlignRight">供應商代碼:</td>
+                <td>
+                    <input type="text" id="txtVendorCode" maxlength="4" class="tdQueryTextBox" readonly />
+
+                </td>*@
+                <td class="tdTitleAlignRight">公司名稱:</td>
+                <td>
+                    <input type="text" id="txtCompanyName" maxlength="80" class="tdQueryTextBox" /><span style="color:red">*</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">公司地址:</td>
+                <td colspan="3">
+                    <input type="text" id="txtCompanyAddress" maxlength="180" style="width:97%;max-width:97%;" /><span style="color:red">*</span>
+                </td>
+            </tr>
+            <tr isHideType="Y" vType2="Y">
+                <td class="tdTitleAlignRight">公司性質:</td>
+                <td colspan="3">
+                    是否是貿易商<input id="cbIsTrader" cbtype="" type="checkbox" name="vehicle" value="">
+                    是否是現貨商<input id="cbIsSpotTrader" cbtype="" type="checkbox" name="vehicle" value="">
+                </td>
+            </tr>
+            <tr isHideType="Y" vType1="Y">
+                <td class="tdTitleAlignRight">生產工廠名稱:</td>
+                <td>
+                    <input type="text" id="txtFactoryName" class="tdQueryTextBox" /><span style="color:red">*</span>
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr isHideType="Y" vType1="Y">
+                <td class="tdTitleAlignRight">生產工廠位址:</td>
+                <td colspan="3">
+                    <input type="text" id="txtFactoryAddress" class="tdQueryTextBox" style="width:97%;max-width:97%;" /><span style="color:red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">資訊填寫日期</td>
+                <td>
+                    <input type="text" id="txtDateInfo" class="tdQueryTextBox"><span style="color:red">*</span>
+                </td>
+                <td class="tdTitleAlignRight">資訊填寫者</td>
+                <td>
+                    <input type="text" id="txtProvidedName" class="tdQueryTextBox"><span style="color:red">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">職位</td>
+                <td>
+                    <input type="text" id="txtJobTitle" name="from" class="tdQueryTextBox"><span style="color:red">*</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="divGenral" edittpye="basic">
+        一般資訊<BR />
+        <button id="btnGenralSave"></button><BR />
+        <table>
+            <tr>
+                <td class="tdTitleAlignRight">內/外資企業</td>
+                <td><input type="text" id="txtEnterpriseCategory" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">公/私有制</td>
+                <td><input type="text" id="txtOwnerShip" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">成立日期</td>
+                <td><input type="text" id="txtFoundedYear" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">最近第一年實際營業額1:(單位：百萬元人民幣)</td>
+                <td><input type="text" id="txtLastRevenues1" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">最近第二年實際營業額2:(單位：百萬元人民幣)</td>
+                <td><input type="text" id="txtLastRevenues2" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">最近第三年實際營業額3:(單位：百萬元人民幣)</td>
+                <td><input type="text" id="txtLastRevenues3" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">預估今年年度營業額</td>
+                <td><input type="text" id="txtCurrentRevenues" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">營業額分析,按照區域 (如美國,歐洲, 中國, 亞洲其它地區)所占份額的百分比</td>
+                <td><input type="number" id="txtTurnoverAnalysis" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">最近三年的平均營業額增長率(%)</td>
+                <td><input type="number" id="txtRevenueGrowthRate1" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            @*<tr>
+                <td class="tdTitleAlignRight">最近第二年的平均營業額增長率(%)2</td>
+                <td><input type="text" id="txtRevenueGrowthRate2" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>*@
+            @*<tr>
+                <td class="tdTitleAlignRight">最近第三年的平均營業額增長率(%)3</td>
+                <td><input type="text" id="txtRevenueGrowthRate3" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>*@
+            <tr>
+                <td class="tdTitleAlignRight">最近3年平均毛利率(%)</td>
+                <td><input type="number" id="txtGrossProfitRate1" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            @*<tr>
+                <td class="tdTitleAlignRight">最近3年平均毛利率(%)2</td>
+                <td><input type="text" id="txtGrossProfitRate2" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>*@
+            @*<tr>
+                <td class="tdTitleAlignRight">最近3年平均毛利率(%)3</td>
+                <td><input type="text" id="txtGrossProfitRate3" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>*@
+            <tr>
+                <td class="tdTitleAlignRight">計劃投資資本(單位：百萬元人民幣)</td>
+                <td><input type="text" id="txtPlanInvestCapital" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">開戶銀行與帳號</td>
+                <td><input type="text" id="txtBankAndAccNumber" name="from" class="tdQueryTextBox" style="width:204px;"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">交易幣別（可以多選）<span style="color:red">*</span></td>
+                <td>
+                    <input id="TradingCurrencyCNY" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="CNY">人民幣<br>
+                    <input id="TradingCurrencyUSD" cbtype="TradingCurrency" type="checkbox" name="vehicle" value="USD">美金<br>
+                    <input id="TradingCurrencyOther" cbtype="" type="checkbox" name="vehicle" value="">其他<br>
+                    <input type="text" id="txtTradingCurrency" name="from" class="tdQueryTextBox">
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">可配合交易模式（可以多選）<span style="color:red">*</span></td>
+                <td>
+                    @*<input type="text" id="txtTradeMode" name="from" class="tdQueryTextBox">*@
+                    <input id="TradeModeOUT" cbtype="TradeMode" type="checkbox" name="vehicle" value="OUT">出口<br>
+                    <input id="TradeModeTRANS" cbtype="TradeMode" type="checkbox" name="vehicle" value="TRANS">轉廠<br>
+                    <input id="TradeModeIN" cbtype="TradeMode" type="checkbox" name="vehicle" value="IN">保稅區物流園<br>
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">可否配合VMI管理模式</td>
+                <td>
+                    @*<input type="text" id="txtVMIManageModel" name="from" class="tdQueryTextBox">*@
+                    <select id="txtVMIManageModel" style="width:204px;">
+                        <option value="1">可以</option>
+                        <option value="0">不可以</option>
+                    </select>
+                    <span style="color:red">*</span>
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">供應商出貨地點到光寶收貨工廠的距離（公里）</td>
+                <td><input type="text" id="txtDistance" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">可接受的最低月結天數</td>
+                <td><input type="text" id="txtMinMonthStateDays" name="from" class="tdQueryTextBox"><span style="color:red">*</span></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">是否有與光寶集團其他事業部交易以及年銷售額1(单位：百万元人民币)</td>
+                <td>
+                    <input type="text" id="txtBU1TurnoverName" name="from" class="tdQueryTextBox" placeholder="名稱">
+                    <input type="text" id="txtBU1Turnover" name="from" class="tdQueryTextBox" placeholder="銷售額">
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">是否有與光寶集團其他事業部交易以及年銷售額2(单位：百万元人民币)</td>
+                <td>
+                    <input type="text" id="txtBU2TurnoverName" name="from" class="tdQueryTextBox" placeholder="名稱">
+                    <input type="text" id="txtBU2Turnover" name="from" class="tdQueryTextBox" placeholder="銷售額">
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">是否有與光寶集團其他事業部交易以及年銷售額3(单位：百万元人民币)</td>
+                <td>
+                    <input type="text" id="txtBU3TurnoverName" name="from" class="tdQueryTextBox" placeholder="名稱">
+                    <input type="text" id="txtBU3Turnover" name="from" class="tdQueryTextBox" placeholder="銷售額">
+                </td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignRight">優勢,公司特點</td>
+                <td><input type="text" id="txtCompanyAdvantage" name="from" class="tdQueryTextBox"></td>
+                <td class="tdTitleAlignRight"></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="divAbility" edittpye="basic">
+        關鍵機構材料供應商技術能力要求<BR />
+        <button id="btnAbilitySave"></button><BR />
+        <table>
+            <tr>
+                <td class="tdTitleAlignLeft"><input id="Is3DUG" type="checkbox" name="vehicle" value="CNY">3D軟體-UG</td>
+                <td class="tdTitleAlignLeft"><input id="Is3DProE" type="checkbox" name="vehicle" value="CNY">3D軟體-ProE</td>
+                <td class="tdTitleAlignLeft"><input id="Is2DAutoCAD" type="checkbox" name="vehicle" value="CNY">2D軟體-AutoCAD</td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignLeft"><input id="IsPhotoShop" type="checkbox" name="vehicle" value="CNY">Photo Shop軟體</td>
+                <td class="tdTitleAlignLeft"><input id="IsIDMapAbility" type="checkbox" name="vehicle" value="CNY">獨立出ID圖能力</td>
+                <td class="tdTitleAlignLeft"><input id="Is3DMapAbility" type="checkbox" name="vehicle" value="CNY">獨立出3D圖能力</td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignLeft"><input id="Is2DMapAbility" type="checkbox" name="vehicle" value="CNY">獨立出2D圖能力</td>
+                <td class="tdTitleAlignLeft"><input id="IsMoldflowAbility" type="checkbox" name="vehicle" value="CNY">模流分析能力(Moldflow)</td>
+                <td class="tdTitleAlignLeft"><input id="IsTAAbility" type="checkbox" name="vehicle" value="CNY">公差分析能力(TA）</td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignLeft"><input id="IsDesignGuildline" type="checkbox" name="vehicle" value="CNY">設計規範(Design guildline）</td>
+                <td class="tdTitleAlignLeft"><input id="IsFMEA" type="checkbox" name="vehicle" value="CNY">失效模式分析(FMEA）</td>
+                <td class="tdTitleAlignLeft"><input id="IsLessonLearnt" type="checkbox" name="vehicle" value="CNY">經驗教訓資料庫(Lesson Learnt)</td>
+            </tr>
+            <tr>
+                <td class="tdTitleAlignLeft">模具製造產能</td>
+                <td class="tdTitleAlignLeft">
+                    <select id="ddlMoldProduceCapacity">
+                        <option value="A">模具製造產能空間大，尚有承接非自用模具加工業務的能力</option>
+                        <option value="B">模具製造產能可以滿足工廠內部需求</option>
+                        <option value="C">模具製造產能不足，尚需委外加工</option>
+                    </select>
+                </td>
+                <td class="tdTitleAlignLeft"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="divProduct" edittpye="basic">
+        <button id="btnSearchP"></button>
+        <button id="btnCreateP"></button>
+        <button id="btnViewEditP"></button>
+        <button id="btnDeleteP"></button>
+        <br />
+
+        <table>
+            <tr>
+                <td>PrincipalProducts:</td>
+                <td>
+                    <input type="text" id="txtFilterTextP" value="" />
+                </td>
+            </tr>
+        </table>
+
+        <table id="gridDataListP"></table>
+        <div id="gridListPagerP"></div>
+
+
+    </div>
+    <div id="divAgents" edittpye="basic">
+
+        <button id="btnSearchA"></button>
+        <button id="btnCreateA"></button>
+        <button id="btnViewEditA"></button>
+        <button id="btnDeleteA"></button>
+        <button id="btnPlace"></button>
+
+            <table>
+                <tr>
+                    <td>PrincipalProducts:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextA" value="" />
+                    </td>
+                </tr>
+            </table>
+
+
+        <div>
+            <table id="gridDataListA"></table>
+            <div id="gridListPagerA"></div>
+        </div>
+
+        <br /><br />
+        <div id="PlaceA2" style="display:none;">
+            <div style="text-align:center;font-size:18px;width:auto;font-weight:bold;color:red;">供貨商原廠地址填寫</div>
+            <div style="text-align:center;font-size:14px;width:auto;color:black;">刪除數據時,請先刪除"供貨商原廠地址"中的數據,在刪除主欄目中的數據</div>
+            <button id="btnSearchA2"></button>
+            <button id="btnCreateA2"></button>
+            <button id="btnViewEditA2"></button>
+            <button id="btnDeleteA2"></button>
+            <button id="btnPlaceA2"></button>
+            <div>
+                <table>
+                    <tr>
+                        <td>FactoryName:</td>
+                        <td>
+                            <input type="text" id="txtFilterTextA2" value="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <table id="gridDataListA2"></table>
+                <div id="gridListPagerA2"></div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div id="divTraders" edittpye="basic">
+
+        <button id="btnSearchT"></button>
+        <button id="btnCreateT"></button>
+        <button id="btnViewEditT"></button>
+        <button id="btnDeleteT"></button>
+
+            <table>
+                <tr>
+                    <td>PrincipalProducts:</td>
+                    <td>
+                        <input type="text" id="txtFilterTextT" value="" />
+                    </td>
+                </tr>
+            </table>
+        <table id="gridDataListT"></table>
+        <div id="gridListPagerT"></div>
+
+
+    </div>
+
+
+    <div id="divSQMEquipment" edittpye="basic">
+        <div id="SQMEquipmenttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMEquipmentCreate"></button>
+            <button id="btnSQMEquipmentViewEdit"></button>
+            <button id="btnSQMEquipmentDelete"></button>
+        </div>
+        <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+            <tr>
+                <td class="tdTitleAlignRight" style="width:10%">Equipment_Type:</td>
+                <td><select id="ddlEquipmentType"></select></td>
+                <td class="tdTitleAlignRight" style="width:10%">Equipment_Special_Type:</td>
+                <td><select id="ddlEquipmentSpecialType"></select></td>
+            </tr>
+
+        </table>
+        <div style="margin-left:5px">
+            <table id="SQMEquipmentgridDataList"></table>
+            <div id="SQMEquipmentgridListPager"></div>
+        </div>
+    </div>
+
+    <div id="divSQMHR" edittpye="basic">
+        <div id="tbSQMHRMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMHRSearch"></button>
+            <button id="btnSQMHRCreate"></button>
+            <button id="btnSQMHRViewEdit"></button>
+            <button id="btnSQMHRDelete"></button>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtSQMHRFilterText" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>總实际員工人數：</td>
+                    <td>
+                        <input type="text" id="txtTotalEmployees" value="" disabled="disabled" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>總编制人数：</td>
+                    <td>
+                        <input type="text" id="txtNumberPlanned" value="" disabled="disabled" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table id="gridSQMHRDataList"></table>
+            <div id="gridSQMHRListPager"></div>
+        </div>
+    </div>
+
+    <div id="divSQMProcess" edittpye="basic">
+        <div id="tbSQMProcessMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMProcessSearch"></button>
+            <button id="btnSQMProcessCreate"></button>
+            <button id="btnSQMProcessViewEdit"></button>
+            <button id="btnSQMProcessDelete"></button>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtSQMProcessFilterText" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table id="gridSQMProcessDataList"></table>
+            <div id="gridSQMProcessListPager"></div>
+        </div>
+    </div>
+
+    <div id="divSQMCertification" edittpye="basic">
+        <div id="tbSQMCertificationMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMCertificationSearch"></button>
+            <button id="btnSQMCertificationCreate"></button>
+            <button id="btnSQMCertificationViewEdit"></button>
+            <button id="btnSQMCertificationDelete"></button>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <td>Search Text:</td>
+                    <td>
+                        <input type="text" id="txtSQMCertificationFilterText" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <table id="gridSQMCertificationDataList"></table>
+            <div id="gridSQMCertificationListPager"></div>
+        </div>
+    </div>
+
+    <div id="divCriticism" edittpye="basic">
+        <div id="CriticismtbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnCriticismSearch"></button>
+            <button id="btnCriticismCreate"></button>
+            <button id="btnCriticismViewEdit"></button>
+            <button id="btnCriticismDelete"></button>
+            <button id="btnCreatCriticism"></button>
+            <button id="btnShowCriticism"></button>
+        </div>
+
+        <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+            <tr>
+                <td>Search Text:</td>
+                <td>
+                    <input type="text" id="txtFilterText" value="" />
+                </td>
+            </tr>
+        </table>
+
+        <div style="margin-left:5px">
+            <table id="CriticismgridDataList"></table>
+            <div id="CriticismgridListPager"></div>
+        </div>
+    </div>
+    <div id="divSQMCustomers" edittpye="basic">
+        <div id="SQMCustomersMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMCustomersSearch"></button>
+            <button id="btnSQMCustomersCreate"></button>
+            <button id="btnSQMCustomersViewEdit"></button>
+            <button id="btnSQMCustomersDelete"></button>
+        </div>
+        <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+            <tr>
+                <td>请填入共有多少家外包供应商:</td>
+                <td>
+                    <input type="text" id="txtHPVendorNum" value="" />
+                </td>
+                <td><button id="btnHPVendorNumUpdate"></button></td>
+            </tr>
+        </table>
+        <div style="margin-left:5px">
+            <table id="SQMCustomersgridDataList"></table>
+            <div id="SQMCustomersgridListPager"></div>
+        </div>
+    </div>
+</div>
+@*<div id="divSQMContact" edittpye="basic">
+        <div id="SQMContacttbMain1" class="ui-widget-header ui-corner-all" style="width:570px; padding:3px 15px 3px 15px; font-size:10.5px; display:none;">
+            <button id="btnSQMContactSearch"></button>
+            <button id="btnSQMContactCreate"></button>
+            <button id="btnSQMContactViewEdit"></button>
+            <button id="btnSQMContactDelete"></button>
+        </div>
+
+        <div>
+            <table></table>
+        </div>
+
+        <div>
+            <table id="SQMContactgridDataList"></table>
+            <div id="SQMContactgridListPager"></div>
+        </div>
+    </div>*@
+

@@ -1,0 +1,42 @@
+﻿@Scripts.Render("~/bundles/VMIShare")
+@Scripts.Render("~/bundles/VMIBulletin/RefAndDownload")
+
+@RenderPage("~/Views/VMIShare/dialogDownloadSplash.cshtml")
+@RenderPage("~/Views/VMIBulletin/RefAndDownload/dialogRefAndDownload.cshtml")
+
+<div style="width:100%;">
+    <table>
+        <tr>
+            <td>
+                <div id="tbRefAndDownload">
+                    <table class="ui-widget-header ui-corner-all" style="width:500px; padding:3px 15px 3px 15px;">
+                        <tr>
+                            <td>Reference and Downloads</td>
+                        </tr>
+                    </table>
+                    <table style="width:500px; padding:3px 15px 3px 15px; font-size:12px;border-right: 1px solid #aaaaaa;border-left: 1px solid #aaaaaa;">
+                        <tr>
+                            <td class="tdTitleAlignRight" style="width:10%">Category:</td>
+                            <td><select id="ddlCategory"></select></td>
+                        </tr>
+                    </table>
+
+                    <table id="listRefAndDowload"></table>
+                    <div id="pagerRefAndDowload"></div>
+                </div>
+            </td>
+            <td style="vertical-align: top;">
+                <div id="POAckInfo">
+                    <div id="POAck" style="padding-top: 6px; padding-left: 20px; font-size: 1.3em; display: none;">
+                        You have <a id="POAckNum" href="~/VMIProcess/ToDoPOAck?AutoQuery=true" style="font-weight:600; text-decoration: underline;  font-size: 1.5em; color: red;"></a> PO(s) requiring web acknowledgement. (Release date from <span style="text-decoration: underline">@System.DateTime.Now.AddDays(-31).ToString("yyyy/MM/dd")</span>  to <span style="text-decoration: underline">@System.DateTime.Now.ToString("yyyy/MM/dd")</span>)
+                    </div>
+                    <div id="NonPOAck" style="padding-top: 6px; padding-left: 20px; font-size: 1.3em; display: none;">
+                        You have <span style="font-weight: 600; text-decoration: underline; font-size: 1.5em;">no</span> new or updated PO(s) requiring web acknowledgement.
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+</div>

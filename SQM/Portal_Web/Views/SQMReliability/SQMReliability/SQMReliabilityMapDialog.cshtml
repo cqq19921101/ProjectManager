@@ -1,0 +1,76 @@
+﻿<div id="MapdialogData" title="Portal Member" class="JQDialog" style="display:none;">
+    <div id="MapdialogDataToolBar" class="ui-widget-header ui-corner-all dialogSTDToolBar">
+        <button id="btnMapdialogEditData"></button>
+        <button id="btnMapdialogCancelEdit"></button>
+    </div>
+    <table>
+        <tr>
+            <td class="FieldLabel" id="lblCategory">產品代碼:</td>
+            <td>
+                <select id="ddlCategory" style="width:204px;"></select>
+                <br />
+                <select id="ddlCategorySub" style="width:204px;"></select>
+            </td>
+        </tr>
+
+        @*<tr>
+                <td class="ErrorMsg" colspan="2">
+                    <span id="lblDiaErrMsgBasicInfoType"></span>
+                </td>
+            </tr>*@
+        <tr>
+            <td class="FieldLabel" id="lblTestProjet">可靠度性實驗項目（Test Project）:</td>
+            <td>
+                <input type="text" id="txtTestProjet" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr></tr>
+
+        <tr>
+            <td class="FieldLabel" id="lblPlannedTestTime">計劃實驗時間 (PlannedTestTime)</td>
+            <td>
+                <input type="text" id="txtPlannedTestTime" class="tdQueryTextBox" maxlength="100" readonly="readonly"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel" id="lblActualTestTime">實際實驗時間 (ActualTestTime)</td>
+            <td>
+                <input type="text" id="txtActualTestTime" class="tdQueryTextBox" maxlength="100" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel" id="lblTestResult">實際實驗結果 (TestResult)</td>
+            <td>
+                <select id="txtTestResult" style="width:204px;">
+                    <option value="Pass">Pass</option>
+                    <option value="Fail">Fail</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel" id="lblTestPeople">檢測人員 (TestPeople)</td>
+            <td>
+                <input type="text" id="txtTestPeople" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FieldLabel" id="lblNote">備註 (Note)</td>
+            <td>
+                <input type="text" id="txtNote" class="DiaText" maxlength="40" />
+            </td>
+        </tr>
+        <tr id="fileUploadPart">
+            <td id="txtFile" style="text-align: right; font-weight: bold;">File:</td>
+            <td id="UpDateFile" style="vertical-align: top;">
+                @Html.Partial("_Files", new ViewDataDictionary { { "formId", "fileupload_uploadVDS" }, { "subfolderPath", @ViewBag.UploadFolderName } })
+                <span>TIP: 請選擇小於5M的PDF文件</span>
+            </td>
+            <td><button id="btnUploadSureInfo">Process</button></td>
+        </tr>
+        <tr id="MapErrorMsg">
+            <td class="ErrorMsg" colspan="2">
+                <span id="lblMapDiaErrMsg"></span>
+            </td>
+        </tr>
+    </table>
+</div>
