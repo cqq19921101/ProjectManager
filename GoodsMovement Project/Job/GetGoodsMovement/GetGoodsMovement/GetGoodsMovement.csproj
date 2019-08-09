@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83018008-78E9-4073-B6E8-1EAFA1681B34}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GetGoodsMovement</RootNamespace>
+    <AssemblyName>GetGoodsMovement</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ERPConnect20, Version=3.0.0.93, Culture=neutral, PublicKeyToken=ab88d1e080a9556c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\COMMON DLL\DLL\ERPConnect20.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.Corp.IT.EA.CMCC, Version=1.0.4113.24343, Culture=neutral, PublicKeyToken=846221ff0536e3b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.Corp.IT.EA.CMCC.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.BLL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8dd5da69a5815819, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.DAL, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e6a42606fb9c8c3e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteOn.EA.Model, Version=2.0.0.0, Culture=neutral, PublicKeyToken=47fb489c02b84b9e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\bin\Release\LiteOn.EA.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="SICClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\COMMON DLL\DLL\SICClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SICServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2795f3c021b9fa60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\COMMON DLL\DLL\SICServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GetGoodsMovement.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\LiteOn.GDS.Utility.csproj">
+      <Project>{FCC0AF76-29F5-49DA-A15C-8340DD78320F}</Project>
+      <Name>LiteOn.GDS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

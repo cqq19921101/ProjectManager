@@ -85,6 +85,83 @@ namespace LiteOn.GDS.Utility
         }
 
         /// <summary>
+        /// 記錄退料單Mapping的領料單
+        /// </summary>
+        /// <param name="dtDetail"></param>
+        static public void InsertMappingData(DataTable dtDetail)
+        {
+            foreach (DataRow drDetail in dtDetail.Rows)
+            {
+                string WERKS = drDetail["WERKS"].ToString().Trim();
+                string MBLNR_A = drDetail["MBLNR_A"].ToString().Trim();
+                string Type = MBLNR_A.Substring(0,2);
+
+                switch (WERKS)
+                { 
+                    case "2680":
+                    case "268S":
+                        #region 退料單 Mapping 領料單 2680 IA单
+                        if (Type == "IA" || Type == "I6")
+                        {
+                            string MJAHR_A = drDetail["MJAHR_A"].ToString().Trim();//年份
+                            string ZEILE_A = drDetail["ZEILE_A"].ToString().Trim();//料號對應的Item
+                            string MATNR = drDetail["MATNR"].ToString().Trim();//料號
+                            string REFNO = drDetail["REFNO"].ToString().Trim();//Mapping的I1單
+                            string MENGE = drDetail["MENGE"].ToString().Trim();//數量
+                            string CHARG = drDetail["CHARG"].ToString().Trim();//Batch Number
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(@"INSERT INTO [SPM].[dbo].[TB_GDS_Mapping]
+                               ([WERKS]
+                               ,[MBLNR_A]
+                               ,[MJAHR_A]
+                               ,[ZEILE_A]
+                               ,[MATNR]
+                               ,[MENGE]
+                               ,[POSTED]
+                               ,[APROV]
+                               ,[REFNO]
+                               ,[CHARG]
+                                )
+                         VALUES
+                               (@WERKS,
+                                @MBLNR_A,
+                                @MJAHR_A,
+                                @ZEILE_A,
+                                @MATNR,
+                                @MENGE,
+                                @POSTED,
+                                @APROV,
+                                @REFNO,
+                                @CHARG)");
+                            opc.Clear();
+                            opc.Add(DataPara.CreateDataParameter("@WERKS", SqlDbType.NVarChar, WERKS));
+                            opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.NVarChar, MBLNR_A));
+                            opc.Add(DataPara.CreateDataParameter("@MJAHR_A", SqlDbType.NVarChar, MJAHR_A));
+                            opc.Add(DataPara.CreateDataParameter("@ZEILE_A", SqlDbType.NVarChar, ZEILE_A));
+                            opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, MATNR));
+                            opc.Add(DataPara.CreateDataParameter("@MENGE", SqlDbType.NVarChar, MENGE));
+                            opc.Add(DataPara.CreateDataParameter("@POSTED", SqlDbType.NVarChar, ""));
+                            opc.Add(DataPara.CreateDataParameter("@APROV", SqlDbType.NVarChar, ""));
+                            opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, REFNO));
+                            opc.Add(DataPara.CreateDataParameter("@CHARG", SqlDbType.NVarChar, CHARG));
+                            try
+                            {
+                                sdb.ExecuteNonQuery(sb.ToString(), opc);
+
+                            }
+                            catch (Exception ex)
+                            {
+                                WriteLog(ex.Message, "Return_SAPDATA");
+                            }
+                        }
+                        #endregion
+                        break; 
+                }
+            
+            }
+        }
+
+        /// <summary>
         /// 記錄簽核信息至QUEUE
         /// </summary>
         /// <param name="GDS">CONTROL TABLE DATA</param>
@@ -114,6 +191,33 @@ namespace LiteOn.GDS.Utility
             catch (Exception ex)
             {
                 WriteLog(string.Format("# Fail: record queue data error:{0};WERKS={1};MBLNR_A={2};MJAHR_A={3}", ex.Message, GDS.WERKS, GDS.MBLNR_A, GDS.MJAHR_A), "AddToQueue");
+                flag = false;
+            }
+            return flag;
+        }
+
+
+        /// <summary>
+        /// 更新Mapping表中APROV字段(退料单的签核状态)  避免异常单出现非Approve的单子 剛簽核完的單子POSETED欄位沒有值,只有已經簽核完加過帳的單子才會出現
+        /// </summary>
+        /// <param name="GDS"></param>
+        /// <returns></returns>
+        static public bool UpdateToMapping(Model_GDS GDS)
+        {
+            bool flag = false;
+            opc.Clear();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"Update TB_GDS_Mapping set APROV = @APROV WHERE MBLNR_A = @MBLNR_A");
+            opc.Add(DataPara.CreateDataParameter("@APROV", SqlDbType.VarChar, GDS.APROV));
+            opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.VarChar, GDS.MBLNR_A));
+            try
+            {
+                sdb.ExecuteNonQuery(sql, opc);
+                flag = true;
+            }
+            catch (Exception ex)
+            {
+                WriteLog(string.Format("# Fail: record queue data error:{0};WERKS={1};MBLNR_A={2};MJAHR_A={3}", ex.Message, GDS.WERKS, GDS.MBLNR_A, GDS.MJAHR_A), "UpdateToQueue");
                 flag = false;
             }
             return flag;
@@ -172,7 +276,6 @@ namespace LiteOn.GDS.Utility
             }
             DBIO.WriteTraceLog(log, oDOAHandler);
         }
-
 
         /// <summary>
         /// write log to database

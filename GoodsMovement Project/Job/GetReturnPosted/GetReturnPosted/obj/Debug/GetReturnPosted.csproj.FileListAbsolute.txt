@@ -1,0 +1,6 @@
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\bin\Debug\GetReturnPosted.exe.config
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\bin\Debug\GetReturnPosted.exe
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\bin\Debug\GetReturnPosted.pdb
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\obj\Debug\GetReturnPosted.exe
+C:\Users\Administrator\Desktop\GetReturnPosted\GetReturnPosted\obj\Debug\GetReturnPosted.pdb

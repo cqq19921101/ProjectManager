@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetGoodsMovement", "GetGoodsMovement\GetGoodsMovement.csproj", "{83018008-78E9-4073-B6E8-1EAFA1681B34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteOn.GDS.Utility", "..\LiteOn.GDS.Utility\LiteOn.GDS.Utility\LiteOn.GDS.Utility.csproj", "{FCC0AF76-29F5-49DA-A15C-8340DD78320F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://icm014:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GetGoodsMovement\\GetGoodsMovement.csproj
+		SccProjectName1 = GetGoodsMovement
+		SccLocalPath1 = GetGoodsMovement
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83018008-78E9-4073-B6E8-1EAFA1681B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83018008-78E9-4073-B6E8-1EAFA1681B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83018008-78E9-4073-B6E8-1EAFA1681B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83018008-78E9-4073-B6E8-1EAFA1681B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC0AF76-29F5-49DA-A15C-8340DD78320F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC0AF76-29F5-49DA-A15C-8340DD78320F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC0AF76-29F5-49DA-A15C-8340DD78320F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC0AF76-29F5-49DA-A15C-8340DD78320F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

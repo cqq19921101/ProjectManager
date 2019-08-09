@@ -25,7 +25,7 @@ namespace PostBackToSAP_EH
 
         static public void UpdateSAP()
         {
-            sql = "SELECT * FROM  TB_GDS_ExceptionHandling WHERE FLAG = 'N' and Status  order by id";
+            sql = "SELECT * FROM  TB_GDS_ExceptionHandling WHERE FLAG = 'N'   order by id";
             DataTable dt = new DataTable();
             dt = sdb.GetDataTable(sql, opc);
             if (dt.Rows.Count > 0)
@@ -40,7 +40,9 @@ namespace PostBackToSAP_EH
                     TEMP["MBLNR_A"] = dr["MBLNR_A"].ToString();
                     TEMP["MATNR"] = dr["MATNR"].ToString();
                     TEMP["MENGE"] = double.Parse(dr["MENGE"].ToString());
-                    TEMP["STATUS"] = dr["STATUS"].ToString().Substring(0,1).ToUpper();
+                    TEMP["CHARG"] = dr["CHARG"].ToString();
+                    TEMP["REASON"] = dr["Reason"].ToString();
+                    TEMP["STATUS"] = dr["STATUS"].ToString().Substring(0, 1).ToUpper();
 
 
                     //UAT Data
@@ -94,6 +96,7 @@ namespace PostBackToSAP_EH
 
                         if (_clientparas.ResultTable[i].TableName == "T_ZTCPCN6D_W")
                         {
+                            UpdateFlagByException(upDT.Rows[0]["MBLNR"].ToString());
                         }
                     }
                     flag = true;
@@ -112,6 +115,20 @@ namespace PostBackToSAP_EH
             return flag;
         }
 
+        /// <summary>
+        /// 更新Flag By 异常单主单号
+        /// </summary>
+        /// <param name="MBLNR"></param>
+        static public void UpdateFlagByException(string MBLNR)
+        {
+            StringBuilder sb = new StringBuilder ();
+            sb.Append(@"Update TB_GDS_ExceptionHandling set Flag = 'Y' where MBLNR = @MBLNR");
+            opc.Clear();
+            opc.Add(DataPara.CreateDataParameter("@MBLNR", SqlDbType.NVarChar, MBLNR));
+            sdb.ExecuteNonQuery(sb.ToString(),opc);
+
+        }
+
         public static DataTable BuildUpdateTable()
         {
             DataTable dt = new DataTable("T_ZTCPCN6D_W");
@@ -121,6 +138,8 @@ namespace PostBackToSAP_EH
             dt.Columns.Add(new DataColumn("MBLNR_A", typeof(String)));
             dt.Columns.Add(new DataColumn("MATNR", typeof(String)));
             dt.Columns.Add(new DataColumn("MENGE", typeof(double)));
+            dt.Columns.Add(new DataColumn("CHARG", typeof(String)));
+            dt.Columns.Add(new DataColumn("REASON", typeof(String)));
             dt.Columns.Add(new DataColumn("STATUS", typeof(String)));
             return dt;
         }
