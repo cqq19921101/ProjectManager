@@ -26,7 +26,6 @@ public partial class _Default : System.Web.UI.Page
     StringBuilder sb = new StringBuilder();
     GDS_Helper oStandard = new GDS_Helper();
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
         //內嵌JS
@@ -143,74 +142,261 @@ public partial class _Default : System.Web.UI.Page
                 lblBu.Text = oModel_BorgUserInfo._BU;
                 lblLogonId.Text = oModel_BorgUserInfo._LOGON_ID;
             }
-
+            //txtRDocNo.Text = "I119070003";
+            //txtWERKS_A.Text = "2680";
         }
     }
 
+    /// <summary>
+    /// Link I1單 帶出相關資料
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnLink_Click(object sender, DirectEventArgs e)
     {
-
-        DataTable dtHead = oStandard.GetdtHead(txtRDocNo.Text.Trim());
-        DataTable dtDetail = oStandard.GetdtDetail(txtRDocNo.Text.Trim());
-        if (dtHead.Rows.Count > 0 )//Check是否符合應退未退的條件
+        string I1DocNo = txtRDocNo.Text.Trim();//Link 單號
+        string WERKS_A = txtWERKS_A.Text.Trim();//廠別
+        if (I1DocNo.Length == 0 || WERKS_A.Length == 0)
         {
-            DataRow drHead = dtHead.Rows[0];
-            if (drHead["APTYP"].ToString() == "I1")
-            {
-                if (drHead["RTNIF"].ToString() == "Y")//符合條件時,加載基本資料 
-                {
-                    txtDocNo.Text = oStandard.CreateFormNo(txtRDocNo.Text.Trim());
-                    txtCostCenter.Text = drHead["KOSTL"].ToString();//成本中心
-                    txtDepartment.Text = drHead["ABTEI"].ToString();//部門
-                    txtApplication.Text = drHead["ERNAM"].ToString();//LoginID
-                    txtReturn.Text = drHead["RTNIF"].ToString();// Return Flag
-                    txtWERKS.Text = drHead["WERKS"].ToString();
-                    txtAPTYP.Text = drHead["APTYP"].ToString();
-
-                    string xmlstrHead = oStandard.DataTableToXMLStr(dtHead);
-                    txtHead.Text = xmlstrHead;//Head
-                    string xmlstrDetail = oStandard.DataTableToXMLStr(dtDetail);
-                    txtDetail.Text = xmlstrDetail;//Detail
-
-                    string tempWEKS = DOA.GetXMLConfigName(dtHead);//CALL FUNCTION獲取XML配置檔名
-                    SettingParser x = new SettingParser(tempWEKS, txtAPTYP.Text);//讀取XML配置檔信息
-                    txtDOA.Text = x.ApproveXML.Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
-
-                    //計算總金額
-                    double amount = 0;
-                    foreach (DataRow dr in dtDetail.Rows)
-                    {
-                        amount += double.Parse(dr["STPRS"].ToString());
-                    }
-                    txtAmount.Text = amount.ToString("n");
-
-                }
-                else
-                {
-                    Alert("此單號不符合應退未退的條件！");
-                    Refresh();
-                    return;
-                }
-            }
-            else
-            {
-                Alert("Link單號必須是I1單！");
-                Refresh();
-                return;
-            }
-
+            Alert("領料單號,廠別不能為空!");
+            return;
         }
         else
         {
-            Alert("此單號不存在！");
-            Refresh();
-            return;
+            txtMaterial.Text = string.Empty;
+            RefreshMapping();
+            DataTable dtHead = oStandard.GetdtHead(txtRDocNo.Text.Trim(),WERKS_A);
+            DataTable dtDetail = oStandard.GetdtDetail(txtRDocNo.Text.Trim(), WERKS_A,"");
+            if (dtHead.Rows.Count > 0)//Check是否符合應退未退的條件
+            {
+                DataRow drHead = dtHead.Rows[0];
+                DataRow drDetail = dtDetail.Rows[0];
+                if (drHead["APTYP"].ToString() == "I1")
+                {
+                    if (drHead["RTNIF"].ToString() == "Y")//符合條件時,加載基本資料 
+                    {
+                        txtWERKS.Text = drHead["WERKS"].ToString();
+                        if (oStandard.CheckFormNoIsPass(I1DocNo, txtWERKS.Text))//Check單號是否過帳
+                        {
+                            #region 基本資料加載
+                            txtDocNo.Text = oStandard.CreateFormNo(txtRDocNo.Text.Trim());
+                            txtCostCenter.Text = drHead["KOSTL"].ToString();//成本中心
+                            txtDepartment.Text = drHead["ABTEI"].ToString();//部門
+                            txtApplication.Text = drHead["ERNAM"].ToString();//LoginID
+                            txtReturn.Text = drHead["RTNIF"].ToString();// Return Flag
+                            txtAPTYP.Text = drHead["APTYP"].ToString();
+                            BindMaterial(txtRDocNo.Text.Trim());//根據單號綁定料號
+
+                            string xmlstrHead = oStandard.DataTableToXMLStr(dtHead);
+                            txtHead.Text = xmlstrHead;//Head
+                            string xmlstrDetail = oStandard.DataTableToXMLStr(dtDetail);
+                            txtDetail.Text = xmlstrDetail;//Detail
+                            string tempWEKS = DOA.GetXMLConfigName(dtHead);//CALL FUNCTION獲取XML配置檔名
+                            SettingParser x = new SettingParser(tempWEKS, txtAPTYP.Text);//讀取XML配置檔信息
+                            txtDOA.Text = x.ApproveXML.Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
+
+                            //計算總金額
+                            double amount = 0;
+                            foreach (DataRow dr in dtDetail.Rows)
+                            {
+                                amount += double.Parse(dr["STPRS"].ToString());
+                            }
+                            txtAmount.Text = amount.ToString("n");
+
+
+                            btnQuery.Hidden = false;
+                            #endregion
+
+                            #region 綁定Batch Call BAPI抓取已經過帳的領料單中的Batch 材料沒有Batch  成品一定有Batch(沒過帳的單子可能沒有Batch,因此抓取已經過帳的單子)
+                            DataTable dtDetail_P = oStandard.GetdtDetail(txtRDocNo.Text.Trim(), txtWERKS.Text);
+                            //根據I1單的dtDetail 綁定Batch的下拉框參數(可能為空) 
+                            BindBatch(dtDetail_P);
+                            #endregion
+                        }
+                        else
+                        {
+                            Alert("此I1單未簽核完畢！");
+                            Refresh();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Alert("此單號不符合應退未退的條件！");
+                        Refresh();
+                        return;
+                    }
+                }
+                else
+                {
+                    Alert("Link單號必須是I1單！");
+                    Refresh();
+                    return;
+                }
+
+            }
+            else
+            {
+                Alert("此單號不存在！");
+                Refresh();
+                return;
+            }
         }
     }
+
+    /// <summary>
+    /// 按鈕觸發料號
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btnQuery_Click(object sender, DirectEventArgs e)
+    {
+        string LinkDocNo = txtRDocNo.Text.Trim();//Link單號,領料單號
+        string Material = txtMaterial.Text.Trim();
+        string WERKS = txtWERKS.Text.Trim();
+        string BatchNumber = txtBatch.Text.Trim();
+
+        if (txtRDocNo.Text.Length == 0 || txtMaterial.Text.Length == 0)
+        {
+            Alert("Link的領料單,料號不能為空！");
+            RefreshMapping();
+            //btnClear.Hidden = true;
+            //btnLink.Hidden = false;
+            return;
+        }
+        else if (txtBatch.Text.Length == 0)
+        {
+            DataTable dtDetail = oStandard.GetdtDetail(txtRDocNo.Text.Trim(), WERKS);
+            if (oStandard.CheckBatchIsEmpty(dtDetail))
+            {
+                if (txtBatch.Text.Length == 0) Alert("此領料單有Batch號,不能為空！"); return;
+            }
+        }
+        else
+        {
+            //RefreshMapping();
+            btnClear.Hidden = false;
+            txtMaterial.Disabled = true;
+            txtBatch.Disabled = true;
+            //Bactn Number 做特殊處理 如果dtDetail中的CHARG為空,則可以為空 Function去Check 
+
+            #region 因單據過帳才有POSTED的值 需重新Call BAPI抓取已過帳單據中的ZEILE_A(Item)、POSTED(領料單數量)
+            DataTable dtDetail = oStandard.GetdtDetail(txtRDocNo.Text.Trim(), WERKS);
+            DataRow[] drItem = dtDetail.Select(string.Format("CHARG = '{0}' and MATNR = '{1}'", BatchNumber,Material));//放两个条件,CHARG AND MATNR
+            if (drItem.Length > 0)
+            {
+                #region Get POSTED AND ZEILE
+                DataTable tempT = new DataTable();
+                tempT = drItem[0].Table.Clone();
+                DataSet tempDs = new DataSet();
+                tempDs.Tables.Add(tempT);
+                tempDs.Merge(drItem);
+                DataTable dtItem = tempDs.Tables[0];
+                //Item
+                txtZEILE.Text = dtItem.Rows[0]["ZEILE_A"].ToString();
+                //領料單數量  抓Posted
+                txtMENGE.Text = dtItem.Rows[0]["POSTED"].ToString();
+                #endregion
+
+                #region 抓取Approve的退料單 綁定到grdItems 計算Open數量
+                DataTable dtMapping = oStandard.GetMappingList(LinkDocNo, Material, "A", BatchNumber);
+                if (dtMapping.Rows.Count > 0)
+                {
+                    int sum = 0;
+                    foreach (DataRow dr in dtMapping.Rows)
+                    {
+                        if (dr["Posted"].ToString().Length == 0)
+                        {
+                            int Quantity = int.Parse(dr["MENGE"].ToString());
+                            sum += Quantity;
+
+                        }
+                        else
+                        {
+                            int Quantity = int.Parse(dr["POSTED"].ToString() == "0" ? dr["MENGE"].ToString() : dr["POSTED"].ToString());
+                            sum += Quantity;
+
+                        }
+                    }
+                    txtLinkReturn_Q.Text = sum.ToString();
+
+                    grdItems.Store.Primary.LoadData(dtMapping);
+                }
+                else
+                {
+                    txtLinkReturn_Q.Text = "0";
+                    grdItems.Store.Primary.DataSource = new DataTable();
+                    grdItems.Store.Primary.DataBind();
+                }
+                #endregion
+
+                #region 加載異常單資料 (在簽,Approve) BindGridPanel  -- grdException
+                DataTable dtM = oStandard.GetMaster_Exception(LinkDocNo, Material, BatchNumber);
+                if (dtM.Rows.Count > 0)
+                {
+                    //如果此领料单有历史单据 绑定到Grid  歷史回退數量  = 關聯退料單數量(Approve) + 異常單數量(在簽和Approve)
+                    var Count = dtM.Compute("Sum(MENGE)", "");//異常單數量
+
+                    txtReturn_A.Text = (int.Parse(Count.ToString()) + int.Parse(txtLinkReturn_Q.Text)).ToString();
+
+
+                    grdException.Store.Primary.LoadData(dtM);
+                }
+                else
+                {
+                    //没有历史异常单,Open数量为0
+                    txtReturn_A.Text = txtLinkReturn_Q.Text;
+                    grdException.Store.Primary.DataSource = new DataTable();
+                    grdException.Store.Primary.DataBind();
+
+                }
+                #endregion
+
+                #region 计算 Open数量 (領料單數量 - 歷史單據數量的和)
+                int MENGE = int.Parse(txtMENGE.Text.Length == 0 ? "0" : txtMENGE.Text);
+                int Return_AA = int.Parse(txtReturn_A.Text.Length == 0 ? "0" : txtReturn_A.Text);
+                string Open_Q = (MENGE - Return_AA).ToString();
+                if (int.Parse(Open_Q) == 0)
+                {
+                    txtOpen.Text = Open_Q;
+                    Alert("Open數量為0,無法在進行退料作業");
+                    //Refresh_Open();
+                    return;
+                }
+                else
+                {
+                    txtOpen.Text = Open_Q;
+                }
+
+                #endregion
+
+            }
+            else
+            {
+                Alert("此料號和Batch號無對應單據!");
+                return;
+            }
+            #endregion
+
+        }
+    }
+
+    /// <summary>
+    /// 料號加載資料 Clear功能
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btnClear_Click(object sender, DirectEventArgs e)
+    {
+        RefreshClear();
+    }
+
+    #region Refresh Function
 
     public void Refresh()
     {
         txtRDocNo.Text = string.Empty;
+        txtWERKS_A.Text = string.Empty;
         txtDocNo.Text = string.Empty;
         txtCostCenter.Text = string.Empty;
         txtDepartment.Text = string.Empty;
@@ -227,15 +413,88 @@ public partial class _Default : System.Web.UI.Page
         txtDOA.Text = string.Empty;
         txtWERKS.Text = string.Empty;
         txtAPTYP.Text = string.Empty;
-        txtIADocNo.Text = string.Empty;
-        txtI6DocNo.Text = string.Empty;
-        
+        btnQuery.Hidden = true;
+
+        //grdException.Store.Primary.DataSource = new DataTable();
+        //grdException.Store.Primary.DataBind();
+
     }
 
+    /// <summary>
+    /// Link按鈕 清空選擇料號關聯后的資料
+    /// </summary>
+    public void RefreshMapping()
+    {
+
+        txtMaterial.Text = string.Empty;
+        txtReason.Text = string.Empty;
+        txtRemark.Text = string.Empty;
+        txtMENGE.Text = string.Empty;
+        txtReturn_A.Text = string.Empty;
+        txtZEILE.Text = string.Empty;
+        txtBatch.Text = string.Empty;
+
+        grdItems.Store.Primary.DataSource = new DataTable();
+        grdItems.Store.Primary.DataBind();
+
+        grdException.Store.Primary.DataSource = new DataTable();
+        grdException.Store.Primary.DataBind();
+    }
+
+    public void Refresh_Open()
+    {
+        txtMaterial.Text = string.Empty;
+        txtReason.Text = string.Empty;
+        txtRemark.Text = string.Empty;
+        txtMENGE.Text = string.Empty;
+        txtReturn_A.Text = string.Empty;
+        txtZEILE.Text = string.Empty;
+        txtBatch.Text = string.Empty;
+        txtOpen.Text = string.Empty;
+        txtReturnQuantity.Text = string.Empty;
+
+        grdItems.Store.Primary.DataSource = new DataTable();
+        grdItems.Store.Primary.DataBind();
+
+        grdException.Store.Primary.DataSource = new DataTable();
+        grdException.Store.Primary.DataBind();
+    }
+
+    public void RefreshClear()
+    {
+        txtMaterial.Text = string.Empty;
+        txtMENGE.Text = string.Empty;
+        txtReturnQuantity.Text = string.Empty;
+        txtReturn_A.Text = string.Empty;
+        txtZEILE.Text = string.Empty;
+        txtReason.Text = string.Empty;
+        txtRemark.Text = string.Empty;
+        txtOpen.Text = string.Empty;
+        txtBatch.Text = string.Empty;
+
+        txtMaterial.Disabled = false;
+        txtBatch.Disabled = false;
+        btnClear.Hidden = true;
+
+        grdItems.Store.Primary.DataSource = new DataTable();
+        grdItems.Store.Primary.DataBind();
+
+        grdException.Store.Primary.DataSource = new DataTable();
+        grdException.Store.Primary.DataBind();
+    }
+
+    #endregion
+
     #region Check Return Quantity
+    /// <summary>
+    /// 檢查Return Quntity欄位是否是數字
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void check_workorder(object sender, DirectEventArgs e)
     {
         string Text = txtReturnQuantity.Text.Trim();
+        //先Check输入的是否是整数
         if (!IsNumber(Text))
         {
             Alert("Return Quantity只能是整數！");
@@ -244,6 +503,14 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
+            //输入的Return Quantity和Open数量做对比 先判斷Open大於0,在判斷Open數量 - RQ數量必須大於等於0
+            if (int.Parse(txtOpen.Text) - int.Parse(txtReturnQuantity.Text) < 0)
+            {
+                Alert("回退數量必須小於等於Open數量！");
+                txtReturnQuantity.Text = string.Empty;
+                return;
+            }
+
 
         }
     }
@@ -278,7 +545,49 @@ public partial class _Default : System.Web.UI.Page
         }
 
         return isCheck;
-    } 
+    }
+    #endregion
+
+    #region BindCombox -- 料號、Batch Number
+    /// <summary>
+    /// 根據單號綁定料號
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    private void BindMaterial(string RDocNo)
+    {
+        ComboBox[] cbs = new ComboBox[] { txtMaterial };
+        DataTable data = oStandard.GetMaterial(RDocNo);
+        foreach (ComboBox cb in cbs)
+        {
+            BindCombox(data, cb);
+        }
+    }
+
+    /// <summary>
+    /// 根據單號綁定Batch Number
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    private void BindBatch(DataTable dtDetail)
+    {
+        ComboBox[] cbs = new ComboBox[] { txtBatch };
+        DataTable data = dtDetail;
+        foreach (ComboBox cb in cbs)
+        {
+            BindCombox(data, cb);
+        }
+    }
+
+    /// <summary>
+    /// Bind Combox的公共方法
+    /// </summary>
+    /// <param name="dt"></param>
+    /// <param name="cb"></param>
+    private void BindCombox(DataTable dt, ComboBox cb)
+    {
+        cb.Store.Primary.DataSource = dt;
+        cb.Store.Primary.DataBind();
+    }
+
     #endregion
 
     private void Alert(string msg)
@@ -286,9 +595,49 @@ public partial class _Default : System.Web.UI.Page
         X.Msg.Alert("Alert", msg).Show();
     }
 
-
-
 }
+
+
+
+
+//Check 领料单数量 - 退料单数量的和 是否大于0 By Batch Number and Material
+//string LinkDocNo = txtRDocNo.Text.Trim();//Link單號,領料單號
+//string Material = txtMaterial.Text.Trim();//料號
+//string BatchNumber = txtBatch.Text.Trim();
+//DataTable dtMapping = oStandard.GetMappingList(LinkDocNo, Material, "A", BatchNumber);
+//int sum = 0;
+//if (dtMapping.Rows.Count > 0)
+//{
+//    foreach (DataRow dr in dtMapping.Rows)
+//    {
+//        int Quantity = int.Parse(dr["POSTED"].ToString() == "0" ? dr["MENGE"].ToString() : dr["POSTED"].ToString());
+//        sum += Quantity;
+//    }
+//    int C = int.Parse(txtOpen.Text) - sum;
+//    if (C < 0)
+//    {
+//        Alert("作業失敗,Open數量減去關聯退料單的和小於0!");
+//        txtReturnQuantity.Text = string.Empty;
+//        return;
+//    }
+//    else
+//    {
+//        int RQ = int.Parse(txtReturnQuantity.Text);
+//        if (int.Parse(txtOpen.Text) < RQ)
+//        {
+//            Alert("作業失敗,回退數量不能大於Open數量!");
+//            txtReturnQuantity.Text = string.Empty;
+//            return;
+//        }
+//    }
+//}
+//else
+//{
+//    Alert("作業失敗,缺少關聯的退料單信息!");
+//    txtReturnQuantity.Text = string.Empty;
+//    return;
+
+//}
 
 
 

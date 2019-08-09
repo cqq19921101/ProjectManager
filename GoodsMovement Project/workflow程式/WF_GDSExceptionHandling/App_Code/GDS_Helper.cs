@@ -82,12 +82,13 @@ public class GDS_Helper
     /// </summary>
     /// <param name="FormNo"></param>
     /// <returns></returns>
-    public DataTable GetdtHead(string FormNo)
+    public DataTable GetdtHead(string FormNo,string  WERKS)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(@"select xmlHead from TB_GDS_DATA where MBLNR_A = @MBLNR_A");
+        sb.Append(@"select xmlHead from TB_GDS_DATA where MBLNR_A = @MBLNR_A and WERKS = @WERKS");
         opc.Clear();
         opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.NVarChar, FormNo));
+        opc.Add(DataPara.CreateDataParameter("@WERKS", SqlDbType.NVarChar, WERKS));
         DataTable dt = sdb.GetDataTable(sb.ToString(), opc);
         if (dt.Rows.Count > 0)
         {
@@ -102,12 +103,13 @@ public class GDS_Helper
     /// </summary>
     /// <param name="FormNo"></param>
     /// <returns></returns>
-    public DataTable GetdtDetail(string FormNo)
+    public DataTable GetdtDetail(string FormNo,string  WERKS,string Flag)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(@"select xmlDetail from TB_GDS_DATA where MBLNR_A = @MBLNR_A");
+        sb.Append(@"select xmlDetail from TB_GDS_DATA where MBLNR_A = @MBLNR_A  and WERKS = @WERKS");
         opc.Clear();
         opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.NVarChar, FormNo));
+        opc.Add(DataPara.CreateDataParameter("@WERKS", SqlDbType.NVarChar, WERKS));
         DataTable dt = sdb.GetDataTable(sb.ToString(), opc);
         if (dt.Rows.Count > 0)
         {
@@ -116,6 +118,16 @@ public class GDS_Helper
         }
 
         return dt;
+    }
+
+    /// <summary>
+    /// 根據單號抓取Detail的資料 將XML轉換成Datatable
+    /// </summary>
+    /// <param name="FormNo"></param>
+    /// <returns></returns>
+    public DataTable GetdtDetail(string FormNo,string WERKS)
+    {
+        return Z_BAPI_GDS_SEND_dtDetail(FormNo, WERKS);
     }
 
     #endregion
@@ -135,21 +147,25 @@ public class GDS_Helper
             foreach (DataRow dr in dt.Rows)
             {
                 DataRow TEMP = dtUpdate.NewRow();
-                //TEMP["WERKS"] = dr["WERKS"].ToString();//廠別
-                //TEMP["MBLNR"] = dr["MBLNR"].ToString();//主單號
-                //TEMP["ZEILE"] = dr["ZEILE"].ToString();//對應的ITEM號
-                //TEMP["MBLNR_A"] = dr["MBLNR_A"].ToString();//Link 單號
-                //TEMP["MATNR"] = dr["MATNR"].ToString();//料號
-                //TEMP["MENGE"] = double.Parse(dr["MENGE"].ToString());//退回數量
-                //TEMP["STATUS"] = "W";//狀態 Submit的時候 默認 'W' 回傳給SAP
-
                 TEMP["WERKS"] = dr["WERKS"].ToString();//廠別
                 TEMP["MBLNR"] = dr["MBLNR"].ToString();//主單號
-                TEMP["ZEILE"] = "001";
+                TEMP["ZEILE"] = dr["ZEILE"].ToString();//對應的ITEM號
                 TEMP["MBLNR_A"] = dr["MBLNR_A"].ToString();//Link 單號
-                TEMP["MATNR"] = "8A034Z";
-                TEMP["MENGE"] = double.Parse("1");
-                TEMP["STATUS"] = "W";
+                TEMP["MATNR"] = dr["MATNR"].ToString();//料號
+                TEMP["MENGE"] = dr["MENGE"].ToString();//退回數量
+                TEMP["CHARG"] = dr["CHARG"].ToString();//Batch
+                TEMP["REASON"] = dr["Reason"].ToString();//REASON
+                TEMP["STATUS"] = "W";//狀態 Submit的時候 默認 'W' 回傳給SAP
+
+                //UAT
+                //TEMP["WERKS"] = dr["WERKS"].ToString();//廠別
+                //TEMP["MBLNR"] = dr["MBLNR"].ToString();//主單號
+                //TEMP["ZEILE"] = "001";
+                //TEMP["MBLNR_A"] = dr["MBLNR_A"].ToString();//Link 單號
+                //TEMP["MATNR"] = "8A034Z";
+                //TEMP["MENGE"] = double.Parse("1");
+                //TEMP["MENGE"] = double.Parse("1");
+                //TEMP["STATUS"] = "W";
 
 
 
@@ -164,12 +180,26 @@ public class GDS_Helper
     /// Call SAP BAPI -- Z_BAPI_GDS_SEND 檢查單據是否過賬  MBLNR欄位不為空 表示已經過賬 返回True 否則返回False
     /// </summary>
     /// <returns></returns>
-    public bool CheckFormNoIsPass(string I1DocNo, string IADocNo, string I6DocNo,string WERKS)
+    public bool CheckFormNoIsPass(string I1DocNo,string WERKS)
     {
         string Errmsg = string.Empty;
-        Errmsg += Z_BAPI_GDS_SEND(I1DocNo, WERKS);
-        Errmsg += Z_BAPI_GDS_SEND(IADocNo, WERKS);
-        Errmsg += Z_BAPI_GDS_SEND(I6DocNo, WERKS);
+        Errmsg += Z_BAPI_GDS_SEND_MBLNR(I1DocNo, WERKS);
+        if (Errmsg.Length > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+    /// <summary>
+    /// 檢查退料單的APROV欄位 不為A則過濾掉
+    /// </summary>
+    /// <param name="ReturnNo"></param>
+    /// <param name="WERKS"></param>
+    /// <returns></returns>
+    public bool CheckReturnFormNo(string ReturnNo, string WERKS)
+    {
+        string Errmsg = string.Empty;
+        Errmsg += Z_BAPI_GDS_SEND_APROV(ReturnNo, WERKS);
         if (Errmsg.Length > 0)
         {
             return false;
@@ -182,7 +212,7 @@ public class GDS_Helper
     /// </summary>
     /// <param name="upDT"></param>
     /// <returns></returns>
-    public  bool Z_BAPI_GSD_UPDATE(DataTable upDT)
+    public bool Z_BAPI_GSD_UPDATE(DataTable upDT)
     {
         bool flag = false;
 
@@ -229,11 +259,11 @@ public class GDS_Helper
     }
 
     /// <summary>
-    /// Call BAPI 傳入P_DOC,P_PLANT表 Check單據是否過帳  MBLNR欄位不為空 返回Datable -- T_GDS_HEAD
+    /// Call BAPI 傳入P_DOC表 Check單據是否過帳  MBLNR欄位不為空 返回的Datable -- T_GDS_HEAD
     /// </summary>
     /// <param name="dtPDoc"></param>
     /// <param name="dtPlant"></param>
-    public string  Z_BAPI_GDS_SEND(string DocNo,string WERKS)
+    public string Z_BAPI_GDS_SEND_MBLNR(string DocNo, string WERKS)
     {
         if (DocNo.Length > 0)
         {
@@ -278,6 +308,7 @@ public class GDS_Helper
 
                     if (dtHead.Rows.Count == 0) return "Empty";
                     DataRow drHead = dtHead.Rows[0];
+
                     if (drHead["MBLNR"].ToString().Length == 0)
                     {
                         return Type + "單未過帳";
@@ -299,6 +330,150 @@ public class GDS_Helper
             return "";
         }
     }
+
+    /// <summary>
+    /// Call BAPI 傳入P_DOC表 檢查退料單的狀態 過濾不是A的單據  返回的Datable -- T_GDS_HEAD 
+    /// </summary>
+    /// <param name="dtPDoc"></param>
+    /// <param name="dtPlant"></param>
+    public string Z_BAPI_GDS_SEND_APROV(string DocNo, string WERKS)
+    {
+        if (DocNo.Length > 0)
+        {
+            string Type = DocNo.Substring(0, 2);//得到傳入單號的類型
+            int Year = int.Parse("20" + DocNo.Substring(2, 2));//根據單號的第3,4碼 得到年份
+            StringBuilder sbError = new StringBuilder();
+            Hashtable InputParas = new Hashtable();
+            Client.ClientParas _clientparas = new Client.ClientParas();
+
+            #region Get P_DOC
+            DataTable dtPDoc = BuildPDOCTable();//創建一個臨時Table 作為參數 Call BAPI
+            DataRow TEMP = dtPDoc.NewRow();
+            TEMP["WERKKS"] = WERKS;//廠別
+            TEMP["MBLNR_A"] = DocNo;//傳入單號
+            TEMP["MJAHR_A"] = Year;//年份
+            dtPDoc.Rows.Add(TEMP);//創建出新的Datatable
+            #endregion
+
+            _clientparas.AppID = "CZ_Workflow";
+            _clientparas.SAPFunction = "MM";
+            _clientparas.BAPI = "Z_BAPI_GDS_SEND";
+
+            _clientparas.InputParas = InputParas;
+            _clientparas.InputTable = new DataTable[1];
+            _clientparas.InputTable[0] = dtPDoc;
+            _clientparas.OutputParas = new Hashtable();
+
+            try
+            {
+                bool bReturn = LiteOn.ICM.SIC.Client.getSAPData(ref _clientparas);
+                if (bReturn)
+                {
+                    //get sap return data
+                    DataTable dtHead = new DataTable();
+                    int iCount = _clientparas.ResultTable.Length;
+                    for (int i = 0; i < iCount; i++)
+                    {
+                        Console.WriteLine(_clientparas.ResultTable[i].TableName + " rows = " + _clientparas.ResultTable[i].Rows.Count);
+                        //if (_clientparas.ResultTable[i].TableName == "T_GDS_DETAIL") dtDetail = _clientparas.ResultTable[i];
+                        if (_clientparas.ResultTable[i].TableName == "T_GDS_HEAD") dtHead = _clientparas.ResultTable[i];
+                    }
+
+                    if (dtHead.Rows.Count == 0) return "Empty";
+                    DataRow drHead = dtHead.Rows[0];
+
+                    if (drHead["APROV"].ToString() != "A")
+                    {
+                        return DocNo + " 單據未Approve!";
+                    }
+                }
+                else
+                {
+                    return "BAPI RETURN FAIL " + _clientparas.sErrMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "SIC ERROR " + ex.Message;
+            }
+            return "";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    /// <summary>
+    /// Call BAPI 傳入P_DOC表 抓取已經過帳的領料單中 ZEILE_A and POSTED  返回的Datable -- T_GDS_Detail
+    /// </summary>
+    /// <param name="DocNo">Link 單號 -- I1</param>
+    /// <param name="WERKS">廠別</param>
+    /// <returns></returns>
+    public DataTable Z_BAPI_GDS_SEND_dtDetail(string DocNo, string WERKS)
+    {
+        DataTable dtDetail = new DataTable();
+
+        if (DocNo.Length > 0)
+        {
+            string Type = DocNo.Substring(0, 2);//得到傳入單號的類型
+            int Year = int.Parse("20" + DocNo.Substring(2, 2));//根據單號的第3,4碼 得到年份
+            StringBuilder sbError = new StringBuilder();
+            Hashtable InputParas = new Hashtable();
+            Client.ClientParas _clientparas = new Client.ClientParas();
+
+            #region Get P_DOC
+            DataTable dtPDoc = BuildPDOCTable();//創建一個臨時Table 作為參數 Call BAPI
+            DataRow TEMP = dtPDoc.NewRow();
+            TEMP["WERKKS"] = WERKS;//廠別
+            TEMP["MBLNR_A"] = DocNo;//傳入單號
+            TEMP["MJAHR_A"] = Year;//年份
+            dtPDoc.Rows.Add(TEMP);//創建出新的Datatable
+            #endregion
+
+            _clientparas.AppID = "CZ_Workflow";
+            _clientparas.SAPFunction = "MM";
+            _clientparas.BAPI = "Z_BAPI_GDS_SEND";
+
+            _clientparas.InputParas = InputParas;
+            _clientparas.InputTable = new DataTable[1];
+            _clientparas.InputTable[0] = dtPDoc;
+            _clientparas.OutputParas = new Hashtable();
+
+            try
+            {
+                bool bReturn = LiteOn.ICM.SIC.Client.getSAPData(ref _clientparas);
+                if (bReturn)
+                {
+                    //get sap return data
+                    int iCount = _clientparas.ResultTable.Length;
+                    for (int i = 0; i < iCount; i++)
+                    {
+                        Console.WriteLine(_clientparas.ResultTable[i].TableName + " rows = " + _clientparas.ResultTable[i].Rows.Count);
+                        if (_clientparas.ResultTable[i].TableName == "T_GDS_DETAIL") dtDetail = _clientparas.ResultTable[i];
+                        //if (_clientparas.ResultTable[i].TableName == "T_GDS_HEAD") dtHead = _clientparas.ResultTable[i];
+                    }
+
+                    if (dtDetail.Rows.Count == 0) return dtDetail;
+
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        else
+        {
+
+        }
+        return dtDetail;
+
+    }
+
 
     #endregion
 
@@ -325,11 +500,28 @@ public class GDS_Helper
     public DataTable GetMaster_Exception(string MBLNR_A)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(@"select * from TB_GDS_ExceptionHandling where MBLNR_A = @MBLNR_A order by id desc");
+        sb.Append(@"select * from TB_GDS_ExceptionHandling where MBLNR_A = @MBLNR_A order by id ");
         opc.Clear();
         opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.NVarChar, MBLNR_A));
         return sdb.GetDataTable(sb.ToString(), opc);
     }
+
+    /// <summary>
+    /// 抓取異常單主檔資料 By Link 單號 and Material AND 單據狀態時Approve或者在簽的
+    /// </summary>
+    /// <param name="CASEID"></param>
+    /// <returns></returns>
+    public DataTable GetMaster_Exception(string MBLNR_A, string MATNR, string CHARG)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(@"select * from TB_GDS_ExceptionHandling where MBLNR_A = @MBLNR_A and MATNR = @MATNR and Status in ('In Process','Approve') and CHARG = @CHARG order by id ");
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@MBLNR_A", SqlDbType.NVarChar, MBLNR_A));
+        opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, MATNR));
+        opc.Add(DataPara.CreateDataParameter("@CHARG", SqlDbType.NVarChar, CHARG));
+        return sdb.GetDataTable(sb.ToString(), opc);
+    }
+
 
 
     /// <summary>
@@ -350,8 +542,8 @@ public class GDS_Helper
     /// <summary>
     /// Begin關卡 Insert基本資料數據
     /// </summary>
-    public void Insert_Begin(string WERKS, string MBLNR, string MBLNR_A, string KOSTL, string ABTEI, string Applicant, string ZEILE,
-        string MATNR, string MENGE, string RTNIF, string Reason, string Remark, string IADocNo, string I6DocNo, string STATUS, double Amount, string Settingxml, int CASEID)
+    public void Insert_Begin(string WERKS, string MBLNR, string MBLNR_A, string KOSTL, string ABTEI, string Applicant, string ZEILE, string MATNR,
+        string MENGE, string RTNIF, string Reason, string Remark,string STATUS, double Amount,string CHARG, string Settingxml, int CASEID)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(@"INSERT INTO [SPM].[dbo].[TB_GDS_ExceptionHandling]
@@ -367,10 +559,9 @@ public class GDS_Helper
                    ,[RTNIF]
                    ,[Reason]
                    ,[Remark]
-                   ,[IADocNo]
-                   ,[I6DocNo]
                    ,[STATUS]
                    ,[Amount]
+                   ,[CHARG]
                    ,[Settingxml]
                    ,[CASEID])
              VALUES
@@ -386,10 +577,9 @@ public class GDS_Helper
                     @RTNIF,
                     @Reason,
                     @Remark,
-                    @IADocNo,
-                    @I6DocNo,
                     @STATUS,
                     @Amount,
+                    @CHARG,
                     @Settingxml,
                     @CASEID)");
         opc.Clear();
@@ -401,15 +591,14 @@ public class GDS_Helper
         opc.Add(DataPara.CreateDataParameter("@Applicant", SqlDbType.NVarChar, Applicant));
         opc.Add(DataPara.CreateDataParameter("@ZEILE", SqlDbType.NVarChar, ZEILE));
         opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, MATNR));
-        opc.Add(DataPara.CreateDataParameter("@MENGE", SqlDbType.NVarChar, MENGE));
+        opc.Add(DataPara.CreateDataParameter("@MENGE", SqlDbType.Int, int.Parse(MENGE)));
         opc.Add(DataPara.CreateDataParameter("@RTNIF", SqlDbType.NVarChar, RTNIF));
         opc.Add(DataPara.CreateDataParameter("@Reason", SqlDbType.NVarChar, Reason));
         opc.Add(DataPara.CreateDataParameter("@Remark", SqlDbType.NVarChar, Remark));
-        opc.Add(DataPara.CreateDataParameter("@IADocNo", SqlDbType.NVarChar, IADocNo));
-        opc.Add(DataPara.CreateDataParameter("@I6DocNo", SqlDbType.NVarChar, I6DocNo));
         opc.Add(DataPara.CreateDataParameter("@STATUS", SqlDbType.NVarChar, STATUS));
         opc.Add(DataPara.CreateDataParameter("@Amount", SqlDbType.Decimal, Amount));
         opc.Add(DataPara.CreateDataParameter("@Settingxml", SqlDbType.NVarChar, Settingxml));
+        opc.Add(DataPara.CreateDataParameter("@CHARG", SqlDbType.NVarChar, CHARG));
         opc.Add(DataPara.CreateDataParameter("@CASEID", SqlDbType.Int, CASEID));
         sdb.ExecuteNonQuery(sb.ToString(), opc);
 
@@ -433,13 +622,13 @@ public class GDS_Helper
     /// <summary>
     /// 更新单据状态
     /// </summary>
-    public void UpdateFormStatus(int CASEID,string Status)
+    public void UpdateFormStatus(int CASEID, string Status)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(@"Update TB_GDS_ExceptionHandling set STATUS = @STATUS where CASEID = @CASEID");
         opc.Clear();
         opc.Add(DataPara.CreateDataParameter("@CASEID", SqlDbType.Int, CASEID));
-        opc.Add(DataPara.CreateDataParameter("@STATUS", SqlDbType.Int, Status));
+        opc.Add(DataPara.CreateDataParameter("@STATUS", SqlDbType.NVarChar, Status));
         sdb.ExecuteNonQuery(sb.ToString(), opc);
 
     }
@@ -447,7 +636,7 @@ public class GDS_Helper
     /// <summary>
     /// 針對Reject和Approve的單據 更新Flag欄位和StatusRemark
     /// </summary>
-    public void UpdateGDSQueue(int CASEID, string StatusMark,string APROV)
+    public void UpdateGDSQueue(int CASEID, string StatusMark, string APROV)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(@"Update TB_GDS_ExceptionHandling set Flag = 'N',StatusMark = @StatusMark,APROV = @APROV where CASEID = @CASEID");
@@ -469,7 +658,140 @@ public class GDS_Helper
         sb.Append(@"delete from TB_GDS_ExceptionHandling  where CASEID = @CASEID");
         opc.Clear();
         opc.Add(DataPara.CreateDataParameter("@CASEID", SqlDbType.Int, CASEID));
-        sdb.ExecuteNonQuery(sb.ToString(),opc);
+        sdb.ExecuteNonQuery(sb.ToString(), opc);
+    }
+
+    /// <summary>
+    /// 抓取Mapping表中相關的料號和對應的Item
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    public DataTable GetMaterial(string RDocNo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(@"select distinct MATNR from TB_GDS_Mapping  where REFNO = @REFNO");
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, RDocNo));
+        return sdb.GetDataTable(sb.ToString(), opc);
+    }
+
+    /// <summary>
+    /// 根據領料單號的dtDetail抓取 Batch號和對應的Item  Batch號有可能為空
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    //public DataTable GetBatchNumber(DataTable dtDetail)
+    //{
+    //    foreach (DataRow drDetail in dtDetail.Rows)
+    //    {
+    //        StringBuilder sb = new StringBuilder();
+    //        sb.Append(@"select distinct MATNR from TB_GDS_Mapping  where REFNO = @REFNO");
+    //        opc.Clear();
+    //        opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, RDocNo));
+    //        return sdb.GetDataTable(sb.ToString(), opc);
+    //    }
+    //}
+
+
+    /// <summary>
+    /// 根據領料單單號,料號,退料單類型 抓取Mapping的資料
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    /// <param name="Material"></param>
+    /// <param name="Type"></param>
+    /// <returns></returns>
+    public DataTable GetMappingFormNo(string RDocNo, string Material, string Type)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(@"select  *  from TB_GDS_Mapping  where REFNO = @REFNO and MATNR = @MATNR and Substring(MBLNR_A,1,2) = @Type");
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, RDocNo));
+        opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, Material));
+        opc.Add(DataPara.CreateDataParameter("@Type", SqlDbType.NVarChar, Type));
+        return sdb.GetDataTable(sb.ToString(), opc);
+    }
+
+    /// <summary>
+    /// 根據領料單單號,料號,退料單類型 抓取Mapping的資料
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    /// <param name="Material"></param>
+    /// <param name="Type"></param>
+    /// <returns></returns>
+    //public DataTable GetMappingFormNo(string RDocNo, string Material, string Type)
+    //{
+    //    StringBuilder sb = new StringBuilder();
+    //    sb.Append(@"select  *  from TB_GDS_Mapping  where REFNO = @REFNO and MATNR = @MATNR and Substring(MBLNR_A,1,2) = @Type");
+    //    opc.Clear();
+    //    opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, RDocNo));
+    //    opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, Material));
+    //    opc.Add(DataPara.CreateDataParameter("@Type", SqlDbType.NVarChar, Type));
+    //    return sdb.GetDataTable(sb.ToString(), opc);
+    //}
+
+    /// <summary>
+    /// 抓取Mapping的資料 By 領料單單號,料號,簽核狀態
+    /// </summary>
+    /// <param name="RDocNo"></param>
+    /// <param name="Material"></param>
+    /// <param name="APROV"></param>
+    /// <returns></returns>
+    public DataTable GetMappingList(string RDocNo, string Material, string APROV,string Batch)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(@"select  *  from TB_GDS_Mapping  where REFNO = @REFNO and MATNR = @MATNR and APROV = @APROV  ");
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@REFNO", SqlDbType.NVarChar, RDocNo));
+        opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, Material));
+        opc.Add(DataPara.CreateDataParameter("@APROV", SqlDbType.NVarChar, "A"));
+        if (Batch.Length > 0)
+        {
+            sb.Append(" and CHARG = @CHARG");
+            opc.Add(DataPara.CreateDataParameter("@CHARG", SqlDbType.NVarChar, Batch));
+        }
+        sb.Append(" order  by ZEILE_A");
+        return sdb.GetDataTable(sb.ToString(), opc);
+    }
+
+
+
+    /// <summary>
+    /// 單據確認Submit后 item和料號作為條件 更新主單號,caseid,單據狀態更新為在簽(W)
+    /// </summary>
+    /// <param name="ZEILE"></param>
+    /// <param name="MATNR"></param>
+    /// <param name="MBLNR"></param>
+    /// <param name="CASEID"></param>
+    /// <param name="STATUS"></param>
+    public void UpdateException_Queue(string ZEILE, string MATNR, string MBLNR, string CASEID, string STATUS)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(@"Update TB_GDS_ExceptionHandling set MBLNR = @MBLNR,CASEID = @CASEID,STATUS = @STATUS where ZEILE = @ZEILE,MATNR = @MATNR");
+        opc.Clear();
+        opc.Add(DataPara.CreateDataParameter("@ZEILE", SqlDbType.NVarChar, ZEILE));
+        opc.Add(DataPara.CreateDataParameter("@MATNR", SqlDbType.NVarChar, MATNR));
+        opc.Add(DataPara.CreateDataParameter("@MBLNR", SqlDbType.NVarChar, MBLNR));
+        opc.Add(DataPara.CreateDataParameter("@CASEID", SqlDbType.NVarChar, CASEID));
+        opc.Add(DataPara.CreateDataParameter("@STATUS", SqlDbType.NVarChar, STATUS));
+        sdb.ExecuteNonQuery(sb.ToString(), opc);
+    }
+
+    /// <summary>
+    /// Check此領料單號是否為空 
+    /// </summary>
+    /// <param name="dtDetail"></param>
+    /// <returns></returns>
+    public bool CheckBatchIsEmpty(DataTable dtDetail)
+    {
+        string Length = string.Empty;
+        foreach (DataRow dr in dtDetail.Rows)
+        {
+            string CHARG = dr["CHARG"].ToString();
+            Length += CHARG;
+        }
+        if (Length.Length == 0)
+        {
+            return false;
+        }
+        return true;
     }
     #endregion
 
@@ -510,6 +832,8 @@ public class GDS_Helper
         dt.Columns.Add(new DataColumn("MBLNR_A", typeof(String)));
         dt.Columns.Add(new DataColumn("MATNR", typeof(String)));
         dt.Columns.Add(new DataColumn("MENGE", typeof(double)));
+        dt.Columns.Add(new DataColumn("CHARG", typeof(String)));
+        dt.Columns.Add(new DataColumn("REASON", typeof(String)));
         dt.Columns.Add(new DataColumn("STATUS", typeof(String)));
         return dt;
     }
@@ -543,5 +867,19 @@ public class GDS_Helper
         return dt;
     }
 
+    #endregion
+
+    #region 工具方法
+    /// <summary>
+    /// 把DataTable的某一列转化为逗号分隔字符串
+    /// </summary>
+    /// <param name="dataTable"></param>
+    /// <param name="strColumn"></param>
+    /// <returns></returns>
+    //public string DataTableColumnSplit(DataTable dataTable, string strColumn)
+    //{
+    //    int[] idInts = dataTable.AsEnumerable().Select(d => d.Field<int>(strColumn)).ToArray();
+    //    return String.Join(",", idInts);
+    //}
     #endregion
 }

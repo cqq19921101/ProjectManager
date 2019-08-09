@@ -40,27 +40,43 @@ public class GDSExceptionHandlingUIShadow : IUIShadow
     public TextField txtExtNO;//申請人 分機
 
     public TextField txtRDocNo;//Link 單號 
-    public Button btnLink;//Link 按鈕
+    public TextField txtWERKS_A;//Check 廠別
     public TextField txtDocNo;//生成單號
     public TextField txtCostCenter;//成本中心
     public TextField txtDepartment;//部門
     public TextField txtApplication;//申請人
-    public ComboBox txtMaterial;//料號
+    public ComboBox txtMaterial;//料號 Load條件
+    public ComboBox txtBatch;//Batch Number Load條件
+    public TextField txtMENGE;//領料單數量
     public TextField txtReturnQuantity;//退料數量
     public ComboBox txtReason;//退料原因
-    public TextArea txtRemark;//備註
+    public TextField txtRemark;//備註
     public TextField txtReturn;//條件FLAG Flag為Y才符合條件
-    public TextField txtIADocNo;//關聯IA單
-    public TextField txtI6DocNo;//關聯I6單
-    public TextField txtZEILE;//Itme 001
-    public TextField txtAmount;//Itme 001
+    public TextField txtOpen;//Open數量 關鍵條件
 
+    public Button btnLink;//Link 按鈕
+    public Button btnQuery;//料號Link 按鈕
+    public Button btnClear;//料號Clear 按鈕
+    public Button btnReturnWork;//退料作業按鈕 按鈕
+    public Button btnDelete;//異常單記錄刪除 按鈕
+
+
+
+    public TextField txtZEILE;//Itme 001
+    public TextField txtAmount;//金額
+    public GridPanel grdItems;//關聯退料單GridPanel
+    public GridPanel grdException;//異常單歷史單據信息GridPanel
+
+    public Panel PanelItem;
+    
+      
     //SOURCE DATA
     public TextField txtHead;//表頭XML數據
     public TextField txtDOA;//DOA XML數據
     public TextField txtDetail;//表身 XML數據
     public TextField txtWERKS;//WERKS
     public TextField txtAPTYP;//APTYP
+    public TextField txtReturn_A;//历史签核单中的加总数量
 
     #endregion
 
@@ -87,28 +103,42 @@ public class GDSExceptionHandlingUIShadow : IUIShadow
 
         //單據資料
         txtRDocNo = (TextField)oContentPage.FindControl("txtRDocNo");
-        btnLink = (Button)oContentPage.FindControl("btnLink");
+        txtWERKS_A = (TextField)oContentPage.FindControl("txtWERKS_A");
         txtDocNo = (TextField)oContentPage.FindControl("txtDocNo");
         txtCostCenter = (TextField)oContentPage.FindControl("txtCostCenter");
         txtDepartment = (TextField)oContentPage.FindControl("txtDepartment");
         txtApplication = (TextField)oContentPage.FindControl("txtApplication");
-        txtMaterial = (ComboBox)oContentPage.FindControl("txtMaterial");
+        txtMaterial = (ComboBox)oContentPage.FindControl("txtMaterial"); 
+        txtBatch = (ComboBox)oContentPage.FindControl("txtBatch"); 
+        txtMENGE = (TextField)oContentPage.FindControl("txtMENGE");
         txtReturnQuantity = (TextField)oContentPage.FindControl("txtReturnQuantity");
         txtReason = (ComboBox)oContentPage.FindControl("txtReason");
-        txtRemark = (TextArea)oContentPage.FindControl("txtRemark");
+        txtRemark = (TextField)oContentPage.FindControl("txtRemark");
         txtReturn = (TextField)oContentPage.FindControl("txtReturn");
-        txtIADocNo = (TextField)oContentPage.FindControl("txtIADocNo");
-        txtI6DocNo = (TextField)oContentPage.FindControl("txtI6DocNo");
         txtZEILE = (TextField)oContentPage.FindControl("txtZEILE");
         txtAmount = (TextField)oContentPage.FindControl("txtAmount");
+        grdItems = (GridPanel)oContentPage.FindControl("grdItems");
+        grdException = (GridPanel)oContentPage.FindControl("grdException");
+        txtOpen = (TextField)oContentPage.FindControl("txtOpen");
 
+        PanelItem = (Panel)oContentPage.FindControl("PanelItem");
+        //button
+        btnLink = (Button)oContentPage.FindControl("btnLink");
+        btnQuery = (Button)oContentPage.FindControl("btnQuery");
+        btnClear = (Button)oContentPage.FindControl("btnClear");
+        btnReturnWork = (Button)oContentPage.FindControl("btnReturnWork");
+        btnDelete = (Button)oContentPage.FindControl("btnDelete"); 
+
+        
         //SOURCE DATA
         txtHead = (TextField)oContentPage.FindControl("txtHead");
         txtDOA = (TextField)oContentPage.FindControl("txtDOA");
         txtDetail = (TextField)oContentPage.FindControl("txtDetail");
         txtWERKS = (TextField)oContentPage.FindControl("txtWERKS");
         txtAPTYP = (TextField)oContentPage.FindControl("txtAPTYP");
+        txtReturn_A = (TextField)oContentPage.FindControl("txtReturn_A");
         #endregion
+        
     }
 }
 
@@ -223,7 +253,7 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             DataTable dt = oStandard.GetMaster_Exception(int.Parse(caseid));//加載 異常單主表資料
             if (dt.Rows.Count > 0)
             {
-                #region 數據加載
+                #region 數據加載 文本框
                 DataRow dr = dt.Rows[0];
                 oUIControls.txtDocNo.Text = dr["MBLNR"].ToString();//主單號 
                 oUIControls.txtRDocNo.Text = dr["MBLNR_A"].ToString();//Link 單號 
@@ -235,16 +265,14 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                 oUIControls.txtMaterial.Text = dr["MATNR"].ToString();//料號
                 oUIControls.txtZEILE.Text = dr["ZEILE"].ToString();//料號對應的ITEM
                 oUIControls.txtAmount.Text = dr["Amount"].ToString();//金額
-                oUIControls.txtIADocNo.Text = dr["IADocNo"].ToString();//關聯IA單
-                oUIControls.txtI6DocNo.Text = dr["I6DocNo"].ToString();//關聯I6單
                 oUIControls.txtReason.Text = dr["Reason"].ToString();//REASON
                 oUIControls.txtRemark.Text = dr["Remark"].ToString();//REMARK
                 oUIControls.txtReturnQuantity.Text = dr["MENGE"].ToString();//RETURN 數量
                 oUIControls.txtDOA.Text = dr["Settingxml"].ToString();//Settingxml
+                oUIControls.txtBatch.Text = dr["CHARG"].ToString();//Batch Number
                 #endregion
 
                 #region 控件顯示
-                oUIControls.btnLink.Hidden = true;
                 oUIControls.frmUserInfo.Hidden = true;
                 oUIControls.txtDocNo.ReadOnly = true;
                 oUIControls.txtRDocNo.ReadOnly = true;
@@ -253,22 +281,29 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
                 oUIControls.txtApplication.ReadOnly = true;
                 oUIControls.txtReturn.ReadOnly = true;
                 oUIControls.txtMaterial.ReadOnly = true;
+                oUIControls.txtBatch.ReadOnly = true;
                 oUIControls.txtZEILE.ReadOnly = true;
                 oUIControls.txtAmount.ReadOnly = true;
-                oUIControls.txtIADocNo.ReadOnly = true;
-                oUIControls.txtI6DocNo.ReadOnly = true;
                 oUIControls.txtReason.ReadOnly = true;
                 oUIControls.txtRemark.ReadOnly = true;
                 oUIControls.txtReturnQuantity.ReadOnly = true;
+                oUIControls.PanelItem.Hidden = true;
+
+                oUIControls.txtOpen.Hidden = true;//Open數量顯示暫時隱藏
+
+                //Butoon
+                oUIControls.btnLink.Hidden = true;
+                oUIControls.btnQuery.Hidden = true;
+                oUIControls.btnClear.Hidden = true;
                 #endregion
             }
             #endregion
 
-
             #region 通過異常單的Link單號 抓取正常單中的Head和Detail
-            DataTable dtHead = oStandard.GetdtHead(oUIControls.txtRDocNo.Text.Trim());
-            DataTable dtDetail = oStandard.GetdtDetail(oUIControls.txtRDocNo.Text.Trim());
+            DataTable dtHead = oStandard.GetdtHead(oUIControls.txtRDocNo.Text.Trim(),oUIControls.txtWERKS_A.Text);
+            DataTable dtDetail = oStandard.GetdtDetail(oUIControls.txtRDocNo.Text.Trim(), oUIControls.txtWERKS_A.Text,"");
             oUIControls.txtWERKS.Text = dtHead.Rows[0]["WERKS"].ToString();//廠別
+            oUIControls.txtWERKS_A.Text = dtHead.Rows[0]["WERKS"].ToString();//廠別
             oUIControls.txtAPTYP.Text = dtHead.Rows[0]["APTYP"].ToString();//單據類型
             string xmlstrHead = oStandard.DataTableToXMLStr(dtHead);
             oUIControls.txtHead.Text = xmlstrHead;//Head
@@ -277,6 +312,37 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             //string tempWEKS = DOA.GetXMLConfigName(dtHead);//CALL FUNCTION獲取XML配置檔名
             //SettingParser x = new SettingParser(tempWEKS, oUIControls.txtAPTYP.Text);//讀取XML配置檔信息
             //oUIControls.txtDOA.Text = x.ApproveXML.Replace("&lt1;", "<").Replace("&gt1;", ">"); ;//抓取DOA的簽核邏輯
+            #endregion
+
+            #region 綁定此料號和Batch Number在簽異常單
+            DataTable dtM = oStandard.GetMaster_Exception(oUIControls.txtRDocNo.Text, oUIControls.txtMaterial.Text, oUIControls.txtBatch.Text);
+            if (dtM.Rows.Count > 0)
+            {
+                //如果此领料单有历史单据 绑定到Grid  将历史单据中的退料数量存到txtReturn_A中 有多笔就循环相加
+                var Count = dtM.Compute("Sum(MENGE)", "");
+                oUIControls.txtReturn_A.Text = Count.ToString();
+                oUIControls.grdException.Store.Primary.DataSource = dtM;
+                oUIControls.grdException.Store.Primary.DataBind();
+            }
+            else
+            {
+            }
+            #endregion
+
+            #region 因單據過帳才有POSTED的值 需重新Call BAPI抓取已過帳單據中的ZEILE_A(Item)、POSTED(領料單數量)
+            DataTable dtDetail_P = oStandard.GetdtDetail(oUIControls.txtRDocNo.Text.Trim(), oUIControls.txtWERKS.Text);
+            DataRow[] drItem = dtDetail.Select(string.Format("CHARG = '{0}'", oUIControls.txtBatch.Text));
+            if (drItem.Length > 0)
+            {
+                DataTable tempT = new DataTable();
+                tempT = drItem[0].Table.Clone();
+                DataSet tempDs = new DataSet();
+                tempDs.Tables.Add(tempT);
+                tempDs.Merge(drItem);
+                DataTable dtItem = tempDs.Tables[0];
+                //領料單數量  抓Posted
+                oUIControls.txtMENGE.Text = dtItem.Rows[0]["POSTED"].ToString();
+            }
             #endregion
 
         }
@@ -306,35 +372,99 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         string plant = lUIControls.txtWERKS.Text;
         string apType = lUIControls.txtAPTYP.Text;
 
-        DOA spmDOA = new DOA();
-        string sApplicant = lUIControls.txtApplication.Text.Trim();
-        //獲取 表頭及表身DATA
-        string formDetail = lUIControls.txtDetail.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
-        string formHead = lUIControls.txtHead.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
-        DataTable dtHead = LiteOn.GDS.Utility.Tools.BuildHeadTable();
-        System.IO.StringReader reader = new System.IO.StringReader(formHead);
-        dtHead.ReadXml(reader);
-        System.IO.StringReader reader2 = new System.IO.StringReader(formDetail);
-        DataTable dtDetail = LiteOn.GDS.Utility.Tools.BuildDetailTable();
-        dtDetail.ReadXml(reader2);
         if (SubmitMethod == SPMSubmitMethod.CreateNewCase)
         {
+
             #region 欄位的非空驗證
+            if (lUIControls.txtRDocNo.Text.Length == 0)
+            {
+                ErrMsg.Append("Link單號</br>");
+            }
+            if (lUIControls.txtDocNo.Text.Length == 0)
+            {
+                ErrMsg.Append("主單號</br>");
+            }
+            if (lUIControls.txtCostCenter.Text.Length == 0)
+            {
+                ErrMsg.Append("成本中心</br>");
+            }
+            if (lUIControls.txtDepartment.Text.Length == 0)
+            {
+                ErrMsg.Append("部門</br>");
+            }
+            if (lUIControls.txtApplication.Text.Length == 0)
+            {
+                ErrMsg.Append("申請人</br>");
+            }
+            if (lUIControls.txtReturn.Text.Length == 0)
+            {
+                ErrMsg.Append("RTNIF</br>");
+            }
+            if (lUIControls.txtMENGE.Text.Length == 0)
+            {
+                ErrMsg.Append("領料單MENGE</br>");
+            }
+            if (lUIControls.txtMaterial.Text.Length == 0)
+            {
+                ErrMsg.Append("料號</br>");
+            }
+            if (lUIControls.txtZEILE.Text.Length == 0)
+            {
+                ErrMsg.Append("Item</br>");
+            }
+            if (lUIControls.txtBatch.Text.Length == 0)
+            {
+                ErrMsg.Append("Batch Number</br>");
+            }
+            if (lUIControls.txtOpen.Text.Length == 0)
+            {
+                ErrMsg.Append("Open數量</br>");
+            }
+            if (lUIControls.txtReturn_A.Text.Length == 0)
+            {
+                ErrMsg.Append("歷史回退數量</br>");
+            }
+            if (lUIControls.txtReturnQuantity.Text.Length == 0)
+            {
+                ErrMsg.Append("回退數量</br>");
+            }
+            if (lUIControls.txtReason.Text.Length == 0)
+            {
+                ErrMsg.Append("原因</br>");
+            }
+            if (lUIControls.txtRemark.Text.Length == 0)
+            {
+                ErrMsg.Append("Remark</br>");
+            }
+            if (lUIControls.txtAmount.Text.Length == 0)
+            {
+                ErrMsg.Append("金額</br>");
+            }
+
+            if (ErrMsg.ToString().Length > 0)
+            {
+                HandleResult.IsSuccess = false;
+                HandleResult.CustomMessage = ErrMsg.ToString() + "不能為空!";
+            }
 
             #endregion
 
-            #region Check單據是否已經過帳
-            string I1DocNo = oUIControls.txtRDocNo.Text;
-            string IADocNo = oUIControls.txtIADocNo.Text;
-            string I6DocNo = oUIControls.txtI6DocNo.Text;
-            string WERKS = oUIControls.txtWERKS.Text;
-            //Check此I1單(領料單)和關聯的IA,I6單(退料單)是否都已經過賬 (Call SAP BAPI Z_BAPI_GDS_SEND MBLNR不為空則表示已經過賬)
-            if (!oStandard.CheckFormNoIsPass(I1DocNo, IADocNo, I6DocNo, WERKS))
+            #region 數據加載
+            if (lUIControls.txtDetail.Text.Length > 0 && lUIControls.txtHead.Text.Length > 0)
             {
-                HandleResult.IsSuccess = false;
-                HandleResult.CustomMessage = "I1(領料單)或者IA,I6(退料單)存在未過賬的單子！";
-
+                DOA spmDOA = new DOA();
+                string sApplicant = lUIControls.txtApplication.Text.Trim();
+                //獲取 表頭及表身DATA
+                string formDetail = lUIControls.txtDetail.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
+                string formHead = lUIControls.txtHead.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
+                DataTable dtHead = LiteOn.GDS.Utility.Tools.BuildHeadTable();
+                System.IO.StringReader reader = new System.IO.StringReader(formHead);
+                dtHead.ReadXml(reader);
+                System.IO.StringReader reader2 = new System.IO.StringReader(formDetail);
+                DataTable dtDetail = LiteOn.GDS.Utility.Tools.BuildDetailTable();
+                dtDetail.ReadXml(reader2);
             }
+
             #endregion
 
         }
@@ -343,6 +473,21 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             //only  approve action check controls 
             if (SubmitMethod == SPMSubmitMethod.HandleCase_Approve)
             {
+                #region
+                DOA spmDOA = new DOA();
+                string sApplicant = lUIControls.txtApplication.Text.Trim();
+                //獲取 表頭及表身DATA
+                string formDetail = lUIControls.txtDetail.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
+                string formHead = lUIControls.txtHead.Text.Trim().Replace("&lt1;", "<").Replace("&gt1;", ">");
+                DataTable dtHead = LiteOn.GDS.Utility.Tools.BuildHeadTable();
+                System.IO.StringReader reader = new System.IO.StringReader(formHead);
+                dtHead.ReadXml(reader);
+                System.IO.StringReader reader2 = new System.IO.StringReader(formDetail);
+                DataTable dtDetail = LiteOn.GDS.Utility.Tools.BuildDetailTable();
+                dtDetail.ReadXml(reader2);
+
+                #endregion
+
                 int caseId = int.Parse((string)(SPMTaskVars.ReadDatum("CASEID")));
                 string curStepId = SPMAppLine.GetCurrentStep(curDOA);
                 //調用FUNCTION作FormFieldsValidation
@@ -408,19 +553,21 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         FormFields.SetOrAdd("txtExtNO".ToUpper(), lUIControls.txtExtNO.Text);
 
         FormFields.SetOrAdd("txtRDocNo".ToUpper(), lUIControls.txtRDocNo.Text);
+        FormFields.SetOrAdd("txtWERKS_A".ToUpper(), lUIControls.txtWERKS_A.Text);
         FormFields.SetOrAdd("txtDocNo".ToUpper(), lUIControls.txtDocNo.Text);
         FormFields.SetOrAdd("txtCostCenter".ToUpper(), lUIControls.txtCostCenter.Text);
         FormFields.SetOrAdd("txtDepartment".ToUpper(), lUIControls.txtDepartment.Text);
         FormFields.SetOrAdd("txtApplication".ToUpper(), lUIControls.txtApplication.Text);
         FormFields.SetOrAdd("txtMaterial".ToUpper(), lUIControls.txtMaterial.Text);
+        FormFields.SetOrAdd("txtBatch".ToUpper(), lUIControls.txtBatch.Text);
+        FormFields.SetOrAdd("txtMENGE".ToUpper(), lUIControls.txtMENGE.Text);
         FormFields.SetOrAdd("txtReturnQuantity".ToUpper(), lUIControls.txtReturnQuantity.Text);
         FormFields.SetOrAdd("txtReason".ToUpper(), lUIControls.txtReason.Text);
         FormFields.SetOrAdd("txtRemark".ToUpper(), lUIControls.txtRemark.Text);
         FormFields.SetOrAdd("txtReturn".ToUpper(), lUIControls.txtReturn.Text);
-        FormFields.SetOrAdd("txtIADocNo".ToUpper(), lUIControls.txtIADocNo.Text);
-        FormFields.SetOrAdd("txtI6DocNo".ToUpper(), lUIControls.txtI6DocNo.Text);
         FormFields.SetOrAdd("txtZEILE".ToUpper(), lUIControls.txtZEILE.Text);
         FormFields.SetOrAdd("txtAmount".ToUpper(), lUIControls.txtAmount.Text);
+        FormFields.SetOrAdd("txtOpen".ToUpper(), lUIControls.txtOpen.Text);
 
 
         //SOURCE DATA
@@ -429,7 +576,9 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
         FormFields.SetOrAdd("txtDOA".ToUpper(), lUIControls.txtDOA.Text);
         FormFields.SetOrAdd("txtWERKS".ToUpper(), lUIControls.txtWERKS.Text);
         FormFields.SetOrAdd("txtAPTYP".ToUpper(), lUIControls.txtAPTYP.Text);
+        FormFields.SetOrAdd("txtReturn_A".ToUpper(), lUIControls.txtReturn_A.Text);
 
+        
 
         base.PrepareEFFormFields(SubmitMethod, ProcessMethod, TaskVars, ref FormFields, ref HandleResult, oContainer, UIShadow, ref ApplicantInfo);
     }
@@ -541,18 +690,18 @@ public class GDSExceptionHandlingLogics : ISPMInterfaceContent
             string Application = oUIControls.txtApplication.Text;//申請人
             string ZEILE = oUIControls.txtZEILE.Text;//ITEM
             string Material = oUIControls.txtMaterial.Text;//料號
+            string CHARG = oUIControls.txtBatch.Text;//Batch Number
+            string MENGE_A = oUIControls.txtMENGE.Text;//原領料單數量
             string ReturnQuantity = oUIControls.txtReturnQuantity.Text;//退料數量
             string Reason = oUIControls.txtReason.Text;//退料原因
             string Remark = oUIControls.txtRemark.Text;//備註
             string Return = oUIControls.txtReturn.Text;//條件FLAG Flag為Y才符合條件
-            string IADocNo = oUIControls.txtIADocNo.Text;//關聯IA單
-            string I6DocNo = oUIControls.txtI6DocNo.Text;//關聯I6單
             string Amount = oUIControls.txtAmount.Text;//金額
             string Settingxml = oUIControls.txtDOA.Text;//Setting
             try
             {
                 //Insert Submit之後數據到DB中
-                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, ReturnQuantity, Return, Reason, Remark, IADocNo, I6DocNo, "In Process", double.Parse(Amount), Settingxml, int.Parse(CASEID));
+                oStandard.Insert_Begin(Werks, DocNo, RDocNo, CostCenter, Department, Application, ZEILE, Material, ReturnQuantity, Return, Reason, Remark, "In Process", double.Parse(Amount),CHARG, Settingxml, int.Parse(CASEID));
 
                 //將Submit後的狀態 W(In Process)回傳給SAP Begin關卡直接回傳
                 oStandard.PostBackToSAP(int.Parse(CASEID));
